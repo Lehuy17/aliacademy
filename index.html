@@ -259,7 +259,7 @@ function getScores(){
 function updateTimer(){if(!state.startedAt||state.submitted)return;let left=Math.max(0,3000-Math.floor((Date.now()-state.startedAt)/1000));let mm=String(Math.floor(left/60)).padStart(2,'0'),ss=String(left%60).padStart(2,'0');$('timerText').textContent=mm+':'+ss;$('timerBox').classList.toggle('urgent',left<300);if(left<=0){clearInterval(timerId);submitExam(true);}}
 function startExam(e){e.preventDefault();let name=$('nameField').value.trim();if(!name){$('nameField').focus();return;}state={answers:{},student:{name,phone:$('phoneField').value.trim(),school:$('schoolField').value.trim(),goal:$('goalField').value},section:0,startedAt:Date.now(),submitted:false,forced:false};$('testName').textContent=name.split(' ').slice(-2).join(' ');$('asideName').textContent=name;$('asideSchool').textContent=state.student.school||'Học viên ALI English';$('asideAvatar').textContent=(name.split(' ').slice(-1)[0]||'A').slice(0,1).toUpperCase();$('introView').classList.add('hidden');$('resultView').classList.add('hidden');$('testView').classList.remove('hidden');showSection(0);updateProgress();clearInterval(timerId);timerId=setInterval(updateTimer,1000);updateTimer();}
 function submitExam(expired=false){if(state.submitted)return;if(!expired){let count=progressCount();let notComplete=44-count;if(notComplete>0){let ok=confirm(`Bạn còn ${notComplete} câu chưa trả lời. Bạn vẫn muốn kết thúc và xem kết quả tự chấm?`);if(!ok)return;}if(!confirm('Kết thúc bài kiểm tra và xem kết quả? Bạn sẽ không thể sửa bài sau khi nộp.'))return;}
- state.submitted=true;state.forced=expired;clearInterval(timerId);if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();$('testView').classList.add('hidden');$('resultView').classList.remove('hidden');renderResult();$('examApp').scrollTop=0;}
+ state.submitted=true;state.forced=expired;clearInterval(timerId);if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();$('testView').classList.add('hidden');$('resultView').classList.remove('hidden');renderResult();$('examApp').scrollTop=0;aliSubmitAfterExam();}
 function renderResult(){let s=getScores();$('autoScore').textContent=s.auto+'/44';$('scoreWheel').style.setProperty('--p',(s.auto/44*100).toFixed(2));$('resultFor').textContent=`${state.student.name} · ${state.student.school||'ALI English'}${state.forced?' · Hết thời gian':''}`;
  let data=[['Grammar & Vocabulary',s.g,15],['Reading',s.r,10],['Writing tự chấm',s.w,9],['Listening',s.l,10]];
  $('skillScores').innerHTML=data.map(([label,score,max])=>`<div class="skill-row"><span>${label}</span><div class="skill-bar"><div style="width:${score/max*100}%"></div></div><b>${score}/${max}</b></div>`).join('');
@@ -277,6 +277,55 @@ async function toggleRecording(){if(mediaRecorder&&mediaRecorder.state==='record
  catch(e){$('recordStatus').textContent='Không thể truy cập micro: '+(e.message||'Quyền truy cập bị từ chối');}}
 function openExam(){document.querySelector('#navLinks').classList.remove('open');$('examApp').classList.remove('hidden');document.body.style.overflow='hidden';$('introView').classList.remove('hidden');$('testView').classList.add('hidden');$('resultView').classList.add('hidden');$('examApp').scrollTop=0;setTimeout(()=>$('nameField').focus(),250);}
 function closeExam(){if(state.startedAt&&!state.submitted){if(!confirm('Đóng bài kiểm tra? Dữ liệu câu trả lời chưa nộp sẽ không được lưu.'))return;}if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();clearInterval(timerId);$('examApp').classList.add('hidden');document.body.style.overflow='';state.startedAt=null;}
+
+const ALI_SUBMISSION_ENDPOINT='https://script.google.com/macros/s/AKfycbyWX72OHXoiocuEuWBXJ85b5Io9kLTeliXhrYyau7OdrgiqfHpr0ABvX-fafkc7L4VG/exec';
+let aliSubmission=null;
+function aliStatus(message,good=false){
+ let node=document.getElementById('aliSubmissionStatus');
+ if(!node){node=document.createElement('div');node.id='aliSubmissionStatus';node.setAttribute('role','status');node.style.cssText='margin:16px 0;padding:14px 18px;border-radius:14px;border:1px solid #ffb07a;background:#fff7ef;color:#673c24;line-height:1.6;font-weight:600;';document.querySelector('#resultView .result-actions').before(node);}
+ node.textContent=message;node.style.borderColor=good?'#86c5a0':'#ffb07a';
+ let retry=document.getElementById('aliRetry');
+ if(retry)retry.remove();
+ if(aliSubmission&&!good){retry=document.createElement('button');retry.id='aliRetry';retry.type='button';retry.className='btn secondary tiny';retry.textContent='Gửi lại bài nộp';retry.onclick=aliSend;node.append(' ',retry);}
+}
+function aliBuildSubmission(){
+ const sc=getScores();
+ if(!state.aliSubmissionId){
+  const bytes=new Uint8Array(16);crypto.getRandomValues(bytes);
+  state.aliSubmissionId='ALI-'+Array.from(bytes,x=>x.toString(16).padStart(2,'0')).join('');
+ }
+ return {schemaVersion:1,submissionId:state.aliSubmissionId,consent:true,
+  student:state.student,answers:state.answers,startedAt:new Date(state.startedAt).toISOString(),
+  expired:!!state.forced,
+  scores:{auto:sc.auto,grammar:sc.g,reading:sc.r,writingAuto:sc.w,listening:sc.l,a2AutoBase:sc.a2base}};
+}
+function aliSend(){
+ if(!aliSubmission)return;
+ const nonce=Array.from(crypto.getRandomValues(new Uint8Array(16)),x=>x.toString(16).padStart(2,'0')).join('');
+ const existing=document.getElementById('aliSendFrame');if(existing)existing.remove();
+ const iframe=document.createElement('iframe');iframe.name='aliSendFrame';iframe.id='aliSendFrame';iframe.style.display='none';document.body.append(iframe);
+ const form=document.createElement('form');form.method='POST';form.action=ALI_SUBMISSION_ENDPOINT;form.target='aliSendFrame';form.style.display='none';
+ for(const [key,value] of Object.entries({payload:JSON.stringify(aliSubmission),nonce})){const input=document.createElement('input');input.type='hidden';input.name=key;input.value=value;form.append(input);}
+ document.body.append(form);
+ aliStatus('Đang gửi bài làm về ALI English. Vui lòng chờ xác nhận…');
+ const listener=e=>{
+  if(!/^https:\/\/(script\.google\.com|[a-z0-9.-]*googleusercontent\.com)$/.test(e.origin))return;
+  const d=e.data;
+  if(!d||d.type!=='ALI_SUBMISSION_RESULT'||d.nonce!==nonce||d.submissionId!==aliSubmission.submissionId)return;
+  window.removeEventListener('message',listener);
+  if(d.ok){aliStatus('Đã lưu bài làm vào hệ thống ALI English. Mã bài: '+d.submissionId+(d.emailSent?' · Đã gửi thông báo email.':' · Email chưa gửi; quản trị viên kiểm tra cấu hình.'),true);aliSubmission=null;}
+  else aliStatus('Không thể xác nhận bài nộp: '+(d.error||'Lỗi máy chủ')+'. Hãy thử gửi lại hoặc tải phiếu JSON.');
+ };
+ window.addEventListener('message',listener);
+ try{form.submit();}catch(err){aliStatus('Không gửi được bài làm. Vui lòng thử lại.');}
+ form.remove();
+ setTimeout(()=>{window.removeEventListener('message',listener);if(aliSubmission)aliStatus('Chưa nhận được xác nhận từ Google Sheets. Hãy thử gửi lại; mã bài không đổi để tránh trùng lặp.');iframe.remove();},18000);
+}
+function aliSubmitAfterExam(){
+ if(!window.confirm('Đồng ý gửi thông tin liên hệ, câu trả lời và điểm test về ALI English để tư vấn xếp lớp? Nhấn OK để đồng ý, Cancel để chỉ xem kết quả trên máy.')){aliStatus('Bạn chưa đồng ý gửi dữ liệu. Kết quả chỉ hiển thị trên máy; có thể tải phiếu JSON.');return;}
+ try{aliSubmission=aliBuildSubmission();aliSend();}catch(err){aliStatus('Không thể chuẩn bị dữ liệu. Hãy tải phiếu JSON để lưu kết quả.');}
+}
+
 function mount(){
  // Cinematic scroll and depth animations.
  const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('inview')});},{threshold:.1});document.querySelectorAll('.reveal').forEach(e=>observer.observe(e));
