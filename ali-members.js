@@ -15,10 +15,7 @@ function show(message, good = false) {
 function friendlyError(error) {
   const code = error?.code || '';
   const messages = {
-    'auth/email-already-in-use': 'Email này đã có tài khoản. Hãy đăng nhập thay vì đăng ký lại.',
     'auth/invalid-email': 'Địa chỉ email không hợp lệ.',
-    'auth/weak-password': 'Mật khẩu chưa đáp ứng yêu cầu bảo mật của Firebase.',
-    'auth/password-does-not-meet-requirements': 'Mật khẩu chưa đáp ứng chính sách mật khẩu của dự án Firebase.',
     'auth/invalid-credential': 'Email hoặc mật khẩu không chính xác.',
     'auth/user-disabled': 'Tài khoản đã bị vô hiệu hóa. Vui lòng liên hệ ALI English.',
     'auth/too-many-requests': 'Quá nhiều lần thử. Vui lòng thử lại sau.',
@@ -77,55 +74,6 @@ async function init() {
   if ($('reset')) $('reset').disabled = false;
   if (notice) { notice.textContent = ''; notice.classList.remove('show', 'good'); }
 
-  if (page === 'register') {
-    $('registerForm').addEventListener('submit', async event => {
-      event.preventDefault();
-      const name = $('name').value.trim();
-      const email = $('email').value.trim();
-      const pass = $('password').value;
-      const repeat = $('confirm').value;
-      if (name.length < 2) { show('Vui lòng nhập họ tên đầy đủ.'); return; }
-      if (pass.length < 8) { show('Mật khẩu phải có ít nhất 8 ký tự.'); return; }
-      if (pass !== repeat) { show('Mật khẩu xác nhận không trùng khớp.'); return; }
-      submitButton.disabled = true;
-      show('Đang tạo tài khoản học viên. Vui lòng không nhấn nút nhiều lần…');
-      let newUser = null;
-      try {
-        const result = await authSdk.createUserWithEmailAndPassword(auth, email, pass);
-        newUser = result.user;
-        await authSdk.updateProfile(newUser, { displayName: name });
-        try {
-          await dbSdk.setDoc(dbSdk.doc(db, 'users', newUser.uid), {
-            name,
-            email: newUser.email,
-            role: 'student',
-            status: 'active',
-            createdAt: dbSdk.serverTimestamp()
-          });
-        } catch (error) {
-          console.error('ALI profile creation error:', error);
-          await authSdk.signOut(auth).catch(() => {});
-          show('Tài khoản đã được tạo trong Firebase Authentication nhưng hồ sơ chưa lưu được. KHÔNG đăng ký lại. Hãy kiểm tra Firestore Rules: ' + friendlyError(error));
-          return;
-        }
-        try {
-          await authSdk.sendEmailVerification(newUser);
-          show('Tạo tài khoản thành công! Hãy kiểm tra email xác minh, sau đó đăng nhập.', true);
-        } catch (error) {
-          console.error('ALI email verification error:', error);
-          show('Tài khoản đã được tạo nhưng chưa gửi được email xác minh. Hãy thử đăng nhập để gửi lại. ' + friendlyError(error));
-        }
-        await authSdk.signOut(auth).catch(() => {});
-        $('registerForm').reset();
-      } catch (error) {
-        console.error('ALI registration error:', error);
-        show(friendlyError(error));
-      } finally {
-        submitButton.disabled = false;
-      }
-    });
-  }
-
   if (page === 'login') {
     $('loginForm').addEventListener('submit', async event => {
       event.preventDefault();
@@ -134,17 +82,6 @@ async function init() {
       try {
         const result = await authSdk.signInWithEmailAndPassword(auth, $('email').value.trim(), $('password').value);
         const user = result.user;
-        await user.reload();
-        if (!user.emailVerified) {
-          let sent = false;
-          try { await authSdk.sendEmailVerification(user); sent = true; }
-          catch (error) { console.warn('ALI email resend:', error); }
-          await authSdk.signOut(auth);
-          show(sent
-            ? 'Email chưa được xác minh. ALI đã gửi lại thư xác minh, hãy kiểm tra Inbox/Spam.'
-            : 'Email chưa được xác minh. Hãy kiểm tra email xác minh đã nhận.');
-          return;
-        }
         const p = await getProfile(user);
         if (!p || p.status !== 'active') {
           await authSdk.signOut(auth);
@@ -175,12 +112,6 @@ async function init() {
     authSdk.onAuthStateChanged(auth, async user => {
       if (!user) { window.location.replace('./login.html?next=movies'); return; }
       try {
-        await user.reload();
-        if (!user.emailVerified) {
-          await authSdk.signOut(auth);
-          window.location.replace('./login.html');
-          return;
-        }
         const p = await getProfile(user);
         if (!p || p.status !== 'active') {
           await authSdk.signOut(auth);
