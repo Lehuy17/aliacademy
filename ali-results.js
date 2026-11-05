@@ -27,7 +27,7 @@ function render(targetId,data){
   const width=scored?Math.max(0,Math.min(100,p.score/p.max*100)):0;
   track.setAttribute('aria-label',p.label);track.setAttribute('aria-valuemin','0');track.setAttribute('aria-valuemax',String(p.max));if(scored)track.setAttribute('aria-valuenow',String(p.score));
   const fill=el('span');fill.style.width=width+'%';track.append(fill);
-  const number=el('b','ali-score',scored?fmt(p.score)+'/'+fmt(p.max):'Chưa chấm /'+fmt(p.max));
+  const number=el('b','ali-score',scored?fmt(p.score)+'/'+fmt(p.max):(Number.isFinite(p.max)&&p.max>0?'Chưa chấm /'+fmt(p.max):'Chưa chấm'));
   if(!scored)row.classList.add('ali-ungraded');
   row.append(name,track,number);breakdown.append(row);
  }target.append(breakdown);
