@@ -140,6 +140,42 @@ async function init() {
       $('lessonModal').scrollIntoView({ behavior:'smooth' });
     }));
     $('hideLesson').addEventListener('click', () => $('lessonModal').classList.add('hidden'));
+    // Timed bilingual captions: only show verified cues; do not fabricate dialogue.
+    let aliSubtitleMode = 'both';
+    const subtitleNodes = {
+      status: $('aliSubtitleStatus'), current: $('aliSubtitleCurrent'),
+      en: $('aliSubtitleEn'), vi: $('aliSubtitleVi')
+    };
+    const aliCues = new Map();
+    function renderAliCaption(cue) {
+      if (!cue) {
+        subtitleNodes.current.classList.add('hidden');
+        subtitleNodes.en.textContent = '';
+        subtitleNodes.vi.textContent = '';
+        return;
+      }
+      subtitleNodes.current.classList.remove('hidden');
+      subtitleNodes.en.textContent = cue.en || '';
+      subtitleNodes.vi.textContent = cue.vi || '';
+      subtitleNodes.en.classList.toggle('hidden',aliSubtitleMode === 'vi');
+      subtitleNodes.vi.classList.toggle('hidden',aliSubtitleMode === 'en');
+    }
+    document.querySelectorAll('[data-sub-lang]').forEach(button => button.addEventListener('click', () => {
+      aliSubtitleMode = button.dataset.subLang;
+      document.querySelectorAll('[data-sub-lang]').forEach(b => b.setAttribute('aria-pressed',String(b===button)));
+      subtitleNodes.en.classList.toggle('hidden',aliSubtitleMode === 'vi');
+      subtitleNodes.vi.classList.toggle('hidden',aliSubtitleMode === 'en');
+    }));
+    // The iframe provider does not expose a trustworthy currentTime to the page.
+    // Real cue synchronization requires a player with a supported time API.
+    function prepareAliCaptions(id) {
+      const cues = aliCues.get(id) || [];
+      renderAliCaption(null);
+      subtitleNodes.status.textContent = cues.length
+        ? 'Phụ đề đã sẵn sàng khi video hỗ trợ đồng bộ thời gian.'
+        : 'Chưa có bản lời thoại được xác minh cho video này.';
+    }
+
     const aliPlayer = $('aliVideoPlayer');
     const aliFrame = $('aliDrivePlayer');
     document.querySelectorAll('[data-video-id]').forEach(button => button.addEventListener('click', () => {
@@ -147,6 +183,7 @@ async function init() {
       if (!/^[a-zA-Z0-9_-]{20,}$/.test(id)) return;
       $('lessonModal').classList.add('hidden');
       $('aliVideoTitle').textContent = button.dataset.videoTitle || 'Video luyện nghe ALI';
+      prepareAliCaptions(id);
       aliFrame.src = 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/preview';
       aliPlayer.classList.remove('hidden');
       aliPlayer.scrollIntoView({ behavior:'smooth', block:'start' });
