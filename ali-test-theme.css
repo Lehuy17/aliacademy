@@ -1,0 +1,44 @@
+@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
+:root{--ali-orange:#ff681e;--ali-orange-dark:#e95714;--ali-ink:#24222c;--ali-muted:#77717b;--ali-line:#eee5df;--ali-bg:#fff9f6}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{font:14px/1.7 'Be Vietnam Pro',system-ui,Arial,sans-serif!important;background:linear-gradient(135deg,#fffdfb 5%,#fff3e9 100%)!important;color:var(--ali-ink)!important;margin:0!important}
+.ali-exam-header{height:auto!important;min-height:80px;position:sticky;top:0;z-index:100;background:#fffefaeb!important;backdrop-filter:blur(16px);border-bottom:1px solid #f1e9e4;box-shadow:0 4px 20px #8a46100a;padding:0 max(20px,calc((100vw - 1140px)/2))!important}
+.ali-exam-header-inner{display:flex;align-items:center;justify-content:space-between;min-height:80px;gap:18px}
+.ali-exam-brand{display:flex!important;align-items:center;gap:12px;text-decoration:none!important;color:var(--ali-orange)!important}
+.ali-exam-mark{height:45px;width:45px;display:grid;place-items:center;border:3px solid #ff751f;border-radius:50%;background:linear-gradient(145deg,#ffdfad,#fff);box-shadow:0 0 0 4px #fff1e5;font-size:16px;font-weight:900;letter-spacing:-.07em}
+.ali-exam-brand strong{display:block;font-size:19px;font-weight:900;line-height:1.1;letter-spacing:-.045em;color:var(--ali-orange)}
+.ali-exam-brand small{display:block;margin-top:6px;font-size:9px;letter-spacing:.16em;color:#9a9290;font-weight:850}
+.ali-exam-header-meta{color:#948c92;font-size:11px;font-weight:850;letter-spacing:.06em;text-transform:uppercase}
+.ali-exam-back{display:inline-flex;align-items:center;justify-content:center;gap:8px;text-decoration:none!important;color:#a04d24!important;font-size:12px;font-weight:850;border:1px solid #f2dfd2;background:#fff7f0;border-radius:12px;padding:11px 15px;transition:.2s}
+.ali-exam-back:hover{background:#ffead8;border-color:#ffb57c}
+.ali-exam-page{width:min(1110px,calc(100% - 36px));max-width:1110px!important;margin:36px auto 90px!important;padding:0!important}
+.ali-exam-page>h1{color:var(--ali-ink)!important;font-size:clamp(26px,3.4vw,40px)!important;letter-spacing:-.045em;line-height:1.25!important;font-weight:900;margin:12px 0 10px!important}
+.ali-exam-page>h1:before{content:'ALI ACADEMY / PLACEMENT TEST';display:block;margin:0 0 13px;color:var(--ali-orange);font-size:11px;font-weight:900;letter-spacing:.1em}
+.ali-exam-page>p:first-of-type{font-size:13px;color:var(--ali-muted);max-width:900px;line-height:1.85;margin:0 0 26px}
+.ali-exam-page section{background:white!important;border:1px solid var(--ali-line)!important;border-radius:23px!important;padding:clamp(19px,3vw,35px)!important;margin:22px 0!important;box-shadow:0 18px 50px #6f380b0b!important}
+.ali-exam-page section h2{font-size:clamp(18px,2.3vw,23px);font-weight:900;line-height:1.45;letter-spacing:-.02em;color:var(--ali-ink);margin:2px 0 19px}
+.ali-exam-page section h2:before{content:'';display:inline-block;background:var(--ali-orange);border-radius:10px;width:5px;height:21px;vertical-align:-4px;margin-right:11px}
+.ali-exam-page section h3{font-size:17px;line-height:1.5;color:var(--ali-ink);margin:26px 0 12px}
+.ali-exam-page p,.ali-exam-page li{line-height:1.85}
+.ali-exam-page p{color:#6d6871}
+.ali-exam-page fieldset{border:1px solid #f0e6e0!important;border-radius:16px!important;padding:20px!important;margin:14px 0!important;background:#fff!important;min-width:0}
+.ali-exam-page fieldset legend{font-size:14px;font-weight:850;color:var(--ali-ink);padding:0 8px;line-height:1.65}
+.ali-exam-page fieldset label,.ali-exam-page .question label{display:flex;align-items:flex-start;gap:9px;padding:11px 13px!important;margin:7px 0!important;border:1px solid #f0e9e5;border-radius:12px;background:#fff;cursor:pointer;font-size:13px;line-height:1.6;transition:background .15s,border-color .15s}
+.ali-exam-page fieldset label:hover,.ali-exam-page .question label:hover{background:#fff6ee;border-color:#ffceab}
+.ali-exam-page label:has(input[type=radio]:checked){background:#fff0e5!important;border-color:#ff8540!important;color:#d55111}
+.ali-exam-page input[type=radio],.ali-exam-page input[type=checkbox]{accent-color:var(--ali-orange);flex:none;margin:4px 0 0}
+.ali-exam-page input[type=text],.ali-exam-page textarea,.ali-exam-page select{max-width:100%;font:inherit;border:1px solid #e9dcd3;border-radius:12px;padding:12px 14px;background:#fffefd;color:var(--ali-ink)}
+.ali-exam-page input[type=text]:focus,.ali-exam-page textarea:focus,.ali-exam-page select:focus{outline:2px solid #ffc79f;border-color:var(--ali-orange)}
+.ali-exam-page textarea{width:100%;min-height:145px;resize:vertical}
+.ali-exam-page button:not(.secondary){font:inherit;font-weight:850;background:var(--ali-orange)!important;color:white!important;border:0;border-radius:12px;padding:13px 19px;min-height:48px;cursor:pointer}
+.ali-exam-page button:hover{filter:brightness(.97)}
+.ali-exam-page a:not(.ali-exam-brand):not(.ali-exam-back){color:#d75315;font-weight:800}
+.ali-exam-page #result,.ali-exam-page #out{border-radius:15px!important;background:#fff2e7!important;color:#773e23;padding:19px!important;font-weight:800;line-height:1.8}
+.ali-exam-page .question{padding:17px 0;border-bottom:1px solid #f2e6de}
+.ali-exam-page .question strong{display:block;margin-bottom:12px}
+.ali-exam-page ol{padding-left:26px}
+.ali-exam-page ol li{padding:4px 0}
+.ali-exam-page .small{font-size:12px}
+@media(max-width:760px){.ali-exam-header-meta{display:none}.ali-exam-page{width:calc(100% - 24px);margin:23px auto 55px!important}.ali-exam-header{padding:0 14px!important}.ali-exam-header-inner{min-height:70px}.ali-exam-brand strong{font-size:16px}.ali-exam-brand small{font-size:8px}.ali-exam-mark{width:39px;height:39px;font-size:13px}.ali-exam-page section{border-radius:17px!important}.ali-exam-page fieldset{padding:13px!important}.ali-exam-back{padding:9px 11px;font-size:11px}}
+@media(max-width:440px){.ali-exam-header-inner{gap:7px}.ali-exam-back{font-size:0}.ali-exam-back:after{content:'Đổi bài';font-size:11px}.ali-exam-brand{gap:8px}.ali-exam-page>h1{font-size:27px!important}}
