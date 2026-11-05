@@ -355,7 +355,7 @@ function aliSend(){
      $('resultAlert').textContent='Writing AI: '+ai.total+'/6 · Speaking AI: '+speaking.total+'/10 (chỉ dựa trên transcript). Đây là kết quả xếp lớp tham khảo.';
      aliStatus('Đã lưu bài và chấm AI thành công. Mã bài: '+d.submissionId,true);
    }else{
-     aliStatus('Đã lưu bài nhưng chưa nhận đủ điểm AI. Mã bài: '+d.submissionId+'. Vui lòng liên hệ ALI English để kiểm tra.',true);
+     aliStatus('Máy chủ xác nhận đã nhận bài, nhưng chưa trả đủ điểm Writing và Speaking. Mã bài: '+d.submissionId+'. Hãy kiểm tra tab Results trong Google Sheets.',true);
    }
    aliSubmission=null;
   }
