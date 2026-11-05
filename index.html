@@ -328,6 +328,7 @@ function aliBuildSubmission(){
 function aliSend(){
  if(!aliSubmission)return;
  const nonce=Array.from(crypto.getRandomValues(new Uint8Array(16)),x=>x.toString(16).padStart(2,'0')).join('');
+ if(window.aliSendCleanup)window.aliSendCleanup();
  const existing=document.getElementById('aliSendFrame');if(existing)existing.remove();
  const iframe=document.createElement('iframe');iframe.name='aliSendFrame';iframe.id='aliSendFrame';iframe.style.display='none';document.body.append(iframe);
  const form=document.createElement('form');form.method='POST';form.action=ALI_SUBMISSION_ENDPOINT;form.target='aliSendFrame';form.style.display='none';
@@ -335,10 +336,13 @@ function aliSend(){
  document.body.append(form);
  aliStatus('Đang gửi bài làm về ALI English. Vui lòng chờ xác nhận…');
  const listener=e=>{
-  if(!/^https:\/\/(script\.google\.com|[a-z0-9.-]*googleusercontent\.com)$/.test(e.origin))return;
+  // Apps Script HtmlService may send from a sandboxed iframe with origin "null".
+  // Require the exact iframe window plus an unguessable per-request nonce.
+  if(e.source!==iframe.contentWindow)return;
+  if(e.origin!=='null'&&!/^https:\/\/(script\.google\.com|[a-z0-9.-]*googleusercontent\.com)$/.test(e.origin))return;
   const d=e.data;
   if(!d||d.type!=='ALI_SUBMISSION_RESULT'||d.nonce!==nonce||d.submissionId!==aliSubmission.submissionId)return;
-  window.removeEventListener('message',listener);
+  cleanup();
   if(d.ok){
    const ai=d.ai||{}, speaking=d.speaking||{};
    const writingOK=ai.status==='GRADED'&&typeof ai.total==='number'&&ai.total>=0&&ai.total<=6;
@@ -359,12 +363,15 @@ function aliSend(){
    }
    aliSubmission=null;
   }
-  else aliStatus('Không thể xác nhận bài nộp: '+(d.error||'Lỗi máy chủ')+'. Hãy thử gửi lại hoặc tải phiếu JSON.');
+  else aliStatus('Máy chủ chưa hoàn tất: '+(d.error||'Lỗi không xác định')+'. Bài có thể đã được lưu trong tab Results. Hãy kiểm tra mã bài '+aliSubmission.submissionId+' trước khi gửi lại.');
  };
+ let timeoutId;
+ const cleanup=()=>{window.removeEventListener('message',listener);clearTimeout(timeoutId);if(window.aliSendCleanup===cleanup)window.aliSendCleanup=null;};
+ window.aliSendCleanup=cleanup;
  window.addEventListener('message',listener);
- try{form.submit();}catch(err){aliStatus('Không gửi được bài làm. Vui lòng thử lại.');}
+ try{form.submit();}catch(err){cleanup();aliStatus('Không gửi được bài làm. Vui lòng thử lại.');}
  form.remove();
- setTimeout(()=>{window.removeEventListener('message',listener);if(aliSubmission)aliStatus('Không thể xác minh trạng thái lưu bài. Vui lòng kiểm tra kết nối hoặc liên hệ ALI English trước khi đóng trang.');iframe.remove();},60000);
+ timeoutId=setTimeout(()=>{cleanup();if(aliSubmission)aliStatus('Chưa nhận được phản hồi từ máy chủ sau 150 giây. Bài có thể đã được lưu trong tab Results. Hãy kiểm tra mã bài '+aliSubmission.submissionId+' trước khi gửi lại.');iframe.remove();},150000);
 }
 function aliSubmitAfterExam(){
  try{aliSubmission=aliBuildSubmission();aliSend();}catch(err){aliStatus('Không thể chuẩn bị dữ liệu. Hãy dùng In / lưu PDF để lưu kết quả.');}
