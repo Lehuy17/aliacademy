@@ -11,3 +11,38 @@
 .ali-subtitle-line{margin:16px 0;padding:15px;border-radius:12px;background:#fff;border:1px solid #f2ddcf;text-align:center}
 .ali-sub-en{font-size:19px;line-height:1.6;color:#2e2730;font-weight:850}
 .ali-sub-vi{font-size:15px;color:#a05b37;line-height:1.6;margin-top:8px}
+
+/* Cinema-style bilingual viewing workspace */
+#aliVideoPlayer.ali-cinema{margin:26px 0 35px;background:#0d140f;color:#f6f8f5;border-radius:24px;padding:22px;border:1px solid #253a2d;box-shadow:0 22px 50px #13241b2d;scroll-margin-top:20px}
+.ali-cinema-top,.ali-transcript-header{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.ali-cinema-kicker{font-size:10px;color:#ffad7e;font-weight:900;letter-spacing:.13em}
+.ali-cinema-top h2{font-size:clamp(20px,3vw,28px);margin:5px 0 0;color:#fff}
+.ali-cinema-close{border:1px solid #566257;background:#29352b;color:#fff;border-radius:11px;padding:11px 14px;font-size:12px;font-weight:850;cursor:pointer}
+.ali-cinema-stack{max-width:800px;margin:22px auto 0}
+.ali-cinema-screen{aspect-ratio:16/9;background:black;border-radius:16px 16px 0 0;overflow:hidden}
+.ali-cinema-screen iframe{display:block;width:100%;height:100%;border:0}
+.ali-transcript-layout{background:#09120c;border-radius:0 0 16px 16px;border:1px solid #263427;border-top:0;overflow:hidden}
+.ali-transcript-header{padding:18px 22px;border-bottom:1px solid #243229}
+.ali-transcript-header h3{font-size:17px;margin:3px 0 0;color:white}
+.ali-transcript-header .ali-subtitle-options button{background:#26342a;color:#f2efec;border:1px solid #3d4b40}
+.ali-transcript-header .ali-subtitle-options button[aria-pressed=true]{background:#ff681e;border-color:#ff681e;color:#fff}
+.ali-transcript-scroll{height:clamp(250px,35vh,385px);overflow-y:auto;overscroll-behavior:contain;padding:12px 14px;scrollbar-color:#7c856d #142015}
+.ali-transcript-list{--caption-scale:1;display:flex;flex-direction:column;gap:5px}
+.ali-transcript-cue{display:grid;grid-template-columns:34px 1fr;gap:8px;border-radius:11px;padding:12px 14px;line-height:1.65}
+.ali-transcript-cue:nth-child(odd){background:#152019}
+.ali-transcript-cue.is-current{background:#28332b;outline:1px solid #566a51}
+.ali-cue-index{font-size:10px;color:#ffb17f;font-weight:900;padding-top:4px}
+.ali-cue-en{font-size:calc(16px * var(--caption-scale));font-weight:850;color:#fcfcf9}
+.ali-cue-vi{font-size:calc(13px * var(--caption-scale));color:#cfb8a4;margin-top:5px}
+.ali-transcript-empty{min-height:210px;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center;gap:10px;padding:22px;color:#f5f5f3}
+.ali-transcript-empty-icon{font-size:35px;font-weight:800;color:#f9873a}
+.ali-transcript-empty strong{font-size:17px}
+.ali-transcript-empty p{font-size:12px;line-height:1.8;color:#a9b1a8;max-width:400px;margin:0}
+.ali-transcript-toolbar{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;border-top:1px solid #263427;padding:13px 20px}
+.ali-transcript-tip{display:flex;align-items:center;gap:9px;font-size:11px;color:#bec8bc}
+.ali-live-dot{height:7px;width:7px;background:#f37a36;border-radius:50%;flex:none}
+.ali-transcript-actions{display:flex;gap:7px}
+.ali-transcript-actions button{min-width:37px;height:32px;border-radius:9px;border:1px solid #435548;background:#243127;color:#fff;font-weight:850;cursor:pointer}
+.ali-transcript-actions button:hover{background:#38493c}
+.ali-cinema-disclaimer{max-width:800px;margin:14px auto 0;color:#aab6aa;font-size:11px;line-height:1.8}
+@media(max-width:650px){#aliVideoPlayer.ali-cinema{padding:10px;border-radius:15px}.ali-cinema-top{padding:11px 9px}.ali-cinema-stack{margin:8px auto 0}.ali-cinema-screen{border-radius:12px 12px 0 0}.ali-transcript-header{padding:13px}.ali-transcript-scroll{height:330px;padding:8px}.ali-transcript-toolbar{padding:12px}.ali-cinema-disclaimer{padding:0 8px}.ali-transcript-cue{padding:11px 9px}}
