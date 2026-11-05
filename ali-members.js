@@ -140,40 +140,62 @@ async function init() {
       $('lessonModal').scrollIntoView({ behavior:'smooth' });
     }));
     $('hideLesson').addEventListener('click', () => $('lessonModal').classList.add('hidden'));
-    // Timed bilingual captions: only show verified cues; do not fabricate dialogue.
+    // Display a bilingual transcript in the cinematic layout.
+    // Captions may be supplied as verified JSON at captions/{fileId}.json.
     let aliSubtitleMode = 'both';
-    const subtitleNodes = {
-      status: $('aliSubtitleStatus'), current: $('aliSubtitleCurrent'),
-      en: $('aliSubtitleEn'), vi: $('aliSubtitleVi')
-    };
-    const aliCues = new Map();
-    function renderAliCaption(cue) {
-      if (!cue) {
-        subtitleNodes.current.classList.add('hidden');
-        subtitleNodes.en.textContent = '';
-        subtitleNodes.vi.textContent = '';
+    let aliCaptionSize = 1;
+    const transcriptList = $('aliTranscriptList');
+    const transcriptScroll = $('aliTranscriptScroll');
+    const transcriptNote = $('aliTranscriptNote');
+    function showTranscript(cues) {
+      transcriptList.replaceChildren();
+      if (!cues.length) {
+        const empty = document.createElement('div');
+        empty.className = 'ali-transcript-empty';
+        const mark = document.createElement('span'); mark.className='ali-transcript-empty-icon';mark.textContent='“ ”';
+        const title=document.createElement('strong');title.textContent='Không gian học theo lời thoại';
+        const note=document.createElement('p');note.textContent='Video chưa có dữ liệu phụ đề được xác minh. Khi có phụ đề, từng câu tiếng Anh và bản dịch tiếng Việt sẽ xuất hiện ở đây.';
+        empty.append(mark,title,note);transcriptList.append(empty);
+        transcriptNote.textContent = 'Chưa có bản phụ đề của video này';
         return;
       }
-      subtitleNodes.current.classList.remove('hidden');
-      subtitleNodes.en.textContent = cue.en || '';
-      subtitleNodes.vi.textContent = cue.vi || '';
-      subtitleNodes.en.classList.toggle('hidden',aliSubtitleMode === 'vi');
-      subtitleNodes.vi.classList.toggle('hidden',aliSubtitleMode === 'en');
+      for (let i=0;i<cues.length;i++) {
+        const cue=cues[i];
+        const card=document.createElement('div');
+        card.className='ali-transcript-cue';
+        const serial=document.createElement('span');serial.className='ali-cue-index';serial.textContent=String(i+1).padStart(2,'0');
+        const lines=document.createElement('div');lines.className='ali-cue-lines';
+        const en=document.createElement('div');en.className='ali-cue-en';en.textContent=cue.en;
+        const vi=document.createElement('div');vi.className='ali-cue-vi';vi.textContent=cue.vi;
+        lines.append(en,vi);card.append(serial,lines);transcriptList.append(card);
+      }
+      applyTranscriptSettings();
+      transcriptNote.textContent = cues.length+' câu thoại · cuộn để theo dõi';
+    }
+    function applyTranscriptSettings() {
+      transcriptList.style.setProperty('--caption-scale',String(aliCaptionSize));
+      transcriptList.querySelectorAll('.ali-cue-en').forEach(x=>x.classList.toggle('hidden',aliSubtitleMode==='vi'));
+      transcriptList.querySelectorAll('.ali-cue-vi').forEach(x=>x.classList.toggle('hidden',aliSubtitleMode==='en'));
     }
     document.querySelectorAll('[data-sub-lang]').forEach(button => button.addEventListener('click', () => {
-      aliSubtitleMode = button.dataset.subLang;
-      document.querySelectorAll('[data-sub-lang]').forEach(b => b.setAttribute('aria-pressed',String(b===button)));
-      subtitleNodes.en.classList.toggle('hidden',aliSubtitleMode === 'vi');
-      subtitleNodes.vi.classList.toggle('hidden',aliSubtitleMode === 'en');
+      aliSubtitleMode=button.dataset.subLang;
+      document.querySelectorAll('[data-sub-lang]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));
+      applyTranscriptSettings();
     }));
-    // The iframe provider does not expose a trustworthy currentTime to the page.
-    // Real cue synchronization requires a player with a supported time API.
-    function prepareAliCaptions(id) {
-      const cues = aliCues.get(id) || [];
-      renderAliCaption(null);
-      subtitleNodes.status.textContent = cues.length
-        ? 'Phụ đề đã sẵn sàng khi video hỗ trợ đồng bộ thời gian.'
-        : 'Chưa có bản lời thoại được xác minh cho video này.';
+    $('aliTextSmaller').addEventListener('click',()=>{aliCaptionSize=Math.max(.8,Math.round((aliCaptionSize-.1)*10)/10);applyTranscriptSettings();});
+    $('aliTextLarger').addEventListener('click',()=>{aliCaptionSize=Math.min(1.5,Math.round((aliCaptionSize+.1)*10)/10);applyTranscriptSettings();});
+    $('aliTranscriptTop').addEventListener('click',()=>transcriptScroll.scrollTo({top:0,behavior:'smooth'}));
+    async function prepareAliCaptions(id) {
+      showTranscript([]);
+      try {
+        const response=await fetch('./captions/'+encodeURIComponent(id)+'.json',{cache:'no-store'});
+        if(!response.ok)return;
+        const json=await response.json();
+        const cues=(Array.isArray(json)?json:json.cues);
+        if(!Array.isArray(cues))return;
+        const valid=cues.filter(c=>typeof c.en==='string'&&typeof c.vi==='string');
+        showTranscript(valid);
+      } catch(error) { console.info('Transcript unavailable for this video.'); }
     }
 
     const aliPlayer = $('aliVideoPlayer');
