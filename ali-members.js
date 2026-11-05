@@ -163,14 +163,14 @@ async function init() {
         const cue=cues[i];
         const card=document.createElement('div');
         card.className='ali-transcript-cue';
-        const serial=document.createElement('span');serial.className='ali-cue-index';serial.textContent=String(i+1).padStart(2,'0');
+        const serial=document.createElement('span');serial.className='ali-cue-index';serial.textContent=String(i+1).padStart(2,'0')+' · '+String(Math.floor(cue.start/60)).padStart(2,'0')+':'+String(Math.floor(cue.start%60)).padStart(2,'0');
         const lines=document.createElement('div');lines.className='ali-cue-lines';
         const en=document.createElement('div');en.className='ali-cue-en';en.textContent=cue.en;
         const vi=document.createElement('div');vi.className='ali-cue-vi';vi.textContent=cue.vi;
         lines.append(en,vi);card.append(serial,lines);transcriptList.append(card);
       }
       applyTranscriptSettings();
-      transcriptNote.textContent = cues.length+' câu thoại · cuộn để theo dõi';
+      transcriptNote.textContent = cues.length+' câu thoại Anh–Việt · thời gian ước lượng từ video';
     }
     function applyTranscriptSettings() {
       transcriptList.style.setProperty('--caption-scale',String(aliCaptionSize));
