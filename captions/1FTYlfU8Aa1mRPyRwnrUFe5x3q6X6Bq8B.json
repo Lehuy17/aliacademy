@@ -1,0 +1,131 @@
+{
+  "source": "User-supplied MP4; English captions manually extracted from visible video frames; estimated timestamps",
+  "cues": [
+    {
+      "start": 3,
+      "end": 5.8,
+      "en": "Good afternoon. My name is Russell.",
+      "vi": "Chào buổi chiều. Cháu tên là Russell."
+    },
+    {
+      "start": 5.8,
+      "end": 8.9,
+      "en": "And I am a Wilderness Explorer in Tribe 54.",
+      "vi": "Và cháu là một thành viên Hội Thám hiểm Thiên nhiên thuộc Đội 54."
+    },
+    {
+      "start": 9,
+      "end": 10.7,
+      "en": "Sweat Lodge 12.",
+      "vi": "Nhóm Sweat Lodge số 12."
+    },
+    {
+      "start": 10.8,
+      "end": 13.7,
+      "en": "Are you in need of any assistance today, sir?",
+      "vi": "Hôm nay ông có cần cháu giúp gì không ạ?"
+    },
+    {
+      "start": 13.8,
+      "end": 14.9,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 15,
+      "end": 17.2,
+      "en": "I could help you cross the street.",
+      "vi": "Cháu có thể giúp ông sang đường."
+    },
+    {
+      "start": 18,
+      "end": 19.8,
+      "en": "I could...",
+      "vi": "Cháu có thể..."
+    },
+    {
+      "start": 19.9,
+      "end": 21.8,
+      "en": "...help you cross your yard?",
+      "vi": "...giúp ông đi qua sân nhà không ạ?"
+    },
+    {
+      "start": 22.7,
+      "end": 25.6,
+      "en": "I could help you cross your porch.",
+      "vi": "Cháu có thể giúp ông đi qua hiên nhà."
+    },
+    {
+      "start": 25.7,
+      "end": 28.7,
+      "en": "Well, I gotta help you cross something.",
+      "vi": "Dù sao thì cháu cũng phải giúp ông đi qua thứ gì đó."
+    },
+    {
+      "start": 28.8,
+      "end": 30.9,
+      "en": "No. I'm doing fine.",
+      "vi": "Không. Tôi vẫn ổn."
+    },
+    {
+      "start": 36.8,
+      "end": 39.5,
+      "en": "Good afternoon. My name is Russell.",
+      "vi": "Chào buổi chiều. Cháu tên là Russell."
+    },
+    {
+      "start": 39.6,
+      "end": 40.5,
+      "en": "Um... kid.",
+      "vi": "Ừm... nhóc."
+    },
+    {
+      "start": 40.6,
+      "end": 42.4,
+      "en": "And I am a Wilderness Explorer in Tribe 54.",
+      "vi": "Và cháu là một thành viên Hội Thám hiểm Thiên nhiên thuộc Đội 54."
+    },
+    {
+      "start": 42.5,
+      "end": 43.2,
+      "en": "Kid.",
+      "vi": "Nhóc."
+    },
+    {
+      "start": 43.3,
+      "end": 44.8,
+      "en": "I... Slow down.",
+      "vi": "Tôi... Chậm lại nào."
+    },
+    {
+      "start": 45,
+      "end": 45.8,
+      "en": "Sweat Lodge 12.",
+      "vi": "Nhóm Sweat Lodge số 12."
+    },
+    {
+      "start": 45.9,
+      "end": 46.3,
+      "en": "Kid!",
+      "vi": "Nhóc!"
+    },
+    {
+      "start": 46.4,
+      "end": 48.4,
+      "en": "Are you in need of any assistance today, sir?",
+      "vi": "Hôm nay ông có cần cháu giúp gì không ạ?"
+    },
+    {
+      "start": 48.4,
+      "end": 50,
+      "en": "Thank you, but I don't need any help!",
+      "vi": "Cảm ơn, nhưng tôi không cần giúp đỡ!"
+    },
+    {
+      "start": 52,
+      "end": 53.25,
+      "en": "Ow.",
+      "vi": "Ái!"
+    }
+  ]
+}
