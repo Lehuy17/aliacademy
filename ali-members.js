@@ -212,6 +212,7 @@ async function init() {
     const video = $('aliHtmlVideo');
     const frame = $('aliDrivePlayer');
     let videoId = '';
+    let videoLoadCheck = null;
     const timeLabel = seconds => {
       const n = Number.isFinite(seconds) ? seconds : 0;
       return String(Math.floor(n/60)).padStart(2,'0')+':'+String(Math.floor(n%60)).padStart(2,'0');
@@ -231,12 +232,14 @@ async function init() {
       if(!row)return;
       row.classList.add('is-current');
       currentCue=index;
-      const target=row.offsetTop-transcriptScroll.offsetTop-(transcriptScroll.clientHeight-row.offsetHeight)/2;
+      const target=transcriptScroll.scrollTop+row.getBoundingClientRect().top-transcriptScroll.getBoundingClientRect().top-(transcriptScroll.clientHeight-row.offsetHeight)/2;
       transcriptScroll.scrollTo({top:Math.max(0,target),behavior:'smooth'});
       transcriptNote.textContent='Đang phát câu '+(index+1)+' / '+activeCues.length;
     }
     ['timeupdate','seeked','play','loadedmetadata'].forEach(name=>video.addEventListener(name,syncCaptions));
+    video.addEventListener('loadedmetadata',()=>{if(videoLoadCheck)clearTimeout(videoLoadCheck);});
     function activateFallback(){
+      if(videoLoadCheck)clearTimeout(videoLoadCheck);
       video.pause();
       video.classList.add('hidden');
       frame.classList.remove('hidden');
@@ -247,11 +250,13 @@ async function init() {
       resetHighlight();
     }
     function activateSync(){
+      if(videoLoadCheck)clearTimeout(videoLoadCheck);
       frame.removeAttribute('src');
       frame.classList.add('hidden');
       video.classList.remove('hidden');
       video.src='https://drive.google.com/uc?export=download&id='+encodeURIComponent(videoId);
       video.load();
+      videoLoadCheck=setTimeout(()=>{if(videoId&&video.readyState===0&&!video.classList.contains('hidden'))activateFallback();},6500);
       $('aliVideoMode').textContent='Đồng bộ phụ đề đang bật';
       $('aliFallbackBtn').classList.remove('hidden');
       $('aliSyncBtn').classList.add('hidden');
@@ -273,6 +278,7 @@ async function init() {
       aliPlayer.scrollIntoView({behavior:'smooth',block:'start'});
     }));
     $('closeAliVideo').addEventListener('click',()=>{
+      if(videoLoadCheck)clearTimeout(videoLoadCheck);
       video.pause();
       video.removeAttribute('src');
       video.load();
