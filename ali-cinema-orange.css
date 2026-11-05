@@ -1,1 +1,21 @@
 .ali-cinema{background:#fffaf5!important;color:#26212b!important}.ali-transcript-layout{background:white!important}.ali-transcript-header h3,.ali-cinema-top h2{color:#26212b!important}.ali-transcript-cue:nth-child(odd){background:#fff5ec!important}.ali-cue-en{color:#28232d!important}.ali-cue-vi{color:#99633e!important}.ali-transcript-cue.is-current{background:#ffe1ce!important;outline:2px solid #ff681e!important}.ali-transcript-toolbar{background:#fff8f2!important}
+#aliVideoPlayer .ali-transcript-header{border-bottom:1px solid #f3dfd0}
+#aliVideoPlayer .ali-cinema-kicker{color:#e96928}
+#aliVideoPlayer .ali-transcript-header .ali-subtitle-options button{background:#fff4ea;color:#ab4e20;border:1px solid #f0c9ae}
+#aliVideoPlayer .ali-transcript-header .ali-subtitle-options button[aria-pressed=true]{background:#ff681e;color:#fff;border-color:#ff681e}
+#aliVideoPlayer .ali-transcript-cue{cursor:pointer;border:1px solid transparent}
+#aliVideoPlayer .ali-transcript-cue.is-current{box-shadow:inset 5px 0 #ff681e,0 6px 17px #ff681e20}
+#aliVideoPlayer .ali-transcript-cue.is-current .ali-cue-en{color:#b7430a}
+#aliVideoPlayer .ali-transcript-cue:focus-visible{outline:2px solid #ff681e}
+#aliVideoPlayer .ali-cue-index{color:#eb6626}
+#aliVideoPlayer .ali-transcript-tip,#aliVideoPlayer .ali-cinema-disclaimer{color:#916a53}
+#aliVideoPlayer .ali-transcript-actions button{background:#fff;color:#a74c1a;border:1px solid #f0ccb6}
+#aliVideoPlayer .ali-transcript-empty{color:#392d2c}
+#aliVideoPlayer .ali-transcript-empty p{color:#877267}
+#aliVideoPlayer .ali-cinema-screen video{display:block;width:100%;height:100%;background:black;object-fit:contain}
+#aliVideoPlayer .ali-cinema-screen .hidden{display:none!important}
+#aliVideoPlayer .ali-video-options{background:#fff2e9;padding:11px 14px;display:flex;gap:10px;align-items:center;flex-wrap:wrap;border-bottom:1px solid #f1d6c4;font-size:12px;color:#a15a32}
+#aliVideoPlayer #aliVideoClock{color:#e96422;font-weight:900}
+#aliVideoPlayer #aliVideoMode{flex:1}
+#aliVideoPlayer .ali-video-options button{background:#fff;border:1px solid #edc9b5;color:#b54c18;border-radius:8px;padding:8px 12px;cursor:pointer;font-weight:800;font-size:11px}
+#aliVideoPlayer .ali-video-options button.hidden{display:none!important}
