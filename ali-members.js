@@ -140,6 +140,22 @@ async function init() {
       $('lessonModal').scrollIntoView({ behavior:'smooth' });
     }));
     $('hideLesson').addEventListener('click', () => $('lessonModal').classList.add('hidden'));
+    const aliPlayer = $('aliVideoPlayer');
+    const aliFrame = $('aliDrivePlayer');
+    document.querySelectorAll('[data-video-id]').forEach(button => button.addEventListener('click', () => {
+      const id = button.dataset.videoId;
+      if (!/^[a-zA-Z0-9_-]{20,}$/.test(id)) return;
+      $('lessonModal').classList.add('hidden');
+      $('aliVideoTitle').textContent = button.dataset.videoTitle || 'Video luyện nghe ALI';
+      aliFrame.src = 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/preview';
+      aliPlayer.classList.remove('hidden');
+      aliPlayer.scrollIntoView({ behavior:'smooth', block:'start' });
+    }));
+    $('closeAliVideo').addEventListener('click', () => {
+      aliFrame.removeAttribute('src');
+      aliPlayer.classList.add('hidden');
+    });
+
   }
 }
 
