@@ -42,3 +42,37 @@ body{font:14px/1.7 'Be Vietnam Pro',system-ui,Arial,sans-serif!important;backgro
 .ali-exam-page .small{font-size:12px}
 @media(max-width:760px){.ali-exam-header-meta{display:none}.ali-exam-page{width:calc(100% - 24px);margin:23px auto 55px!important}.ali-exam-header{padding:0 14px!important}.ali-exam-header-inner{min-height:70px}.ali-exam-brand strong{font-size:16px}.ali-exam-brand small{font-size:8px}.ali-exam-mark{width:39px;height:39px;font-size:13px}.ali-exam-page section{border-radius:17px!important}.ali-exam-page fieldset{padding:13px!important}.ali-exam-back{padding:9px 11px;font-size:11px}}
 @media(max-width:440px){.ali-exam-header-inner{gap:7px}.ali-exam-back{font-size:0}.ali-exam-back:after{content:'Đổi bài';font-size:11px}.ali-exam-brand{gap:8px}.ali-exam-page>h1{font-size:27px!important}}
+
+/* Shared results dashboard (B1 / IELTS / TOEIC / Speaking) */
+.ali-exam-page .ali-result-wrap{scroll-margin-top:95px;display:block!important;background:#fff!important;border:1px solid #eee2d9!important;border-radius:24px!important;margin:32px 0 24px!important;padding:clamp(20px,3vw,35px)!important;box-shadow:0 22px 55px #7f421018!important}
+.ali-exam-page .ali-result-wrap[hidden],.ali-exam-page .ali-result-wrap.ali-hidden{display:none!important}
+.ali-result-title{text-align:center;margin-bottom:28px}
+.ali-result-title h2{font-size:clamp(23px,3.4vw,34px)!important;line-height:1.3;font-weight:900;margin:5px 0 9px!important}
+.ali-result-title h2:before,.ali-exam-page .ali-result-breakdown h3:before{display:none!important}
+.ali-result-title p{color:#89818a!important;font-size:13px}
+.ali-result-eyebrow{color:#e65c17;font-size:11px;letter-spacing:.11em;font-weight:900}
+.ali-result-head{display:grid;grid-template-columns:minmax(170px,230px) 1fr;gap:26px;align-items:center}
+.ali-result-ring{width:183px;height:183px;margin:auto;border-radius:50%;display:grid;place-items:center;background:conic-gradient(#ff751e var(--ali-result-percent),#f4e6dc 0);position:relative}
+.ali-result-ring:before{content:'';position:absolute;inset:16px;border-radius:50%;background:white}
+.ali-result-ring-inner{position:relative;text-align:center;z-index:1}
+.ali-result-ring strong{font-size:clamp(31px,3.8vw,42px);letter-spacing:-.06em;color:#24212c;line-height:1.1;display:block}
+.ali-result-ring span{font-size:10px;letter-spacing:.04em;font-weight:900;color:#9c9290}
+.ali-result-summary{background:#fff6ef;border:1px solid #ffdcc5;border-radius:20px;padding:25px}
+.ali-result-summary h3{color:#e75b16!important;font-size:clamp(19px,2.7vw,27px)!important;line-height:1.3;margin:9px 0 9px!important;font-weight:900}
+.ali-result-summary h3:before{display:none!important}
+.ali-result-summary p{line-height:1.8;color:#79707a!important;font-size:13px;margin:0}
+.ali-result-breakdown{margin-top:35px}
+.ali-exam-page .ali-result-breakdown h3{font-size:19px;font-weight:900;margin:0 0 20px}
+.ali-skill-row{display:grid;grid-template-columns:minmax(125px,220px) minmax(90px,1fr) minmax(110px,145px);align-items:center;gap:14px;margin:14px 0}
+.ali-skill-row strong{font-size:12px;line-height:1.5;font-weight:800}
+.ali-bar{background:#f4e7df;height:10px;border-radius:50px;overflow:hidden}
+.ali-bar span{display:block;background:linear-gradient(90deg,#ff9a51,#ff681e);height:100%;border-radius:50px}
+.ali-skill-row.ali-ungraded .ali-bar{background:#f1edf0}
+.ali-score{text-align:right;font-size:12px;font-weight:900;color:#28252b}
+.ali-ungraded .ali-score{color:#9c9398;font-size:11px}
+.ali-result-note{background:#f8f6f8;color:#67616a;border-left:4px solid #b6aeb4;border-radius:12px;padding:15px 18px;font-size:12px;line-height:1.75;margin-top:26px}
+.ali-result-actions{display:flex;flex-wrap:wrap;gap:12px;margin-top:23px}
+.ali-exam-page .ali-result-btn{display:inline-flex!important;align-items:center;justify-content:center;min-height:46px;padding:12px 19px!important;border-radius:12px!important;font:inherit;font-size:12px;font-weight:850!important;text-decoration:none!important;cursor:pointer}
+.ali-exam-page .ali-result-primary{background:#ff681e!important;color:white!important;border:1px solid #ff681e!important}
+.ali-exam-page .ali-result-secondary{background:white!important;color:#c45317!important;border:1px solid #efcbb7!important}
+@media(max-width:750px){.ali-result-head{grid-template-columns:1fr;gap:20px}.ali-result-ring{width:160px;height:160px}.ali-skill-row{grid-template-columns:1fr auto;gap:7px}.ali-skill-row strong{grid-column:1}.ali-skill-row .ali-bar{grid-column:1;grid-row:2}.ali-score{grid-column:2;grid-row:2}.ali-result-summary{padding:19px}}
