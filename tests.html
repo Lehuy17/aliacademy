@@ -51,5 +51,13 @@ main{max-width:1140px;margin:auto;padding:60px 22px 75px}.intro{text-align:cente
  document.getElementById('startBtn').addEventListener('click',function(){const data=read();if(!data.name||!data.consent){panel.classList.add('hidden');form.classList.remove('hidden');setStep(1);return}if(!save(data))return;window.location.assign(paths[chosen]);});
  const prev=(function(){try{return JSON.parse(sessionStorage.getItem(KEY)||'null')}catch(e){return null}})();
  if(prev&&prev.name){document.getElementById('studentName').value=prev.name;document.getElementById('studentPhone').value=prev.phone||'';document.getElementById('studentSchool').value=prev.school||'';document.getElementById('studentGoal').value=prev.goal||'foundation';document.getElementById('studentConsent').checked=prev.consent===true;}
+ // Returning after a test result: use the existing registered session and skip Step 1.
+ // Opening the library normally from the home page still starts at Step 1.
+ if(new URLSearchParams(window.location.search).get('step')==='choose' && prev && typeof prev.name==='string' && prev.name.trim() && prev.consent===true){
+  form.classList.add('hidden');
+  panel.classList.remove('hidden');
+  document.getElementById('welcome').textContent='Xin chào '+prev.name+'! Bạn có thể chọn bài test khác mà không cần nhập lại thông tin.';
+  setStep(2);
+ }
 })();
 </script></body></html>
