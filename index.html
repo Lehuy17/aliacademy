@@ -312,7 +312,7 @@ function aliStatus(message,good=false){
  node.textContent=message;node.style.borderColor=good?'#86c5a0':'#ffb07a';
  let retry=document.getElementById('aliRetry');
  if(retry)retry.remove();
- if(aliSubmission&&!good){retry=document.createElement('button');retry.id='aliRetry';retry.type='button';retry.className='btn secondary tiny';retry.textContent='Gửi lại bài nộp';retry.onclick=aliSend;node.append(' ',retry);}
+ if(aliSubmission&&!good&&!message.startsWith('Đang gửi')){retry=document.createElement('button');retry.id='aliRetry';retry.type='button';retry.className='btn secondary tiny';retry.textContent='Gửi lại bài nộp';retry.onclick=aliSend;node.append(' ',retry);}
 }
 function aliBuildSubmission(){
  const sc=getScores();
