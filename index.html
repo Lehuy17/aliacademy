@@ -340,9 +340,23 @@ function aliSend(){
   if(!d||d.type!=='ALI_SUBMISSION_RESULT'||d.nonce!==nonce||d.submissionId!==aliSubmission.submissionId)return;
   window.removeEventListener('message',listener);
   if(d.ok){
-   const ai=d.ai||{};
-   const aiMessage=ai.status==='GRADED'?' · AI Writing: '+ai.total+'/6. '+(ai.feedback||''): ' · Writing chưa có điểm AI.';const speaking=d.speaking||{};const speakingMessage=speaking.status==='GRADED'&&Number.isFinite(Number(speaking.total))?' · Speaking: '+speaking.total+'/10.':' · Speaking chưa có điểm AI.';const panel=$('aiAssessment');if(panel){panel.textContent='Writing: '+(ai.status==='GRADED'?ai.total+'/6':'chờ đánh giá')+' · Speaking: '+(speaking.status==='GRADED'?speaking.total+'/10':'chờ đánh giá');if(ai.status==='GRADED'&&speaking.status==='GRADED'){const sc=getScores();panel.textContent+=' · Tổng điểm: '+(sc.auto+Number(ai.total)+Number(speaking.total))+'/60';}}
-   aliStatus('Đã lưu bài làm vào hệ thống ALI English. Mã bài: '+d.submissionId+aiMessage+speakingMessage+(d.emailSent?' · Đã gửi thông báo email.':' · Email chưa gửi; quản trị viên kiểm tra cấu hình.'),true);
+   const ai=d.ai||{}, speaking=d.speaking||{};
+   const writingOK=ai.status==='GRADED'&&typeof ai.total==='number'&&ai.total>=0&&ai.total<=6;
+   const speakingOK=speaking.status==='GRADED'&&typeof speaking.total==='number'&&speaking.total>=0&&speaking.total<=10;
+   if(writingOK&&speakingOK){
+     const sc=getScores(), total=sc.auto+ai.total+speaking.total;
+     $('autoScore').textContent=total+'/60';
+     $('scoreWheel').style.setProperty('--p',(total/60*100).toFixed(2));
+     $('scoreWheel').querySelector('small').textContent='TỔNG ĐIỂM';
+     const rows=[['Grammar & Vocabulary',sc.g,15],['Reading',sc.r,10],['Writing (trắc nghiệm + đoạn văn)',sc.w+ai.total,15],['Listening',sc.l,10],['Speaking (đánh giá transcript)',speaking.total,10]];
+     $('skillScores').innerHTML=rows.map(([label,score,max])=>'<div class="skill-row"><span>'+label+'</span><div class="skill-bar"><div style="width:'+(score/max*100)+'%"></div></div><b>'+score+'/'+max+'</b></div>').join('');
+     document.querySelector('#resultView .result-level h3').textContent=d.level||'Đã có điểm AI';
+     document.querySelector('#resultView .result-level p').textContent='Tổng điểm '+total+'/60. Speaking được đánh giá dựa trên bản chép lời, chưa bao gồm phát âm và độ trôi chảy âm thanh.';
+     $('resultAlert').textContent='Writing AI: '+ai.total+'/6 · Speaking AI: '+speaking.total+'/10 (chỉ dựa trên transcript). Đây là kết quả xếp lớp tham khảo.';
+     aliStatus('Đã lưu bài và chấm AI thành công. Mã bài: '+d.submissionId,true);
+   }else{
+     aliStatus('Đã lưu bài nhưng chưa nhận đủ điểm AI. Mã bài: '+d.submissionId+'. Vui lòng liên hệ ALI English để kiểm tra.',true);
+   }
    aliSubmission=null;
   }
   else aliStatus('Không thể xác nhận bài nộp: '+(d.error||'Lỗi máy chủ')+'. Hãy thử gửi lại hoặc tải phiếu JSON.');
@@ -350,7 +364,7 @@ function aliSend(){
  window.addEventListener('message',listener);
  try{form.submit();}catch(err){aliStatus('Không gửi được bài làm. Vui lòng thử lại.');}
  form.remove();
- setTimeout(()=>{window.removeEventListener('message',listener);if(aliSubmission)aliStatus('Không thể xác minh trạng thái lưu bài. Vui lòng kiểm tra kết nối hoặc liên hệ ALI English trước khi đóng trang.');iframe.remove();},18000);
+ setTimeout(()=>{window.removeEventListener('message',listener);if(aliSubmission)aliStatus('Không thể xác minh trạng thái lưu bài. Vui lòng kiểm tra kết nối hoặc liên hệ ALI English trước khi đóng trang.');iframe.remove();},60000);
 }
 function aliSubmitAfterExam(){
  try{aliSubmission=aliBuildSubmission();aliSend();}catch(err){aliStatus('Không thể chuẩn bị dữ liệu. Hãy dùng In / lưu PDF để lưu kết quả.');}
