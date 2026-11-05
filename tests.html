@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#ff681e">
 <title>ALI English | Đăng ký và chọn bài kiểm tra</title>
-<style>
+<link rel="stylesheet" href="./ali-logo.css?v=1"><style>
 @import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
 :root{--orange:#ff681e;--ink:#25222d;--muted:#756f77;--line:#f0ddd1;font-family:'Be Vietnam Pro',system-ui,sans-serif;color:var(--ink);background:#fff9f5}
 *{box-sizing:border-box}body{margin:0;min-height:100vh;background:radial-gradient(ellipse at top right,#ffdfc84a,transparent 48%),#fff9f5}
@@ -18,7 +18,7 @@ main{max-width:1140px;margin:auto;padding:60px 22px 75px}.intro{text-align:cente
 .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px;margin:24px 0}.choice{display:flex;flex-direction:column;text-align:left;gap:9px;border-radius:17px;border:2px solid #f1e2d9;background:white;padding:22px;min-height:160px;color:var(--ink);transition:.15s;cursor:pointer}.choice:hover{border-color:#ffa66f;transform:translateY(-2px)}.choice.selected{border-color:#ff681e;background:#fff6ee;box-shadow:0 0 0 2px #ffdec9}.choice strong{font-size:20px}.choice .icon{font-size:27px}.choice span:last-child{color:var(--muted);font-size:12px;line-height:1.7}.choice small{font-size:10px;color:#e55a15;font-weight:800}.note{color:#877870;font-size:12px;line-height:1.7}.footer{text-align:center;padding:20px;color:#9d8a7f;font-size:11px}
 @media(max-width:800px){main{padding:34px 16px 55px}.panel{padding:24px}.grid{grid-template-columns:repeat(2,1fr)}.steps{gap:10px}.connector{width:20px}}@media(max-width:520px){.fields{grid-template-columns:1fr}.grid{grid-template-columns:1fr}.connector{display:none}.steps{justify-content:space-between}.step{font-size:11px}.step .num{width:29px;height:29px}.actions{flex-direction:column-reverse;align-items:stretch}.actions button{width:100%}}
 </style></head><body>
-<header><div class="top"><a href="./index.html" class="brand">ALI ENGLISH<small>PLACEMENT TEST · FIND YOUR LEVEL</small></a><a href="./index.html" class="back">← Trở về trang chủ</a></div></header>
+<header><div class="top"><a href="./index.html" class="brand"><span class="ali-shared-logo" role="img" aria-label="Logo ALI Academy"></span><span class="ali-logo-wordmark">ALI ENGLISH<small>PLACEMENT TEST · FIND YOUR LEVEL</small></span></a><a href="./index.html" class="back">← Trở về trang chủ</a></div></header>
 <main><div class="intro"><span class="eyebrow">ALI ENGLISH · PLACEMENT TEST</span><h1>KIỂM TRA TRÌNH ĐỘ TIẾNG ANH</h1><p>Nhập thông tin học viên, chọn bài kiểm tra phù hợp với mục tiêu của bạn và bắt đầu làm bài.</p></div>
 <div class="steps" aria-label="Các bước làm bài"><div id="st1" class="step active"><span class="num">1</span><span>Nhập thông tin học viên</span></div><span class="connector"></span><div id="st2" class="step"><span class="num">2</span><span>Chọn bài kiểm tra</span></div><span class="connector"></span><div id="st3" class="step"><span class="num">3</span><span>Bắt đầu làm bài</span></div></div>
 <form id="registration" class="panel"><span class="tag">BƯỚC 1 · THÔNG TIN HỌC VIÊN</span><h2>Bắt đầu từ bạn ✦</h2><p>Điền thông tin một lần trước khi chọn bài test. Thông tin sẽ được sử dụng trong phiên làm bài; với bài A1–A2, thông tin và kết quả được gửi về ALI English khi nộp bài.</p>
