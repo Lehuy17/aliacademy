@@ -144,10 +144,14 @@ async function init() {
     // Captions may be supplied as verified JSON at captions/{fileId}.json.
     let aliSubtitleMode = 'both';
     let aliCaptionSize = 1;
+    let activeCues = [];
+    let currentCue = -1;
     const transcriptList = $('aliTranscriptList');
     const transcriptScroll = $('aliTranscriptScroll');
     const transcriptNote = $('aliTranscriptNote');
     function showTranscript(cues) {
+      activeCues = cues;
+      currentCue = -1;
       transcriptList.replaceChildren();
       if (!cues.length) {
         const empty = document.createElement('div');
@@ -163,11 +167,16 @@ async function init() {
         const cue=cues[i];
         const card=document.createElement('div');
         card.className='ali-transcript-cue';
+        card.dataset.cueIndex=String(i);
         const serial=document.createElement('span');serial.className='ali-cue-index';serial.textContent=String(i+1).padStart(2,'0')+' · '+String(Math.floor(cue.start/60)).padStart(2,'0')+':'+String(Math.floor(cue.start%60)).padStart(2,'0');
         const lines=document.createElement('div');lines.className='ali-cue-lines';
         const en=document.createElement('div');en.className='ali-cue-en';en.textContent=cue.en;
         const vi=document.createElement('div');vi.className='ali-cue-vi';vi.textContent=cue.vi;
         lines.append(en,vi);card.append(serial,lines);transcriptList.append(card);
+        card.tabIndex=0;
+        card.title='Phát lại từ câu này';
+        card.addEventListener('click',()=>{const video=$('aliHtmlVideo');if(!video.classList.contains('hidden')){video.currentTime=cue.start;video.play().catch(()=>{});}});
+        card.addEventListener('keydown',event=>{if(event.key==='Enter')card.click();});
       }
       applyTranscriptSettings();
       transcriptNote.textContent = cues.length+' câu thoại Anh–Việt · thời gian ước lượng từ video';
@@ -193,26 +202,84 @@ async function init() {
         const json=await response.json();
         const cues=(Array.isArray(json)?json:json.cues);
         if(!Array.isArray(cues))return;
-        const valid=cues.filter(c=>typeof c.en==='string'&&typeof c.vi==='string');
+        const valid=cues.filter(c=>typeof c.en==='string'&&typeof c.vi==='string'&&Number.isFinite(c.start)&&Number.isFinite(c.end)).sort((a,b)=>a.start-b.start);
         showTranscript(valid);
       } catch(error) { console.info('Transcript unavailable for this video.'); }
     }
 
+
     const aliPlayer = $('aliVideoPlayer');
-    const aliFrame = $('aliDrivePlayer');
-    document.querySelectorAll('[data-video-id]').forEach(button => button.addEventListener('click', () => {
-      const id = button.dataset.videoId;
-      if (!/^[a-zA-Z0-9_-]{20,}$/.test(id)) return;
+    const video = $('aliHtmlVideo');
+    const frame = $('aliDrivePlayer');
+    let videoId = '';
+    const timeLabel = seconds => {
+      const n = Number.isFinite(seconds) ? seconds : 0;
+      return String(Math.floor(n/60)).padStart(2,'0')+':'+String(Math.floor(n%60)).padStart(2,'0');
+    };
+    function resetHighlight() {
+      transcriptList.querySelectorAll('.is-current').forEach(row=>row.classList.remove('is-current'));
+      currentCue=-1;
+    }
+    function syncCaptions() {
+      const t=video.currentTime;
+      $('aliVideoClock').textContent=timeLabel(t)+' / '+timeLabel(video.duration||53.4);
+      const index=activeCues.findIndex(c=>t>=c.start&&t<c.end);
+      if(index===currentCue)return;
+      resetHighlight();
+      if(index<0)return;
+      const row=transcriptList.querySelector('[data-cue-index="'+index+'"]');
+      if(!row)return;
+      row.classList.add('is-current');
+      currentCue=index;
+      const target=row.offsetTop-transcriptScroll.offsetTop-(transcriptScroll.clientHeight-row.offsetHeight)/2;
+      transcriptScroll.scrollTo({top:Math.max(0,target),behavior:'smooth'});
+      transcriptNote.textContent='Đang phát câu '+(index+1)+' / '+activeCues.length;
+    }
+    ['timeupdate','seeked','play','loadedmetadata'].forEach(name=>video.addEventListener(name,syncCaptions));
+    function activateFallback(){
+      video.pause();
+      video.classList.add('hidden');
+      frame.classList.remove('hidden');
+      frame.src='https://drive.google.com/file/d/'+encodeURIComponent(videoId)+'/preview';
+      $('aliVideoMode').textContent='Phát dự phòng · không đồng bộ';
+      $('aliFallbackBtn').classList.add('hidden');
+      $('aliSyncBtn').classList.remove('hidden');
+      resetHighlight();
+    }
+    function activateSync(){
+      frame.removeAttribute('src');
+      frame.classList.add('hidden');
+      video.classList.remove('hidden');
+      video.src='https://drive.google.com/uc?export=download&id='+encodeURIComponent(videoId);
+      video.load();
+      $('aliVideoMode').textContent='Đồng bộ phụ đề đang bật';
+      $('aliFallbackBtn').classList.remove('hidden');
+      $('aliSyncBtn').classList.add('hidden');
+    }
+    video.addEventListener('error',()=>{
+      if(!video.classList.contains('hidden')&&videoId)activateFallback();
+    });
+    $('aliFallbackBtn').addEventListener('click',activateFallback);
+    $('aliSyncBtn').addEventListener('click',activateSync);
+    document.querySelectorAll('[data-video-id]').forEach(button=>button.addEventListener('click',()=>{
+      const id=button.dataset.videoId;
+      if(!/^[a-zA-Z0-9_-]{20,}$/.test(id))return;
+      videoId=id;
       $('lessonModal').classList.add('hidden');
-      $('aliVideoTitle').textContent = button.dataset.videoTitle || 'Video luyện nghe ALI';
-      prepareAliCaptions(id);
-      aliFrame.src = 'https://drive.google.com/file/d/' + encodeURIComponent(id) + '/preview';
+      $('aliVideoTitle').textContent=button.dataset.videoTitle||'Video luyện nghe ALI';
       aliPlayer.classList.remove('hidden');
-      aliPlayer.scrollIntoView({ behavior:'smooth', block:'start' });
+      activateSync();
+      prepareAliCaptions(id);
+      aliPlayer.scrollIntoView({behavior:'smooth',block:'start'});
     }));
-    $('closeAliVideo').addEventListener('click', () => {
-      aliFrame.removeAttribute('src');
+    $('closeAliVideo').addEventListener('click',()=>{
+      video.pause();
+      video.removeAttribute('src');
+      video.load();
+      frame.removeAttribute('src');
       aliPlayer.classList.add('hidden');
+      resetHighlight();
+      videoId='';
     });
 
   }
