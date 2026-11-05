@@ -1,0 +1,17 @@
+/* ALI home: complete general English progression, Foundation to C2 */
+.path-scene .path-grid{grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:clamp(30px,5vw,70px);padding:88px 0}
+.path-scene .level-track{gap:10px;transform:none}
+.path-scene .level-node,.path-scene .level-node:nth-child(2),.path-scene .level-node:nth-child(3){margin-left:0}
+.path-scene .level-node{padding:12px 16px;border-radius:18px;gap:15px;box-shadow:0 12px 35px #a93c0f27;transition:transform .25s,box-shadow .25s}
+.path-scene .level-node:hover{transform:translateX(-7px);box-shadow:0 16px 40px #a93c0f40}
+.path-scene .level-number{width:60px;height:60px;border-radius:15px;font-size:25px}
+.path-scene .level-node:nth-child(4) .level-number{background:#ffe6cd}
+.path-scene .level-node:nth-child(5) .level-number{background:#ffd5ac}
+.path-scene .level-node:nth-child(6) .level-number{background:#ffc78c}
+.path-scene .level-node:nth-child(7) .level-number{background:#ffb672}
+.path-scene .level-node strong{font-size:14px;line-height:1.4}
+.path-scene .level-node small{font-size:10px;letter-spacing:.055em}
+.path-scene .level-node p{font-size:11px;line-height:1.55;margin:3px 0 0;color:#94868a}
+.path-scene .path-level-note{margin:10px 2px 0;color:#ffe5d8;font-size:11px;line-height:1.6}
+@media(max-width:950px){.path-scene .path-grid{grid-template-columns:1fr;gap:34px;padding:70px 0}.path-scene .level-track{max-width:760px}.path-scene .level-node{padding:12px 14px}}
+@media(max-width:480px){.path-scene .path-grid{padding:55px 0}.path-scene .level-number{width:52px;height:52px;font-size:22px}.path-scene .level-node{gap:11px;border-radius:15px}.path-scene .level-node strong{font-size:13px}.path-scene .level-node p{font-size:10px}}
