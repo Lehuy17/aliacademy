@@ -33,6 +33,7 @@ function friendlyError(error) {
 
 if (submitButton) submitButton.disabled = true;
 if ($('reset')) $('reset').disabled = true;
+show('Đang kết nối hệ thống tài khoản Firebase…');
 
 async function init() {
   if (!isConfigured()) {
@@ -74,6 +75,7 @@ async function init() {
   }
   if (submitButton) submitButton.disabled = false;
   if ($('reset')) $('reset').disabled = false;
+  if (notice) { notice.textContent = ''; notice.classList.remove('show', 'good'); }
 
   if (page === 'register') {
     $('registerForm').addEventListener('submit', async event => {
