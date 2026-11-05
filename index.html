@@ -389,20 +389,6 @@ function mount(){
  document.querySelectorAll('.flip-tile').forEach(tile=>{tile.addEventListener('click',()=>tile.classList.toggle('flipped'));tile.setAttribute('aria-pressed','false');tile.addEventListener('click',()=>tile.setAttribute('aria-pressed',String(tile.classList.contains('flipped'))));});
  $('menuBtn').onclick=()=>$('navLinks').classList.toggle('open');document.querySelectorAll('.nav-links a').forEach(a=>a.onclick=()=>$('navLinks').classList.remove('open'));
  document.querySelectorAll('[data-open-exam]').forEach(b=>b.addEventListener('click',()=>{window.location.href='./tests.html';}));
- if(new URLSearchParams(window.location.search).get('test')==='a1a2'){
-  let registration=null;
-  try{registration=JSON.parse(sessionStorage.getItem('ALI_TEST_REGISTRATION')||'null');}catch(e){}
-  if(!registration||!registration.name||registration.consent!==true){window.location.replace('./tests.html');}
-  else{
-   $('nameField').value=registration.name;
-   $('phoneField').value=registration.phone||'';
-   $('schoolField').value=registration.school||'';
-   $('goalField').value=registration.goal||'foundation';
-   // Existing exam setup and scoring remain unchanged; use the previously registered student.
-   openExam();
-   startExam({preventDefault(){}});
-  }
- }
  $('closeApp').onclick=closeExam;
  $('studentForm').addEventListener('submit',startExam);
  $('testTabs').addEventListener('click',e=>{let el=e.target.closest('[data-tab]');if(el)showSection(Number(el.dataset.tab));});
@@ -414,6 +400,21 @@ function mount(){
 
  // Optional subtle parallax. Respect reduced-motion setting.
  if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){let target=$('heroVisual');target.addEventListener('pointermove',e=>{if(window.innerWidth<900)return;let r=target.getBoundingClientRect();let x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;target.style.filter=`drop-shadow(${x*9}px ${y*9}px 12px #c85d2d13)`;target.querySelector('.orbit-ring').style.transform=`translate(${x*12}px,${y*10}px) rotate(-31deg)`;});target.addEventListener('pointerleave',()=>{target.style.filter='';target.querySelector('.orbit-ring').style.transform='rotate(-31deg)';});}
+ if(new URLSearchParams(window.location.search).get('test')==='a1a2'){
+  let registration=null;
+  try{registration=JSON.parse(sessionStorage.getItem('ALI_TEST_REGISTRATION')||'null');}catch(e){}
+  if(!registration||!registration.name||registration.consent!==true){window.location.replace('./tests.html');}
+  else{
+   $('nameField').value=registration.name;
+   $('phoneField').value=registration.phone||'';
+   $('schoolField').value=registration.school||'';
+   $('goalField').value=registration.goal||'foundation';
+   // Existing exam setup and scoring remain unchanged; use the previously registered student.
+   openExam();
+   // Start only after all controls and listeners have been initialized.
+   startExam({preventDefault:function(){}});
+  }
+ }
 }
 mount();
 </script></body></html>
