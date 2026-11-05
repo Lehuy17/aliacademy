@@ -304,7 +304,7 @@ function aliModal(message,onYes){
 }
 function closeExam(){if(state.startedAt&&!state.submitted){aliModal('Đóng bài kiểm tra? Câu trả lời chưa nộp sẽ không được lưu.',()=>{state.startedAt=null;closeExam();});return;}if(mediaRecorder&&mediaRecorder.state==='recording')stopRecording();clearInterval(timerId);$('examApp').classList.add('hidden');document.body.style.overflow='';state.startedAt=null;}
 
-const ALI_SUBMISSION_ENDPOINT='https://script.google.com/macros/s/AKfycbyWX72OHXoiocuEuWBXJ85b5Io9kLTeliXhrYyau7OdrgiqfHpr0ABvX-fafkc7L4VG/exec';
+const ALI_SUBMISSION_ENDPOINT='https://script.google.com/macros/s/AKfycbxxcrDF48hEucvJ1Ep_WFC56NZrlvt20Mm0R1w2jqAldWGYPOjwbhkKJWPicdfD1mNjFQ/exec';
 let aliSubmission=null;
 function aliStatus(message,good=false){
  let node=document.getElementById('aliSubmissionStatus');
