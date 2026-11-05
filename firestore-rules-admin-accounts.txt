@@ -1,0 +1,18 @@
+// ALI English Firestore security rules for accounts issued by administrators.
+// Firebase Console > Firestore Database > Rules > paste and Publish.
+// Accounts must be created by ALI in Authentication Users; profiles by ALI in Firestore users/{UID}.
+// These rules prevent clients from creating, altering or deleting user profiles.
+// NOTE: Firebase Authentication email/password sign-up API remains enabled;
+// disabling client profile creation means self-created accounts cannot enter movies.
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /users/{userId} {
+      allow get: if request.auth != null && request.auth.uid == userId;
+      allow list, create, update, delete: if false;
+    }
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
