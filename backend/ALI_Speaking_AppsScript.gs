@@ -42,6 +42,7 @@ function doPost(e){
   const p=JSON.parse(e.parameter.payload);
   id=String(p.uploadId||'');
   if(!/^[a-zA-Z0-9_-]{12,100}$/.test(id))throw Error('Invalid upload ID');
+  if(p.type==='speaking_ai')return aliHandleSpeakingAi(p);
   if(p.type!=='speaking_upload'||p.consent!==true)throw Error('Invalid request or consent');
   if(!/^[a-zA-Z0-9_-]{12,100}$/.test(String(p.sessionId||'')))throw Error('Invalid session');
   const part=Number(p.part);
@@ -118,4 +119,73 @@ function onAliSpeakingGradeEdited(e){
     '\n\nĐây là kết quả xếp lớp nội bộ, không phải chứng chỉ CEFR.\n\nALI English'});
   sh.getRange(r,22).setValue(new Date());
  }catch(err){sh.getRange(r,13).setValue('Gửi email thất bại: '+String(err.message||err).slice(0,80));}
+}
+
+
+/**
+ * Optional AI feedback. Triggered only after the student opts in and the
+ * original recordings are successfully saved. Gemini API key stays in
+ * Script Properties (ALI_GEMINI_API_KEY), never in GitHub/public JavaScript.
+ *
+ * This estimates 4 observable speech criteria /20. Interaction /5 cannot
+ * reliably be determined from single-speaker recordings and is left for ALI.
+ */
+function aliHandleSpeakingAi(p){
+ const requestId=String(p.uploadId||'');
+ try{
+  if(p.aiConsent!==true||p.consent!==true)throw Error('Explicit AI consent required');
+  const session=String(p.sessionId||'');
+  if(!/^[A-Za-z0-9_-]{12,100}$/.test(session))throw Error('Invalid session');
+  const apiKey=PropertiesService.getScriptProperties().getProperty('ALI_GEMINI_API_KEY');
+  if(!apiKey)throw Error('AI service is not configured');
+  const sheetId=PropertiesService.getScriptProperties().getProperty('ALI_SHEET_ID');
+  if(!sheetId)throw Error('Run setupAliSpeaking() first');
+  const sh=SpreadsheetApp.openById(sheetId).getSheetByName('Speaking submissions');
+  if(sh.getLastRow()<2)throw Error('No submitted recordings found');
+  const data=sh.getRange(2,1,sh.getLastRow()-1,25).getValues();
+  const selected=data.map((row,i)=>({row,index:i+2})).filter(x=>String(x.row[1])===session).sort((a,b)=>Number(a.row[2])-Number(b.row[2]));
+  if(!selected.length)throw Error('Submit a recording first');
+  // API invocation is idempotent for the same session where feedback exists.
+  const existing=selected.find(x=>x.row[22]!==''&&x.row[23]);
+  if(existing){
+   aliCacheWrite(requestId,{ok:true,status:'saved',score:existing.row[22],feedback:String(existing.row[23]).slice(0,1500)});
+   return ContentService.createTextOutput('ALREADY EVALUATED');
+  }
+  const parts=[{text:'Evaluate spoken English ONLY from the attached voice recordings in order. The learner is performing an informal A1-B2 speaking placement. Give cautious, constructive feedback in Vietnamese, based strictly on audible evidence. Do not invent words spoken or claim a certified CEFR level. Return a single JSON object with integer scores 0-5 named fluency, grammar, vocabulary, pronunciation, and a concise Vietnamese feedback string, plus a short limitations string. Scores should be conservative and evidence-based. Do not score interaction because these are monologues.'}];
+  let sum=0;
+  for(const item of selected){
+   const url=String(item.row[8]);
+   const match=url.match(/\/d\/([\w-]{15,})/);
+   if(!match)continue;
+   const file=DriveApp.getFileById(match[1]);
+   const blob=file.getBlob();
+   const bytes=blob.getBytes();
+   sum+=bytes.length;
+   if(sum>16*1024*1024)throw Error('Audio is too large for this AI preview');
+   const mime=String(item.row[10]||blob.getContentType()).split(';')[0];
+   if(!['audio/webm','audio/mp4','audio/mpeg','audio/ogg','audio/aac'].includes(mime))continue;
+   parts.push({text:'Speaking part '+item.row[2]});
+   parts.push({inlineData:{mimeType:mime,data:Utilities.base64Encode(bytes)}});
+  }
+  if(parts.length<3)throw Error('No supported audio was saved');
+  const response=UrlFetchApp.fetch('https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent',{
+   method:'post',contentType:'application/json',headers:{'x-goog-api-key':apiKey},
+   payload:JSON.stringify({contents:[{role:'user',parts:parts}],generationConfig:{temperature:0.15,responseMimeType:'application/json'}}),
+   muteHttpExceptions:true
+  });
+  if(response.getResponseCode()!==200)throw Error('AI service error '+response.getResponseCode());
+  const parsed=JSON.parse(response.getContentText());
+  const text=parsed.candidates?.[0]?.content?.parts?.map(x=>x.text||'').join('')||'';
+  const evaluation=JSON.parse(text);
+  const nums=['fluency','grammar','vocabulary','pronunciation'].map(k=>Number(evaluation[k]));
+  if(nums.some(n=>!Number.isInteger(n)||n<0||n>5))throw Error('Invalid AI rubric result');
+  const total=nums.reduce((a,b)=>a+b,0);
+  const feedback=(String(evaluation.feedback||'').slice(0,1100)+'\nGiới hạn: '+String(evaluation.limitations||'AI không thể xác định chắc chắn khả năng tương tác hoặc xếp lớp từ bài ghi âm một chiều.').slice(0,350)).trim();
+  sh.getRange(selected[0].index,23,1,3).setValues([[total,feedback,new Date()]]);
+  aliCacheWrite(requestId,{ok:true,status:'saved',score:total,feedback:feedback.slice(0,1500)});
+  return ContentService.createTextOutput('AI REVIEW SAVED');
+ }catch(error){
+  aliCacheWrite(requestId,{ok:false,status:'error',error:String(error.message||error).slice(0,150)});
+  return ContentService.createTextOutput('AI ERROR');
+ }
 }
