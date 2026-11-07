@@ -1,0 +1,16 @@
+/* Shared listening audio module: consistent with ALI placement shell */
+.ali-audio-box{background:linear-gradient(135deg,#fff8f2,#fffdfb);border:1px solid #f4d9c4;border-radius:18px;padding:19px 20px;margin:20px 0 24px;box-shadow:0 12px 28px #b86b290d}
+.ali-audio-top{display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.ali-audio-label{font-size:11px;font-weight:900;letter-spacing:.09em;color:#e75e1b}
+.ali-audio-state{font-size:11px;color:#866a5e;font-weight:750}
+.ali-audio-heading{font-size:16px;font-weight:900;color:#30232a;margin:8px 0 12px}
+.ali-audio-player{width:100%;height:44px;display:block;accent-color:#ff681e}
+.ali-audio-controls{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-top:13px}
+.ali-audio-controls button{background:white!important;color:#b34c16!important;border:1px solid #f0ccb4!important;border-radius:10px!important;padding:9px 14px!important;min-height:38px;font-size:11px;font-weight:850;cursor:pointer}
+.ali-audio-controls button.ali-audio-primary{background:#ff681e!important;color:white!important;border-color:#ff681e!important}
+.ali-audio-controls button:disabled{opacity:.5;cursor:not-allowed}
+.ali-audio-helper{font-size:11px;color:#877b7b;line-height:1.7;margin:10px 0 0}
+.ali-audio-error{color:#ad3d21;font-size:11px;margin-top:10px}
+.ali-audio-part-tabs{display:flex;gap:8px;flex-wrap:wrap;margin:11px 0}
+.ali-audio-part-tabs button[aria-pressed=true]{background:#ff681e!important;color:white!important}
+@media(max-width:560px){.ali-audio-box{padding:14px}.ali-audio-top{align-items:flex-start;flex-direction:column}}
