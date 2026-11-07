@@ -1,7 +1,7 @@
 /**
  * ALI ENGLISH - Speaking A1-B2 submission receiver
  * Install this code in a Google Apps Script project owned by ALI.
- * Run setupAliSpeaking() once; deploy Web App as Execute as Me / Anyone.
+ * Run setupAliSpeaking() once; before public Web App deployment, add authentication and abuse controls.
  * The Google Sheet and Drive folder remain private to your Google account.
  * The public endpoint accepts uploads: add stronger user authentication for production.
  */
@@ -74,7 +74,7 @@ function doPost(e){
    const file=DriveApp.getFolderById(folderId).createFile(Utilities.newBlob(bytes,mime,fn));
    const email=String(p.email||'').trim().slice(0,150);
    if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Invalid email');
-   const safe=v=>String(v||'').slice(0,150).replace(/^[=+@-]/,"'String(v||'').slice(0,150).replace(/^[=+@-]/,"'&")");
+   const safe=v=>String(v||'').slice(0,150).replace(/^[=+@-]/,m=>"'"+m);
    sh.appendRow([new Date(),safe(p.sessionId),part,safe(name),safe(email),safe(p.phone),safe(p.school),safe(p.goal),file.getUrl(),fn,mime,bytes.length,'Chờ giảng viên','','','','','','','','','']);
    aliCacheWrite(id,{status:'saved',ok:true});
    return ContentService.createTextOutput('SAVED');
