@@ -12,14 +12,18 @@ const ALI_HEADERS=[
  'Total /25','CEFR reference','Teacher feedback','Sent at'
 ];
 const ALI_STATUS_CACHE_SECONDS=21600;
+const ALI_EXISTING_FOLDER_ID='1jKrAaDRZDR8QGXDPx7aAEiKUrYfV7RPk';
+const ALI_EXISTING_SHEET_ID='1ZKWMCOQsgG48JZ3mqeIt_kh9yg5w-UuoryCaxuHRjpo';
 const ALI_MAX_BYTES=7*1024*1024;
 function setupAliSpeaking(){
  const props=PropertiesService.getScriptProperties();
- let folderId=props.getProperty('ALI_FOLDER_ID');
- let sheetId=props.getProperty('ALI_SHEET_ID');
- if(!folderId){folderId=DriveApp.createFolder('ALI English - Speaking Recordings').getId();props.setProperty('ALI_FOLDER_ID',folderId);}
- if(!sheetId){sheetId=SpreadsheetApp.create('ALI English - Speaking Placement A1-B2 - Teacher Grading').getId();props.setProperty('ALI_SHEET_ID',sheetId);}
- const sh=SpreadsheetApp.openById(sheetId).getSheets()[0];
+ let folderId=props.getProperty('ALI_FOLDER_ID')||ALI_EXISTING_FOLDER_ID;
+ let sheetId=props.getProperty('ALI_SHEET_ID')||ALI_EXISTING_SHEET_ID;
+ DriveApp.getFolderById(folderId).getName();
+ SpreadsheetApp.openById(sheetId).getName();
+ props.setProperty('ALI_FOLDER_ID',folderId);
+ props.setProperty('ALI_SHEET_ID',sheetId);
+ const sh=SpreadsheetApp.openById(sheetId).getSheetByName('Speaking submissions')||SpreadsheetApp.openById(sheetId).getSheets()[0];
  sh.setName('Speaking submissions');
  sh.getRange(1,1,1,ALI_HEADERS.length).setValues([ALI_HEADERS]).setFontWeight('bold').setBackground('#fff0e4').setFontColor('#bf4c18');
  sh.setFrozenRows(1);sh.setColumnWidths(1,ALI_HEADERS.length,135);sh.setColumnWidth(9,310);sh.setColumnWidth(21,380);
@@ -36,7 +40,6 @@ function doPost(e){
  try{
   if(!e||!e.parameter||!e.parameter.payload)throw Error('Empty submission');
   const p=JSON.parse(e.parameter.payload);
-  if(p.type==='speaking_ai')return aliHandleSpeakingAi(p);
   id=String(p.uploadId||'');
   if(!/^[a-zA-Z0-9_-]{12,100}$/.test(id))throw Error('Invalid upload ID');
   if(p.type!=='speaking_upload'||p.consent!==true)throw Error('Invalid request or consent');
@@ -58,7 +61,7 @@ function doPost(e){
   try{
    const cached=CacheService.getScriptCache().get(aliCacheKey(id));
    if(cached){const value=JSON.parse(cached);if(value.status==='saved')return ContentService.createTextOutput('ALREADY SAVED');}
-   const sh=SpreadsheetApp.openById(sheetId).getSheets()[0];
+   const sh=SpreadsheetApp.openById(sheetId).getSheetByName('Speaking submissions');
    const existing=sh.getLastRow()>1?sh.getRange(2,2,sh.getLastRow()-1,2).getDisplayValues():[];
    if(existing.some(row=>row[0]===String(p.sessionId) && Number(row[1])===part)){
      aliCacheWrite(id,{status:'saved',ok:true});
