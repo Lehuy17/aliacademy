@@ -116,11 +116,45 @@ $('aliSpSend').onclick=async()=>{
    updateProgress();
   }
   $('aliSpUploadStatus').textContent='Đã nhận xác nhận lưu '+receipts.filter(Boolean).length+' file. Giảng viên sẽ nghe và chấm điểm sau.';
+  $('aliSpAiBtn').disabled=false;
+  $('aliSpAiStatus').textContent='Đã lưu bản ghi. Bạn có thể yêu cầu AI nhận xét tham khảo nếu đồng ý.';
   $('aliSpResult').scrollIntoView({behavior:'smooth'});
  }catch(err){$('aliSpUploadStatus').textContent='Chưa xác minh được việc nộp bài: '+err.message+' Bạn vẫn có thể tải bản ghi về máy. Không xoá bản ghi cho đến khi xác nhận trên Sheet.';}
  finally{isUploading=false;$('aliSpSend').disabled=false;}
 };
-$('aliSpAiBtn').onclick=()=>{};
+$('aliSpAiBtn').onclick=async()=>{
+ if(isUploading)return;
+ if(!$('aliSpAiConsent').checked){alertUser('Hãy xác nhận đồng ý để AI phân tích bản ghi âm đã nộp.');return;}
+ if(!receipts.some(Boolean)){alertUser('Bạn phải nộp ít nhất một bản ghi thành công trước khi yêu cầu AI.');return;}
+ const endpoint=String(cfg.uploadEndpoint||'').trim();
+ if(!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(endpoint)){
+  $('aliSpAiStatus').textContent='Hệ thống AI chưa được cấu hình. Vui lòng đợi ALI kích hoạt tính năng.';
+  return;
+ }
+ if(!confirm('Bạn đồng ý gửi các bản ghi đã nộp cho dịch vụ AI để nhận xét sơ bộ, chỉ mang tính tham khảo?'))return;
+ isUploading=true;$('aliSpAiBtn').disabled=true;
+ $('aliSpAiStatus').textContent='Đang yêu cầu AI phân tích bản ghi…';
+ try{
+  const uploadId=sessionId+'-ai';
+  const payload={type:'speaking_ai',uploadId,sessionId,consent:true,aiConsent:true};
+  await fetch(endpoint,{method:'POST',mode:'no-cors',body:new URLSearchParams({payload:JSON.stringify(payload)})});
+  const result=await waitForReceipt(endpoint,uploadId,115000);
+  const score=Number(result.score);
+  const feedback=String(result.feedback||'').slice(0,1500);
+  const heading=document.createElement('strong');
+  heading.textContent=Number.isFinite(score)?'Điểm AI tham khảo: '+score+'/20':'Nhận xét AI tham khảo';
+  const note=document.createElement('p');
+  note.textContent=feedback||'Chưa có nhận xét cụ thể.';
+  const warning=document.createElement('p');
+  warning.textContent='Đây là ước lượng AI cho 4 tiêu chí. Khả năng tương tác /5 chưa được chấm; kết quả chính xác cần chờ giảng viên đánh giá toàn bộ /25.';
+  $('aliSpAiFeedback').replaceChildren(heading,note,warning);
+  $('aliSpAiStatus').textContent='Đã nhận nhận xét AI tham khảo. Vui lòng chờ điểm giảng viên.';
+ }catch(e){
+  $('aliSpAiStatus').textContent='Chưa nhận được đánh giá AI: '+e.message+'. Kết quả chính thức vẫn do giảng viên chấm.';
+ }finally{
+  isUploading=false;$('aliSpAiBtn').disabled=false;
+ }
+};
 window.addEventListener('beforeunload',event=>{if(blobs.some(Boolean)&&!receipts.filter(Boolean).length){event.preventDefault();event.returnValue='';}});
 build();
 })();
