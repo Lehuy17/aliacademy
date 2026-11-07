@@ -112,6 +112,13 @@
     const percent=total?Math.round(done/total*100):0;
     const track=progress.querySelector('.ali-flow-track');
     track.setAttribute('aria-valuenow',String(percent));track.querySelector('span').style.width=percent+'%';
+    allSections.forEach((section,i)=>{
+      const row=counters.children[i];if(!row)return;
+      const inputs=sectionFields(section),groups=new Map(),other=[];
+      inputs.forEach(f=>{if(f.type==='radio'){if(!groups.has(f.name))groups.set(f.name,false);if(f.checked)groups.set(f.name,true)}else other.push(f)});
+      const count=groups.size+other.length,answered=[...groups.values()].filter(Boolean).length+other.filter(f=>f.value.trim()).length;
+      if(count && !isTeacher)row.querySelector('strong').textContent=answered+' / '+count+' đã trả lời';
+    });
     if(!submitted){try{sessionStorage.setItem(draftKey,JSON.stringify({owner:user.name,values:serialize()}))}catch{}}
     return {done,total};
   }
