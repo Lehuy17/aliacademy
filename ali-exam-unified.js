@@ -3,7 +3,7 @@
  'use strict';
  const name = location.pathname.split('/').pop().replace(/\.html$/,'');
  const config = {
-  b1:{title:'B1 Placement',minutes:50,sections:['Grammar & Vocabulary','Reading','Writing','Listening'],scores:['Tự chấm /15','Giáo viên chấm','Giáo viên chấm','Chưa tự chấm'],kind:'practice'},
+  b1:{title:'B1 Placement',minutes:30,sections:['Grammar & Vocabulary','Reading','Writing','Listening'],scores:['Tự chấm /15','Giáo viên chấm','Giáo viên chấm','Chưa tự chấm'],kind:'practice'},
   toeic:{title:'TOEIC Practice',minutes:30,sections:['Grammar & Vocabulary','Listening'],scores:['Tự chấm /15','Chưa có audio'],kind:'practice'},
   ielts:{title:'IELTS Practice',minutes:50,sections:['Listening','Reading','Writing'],scores:['Tự chấm /20','Tự chấm /13','Giáo viên chấm'],kind:'practice'},
   speaking:{title:'Speaking A1–B2',minutes:18,sections:['Introduction','Long Turn','Discussion','Situational Task','Phiếu chấm giáo viên'],scores:['Giáo viên đánh giá','Giáo viên đánh giá','Giáo viên đánh giá','Giáo viên đánh giá','Rubric /25'],kind:'teacher'}
