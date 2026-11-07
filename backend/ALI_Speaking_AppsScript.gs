@@ -36,6 +36,7 @@ function doPost(e){
  try{
   if(!e||!e.parameter||!e.parameter.payload)throw Error('Empty submission');
   const p=JSON.parse(e.parameter.payload);
+  if(p.type==='speaking_ai')return aliHandleSpeakingAi(p);
   id=String(p.uploadId||'');
   if(!/^[a-zA-Z0-9_-]{12,100}$/.test(id))throw Error('Invalid upload ID');
   if(p.type!=='speaking_upload'||p.consent!==true)throw Error('Invalid request or consent');
@@ -58,14 +59,18 @@ function doPost(e){
    const cached=CacheService.getScriptCache().get(aliCacheKey(id));
    if(cached){const value=JSON.parse(cached);if(value.status==='saved')return ContentService.createTextOutput('ALREADY SAVED');}
    const sh=SpreadsheetApp.openById(sheetId).getSheets()[0];
-   const ids=sh.getLastRow()>1?sh.getRange(2,2,sh.getLastRow()-1,1).getDisplayValues().flat():[];
+   const existing=sh.getLastRow()>1?sh.getRange(2,2,sh.getLastRow()-1,2).getDisplayValues():[];
+   if(existing.some(row=>row[0]===String(p.sessionId) && Number(row[1])===part)){
+     aliCacheWrite(id,{status:'saved',ok:true});
+     return ContentService.createTextOutput('ALREADY SAVED');
+   }
    // Keep retries idempotent by checking this session+part's existing file name.
    const marker='ALI_Speaking_'+p.sessionId+'_part_'+part;
    const fn=marker+'.'+(mime==='audio/mp4'?'m4a':mime==='audio/ogg'?'ogg':mime==='audio/mpeg'?'mp3':'webm');
    const file=DriveApp.getFolderById(folderId).createFile(Utilities.newBlob(bytes,mime,fn));
    const email=String(p.email||'').trim().slice(0,150);
    if(email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email))throw Error('Invalid email');
-   const safe=v=>String(v||'').slice(0,150).replace(/^[=+@-]/,"'&");
+   const safe=v=>String(v||'').slice(0,150).replace(/^[=+@-]/,"'String(v||'').slice(0,150).replace(/^[=+@-]/,"'&")");
    sh.appendRow([new Date(),safe(p.sessionId),part,safe(name),safe(email),safe(p.phone),safe(p.school),safe(p.goal),file.getUrl(),fn,mime,bytes.length,'Chờ giảng viên','','','','','','','','','']);
    aliCacheWrite(id,{status:'saved',ok:true});
    return ContentService.createTextOutput('SAVED');
