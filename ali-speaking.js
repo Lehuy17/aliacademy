@@ -87,7 +87,7 @@ async function sendPart(endpoint,i){
  const blob=blobs[i];if(!blob)throw Error('Chưa có ghi âm phần '+(i+1));
  if(blob.size>Math.min(7,Number(cfg.maxRecordingMB)||7)*1024*1024)throw Error('Bản ghi phần '+(i+1)+' quá lớn (giới hạn 7 MB). Hãy ghi ngắn hơn.');
  const uploadId=sessionId+'-p'+i;
- const payload={type:'speaking_upload',uploadId,sessionId,part:i+1,name:reg.name,phone:reg.phone||'',school:reg.school||'',goal:reg.goal||'',consent:true,mime:blob.type||'audio/webm',fileName:'ALI_Speaking_'+sessionId+'_part_'+(i+1)+'.'+ext(blob.type),base64:await readAsDataURL(blob)};
+ const payload={type:'speaking_upload',uploadId,sessionId,part:i+1,name:reg.name,email:$('aliSpStudentEmail').value.trim(),phone:reg.phone||'',school:reg.school||'',goal:reg.goal||'',consent:true,mime:blob.type||'audio/webm',fileName:'ALI_Speaking_'+sessionId+'_part_'+(i+1)+'.'+ext(blob.type),base64:await readAsDataURL(blob)};
  // Simple form request avoids cross-origin preflight; a separate status request confirms server save.
  const body=new URLSearchParams({payload:JSON.stringify(payload)});
  await fetch(endpoint,{method:'POST',mode:'no-cors',body});
@@ -99,6 +99,7 @@ $('aliSpSend').onclick=async()=>{
  if(recordingIndex!==-1){alertUser('Hãy dừng ghi âm trước khi nộp bài.');return;}
  if(!$('aliSpRecordingConsent').checked){alertUser('Vui lòng xác nhận đồng ý lưu trữ bản ghi âm để giảng viên chấm.');return;}
  if(!blobs.some(Boolean)){alertUser('Bạn cần ghi âm ít nhất một phần trước khi nộp.');return;}
+ if(!$('aliSpStudentEmail').checkValidity()){alertUser('Email chưa đúng định dạng. Vui lòng kiểm tra lại.');return;}
  const endpoint=String(cfg.uploadEndpoint||'').trim();
  if(!/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/.test(endpoint)){
   $('aliSpUploadStatus').textContent='Chưa kết nối Google Drive/Sheets. Bản ghi chưa được gửi. Vui lòng tải file và liên hệ ALI; quản lý cần thiết lập Apps Script.';
