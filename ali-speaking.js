@@ -23,7 +23,7 @@ function updateProgress(){
  const count=blobs.filter(Boolean).length;
  $('aliSpProgressText').textContent=count+' / 4 phần đã ghi';
  $('aliSpProgressFill').style.width=(count/4*100)+'%';
- blobs.forEach((blob,i)=>{$('aliSpState'+i).textContent=receipts[i]?'Đã gửi':blob?'Đã ghi':'Chưa ghi';});
+ blobs.forEach((blob,i)=>{$('aliSpState'+i).textContent=receipts[i]?'Đã gửi':blob?'Đã ghi':'Chưa ghi';if(receipts[i])nodes[i].again.disabled=true;});
 }
 function build(){
  $('aliSpName').textContent=reg.name;
@@ -45,6 +45,7 @@ function go(i){if(recordingIndex!==-1){alertUser('Hãy dừng ghi âm trước k
 $('aliSpPrev').onclick=()=>go(active-1);$('aliSpNext').onclick=()=>go(active+1);
 async function start(i,replace){
  if(isUploading||recordingIndex!==-1)return;
+ if(receipts[i]){alertUser('Phần này đã được nộp thành công. Để bảo toàn bản nộp giảng viên, bạn không thể ghi đè sau khi gửi.');return;}
  if(!navigator.mediaDevices?.getUserMedia||!window.MediaRecorder){status(i,'Trình duyệt không hỗ trợ ghi âm. Hãy dùng Chrome, Edge hoặc Safari mới nhất trên HTTPS.');return;}
  if(replace && blobs[i] && !confirm('Ghi âm lại sẽ thay thế bản ghi hiện tại của phần này. Bạn có muốn tiếp tục?'))return;
  try{
