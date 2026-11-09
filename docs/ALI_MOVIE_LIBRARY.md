@@ -59,4 +59,12 @@ Khi thêm một phim mới, giữ nguyên **toàn bộ** cấu trúc trang `movi
 3. Cấu hình quyền video nguồn ở mức riêng tư, không chia sẻ `Anyone with the link` nếu bảo mật là điều kiện bắt buộc.
 4. Kiểm tra quyền phân phối/trình chiếu trích đoạn phim trước khi phát cho học viên.
 
+
+### Mẫu đang áp dụng: Spider-Man (2021)
+
+- `ali-movies.json` chứa `ambientVideo: "./media/ambient/spiderman-nwh-preview.mp4"`. Đây là **một vòng lặp MP4 nhỏ, không có âm thanh, 64×36 px, dài khoảng 20 giây**, được tạo từ đúng file video ALI đã tải lên. Nó phát mờ trong nền khi học viên mở phim trên desktop.
+- Nó tạo **chuyển động từ cảnh quay thật** nhưng **không theo sát thời điểm trong video chính** vì Google Drive iframe không cung cấp API thời gian hay pixel cho website ALI. Muốn đúng cảnh, đúng thời gian như phim đầu tiên, cần đưa video chính vào trình phát HTML5 có quyền đọc pixel trên cùng domain.
+- Khi thêm phim Drive mới, chuẩn bị một MP4 nền không âm thanh và chất lượng rất thấp (vài KB), điền `ambientVideo`. Khi không có đoạn nền, website tự dùng thumbnail thật của video làm nền mờ có chuyển động nhẹ.
+- Mọi phim mới dùng sẵn bố cục, hiệu ứng kính mờ, và quy tắc không hiện liên kết nguồn; không cần sao chép HTML/CSS riêng cho mỗi phim.
+
 **Lưu ý bản quyền:** Với phim điện ảnh thương mại, ALI cần có quyền sử dụng nội dung phù hợp.
