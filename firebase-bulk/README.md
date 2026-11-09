@@ -8,12 +8,12 @@ Firebase project: `ali-english`
 
 ## Deploy
 1. Enable Firebase project's billing / Cloud Functions v2, Firestore, Authentication, and Secret Manager as needed.
-2. Deploy the code in `index.js` using Firebase CLI from this directory. Example (after a Firebase project configuration is created): `firebase deploy --only functions:bulkProvisionStudents --project ali-english`.
+2. Install Firebase CLI (`npm install -g firebase-tools`), sign in (`firebase login`), then from `firebase-bulk` run `npm install`. The included `firebase.json` declares codebase `ali-bulk`.\n3. Configure secrets from this directory: `firebase functions:secrets:set ALI_BULK_SYNC_KEY --project ali-english` and `firebase functions:secrets:set ALI_RESEND_API_KEY --project ali-english`; paste the values in the CLI prompt. Do not commit secrets. Create `.env.ali-english` (ignored by git) containing `ALI_INVITE_FROM=ALI English <accounts@your-verified-domain>`. Replace this address with one verified by your mail service.\n4. Deploy with `firebase deploy --only functions:ali-bulk --project ali-english`. Read the deployed function URL from Firebase Console.
 3. Configure two Firebase Secret Manager secrets named `ALI_BULK_SYNC_KEY` (cryptographically random, same value in Apps Script properties) and `ALI_RESEND_API_KEY` (optional email provider API key). Configure environment variable `ALI_INVITE_FROM` as a verified sending address to enable invitation emails.
 4. Open the Google Sheet → Extensions → Apps Script. Paste `ALI_Bulk_Sheets.gs`. Set Script properties `ALI_BULK_ENDPOINT` to the deployed Function URL and `ALI_BULK_SYNC_KEY` to the secret. Never place either value in a cell.
-5. Run `runAliBulkSync` manually for a five-email pilot. Recheck Firebase Authentication and matching Firestore `users/{uid}`; test login and email invitation.
-6. Only then optionally enable the 5-minute trigger from Sheet menu. Max 20 rows per execution; about 50 batches for 1,000 users. Review Firebase/Google service quotas.
-7. Restrict Sheet sharing to trusted staff. The Function uses HMAC authentication and strict payload/time verification, but harden with rate-limiting, audit logging, and a replay-resistant job store before high-volume production use.
+6. Run `runAliBulkSync` manually for a five-email pilot. Recheck Firebase Authentication and matching Firestore `users/{uid}`; test login and email invitation.
+7. Only then optionally enable the 5-minute trigger from Sheet menu. Max 20 rows per execution; about 50 batches for 1,000 users. Review Firebase/Google service quotas.
+8. Restrict Sheet sharing to trusted staff. The Function uses HMAC authentication and strict payload/time verification, but harden with rate-limiting, audit logging, and a replay-resistant job store before high-volume production use.
 
 ## Important behaviors
 - Email-only rows are accepted, name and class optional.
