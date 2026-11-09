@@ -310,3 +310,56 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
 @media(max-width:850px){
  #aliVideoPlayer .cinema-ambient-media img{filter:blur(38px) saturate(120%) brightness(1.02)}
 }
+
+
+/* ALI Cinema house style — no outbound source controls in student view.
+   Drive iframe preview cannot expose its frames to script; use the real video
+   thumbnail as a moving glass backdrop unless a local ambientVideo is supplied. */
+#aliVideoPlayer .screen{position:relative}
+#aliVideoPlayer .ali-drive-link-shield{
+ display:none;position:absolute;z-index:8;top:0;right:0;
+ width:59px;height:58px;border-radius:0 15px 0 18px;
+ background:#050505;pointer-events:auto;
+}
+#aliVideoPlayer .screen.is-drive-embed .ali-drive-link-shield{display:block}
+#aliVideoPlayer .cinema-ambient-media.is-drive img{
+ opacity:1;
+ filter:blur(27px) saturate(128%) contrast(1.12) brightness(.83);
+ transform:scale(1.18);
+ animation:ali-ambient-scene-drift 24s ease-in-out infinite alternate;
+}
+#aliVideoPlayer .cinema-ambient-media.is-drive{
+ opacity:1;
+ background:linear-gradient(135deg,#b6a993,#596c5b,#c4b195);
+}
+#aliVideoPlayer .cinema-ambient-media video{
+ position:absolute;inset:0;display:block;
+ width:100%;height:100%;object-fit:cover;
+ opacity:0;pointer-events:none;
+ transform:scale(1.25);
+ filter:blur(54px) saturate(122%) brightness(.9);
+ transition:opacity .6s ease;
+}
+#aliVideoPlayer .cinema-ambient-media.has-ambient-film video{opacity:.98}
+#aliVideoPlayer .cinema-ambient-media.has-ambient-film img{opacity:.15}
+#aliVideoPlayer .cinema-glass-wrap{
+ background:rgba(255,255,255,.34);
+ -webkit-backdrop-filter:blur(22px) saturate(112%);
+ backdrop-filter:blur(22px) saturate(112%);
+}
+#aliVideoPlayer::after{
+ background:linear-gradient(135deg,rgba(255,244,231,.08),rgba(255,255,255,.16) 54%,rgba(246,224,210,.14));
+}
+@keyframes ali-ambient-scene-drift{
+ 0%{transform:scale(1.18) translate(-3%,1%)}
+ 50%{transform:scale(1.3) translate(3%,-2%)}
+ 100%{transform:scale(1.19) translate(-2%,-3%)}
+}
+@media(max-width:850px){
+ #aliVideoPlayer .cinema-ambient-media video{display:none}
+ #aliVideoPlayer .cinema-ambient-media.is-drive img{animation:none;filter:blur(35px) saturate(115%) brightness(.91)}
+}
+@media(prefers-reduced-motion:reduce){
+ #aliVideoPlayer .cinema-ambient-media.is-drive img{animation:none}
+ #aliVideoPlayer .cinema-ambient-media video{transition:none}
+}
