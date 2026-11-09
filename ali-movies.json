@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "movies": [
     {
       "id": "ali-video-01",
@@ -34,7 +34,8 @@
         "hideSourceLink": true,
         "background": "film-blur",
         "layout": "video-left-captions-right"
-      }
+      },
+      "ambientVideo": "./media/ambient/spiderman-nwh-preview.mp4"
     }
   ]
 }
