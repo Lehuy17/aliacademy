@@ -84,7 +84,12 @@ video.addEventListener('seeked',refreshAmbient);
 video.addEventListener('pause',()=>{stopAmbient(false);paintAmbient();});
 video.addEventListener('ended',()=>{stopAmbient(false);paintAmbient();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAmbient(false);else refreshAmbient();});
-window.addEventListener('resize',refreshAmbient);
+window.addEventListener('resize',()=>{
+ refreshAmbient();
+ if(!ambientFilm||!currentMovie?.ambientVideo||$('aliVideoPlayer').classList.contains('hidden'))return;
+ if(ambientDesktop()&&ambientFilm.paused){ambientFilm.play().then(()=>ambientHost?.classList.add('has-ambient-film')).catch(()=>{});}
+ else if(!ambientDesktop()){ambientFilm.pause();ambientHost?.classList.remove('has-ambient-film');}
+});
 
 const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floor((t||0)%60)).padStart(2,'0');
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
@@ -173,9 +178,9 @@ async function openSync(){
 }
 async function openMovie(movie){
  currentMovie=movie;
- setAmbientPoster(movie);
  $('aliCurrentMovieTitle').textContent=movie.title||'Phim song ngữ ALI';
  $('aliVideoPlayer').classList.remove('hidden');
+ setAmbientPoster(movie);
  $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
  cues=[];
  clock.textContent='00:00 / '+(movie.duration||'--:--');
