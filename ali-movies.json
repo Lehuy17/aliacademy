@@ -1,0 +1,20 @@
+{
+  "version": 1,
+  "movies": [
+    {
+      "id": "ali-video-01",
+      "title": "Video luyện nghe ALI · 01",
+      "category": "PHIM SONG NGỮ · ALI",
+      "description": "21 câu thoại Anh – Việt, xem phim kèm phụ đề song ngữ và nghe lại từng câu.",
+      "duration": "00:53",
+      "poster": "https://drive.google.com/thumbnail?id=1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B&sz=w960",
+      "previewSecond": 16,
+      "captions": "./captions/1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B.json",
+      "source": {
+        "type": "chunked",
+        "loader": "ali-video-01"
+      },
+      "driveId": "1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B"
+    }
+  ]
+}
