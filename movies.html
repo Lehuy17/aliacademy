@@ -1,15 +1,33 @@
-<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phim song ngữ | ALI English</title><link rel="stylesheet" href="./ali-logo.css?v=1"><link rel="stylesheet" href="./ali-cinema-page.css?v=2"></head>
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Phim song ngữ | ALI English</title><link rel="stylesheet" href="./ali-logo.css?v=1"><link rel="stylesheet" href="./ali-cinema-page.css?v=3"></head>
 <body><header><div class="nav"><a href="./index.html" class="brand"><span class="ali-shared-logo" role="img" aria-label="Logo ALI Academy"></span> ALI ENGLISH<small>HỌC TIẾNG ANH QUA PHIM</small></a><nav class="navright"><a href="./index.html">Trang chủ</a><a href="./tests.html">Bài kiểm tra</a><a href="./movies.html">Phim song ngữ</a></nav></div></header>
 <main><div class="eyebrow">ALI ENGLISH · CINEMA CLUB</div><h1 class="page-title">Học tiếng Anh qua phim song ngữ</h1><p class="lead">Nghe và theo dõi từng câu thoại với phụ đề tiếng Anh – tiếng Việt, luyện phát âm và nghe lại theo từng đoạn.</p>
 <div id="notice" class="alert hidden" role="status"></div><div id="loading" class="panel">Đang kiểm tra quyền truy cập tài khoản…</div>
 <div id="memberContent" class="hidden"><div class="panel row"><div>Xin chào, <strong id="memberName">học viên</strong>!</div><button class="btn" id="logout" type="button">Đăng xuất</button></div>
 <section class="ali-library" aria-label="Thư viện phim song ngữ"><div class="ali-library-heading"><div><span class="eyebrow">ALI ENGLISH · VIDEO LIBRARY</span><h2>Thư viện phim song ngữ</h2><p class="small">Các video thực tế được ALI cập nhật tại đây. Nhấn vào ảnh xem trước để bắt đầu học.</p></div><span class="ali-library-total" id="aliLibraryCount">Đang tải thư viện…</span></div><div class="library-grid" id="aliMovieLibrary" aria-live="polite"><div class="ali-library-loading">Đang tải danh sách video ALI…</div></div></section>
-<section id="aliVideoPlayer" class="hidden" aria-label="Trình xem phim song ngữ"><div class="row cinema-head"><div><span class="kicker">ALI ENGLISH · LISTEN · READ · LEARN</span><h2 id="aliCurrentMovieTitle">Video song ngữ ALI</h2></div><button type="button" class="btn" id="closeMovie">✕ Đóng video</button></div>
-<div class="player-stack"><div class="screen"><video id="aliHtmlVideo" controls playsinline preload="metadata"></video><iframe id="aliDrivePlayer" class="hidden" title="Trình phát dự phòng" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
-<div class="video-controls"><span id="aliVideoClock">00:00 / 00:53</span><span id="aliVideoMode">Đang chuẩn bị trình phát…</span><button type="button" id="fallbackBtn">Phát dự phòng</button><button type="button" id="syncBtn" class="hidden">Phát đồng bộ</button></div>
-<div class="transcript"><div class="transcript-head"><div><span class="kicker">SONG NGỮ · THEO TỪNG CÂU</span><h3>Học theo từng câu thoại</h3></div><div class="language"><button type="button" data-language="both" aria-pressed="true">EN + VI</button><button type="button" data-language="en" aria-pressed="false">EN</button><button type="button" data-language="vi" aria-pressed="false">VI</button></div></div>
-<div class="transcript-scroll" id="aliTranscriptScroll" tabindex="0" aria-label="Danh sách phụ đề"><div class="transcript-list" id="aliTranscriptList"><p class="ali-empty">Đang tải phụ đề…</p></div></div>
-<div class="transcript-foot"><span>Nhấn vào một câu để phát lại</span><div><button type="button" id="smaller">A−</button> <button type="button" id="larger">A+</button> <button type="button" id="topCues">↑</button></div></div></div></div>
-<p class="footnote">Phụ đề có mốc thời gian ước lượng từ video. Trình phát đồng bộ sẽ tự cuộn và tô màu cam câu đang nói. Chế độ phát dự phòng không hỗ trợ đồng bộ.</p></section>
+<section id="aliVideoPlayer" class="hidden" aria-label="Trình xem phim song ngữ">
+<div class="cinema-glass-wrap">
+ <div class="row cinema-head">
+  <div><span class="kicker">ALI ENGLISH · LISTEN · READ · LEARN</span><h2 id="aliCurrentMovieTitle">Video song ngữ ALI</h2><p class="cinema-head-caption">Không gian luyện nghe và theo dõi phụ đề trong cùng một màn hình.</p></div>
+  <button type="button" class="btn cinema-close" id="closeMovie">✕ Đóng video</button>
+ </div>
+ <div class="cinema-shell">
+  <div class="video-panel" aria-label="Khung trình phát phim">
+   <div class="video-panel-label"><span class="cinema-live-dot" aria-hidden="true"></span> ALI ENGLISH CINEMA <span class="video-panel-label-right">WATCH · LISTEN · LEARN</span></div>
+   <div class="screen"><video id="aliHtmlVideo" controls playsinline preload="metadata"></video><iframe id="aliDrivePlayer" class="hidden" title="Trình phát dự phòng" allow="autoplay; fullscreen" allowfullscreen></iframe></div>
+   <div class="video-controls"><span id="aliVideoClock">00:00 / 00:53</span><span id="aliVideoMode">Đang chuẩn bị trình phát…</span><button type="button" id="fallbackBtn">Phát dự phòng</button><button type="button" id="syncBtn" class="hidden">Phát đồng bộ</button></div>
+   <div class="cinema-player-tip"><span class="cinema-tip-mark" aria-hidden="true">✦</span><span>Nhấn một câu ở cột phụ đề để nghe lại từ đúng thời điểm đó.</span></div>
+  </div>
+  <div class="transcript-panel" aria-label="Phụ đề song ngữ">
+   <div class="transcript">
+    <div class="transcript-head"><div><span class="kicker">PHỤ ĐỀ SONG NGỮ · LIVE CAPTIONS</span><h3>Học theo từng câu thoại</h3></div><div class="language"><button type="button" data-language="both" aria-pressed="true">EN + VI</button><button type="button" data-language="en" aria-pressed="false">EN</button><button type="button" data-language="vi" aria-pressed="false">VI</button></div></div>
+    <div class="transcript-toolbar"><span><span class="caption-status-dot" aria-hidden="true"></span> Phụ đề tương tác</span><span>Cuộn theo video</span></div>
+    <div class="transcript-scroll" id="aliTranscriptScroll" tabindex="0" aria-label="Danh sách phụ đề"><div class="transcript-list" id="aliTranscriptList"><p class="ali-empty">Đang tải phụ đề…</p></div></div>
+    <div class="transcript-foot"><span>Nhấn vào câu để phát lại</span><div><button type="button" id="smaller" aria-label="Giảm kích thước phụ đề">A−</button> <button type="button" id="larger" aria-label="Tăng kích thước phụ đề">A+</button> <button type="button" id="topCues" aria-label="Về đầu danh sách phụ đề">↑</button></div></div>
+   </div>
+  </div>
+ </div>
+ <p class="footnote">Các mốc phụ đề được ước lượng từ video. Chế độ phát đồng bộ sẽ tự cuộn và làm nổi bật câu đang nói; trình phát dự phòng không đồng bộ tự động.</p>
+</div>
+</section>
 <p class="note">Nội dung video cần có quyền sử dụng phù hợp. Tài nguyên phát từ nguồn công khai không được bảo vệ chỉ bằng đăng nhập trình duyệt.</p>
 </div></main><script src="./ali-video-loader.js?v=1" defer></script><script type="module" src="./ali-cinema-player.js?v=3"></script></body></html>
