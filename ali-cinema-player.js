@@ -77,7 +77,9 @@ async function init(){
   authSdk.onAuthStateChanged(auth,async user=>{
    if(!user){location.replace('./login.html?next=movies');return;}
    try{
-    const doc=await dbSdk.getDoc(dbSdk.doc(dbSdk.getFirestore(), 'users',user.uid));
+    const db=dbSdk.getFirestore();
+    let doc=await dbSdk.getDoc(dbSdk.doc(db,'users',user.uid));
+    if(!doc.exists())doc=await dbSdk.getDoc(dbSdk.doc(db,'user',user.uid));
     if(!doc.exists()||doc.data().status!=='active'){await authSdk.signOut(auth);location.replace('./login.html?blocked=1');return;}
     $('memberName').textContent=doc.data().name||user.email||'Học viên';
     $('loading').classList.add('hidden');$('memberContent').classList.remove('hidden');
