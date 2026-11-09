@@ -1,0 +1,13 @@
+{
+  "name": "ali-spark-student-import",
+  "private": true,
+  "version": "1.0.0",
+  "description": "Local, manual 5–10 student accounts import for Firebase Spark",
+  "scripts": {
+    "check": "node --check create-students.cjs"
+  },
+  "dependencies": {
+    "firebase-admin": "^13.0.0",
+    "csv-parse": "^5.6.0"
+  }
+}
