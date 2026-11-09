@@ -6,6 +6,64 @@ const scroller=$('aliTranscriptScroll');
 const status=$('aliVideoMode');
 const clock=$('aliVideoClock');
 let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
+
+/* The ambient blur uses actual frames of the SAME playing HTML video.
+   A tiny canvas at 8fps keeps the desktop glass backdrop lightweight.
+   On mobile, when paused, or in Drive fallback, the real film poster remains. */
+const ambientHost=$('aliCinemaAmbient');
+const ambientCanvas=$('aliCinemaAmbientCanvas');
+const ambientPoster=$('aliCinemaAmbientPoster');
+const ambientContext=ambientCanvas?.getContext('2d',{alpha:false});
+let ambientFrame=0,ambientLastFrame=0;
+const ambientDesktop=()=>window.matchMedia('(min-width:851px)').matches;
+function setAmbientPoster(movie){
+ stopAmbient();
+ if(!ambientPoster)return;
+ const image=movie?.previewSrc||movie?.poster||'';
+ if(image){ambientPoster.src=image;ambientPoster.style.opacity='1';}
+ else{ambientPoster.removeAttribute('src');ambientPoster.style.opacity='0';}
+}
+function paintAmbient(){
+ if(!ambientDesktop()||!ambientContext||!currentMovie||video.classList.contains('hidden')
+    ||video.readyState<2||!video.videoWidth||!video.videoHeight)return;
+ try{
+  const cw=ambientCanvas.width,ch=ambientCanvas.height;
+  const vw=video.videoWidth,vh=video.videoHeight,ratio=cw/ch;
+  let sx=0,sy=0,sw=vw,sh=vh;
+  // Center crop to cover the canvas without stretching portrait video.
+  if(vw/vh>ratio){sw=vh*ratio;sx=(vw-sw)/2;}
+  else{sh=vw/ratio;sy=(vh-sh)/2;}
+  ambientContext.drawImage(video,sx,sy,sw,sh,0,0,cw,ch);
+  ambientHost.classList.add('is-live');
+ }catch(error){
+  // Protected/cross-origin videos or unsupported browser decoders keep a poster.
+  ambientHost?.classList.remove('is-live');
+  stopAmbient();
+ }
+}
+function stopAmbient(hide=true){
+ if(ambientFrame){cancelAnimationFrame(ambientFrame);ambientFrame=0;}
+ if(hide)ambientHost?.classList.remove('is-live');
+}
+function tickAmbient(now){
+ ambientFrame=0;
+ if(video.paused||video.ended||!ambientDesktop()||document.hidden||!currentMovie)return;
+ if(now-ambientLastFrame>=125){paintAmbient();ambientLastFrame=now;}
+ ambientFrame=requestAnimationFrame(tickAmbient);
+}
+function refreshAmbient(){
+ if(!ambientDesktop()||document.hidden){stopAmbient();return;}
+ paintAmbient();
+ if(!video.paused&&!video.ended&&!ambientFrame)ambientFrame=requestAnimationFrame(tickAmbient);
+}
+video.addEventListener('playing',refreshAmbient);
+video.addEventListener('loadeddata',refreshAmbient);
+video.addEventListener('seeked',refreshAmbient);
+video.addEventListener('pause',()=>{stopAmbient(false);paintAmbient();});
+video.addEventListener('ended',()=>{stopAmbient(false);paintAmbient();});
+document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAmbient(false);else refreshAmbient();});
+window.addEventListener('resize',refreshAmbient);
+
 const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floor((t||0)%60)).padStart(2,'0');
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
 function showCues(){
@@ -42,7 +100,7 @@ function sync(){
  scroller.scrollTo({top:Math.max(0,scroller.scrollTop+row.getBoundingClientRect().top-scroller.getBoundingClientRect().top-scroller.clientHeight/2+row.offsetHeight/2),behavior:'smooth'});
 }
 for(const ev of ['timeupdate','seeking','seeked','play','loadedmetadata'])video.addEventListener(ev,sync);
-function clearMedia(){video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
+function clearMedia(){stopAmbient();video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
 function fallback(){
  ++loadTicket;clearMedia();
  const driveId=currentMovie?.driveId||'';
@@ -90,6 +148,7 @@ async function openSync(){
 }
 async function openMovie(movie){
  currentMovie=movie;
+ setAmbientPoster(movie);
  $('aliCurrentMovieTitle').textContent=movie.title||'Phim song ngữ ALI';
  $('aliVideoPlayer').classList.remove('hidden');
  $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
