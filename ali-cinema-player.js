@@ -5,7 +5,7 @@ const list=$('aliTranscriptList');
 const scroller=$('aliTranscriptScroll');
 const status=$('aliVideoMode');
 const clock=$('aliVideoClock');
-let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null;
+let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
 const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floor((t||0)%60)).padStart(2,'0');
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
 function showCues(){
@@ -44,10 +44,15 @@ function sync(){
 for(const ev of ['timeupdate','seeking','seeked','play','loadedmetadata'])video.addEventListener(ev,sync);
 function clearMedia(){video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
 function fallback(){
- ++loadTicket;clearMedia();video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
- $('aliDrivePlayer').src='https://drive.google.com/file/d/1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B/preview';
+ ++loadTicket;clearMedia();
+ const driveId=currentMovie?.driveId||'';
+ if(!/^[a-zA-Z0-9_-]{20,}$/.test(driveId)){
+  status.textContent='Không có nguồn phát dự phòng cho video này.';return;
+ }
+ video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
+ $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
  $('fallbackBtn').classList.add('hidden');$('syncBtn').classList.remove('hidden');
- status.textContent='Trình phát dự phòng: không đồng bộ tự động';
+ status.textContent='Phát từ Drive: không đồng bộ tự động phụ đề';
 }
 async function openSync(){
  const ticket=++loadTicket;
@@ -55,19 +60,138 @@ async function openSync(){
  clearMedia();$('fallbackBtn').classList.remove('hidden');$('syncBtn').classList.add('hidden');
  status.textContent='Đang tải video cho phụ đề đồng bộ…';
  try{
-  if(!window.AliVideoMedia)throw Error('Video loader unavailable');
-  const url=await window.AliVideoMedia.open();
-  if(ticket!==loadTicket){URL.revokeObjectURL(url);return;}
-  mediaUrl=url;video.src=url;video.load();
+  if(!currentMovie)throw Error('No movie selected');
+  const source=currentMovie.source||{};
+  let url='';
+  if(source.type==='chunked'&&source.loader==='ali-video-01'){
+   if(!window.AliVideoMedia)throw Error('Video loader unavailable');
+   url=await window.AliVideoMedia.open();
+   mediaUrl=url;
+  }else if(source.type==='url'){
+   const resolved=new URL(source.url,location.href);
+   if(resolved.origin!==location.origin)throw Error('Video phải được tải từ website ALI để đồng bộ');
+   url=resolved.href;
+  }else{
+   fallback();return;
+  }
+  if(ticket!==loadTicket){if(mediaUrl===url&&url.startsWith('blob:'))URL.revokeObjectURL(url);return;}
+  video.src=url;
+  if(currentMovie.previewSrc)video.poster=currentMovie.previewSrc;
+  video.load();
   await new Promise((resolve,reject)=>{
-   const timer=setTimeout(()=>reject(Error('Video metadata timed out')),12000);
+   const timer=setTimeout(()=>{reject(Error('Video metadata timed out'));},12000);
    video.addEventListener('loadedmetadata',()=>{clearTimeout(timer);resolve();},{once:true});
-   video.addEventListener('error',()=>{clearTimeout(timer);reject(Error('Cannot play local media'));},{once:true});
+   video.addEventListener('error',()=>{clearTimeout(timer);reject(Error('Cannot play video'));},{once:true});
   });
   if(ticket!==loadTicket)return;
   status.textContent='Phụ đề đồng bộ theo video · nhấn một câu để nghe lại';
   sync();
- }catch(e){if(ticket===loadTicket){console.warn(e);fallback();}}
+ }catch(e){if(ticket===loadTicket){console.warn('Video playback unavailable',e);fallback();}}
+}
+async function openMovie(movie){
+ currentMovie=movie;
+ $('aliCurrentMovieTitle').textContent=movie.title||'Phim song ngữ ALI';
+ $('aliVideoPlayer').classList.remove('hidden');
+ $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
+ cues=[];
+ try{
+  if(movie.captions){
+   const url=new URL(movie.captions,location.href);
+   if(url.origin!==location.origin)throw Error('Chỉ tải phụ đề từ website ALI');
+   const response=await fetch(url.href);
+   if(!response.ok)throw Error('No captions');
+   const json=await response.json();
+   cues=(json.cues||[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&typeof x.en==='string'&&typeof x.vi==='string');
+  }
+ }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
+ active=-1;showCues();openSync();
+}
+function makeMovieCard(movie){
+ const card=document.createElement('article');card.className='movie-card';
+ const cover=document.createElement('button');cover.type='button';cover.className='movie-cover';
+ cover.setAttribute('aria-label','Xem phim '+movie.title);
+ const img=document.createElement('img');img.alt='Ảnh xem trước của '+movie.title;img.loading='lazy';img.decoding='async';
+ const play=document.createElement('span');play.className='movie-play';play.setAttribute('aria-hidden','true');play.textContent='▶';
+ const duration=document.createElement('span');duration.className='movie-duration';duration.textContent=movie.duration||'VIDEO';
+ const previewNote=document.createElement('span');previewNote.className='movie-thumbnail-note';previewNote.textContent='Đang tải ảnh xem trước…';
+ cover.append(img,play,duration,previewNote);
+ const body=document.createElement('div');body.className='movie-card-body';
+ const category=document.createElement('div');category.className='eyebrow';category.textContent=movie.category||'PHIM SONG NGỮ · ALI';
+ const h3=document.createElement('h3');h3.textContent=movie.title;
+ const desc=document.createElement('p');desc.className='small';desc.textContent=movie.description||'Xem video với phụ đề Anh – Việt.';
+ const open=document.createElement('button');open.type='button';open.className='btn primary';open.textContent='Xem phim & học song ngữ →';
+ cover.addEventListener('click',()=>openMovie(movie));open.addEventListener('click',()=>openMovie(movie));
+ body.append(category,h3,desc,open);card.append(cover,body);
+ img.addEventListener('load',()=>{img.classList.add('is-ready');previewNote.classList.add('hidden');});
+ img.addEventListener('error',()=>{img.removeAttribute('src');makeFramePreview(movie,img,previewNote).catch(()=>{
+  previewNote.textContent='Chưa có ảnh xem trước';previewNote.classList.remove('hidden');
+ });},{once:true});
+ const cacheKey='ALI_MOVIE_PREVIEW_'+movie.id;
+ let cached='';
+ try{cached=sessionStorage.getItem(cacheKey)||'';}catch{}
+ if(cached){img.src=cached;movie.previewSrc=cached;}
+ else if(movie.poster){img.src=movie.poster;movie.previewSrc=movie.poster;}
+ else makeFramePreview(movie,img,previewNote).catch(()=>{previewNote.textContent='Chưa có ảnh xem trước';});
+ return card;
+}
+let previewTask=null;
+async function makeFramePreview(movie,img,note){
+ // Use a frame from the actual local film if Drive's thumbnail is unavailable.
+ if(movie.source?.type!=='chunked'||movie.source.loader!=='ali-video-01'||!window.AliVideoMedia)
+  throw Error('No local video frame source');
+ if(!previewTask){
+  previewTask=(async()=>{
+   const url=await window.AliVideoMedia.open();
+   const probe=document.createElement('video');probe.muted=true;probe.playsInline=true;probe.preload='auto';
+   try{
+    const frame=await new Promise((resolve,reject)=>{
+     let timer=setTimeout(()=>reject(Error('Preview timed out')),18000);
+     const ok=()=>{clearTimeout(timer);resolve(probe);};
+     const bad=()=>{clearTimeout(timer);reject(Error('Cannot decode thumbnail frame'));};
+     probe.addEventListener('loadedmetadata',()=>{
+      if(!probe.videoWidth||!probe.videoHeight){bad();return;}
+      probe.currentTime=Math.min(Math.max(0,Number(movie.previewSecond)||8),Math.max(0,probe.duration-1));
+     },{once:true});
+     probe.addEventListener('seeked',ok,{once:true});probe.addEventListener('error',bad,{once:true});
+     probe.src=url;probe.load();
+    });
+    const canvas=document.createElement('canvas');canvas.width=640;canvas.height=360;
+    const ctx=canvas.getContext('2d');if(!ctx)throw Error('No canvas context');
+    const vw=frame.videoWidth,vh=frame.videoHeight,W=640,H=360;
+    const scale=Math.max(W/vw,H/vh);
+    ctx.filter='blur(22px) brightness(0.66)';
+    ctx.drawImage(frame,(W-vw*scale)/2,(H-vh*scale)/2,vw*scale,vh*scale);
+    ctx.filter='none';
+    const contain=Math.min(W/vw,H/vh);
+    ctx.drawImage(frame,(W-vw*contain)/2,(H-vh*contain)/2,vw*contain,vh*contain);
+    return canvas.toDataURL('image/jpeg',0.8);
+   }finally{probe.pause();probe.removeAttribute('src');probe.load();URL.revokeObjectURL(url);}
+  })();
+ }
+ const src=await previewTask;
+ img.src=src;movie.previewSrc=src;
+ note.classList.add('hidden');
+ try{sessionStorage.setItem('ALI_MOVIE_PREVIEW_'+movie.id,src);}catch{}
+}
+async function loadLibrary(){
+ if(libraryLoaded)return;libraryLoaded=true;
+ const host=$('aliMovieLibrary');
+ try{
+  const response=await fetch('./ali-movies.json?v=1',{cache:'no-store'});
+  if(!response.ok)throw Error('Movie catalog unavailable');
+  const data=await response.json();
+  const movies=(Array.isArray(data.movies)?data.movies:[]).filter(m=>m&&typeof m.id==='string'&&typeof m.title==='string'&&m.source);
+  host.replaceChildren();
+  $('aliLibraryCount').textContent=movies.length+' video';
+  if(!movies.length){
+   const empty=document.createElement('p');empty.className='ali-library-empty';empty.textContent='Chưa có phim song ngữ nào được đăng. ALI sẽ cập nhật thư viện tại đây.';host.append(empty);return;
+  }
+  movies.forEach(movie=>host.append(makeMovieCard(movie)));
+ }catch(error){
+  console.warn('ALI cinema library unavailable',error);
+  host.textContent='Không tải được thư viện phim. Vui lòng làm mới trang.';
+  $('aliLibraryCount').textContent='Chưa tải được';
+ }
 }
 async function init(){
  try{
@@ -83,21 +207,12 @@ async function init(){
     if(!doc.exists()||doc.data().status!=='active'){await authSdk.signOut(auth);location.replace('./login.html?blocked=1');return;}
     $('memberName').textContent=doc.data().name||user.email||'Học viên';
     $('loading').classList.add('hidden');$('memberContent').classList.remove('hidden');
+    loadLibrary();
    }catch(err){message('Không thể xác minh tài khoản học viên.');}
   });
   $('logout').addEventListener('click',async()=>{clearMedia();await authSdk.signOut(auth);location.assign('./login.html');});
  }catch(err){message('Không kết nối được Firebase. Hãy thử tải lại trang.');}
 }
-$('openMovie').addEventListener('click',async()=>{
- $('aliVideoPlayer').classList.remove('hidden');
- $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
- try{
-  const r=await fetch('./captions/1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B.json');
-  if(!r.ok)throw Error('No captions');
-  const json=await r.json();cues=(json.cues||[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&typeof x.en==='string'&&typeof x.vi==='string');
- }catch(e){cues=[];}
- active=-1;showCues();openSync();
-});
 $('closeMovie').addEventListener('click',()=>{++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');});
 $('fallbackBtn').addEventListener('click',fallback);
 $('syncBtn').addEventListener('click',openSync);
