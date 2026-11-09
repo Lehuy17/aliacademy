@@ -1,0 +1,5 @@
+node_modules/
+*.csv
+firebase-service-account.json
+*-service-account.json
+*.log
