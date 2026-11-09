@@ -13,11 +13,32 @@ let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=nu
 const ambientHost=$('aliCinemaAmbient');
 const ambientCanvas=$('aliCinemaAmbientCanvas');
 const ambientPoster=$('aliCinemaAmbientPoster');
+const ambientFilm=$('aliCinemaAmbientVideo');
+const movieScreen=document.querySelector('#aliVideoPlayer .screen');
 const ambientContext=ambientCanvas?.getContext('2d',{alpha:false});
 let ambientFrame=0,ambientLastFrame=0;
 const ambientDesktop=()=>window.matchMedia('(min-width:851px)').matches;
 function setAmbientPoster(movie){
  stopAmbient();
+ if(ambientFilm){
+  ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();
+  ambientHost?.classList.remove('has-ambient-film');
+  // New ALI-hosted movies may supply a low-resolution, silent film preview.
+  // This is a real blurred movie background, not a thumbnail animation.
+  if(typeof movie?.ambientVideo==='string'&&movie.ambientVideo){
+   try{
+    const src=new URL(movie.ambientVideo,location.href);
+    if(src.origin===location.origin){
+     ambientFilm.src=src.href;
+     ambientFilm.load();
+     if(window.matchMedia('(min-width:851px)').matches){
+      ambientFilm.play().then(()=>ambientHost?.classList.add('has-ambient-film')).catch(()=>{});
+     }
+    }
+   }catch(error){console.info('ALI ambient preview unavailable');}
+  }
+ }
+ if(movieScreen)movieScreen.classList.toggle('is-drive-embed',movie?.source?.type==='drive');
  if(!ambientPoster)return;
  const image=movie?.previewSrc||movie?.poster||(movie?.driveId?'https://drive.google.com/thumbnail?id='+encodeURIComponent(movie.driveId)+'&sz=w1280':'');
  ambientHost.classList.toggle('is-drive',movie?.source?.type==='drive');
@@ -110,10 +131,11 @@ function fallback(){
  }
  video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
  $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
- $('fallbackBtn').classList.add('hidden');$('syncBtn').classList.remove('hidden');
- $('syncBtn').textContent=currentMovie?.source?.type==='drive'?'Mở trên Drive ↗':'Phát đồng bộ';
+ $('fallbackBtn').classList.add('hidden');
+ // Never display an outbound original-source link in the student player.
+ $('syncBtn').classList.add('hidden');$('syncBtn').textContent='Phát đồng bộ';
  clock.textContent='00:00 / '+(currentMovie?.duration||'--:--');
- status.textContent=currentMovie?.subtitleStatus==='pending'?'Bản '+(currentMovie?.resolution||'HD')+' từ Drive · phụ đề Anh–Việt chưa sẵn sàng':'Phát từ Drive: không đồng bộ tự động phụ đề';
+ status.textContent='Đang phát phim';
 }
 async function openSync(){
  const ticket=++loadTicket;
@@ -279,14 +301,14 @@ async function init(){
   $('logout').addEventListener('click',async()=>{clearMedia();await authSdk.signOut(auth);location.assign('./login.html');});
  }catch(err){message('Không kết nối được Firebase. Hãy thử tải lại trang.');}
 }
-$('closeMovie').addEventListener('click',()=>{++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');});
+$('closeMovie').addEventListener('click',()=>{
+ ++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
+ if(ambientFilm){ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();}
+ ambientHost?.classList.remove('has-ambient-film');
+});
 $('fallbackBtn').addEventListener('click',fallback);
 $('syncBtn').addEventListener('click',()=>{
- if(currentMovie?.source?.type==='drive'){
-  const driveId=currentMovie.driveId;
-  if(/^[A-Za-z0-9_-]{20,}$/.test(driveId))window.open('https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/view','_blank','noopener,noreferrer');
-  return;
- }
+ if(currentMovie?.source?.type==='drive')return;
  openSync();
 });
 document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{
