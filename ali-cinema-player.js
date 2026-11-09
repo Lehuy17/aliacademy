@@ -110,7 +110,7 @@ function fallback(){
  video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
  $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
  $('fallbackBtn').classList.add('hidden');$('syncBtn').classList.remove('hidden');
- status.textContent='Phát từ Drive: không đồng bộ tự động phụ đề';
+ status.textContent=currentMovie?.subtitleStatus==='pending'?'Video từ Drive · chưa có phụ đề Anh–Việt đồng bộ · cần quyền xem Drive':'Phát từ Drive: không đồng bộ tự động phụ đề';
 }
 async function openSync(){
  const ticket=++loadTicket;
@@ -176,6 +176,7 @@ function makeMovieCard(movie){
  cover.append(img,play,duration,previewNote);
  const body=document.createElement('div');body.className='movie-card-body';
  const category=document.createElement('div');category.className='eyebrow';category.textContent=movie.category||'PHIM SONG NGỮ · ALI';
+ if(movie.availability==='needs_drive_permission'){cover.title='Video này hiện cần được cấp quyền xem trên Google Drive.';}
  const h3=document.createElement('h3');h3.textContent=movie.title;
  const desc=document.createElement('p');desc.className='small';desc.textContent=movie.description||'Xem video với phụ đề Anh – Việt.';
  const open=document.createElement('button');open.type='button';open.className='btn primary';open.textContent='Xem phim & học song ngữ →';
