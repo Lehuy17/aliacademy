@@ -67,8 +67,12 @@ async function init() {
   }
 
   async function getProfile(user) {
-    const snap = await dbSdk.getDoc(dbSdk.doc(db, 'users', user.uid));
-    return snap.exists() ? snap.data() : null;
+    // Prefer the standard 'users' collection. Older ALI records can be in 'user'.
+    // In either case, the document ID must match the signed-in Firebase Auth UID.
+    const standard = await dbSdk.getDoc(dbSdk.doc(db, 'users', user.uid));
+    if (standard.exists()) return standard.data();
+    const legacy = await dbSdk.getDoc(dbSdk.doc(db, 'user', user.uid));
+    return legacy.exists() ? legacy.data() : null;
   }
   if (submitButton) submitButton.disabled = false;
   if ($('reset')) $('reset').disabled = false;
