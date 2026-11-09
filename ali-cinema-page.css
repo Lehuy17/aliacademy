@@ -207,3 +207,68 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
 @media(max-width:680px){main{padding:24px 12px}.nav{padding:14px}.navright{gap:8px}.video-controls{font-size:10px}}
 
 @media(max-width:600px){.library-grid{grid-template-columns:1fr}.movie-card-body{padding:17px}.ali-library-heading{align-items:flex-start}.movie-cover{aspect-ratio:16/9}}
+
+
+/* 2026-11-09 — Compact desktop player + real-time blurred video ambient.
+   CSS controls visual size only; the original source's full frame remains intact. */
+#aliVideoPlayer{overflow:hidden;border-radius:34px;background:linear-gradient(130deg,#e9d2c1,#f8e9dd 55%,#ebd5c3)}
+#aliVideoPlayer::before{
+ z-index:-2;background:linear-gradient(135deg,rgba(255,226,197,.6),rgba(246,232,222,.68));
+}
+#aliVideoPlayer::after{
+ z-index:0;filter:none;
+ background:linear-gradient(130deg,rgba(255,244,231,.22),rgba(255,255,255,.30) 54%,rgba(246,224,210,.26));
+}
+.cinema-ambient-media{
+ position:absolute;inset:0;z-index:-1;pointer-events:none;
+ overflow:hidden;border-radius:inherit;opacity:.88;
+}
+.cinema-ambient-media img,.cinema-ambient-media canvas{
+ position:absolute;inset:0;width:100%;height:100%;display:block;
+ object-fit:cover;transform:scale(1.18);
+ filter:blur(56px) saturate(105%) brightness(1.05);
+}
+.cinema-ambient-media img{opacity:.87}
+.cinema-ambient-media canvas{opacity:0;transition:opacity .5s ease}
+.cinema-ambient-media.is-live canvas{opacity:1}
+#aliVideoPlayer .cinema-glass-wrap{
+ position:relative;z-index:1;
+ background:rgba(255,255,255,.43);
+ border-color:rgba(255,255,255,.8);
+ -webkit-backdrop-filter:blur(24px) saturate(125%);
+ backdrop-filter:blur(24px) saturate(125%);
+}
+#aliVideoPlayer .cinema-shell{
+ grid-template-columns:minmax(0,1.04fr) minmax(350px,.96fr);
+ align-items:start;
+}
+#aliVideoPlayer .video-panel{max-width:100%;align-self:start}
+#aliVideoPlayer .screen{
+ width:calc(100% - 24px);height:clamp(310px,48vh,470px);
+ max-height:470px;min-height:0;flex:none;aspect-ratio:auto;
+}
+#aliVideoPlayer .screen video,#aliVideoPlayer .screen iframe{
+ width:100%;height:100%;max-height:100%;
+ object-fit:contain;
+}
+#aliVideoPlayer .transcript{height:clamp(490px,65vh,610px)}
+@media(max-width:850px){
+ #aliVideoPlayer .cinema-shell{grid-template-columns:minmax(0,1fr)}
+ #aliVideoPlayer .screen{
+  width:calc(100% - 24px);height:auto;min-height:0;
+  max-height:none;aspect-ratio:16/9;flex:none;
+ }
+ #aliVideoPlayer .transcript{height:clamp(410px,53vh,560px)}
+ .cinema-ambient-media{opacity:.55}
+}
+@media(max-width:600px){
+ #aliVideoPlayer .screen{
+  width:calc(100% - 16px);margin:0 8px;
+  height:auto;min-height:0;aspect-ratio:16/9;
+ }
+ #aliVideoPlayer .transcript{height:430px}
+ .cinema-ambient-media img,.cinema-ambient-media canvas{filter:blur(44px) saturate(104%)}
+}
+@media(prefers-reduced-motion:reduce){
+ .cinema-ambient-media canvas{transition:none}
+}
