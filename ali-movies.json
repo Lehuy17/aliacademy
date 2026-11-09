@@ -1,5 +1,5 @@
 {
-  "version": 2,
+  "version": 3,
   "movies": [
     {
       "id": "ali-video-01",
@@ -20,7 +20,7 @@
       "id": "spiderman-nwh-2021-doing-this-long-time",
       "title": "\"I've Been Doing This For A Long Time\" | SPIDER-MAN: NO WAY HOME (2021)",
       "category": "PHIM SONG NGỮ · SPIDER-MAN: NO WAY HOME",
-      "description": "Trích đoạn Spider-Man: No Way Home (2021) · 09:41. Hiện phát video gốc từ Google Drive; phụ đề Anh–Việt chưa được cung cấp.",
+      "description": "Trích đoạn Spider-Man: No Way Home (2021) · 09:41. Phụ đề song ngữ đang cập nhật.",
       "duration": "09:41",
       "poster": "https://drive.google.com/thumbnail?id=1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx&sz=w960",
       "source": {
@@ -28,9 +28,13 @@
       },
       "driveId": "1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx",
       "subtitleStatus": "pending",
-      "availability": "needs_drive_permission",
       "resolution": "1920x1080",
-      "videoCodec": "HEVC"
+      "videoCodec": "HEVC",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      }
     }
   ]
 }
