@@ -19,7 +19,8 @@ const ambientDesktop=()=>window.matchMedia('(min-width:851px)').matches;
 function setAmbientPoster(movie){
  stopAmbient();
  if(!ambientPoster)return;
- const image=movie?.previewSrc||movie?.poster||'';
+ const image=movie?.previewSrc||movie?.poster||(movie?.driveId?'https://drive.google.com/thumbnail?id='+encodeURIComponent(movie.driveId)+'&sz=w1280':'');
+ ambientHost.classList.toggle('is-drive',movie?.source?.type==='drive');
  if(image){ambientPoster.src=image;ambientPoster.style.opacity='1';}
  else{ambientPoster.removeAttribute('src');ambientPoster.style.opacity='0';}
 }
@@ -68,7 +69,7 @@ const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floo
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
 function showCues(){
  list.replaceChildren();
- if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent='Chưa có phụ đề được xác minh cho video này.';list.append(p);return;}
+ if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent=currentMovie?.subtitleStatus==='pending'?'Phụ đề Anh–Việt cho phim này đang được chuẩn bị.':'Chưa có phụ đề được xác minh cho video này.';list.append(p);return;}
  cues.forEach((cue,i)=>{
   const row=document.createElement('button');row.type='button';row.className='ali-cue';row.dataset.index=i;
   const stamp=document.createElement('span');stamp.className='ali-stamp';stamp.textContent=String(i+1).padStart(2,'0')+' · '+time(cue.start);
@@ -110,7 +111,8 @@ function fallback(){
  video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
  $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
  $('fallbackBtn').classList.add('hidden');$('syncBtn').classList.remove('hidden');
- status.textContent=currentMovie?.subtitleStatus==='pending'?'Video từ Drive · chưa có phụ đề Anh–Việt đồng bộ · cần quyền xem Drive':'Phát từ Drive: không đồng bộ tự động phụ đề';
+ clock.textContent='00:00 / '+(currentMovie?.duration||'--:--');
+ status.textContent=currentMovie?.subtitleStatus==='pending'?'Bản '+(currentMovie?.resolution||'HD')+' từ Drive · phụ đề Anh–Việt chưa sẵn sàng':'Phát từ Drive: không đồng bộ tự động phụ đề';
 }
 async function openSync(){
  const ticket=++loadTicket;
@@ -153,6 +155,8 @@ async function openMovie(movie){
  $('aliVideoPlayer').classList.remove('hidden');
  $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
  cues=[];
+ clock.textContent='00:00 / '+(movie.duration||'--:--');
+ status.textContent='Đang chuẩn bị '+(movie.resolution||'video')+'…';
  try{
   if(movie.captions){
    const url=new URL(movie.captions,location.href);
