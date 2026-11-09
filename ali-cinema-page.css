@@ -272,3 +272,41 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
 @media(prefers-reduced-motion:reduce){
  .cinema-ambient-media canvas{transition:none}
 }
+
+
+/* Visible video-matched glass ambience; Drive iframe cannot expose pixels to canvas,
+   so its true movie thumbnail remains as a softly reflected cinematic backdrop. */
+#aliVideoPlayer{isolation:isolate}
+#aliVideoPlayer .cinema-ambient-media{
+ z-index:0;opacity:1;mix-blend-mode:normal;
+}
+#aliVideoPlayer .cinema-ambient-media img{
+ opacity:.98;
+ filter:blur(50px) saturate(150%) brightness(.95);
+ transform:scale(1.3);
+}
+#aliVideoPlayer .cinema-ambient-media.is-drive img{
+ opacity:1;filter:blur(46px) saturate(145%) brightness(.91);
+}
+#aliVideoPlayer .cinema-ambient-media canvas{
+ filter:blur(48px) saturate(143%) brightness(.92);
+}
+#aliVideoPlayer::after{
+ z-index:1;
+ background:linear-gradient(135deg,rgba(255,235,217,.28),rgba(255,255,255,.22) 54%,rgba(252,232,217,.29));
+}
+#aliVideoPlayer .cinema-glass-wrap{
+ z-index:2;
+ background:rgba(255,255,255,.27);
+ border-color:rgba(255,255,255,.76);
+ -webkit-backdrop-filter:blur(22px) saturate(120%);
+ backdrop-filter:blur(22px) saturate(120%);
+}
+#aliVideoPlayer .video-panel,#aliVideoPlayer .transcript{
+ background:rgba(255,255,255,.52);
+ -webkit-backdrop-filter:blur(20px) saturate(112%);
+ backdrop-filter:blur(20px) saturate(112%);
+}
+@media(max-width:850px){
+ #aliVideoPlayer .cinema-ambient-media img{filter:blur(38px) saturate(120%) brightness(1.02)}
+}
