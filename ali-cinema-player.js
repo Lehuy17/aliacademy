@@ -111,6 +111,7 @@ function fallback(){
  video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
  $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
  $('fallbackBtn').classList.add('hidden');$('syncBtn').classList.remove('hidden');
+ $('syncBtn').textContent=currentMovie?.source?.type==='drive'?'Mở trên Drive ↗':'Phát đồng bộ';
  clock.textContent='00:00 / '+(currentMovie?.duration||'--:--');
  status.textContent=currentMovie?.subtitleStatus==='pending'?'Bản '+(currentMovie?.resolution||'HD')+' từ Drive · phụ đề Anh–Việt chưa sẵn sàng':'Phát từ Drive: không đồng bộ tự động phụ đề';
 }
@@ -167,7 +168,8 @@ async function openMovie(movie){
    cues=(json.cues||[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&typeof x.en==='string'&&typeof x.vi==='string');
   }
  }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
- active=-1;showCues();openSync();
+ active=-1;showCues();
+ if(movie.source?.type==='drive')fallback();else openSync();
 }
 function makeMovieCard(movie){
  const card=document.createElement('article');card.className='movie-card';
@@ -279,7 +281,14 @@ async function init(){
 }
 $('closeMovie').addEventListener('click',()=>{++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');});
 $('fallbackBtn').addEventListener('click',fallback);
-$('syncBtn').addEventListener('click',openSync);
+$('syncBtn').addEventListener('click',()=>{
+ if(currentMovie?.source?.type==='drive'){
+  const driveId=currentMovie.driveId;
+  if(/^[A-Za-z0-9_-]{20,}$/.test(driveId))window.open('https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/view','_blank','noopener,noreferrer');
+  return;
+ }
+ openSync();
+});
 document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{
  lang=button.dataset.language;document.querySelectorAll('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));applyLanguage();
 }));
