@@ -50,7 +50,7 @@ const requests=records.map((row,i)=>({
  school:String(schoolKey?row[schoolKey]||'':'').trim().slice(0,120),
  action:String(requestKey?row[requestKey]||'':'').trim().toUpperCase()
 })).filter(x=>x.email&&x.action!=='BO_QUA');
-const invalid=requests.filter(x=>!^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.email)||x.email.length>254||(x.action&&x.action!=='CHO_TAO'));
+const invalid=requests.filter(x=>!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(x.email)||x.email.length>254||(x.action&&x.action!=='CHO_TAO'));
 const unique=new Set(requests.map(x=>x.email));
 if(invalid.length||unique.size!==requests.length){
  console.error('Lỗi dữ liệu: email không hợp lệ, trùng trong file hoặc lệnh Yêu cầu không hợp lệ.');
