@@ -23,8 +23,10 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Check FFmpeg and FFprobe availability
+      - name: Install FFmpeg and FFprobe
         run: |
+          sudo apt-get update -qq
+          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
           command -v ffmpeg
           command -v ffprobe
 
