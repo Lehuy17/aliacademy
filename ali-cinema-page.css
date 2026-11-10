@@ -363,3 +363,14 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
  #aliVideoPlayer .cinema-ambient-media.is-drive img{animation:none}
  #aliVideoPlayer .cinema-ambient-media video{transition:none}
 }
+
+/* Explicit, accessible status of incomplete caption sets.
+   Google Drive transcript rows are informational, not fake seek buttons. */
+.ali-subtitle-notice{
+ display:block;margin:0 12px 9px;padding:11px 13px;border-radius:11px;
+ background:rgba(255,238,223,.83);border:1px solid rgba(226,165,124,.47);
+ color:#96502c;font-size:11px;line-height:1.7;font-weight:700;
+}
+#aliVideoPlayer .transcript-list .ali-cue:not(button){cursor:default}
+#aliVideoPlayer .transcript-list .ali-cue:not(button):hover{transform:none}
+#aliVideoPlayer .transcript-list .ali-cue:not(button):focus-visible{outline:none}
