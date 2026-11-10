@@ -374,3 +374,80 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
 #aliVideoPlayer .transcript-list .ali-cue:not(button){cursor:default}
 #aliVideoPlayer .transcript-list .ali-cue:not(button):hover{transform:none}
 #aliVideoPlayer .transcript-list .ali-cue:not(button):focus-visible{outline:none}
+
+
+/* ALI Cinema — synchronized bilingual learning controls */
+#aliVideoPlayer .ali-sync-toolbar{justify-content:flex-start;gap:14px;padding:14px 17px 13px;flex-wrap:wrap}
+#aliVideoPlayer .ali-sync-indicator{
+ display:inline-flex;align-items:center;gap:10px;min-height:34px;
+ padding:8px 12px;border-radius:28px;
+ color:#28723c;background:rgba(211,245,215,.85);
+ border:1px solid rgba(125,205,135,.43);font-size:11px;font-weight:850;
+}
+#aliVideoPlayer .ali-sync-indicator .caption-status-dot{
+ background:#27ad4f;box-shadow:0 0 0 4px rgba(39,173,79,.14);
+}
+#aliVideoPlayer .ali-sync-indicator.is-disabled{
+ background:rgba(255,255,255,.7);color:#9b7968;border-color:rgba(234,204,183,.65);
+}
+#aliVideoPlayer .ali-sync-indicator.is-disabled .caption-status-dot{
+ background:#c7a899;box-shadow:0 0 0 4px rgba(199,168,153,.14);
+}
+#aliVideoPlayer .ali-auto-scroll{
+ padding:9px 13px;min-height:34px;white-space:nowrap;border-radius:24px;
+ background:rgba(255,236,223,.86);border:1px solid rgba(244,201,175,.7);
+ color:#a44b21;font-size:11px;font-weight:850;cursor:pointer;
+}
+#aliVideoPlayer .ali-auto-scroll[aria-pressed=false]{
+ background:rgba(255,255,255,.77);color:#93786c;
+}
+#aliVideoPlayer .ali-auto-scroll:disabled{cursor:default;opacity:.55}
+#aliVideoPlayer .ali-cue{position:relative;grid-template-columns:70px minmax(0,1fr);padding-right:40px}
+#aliVideoPlayer button.ali-cue{cursor:pointer}
+#aliVideoPlayer .ali-cue-play{
+ position:absolute;right:10px;top:50%;transform:translateY(-50%);
+ display:grid;place-items:center;width:29px;height:29px;border-radius:50%;
+ color:#e4601e;background:rgba(255,224,199,.83);font-size:11px;
+ opacity:0;transition:opacity .15s;
+}
+#aliVideoPlayer .ali-cue:hover .ali-cue-play,#aliVideoPlayer .ali-cue.current .ali-cue-play,#aliVideoPlayer .ali-cue:focus-visible .ali-cue-play{opacity:1}
+#aliVideoPlayer .ali-cue.current{
+ background:rgba(255,238,223,.97);border:2px solid #ff681e;
+ box-shadow:inset 3px 0 #ff681e,0 10px 22px rgba(237,112,44,.14);
+}
+#aliVideoPlayer .ali-cue.current .ali-stamp{color:#f16828}
+#aliVideoPlayer .ali-cue.current .ali-en{color:#30232a}
+#aliVideoPlayer .screen{position:relative}
+#aliVideoPlayer .ali-screen-captions{
+ position:absolute;z-index:5;left:12%;right:12%;bottom:56px;pointer-events:none;
+ padding:8px 12px;border-radius:10px;background:rgba(12,10,11,.77);
+ color:white;text-align:center;display:grid;gap:5px;
+ text-shadow:0 1px 3px rgba(0,0,0,.6);
+}
+#aliVideoPlayer .ali-screen-captions strong{font-size:clamp(11px,1.15vw,15px);line-height:1.4}
+#aliVideoPlayer .ali-screen-captions span{font-size:clamp(10px,1vw,13px);line-height:1.35;color:#ffe297}
+#aliVideoPlayer .ali-screen-cc{
+ position:absolute;z-index:6;top:10px;right:11px;
+ padding:7px 10px;border:1px solid #ffffff77;border-radius:9px;
+ color:white;background:#171212a8;font-weight:900;font-size:12px;
+}
+#aliVideoPlayer .ali-screen-cc[aria-pressed=false]{opacity:.5}
+#aliVideoPlayer .transcript{height:clamp(500px,67vh,650px)}
+#aliVideoPlayer .transcript-scroll{scroll-padding-block:35%;overscroll-behavior:contain}
+#aliVideoPlayer .cinema-player-tip{background:rgba(255,237,219,.65);color:#805240;border-color:rgba(255,235,219,.9)}
+@media(max-width:850px){
+ #aliVideoPlayer .transcript{height:clamp(415px,58vh,560px)}
+ #aliVideoPlayer .ali-screen-captions{bottom:46px;left:9%;right:9%;padding:5px 8px}
+}
+@media(max-width:600px){
+ #aliVideoPlayer .ali-sync-toolbar{padding:10px;gap:7px}
+ #aliVideoPlayer .ali-sync-indicator,#aliVideoPlayer .ali-auto-scroll{font-size:10px}
+ #aliVideoPlayer .ali-cue{grid-template-columns:49px minmax(0,1fr);padding:12px 38px 12px 10px}
+ #aliVideoPlayer .ali-screen-captions{bottom:46px;left:6%;right:6%}
+ #aliVideoPlayer .ali-screen-captions strong{font-size:10px}
+ #aliVideoPlayer .ali-screen-captions span{font-size:9px}
+ #aliVideoPlayer .transcript{height:470px}
+}
+@media(prefers-reduced-motion:reduce){
+ #aliVideoPlayer .ali-cue-play{transition:none}
+}
