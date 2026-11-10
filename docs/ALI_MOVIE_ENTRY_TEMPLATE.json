@@ -1,0 +1,27 @@
+{
+  "id": "ali-video-02",
+  "title": "TÊN PHIM ĐÃ DUYỆT",
+  "category": "PHIM SONG NGỮ · ALI",
+  "description": "Mô tả ngắn nội dung học",
+  "duration": "02:15",
+  "durationSeconds": 135,
+  "poster": "./media/ali-video-02/poster.jpg",
+  "captions": "./captions/ali-video-02.json",
+  "source": {
+    "type": "url",
+    "url": "./media/ali-video-02/video.mp4"
+  },
+  "presentation": {
+    "hideSourceLink": true,
+    "background": "film-blur",
+    "layout": "video-left-captions-right"
+  },
+  "qa": {
+    "rightsConfirmed": false,
+    "englishReviewed": false,
+    "vietnameseReviewed": false,
+    "timingsReviewed": false,
+    "desktopMobileTested": false,
+    "approvedAt": ""
+  }
+}
