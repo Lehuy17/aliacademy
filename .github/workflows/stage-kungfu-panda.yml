@@ -1,0 +1,96 @@
+name: Stage Kung Fu Panda for ALI Cinema
+
+on:
+  push:
+    paths:
+      - '.github/workflows/stage-kungfu-panda.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-kung-fu-panda-stage
+  cancel-in-progress: false
+
+jobs:
+  stage:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - name: Check out ALI website
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install download and video tools
+        run: |
+          python3 -m pip install --user --quiet --upgrade yt-dlp
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Download ALI Descript render
+        run: |
+          mkdir -p /tmp/ali-kungfu
+          "$HOME/.local/bin/yt-dlp" \
+            --no-playlist \
+            --retries 5 --fragment-retries 5 \
+            --merge-output-format mp4 \
+            -o '/tmp/ali-kungfu/input.%(ext)s' \
+            'https://share.descript.com/view/NQp2HjjvSGV'
+          ls -lh /tmp/ali-kungfu
+          test -n "$(find /tmp/ali-kungfu -type f -size +3M -print -quit)"
+
+      - name: Convert to standardized HTML5 MP4 and real poster
+        run: |
+          set -euo pipefail
+          input="$(find /tmp/ali-kungfu -type f -size +3M -print -quit)"
+          target='media/kung-fu-panda-po-vs-tai-lung-final-battle'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -y -nostdin -i "$input" \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=854:480:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -crf 29 \
+            -pix_fmt yuv420p -c:a aac -b:a 64k -ar 44100 -ac 2 \
+            -movflags +faststart \
+            "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -y -nostdin -ss 26 -i "$target/video.mp4" \
+            -frames:v 1 -q:v 3 "$target/poster.jpg"
+
+      - name: Verify MP4, poster and bilingual JSON
+        run: |
+          python3 - <<'PY'
+          import json,os,subprocess,pathlib
+          slug='kung-fu-panda-po-vs-tai-lung-final-battle'
+          video=f'media/{slug}/video.mp4'
+          poster=f'media/{slug}/poster.jpg'
+          captions=json.loads(pathlib.Path(f'captions/{slug}.json').read_text())
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries',
+             'format=duration:stream=codec_type,codec_name,pix_fmt','-of','json',video]))
+          dur=float(meta['format']['duration'])
+          v=next(t for t in meta['streams'] if t['codec_type']=='video')
+          a=next(t for t in meta['streams'] if t['codec_type']=='audio')
+          assert 545 <= dur <= 555, f'Unexpected duration {dur}'
+          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          assert a['codec_name']=='aac'
+          assert os.path.getsize(video)<90*1048576, 'Video too large for GitHub'
+          assert os.path.getsize(poster)>2500, 'Preview frame failed'
+          assert len(captions['cues'])==58, 'Unexpected subtitle count'
+          assert all(isinstance(c['start'],(int,float)) and c['end']>c['start']
+             and c['en'].strip() and c['vi'].strip() for c in captions['cues'])
+          print('Video and bilingual captions verified:',dur,'seconds; video',
+                round(os.path.getsize(video)/1048576,2),'MiB')
+          PY
+
+      - name: Commit staged media without public catalog changes
+        run: |
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add media/kung-fu-panda-po-vs-tai-lung-final-battle/video.mp4 \
+                  media/kung-fu-panda-po-vs-tai-lung-final-battle/poster.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m 'Stage verified HTML5 Kung Fu Panda media and preview for ALI'
+          git pull --rebase origin main
+          git push origin HEAD:main
