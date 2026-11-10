@@ -1,0 +1,15 @@
+{
+  "functions": [
+    {
+      "source": "functions",
+      "codebase": "ali-teacher",
+      "runtime": "nodejs22",
+      "ignore": [
+        "node_modules",
+        ".git",
+        "firebase-debug.log",
+        "*.local"
+      ]
+    }
+  ]
+}
