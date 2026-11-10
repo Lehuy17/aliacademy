@@ -1,0 +1,46 @@
+name: ALI Teacher Dashboard Check
+
+on:
+  push:
+    paths:
+      - 'teacher.html'
+      - 'ali-teacher.js'
+      - 'ali-teacher.css'
+      - 'ali-members.js'
+      - 'ali-cinema-player.js'
+      - 'movies.html'
+      - 'functions/**'
+      - 'firestore-rules-teacher.txt'
+      - 'storage-rules-teacher.txt'
+      - 'scripts/check-ali-teacher.cjs'
+      - '.github/workflows/check-ali-teacher.yml'
+  pull_request:
+    paths:
+      - 'teacher.html'
+      - 'ali-teacher.js'
+      - 'functions/**'
+      - 'ali-cinema-player.js'
+      - 'scripts/check-ali-teacher.cjs'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify Teacher Dashboard and Firebase integration contracts
+        run: node scripts/check-ali-teacher.cjs
+      - name: Parse Cloud Functions and admin role script
+        run: |
+          node --check functions/index.js
+          node --check functions/grant-role.cjs
+      - name: Check Functions package metadata
+        run: |
+          node -e "const p=require('./functions/package.json');if(p.engines.node!=='22'||!p.dependencies['firebase-admin'])process.exit(1)"
