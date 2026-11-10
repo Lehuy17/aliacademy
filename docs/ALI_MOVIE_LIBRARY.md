@@ -27,7 +27,7 @@ Thư viện ở `movies.html` đọc các video thật từ `ali-movies.json`. K
 
 Nếu chỉ có video Drive thì đặt `source.type` thành `drive`, `driveId` thành ID video và cung cấp một `poster` thật có thể tải được. Drive preview là chế độ dự phòng và không đồng bộ thời gian với phụ đề.
 
-Video hiện có `ali-video-01` được phát bằng bộ tải 23 phần `ali-video-loader.js`; khi ảnh thumbnail Drive không tải được, trình duyệt tự trích một frame từ đúng video gốc để dùng làm poster.
+Video cũ `ali-video-01` được phát bằng bộ tải 23 phần `ali-video-loader.js`; khi ảnh thumbnail Drive không tải được, trình duyệt tự trích một frame từ đúng video gốc để dùng làm poster.
 
 ## Giới hạn
 
@@ -60,11 +60,11 @@ Khi thêm một phim mới, giữ nguyên **toàn bộ** cấu trúc trang `movi
 4. Kiểm tra quyền phân phối/trình chiếu trích đoạn phim trước khi phát cho học viên.
 
 
-### Mẫu đang áp dụng: Spider-Man (2021)
+### Spider-Man (2021): đã nâng cấp nguồn phát HTML5
 
-- `ali-movies.json` chứa `ambientVideo: "./media/ambient/spiderman-nwh-preview.mp4"`. Đây là **một vòng lặp MP4 nhỏ, không có âm thanh, 64×36 px, dài khoảng 20 giây**, được tạo từ đúng file video ALI đã tải lên. Nó phát mờ trong nền khi học viên mở phim trên desktop.
-- Nó tạo **chuyển động từ cảnh quay thật** nhưng **không theo sát thời điểm trong video chính** vì Google Drive iframe không cung cấp API thời gian hay pixel cho website ALI. Muốn đúng cảnh, đúng thời gian như phim đầu tiên, cần đưa video chính vào trình phát HTML5 có quyền đọc pixel trên cùng domain.
-- Khi thêm phim Drive mới, chuẩn bị một MP4 nền không âm thanh và chất lượng rất thấp (vài KB), điền `ambientVideo`. Khi không có đoạn nền, website tự dùng thumbnail thật của video làm nền mờ có chuyển động nhẹ.
-- Mọi phim mới dùng sẵn bố cục, hiệu ứng kính mờ, và quy tắc không hiện liên kết nguồn; không cần sao chép HTML/CSS riêng cho mỗi phim.
+- Phim Spider-Man đã chuyển sang `source.type=url`, nguồn chính `./media/spiderman-nwh-2021-doing-this-long-time/video.mp4`. Poster nằm cùng thư mục, trích từ chính video. Nền kính mờ giờ lấy **khung hình đang phát**, phụ đề tương tác dùng cùng logic HTML5 như phim ALI đầu tiên.
+- Phụ đề 264 đoạn Anh–Việt có mốc thời gian nhưng **chưa được rà soát thủ công**. Không gắn nhãn đạt chuẩn nội dung hay quyền sử dụng khi chưa có xác nhận của quản trị viên.
+- Không đưa `driveId` của phim mới vào danh mục công khai. Cần quyền truy cập có xác thực phía máy chủ nếu ALI muốn hạn chế người dùng tải file trực tiếp.
+- **Quy chuẩn bắt buộc, cập nhật và nghiệm thu:** [ALI_MOVIE_STANDARD.md](./ALI_MOVIE_STANDARD.md).
 
 **Lưu ý bản quyền:** Với phim điện ảnh thương mại, ALI cần có quyền sử dụng nội dung phù hợp.
