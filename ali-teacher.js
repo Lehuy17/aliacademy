@@ -104,9 +104,14 @@ function renderStudents(){
 async function loadStudents(){
  if(!db)return;
  try{
-  const snap=await sdk.firestore.getDocs(sdk.firestore.query(
-   sdk.firestore.collection(db,"users"),sdk.firestore.limit(300)));
-  students=snap.docs.map(d=>({uid:d.id,...d.data()})).filter(x=>x.role==="student")
+  const [regular,legacy]=await Promise.all([
+   sdk.firestore.getDocs(sdk.firestore.query(sdk.firestore.collection(db,"users"),sdk.firestore.limit(300))),
+   sdk.firestore.getDocs(sdk.firestore.query(sdk.firestore.collection(db,"user"),sdk.firestore.limit(300)))
+  ]);
+  const byUID=new Map();
+  for(const doc of legacy.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
+  for(const doc of regular.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
+  students=[...byUID.values()].filter(x=>x.role==="student")
    .sort((a,b)=>String(a.name||"").localeCompare(String(b.name||""),"vi"));
   renderStudents();updateStats();
  }catch(e){$("teacherStudentRows").replaceChildren(make("tr",""));notify("Chưa đọc được danh sách học viên: "+friendlyError(e),"error");}
