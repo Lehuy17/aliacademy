@@ -1,4 +1,4 @@
-name: Publish Spider-Man synchronized web video
+name: Publish Spider-Man in ALI HTML5 bilingual format
 
 on:
   push:
@@ -9,72 +9,124 @@ on:
 permissions:
   contents: write
 
+concurrency:
+  group: ali-spiderman-media-publish
+  cancel-in-progress: false
+
 jobs:
-  prepare-synced-video:
+  publish:
     runs-on: ubuntu-latest
     timeout-minutes: 90
     steps:
-      - name: Check out website
+      - name: Check out ALI website
         uses: actions/checkout@v4
+        with:
+          persist-credentials: true
 
-      - name: Download the authorized ALI source file
+      - name: Ensure FFmpeg is available
+        run: |
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+
+      - name: Download ALI-provided original Spider-Man clip
         env:
-          GOOGLE_DRIVE_ID: 1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx
+          DRIVE_FILE_ID: 1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx
         run: |
-          python3 -m pip install --user --quiet gdown
-          "$HOME/.local/bin/gdown" --id "$GOOGLE_DRIVE_ID" --output /tmp/ali-spiderman-original.mp4
-          test "$(stat -c%s /tmp/ali-spiderman-original.mp4)" -gt 100000000
-          ffprobe -v error -show_entries format=duration -of default=nw=1 /tmp/ali-spiderman-original.mp4
+          python3 -m pip install --user --quiet 'gdown>=5.0,<6'
+          for attempt in 1 2 3; do
+            echo "Download attempt ${attempt}/3..."
+            if "$HOME/.local/bin/gdown" --id "$DRIVE_FILE_ID" \
+                 --output /tmp/ali-spiderman-original.mp4; then
+              break
+            fi
+            rm -f /tmp/ali-spiderman-original.mp4
+            sleep 15
+          done
+          test -s /tmp/ali-spiderman-original.mp4
+          SOURCE_SIZE=$(stat -c%s /tmp/ali-spiderman-original.mp4)
+          test "$SOURCE_SIZE" -gt 100000000
+          ffprobe -v error -show_entries format=duration,format_name -of json /tmp/ali-spiderman-original.mp4
 
-      - name: Encode a compact seekable MP4 for ALI subtitles
+      - name: Encode ALI synced video for browser
         run: |
-          mkdir -p media
+          mkdir -p media/spiderman-nwh-2021-doing-this-long-time
           ffmpeg -hide_banner -loglevel error -nostdin -y \
             -i /tmp/ali-spiderman-original.mp4 \
             -map 0:v:0 -map 0:a:0 \
-            -vf "scale=854:480:flags=bicubic,fps=24" \
+            -vf 'scale=854:480:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
             -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
-            -pix_fmt yuv420p -b:v 520k -maxrate 780k -bufsize 1560k -g 48 \
+            -pix_fmt yuv420p -b:v 530k -maxrate 780k -bufsize 1560k -g 48 \
             -c:a aac -b:a 64k -ar 44100 -ac 2 \
             -movflags +faststart \
-            media/spiderman-sync.mp4
+            media/spiderman-nwh-2021-doing-this-long-time/video.mp4
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 180 -i media/spiderman-nwh-2021-doing-this-long-time/video.mp4 \
+            -frames:v 1 -q:v 4 \
+            media/spiderman-nwh-2021-doing-this-long-time/poster.jpg
 
-      - name: Check web video size and duration
+      - name: Verify video before touching the published catalog
         run: |
           python3 - <<'PY'
-          import json,subprocess,os
-          path='media/spiderman-sync.mp4'
-          size=os.path.getsize(path)
-          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_name','-of','json',path]))
-          duration=float(meta['format']['duration'])
-          assert 570 <= duration <= 590, f"Unexpected duration: {duration}"
-          assert 1_000_000 < size < 95_000_000, f"Output too large for GitHub Pages: {size}"
-          assert any(t['codec_name']=='h264' for t in meta['streams']), "H.264 missing"
-          print(f"Synced video OK: {duration:.1f}s, {size/1048576:.1f}MiB")
+          import json,os,subprocess
+          p='media/spiderman-nwh-2021-doing-this-long-time/video.mp4'
+          f='media/spiderman-nwh-2021-doing-this-long-time/poster.jpg'
+          info=json.loads(subprocess.check_output([
+            'ffprobe','-v','error',
+            '-show_entries','format=duration:stream=codec_type,codec_name,pix_fmt,width,height',
+            '-of','json',p]))
+          duration=float(info['format']['duration'])
+          size=os.path.getsize(p)
+          v=next(s for s in info['streams'] if s['codec_type']=='video')
+          a=next(s for s in info['streams'] if s['codec_type']=='audio')
+          assert 580<=duration<=583, 'Unexpected video duration'
+          assert 1000000<size<90*1048576, 'MP4 outside ALI web size limits'
+          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          assert a['codec_name']=='aac'
+          assert os.path.getsize(f)>2000, 'Poster not generated'
+          print(f'QA: {duration:.3f} s, {size/1048576:.1f} MiB, H.264/AAC, poster ready')
           PY
 
-      - name: Enable true HTML5 subtitle synchronization
+      - name: Activate identical ALI player and caption workflow
         run: |
           python3 - <<'PY'
           import json,pathlib
           p=pathlib.Path('ali-movies.json')
           data=json.loads(p.read_text(encoding='utf-8'))
-          movie=next((x for x in data['movies'] if x['id']=='spiderman-nwh-2021-doing-this-long-time'),None)
-          if movie is None: raise RuntimeError('Spider-Man entry missing')
-          movie['source']={'type':'url','url':'./media/spiderman-sync.mp4'}
-          movie['presentation']['layout']='video-left-captions-right'
-          movie['presentation']['background']='film-blur'
-          movie['duration']='09:41'
-          movie.pop('availability',None)
+          m=next((x for x in data['movies'] if x['id']=='spiderman-nwh-2021-doing-this-long-time'),None)
+          if not m: raise RuntimeError('ALI Spider-Man catalog entry missing')
+          m['source']={'type':'url','url':'./media/spiderman-nwh-2021-doing-this-long-time/video.mp4'}
+          m['poster']='./media/spiderman-nwh-2021-doing-this-long-time/poster.jpg'
+          m['duration']='09:41'
+          m['durationSeconds']=581.289
+          m['description']='Trích đoạn Spider-Man: No Way Home (2021) · luyện nghe với phụ đề Anh–Việt theo từng câu.'
+          m['presentation']={'hideSourceLink':True,'background':'film-blur','layout':'video-left-captions-right'}
+          # The 264 AI-transcribed/translated captions are still awaiting HUMAN content review.
+          m['subtitleStatus']='machine_transcript_bilingual_unreviewed'
+          m['qa']={'stage':'pending_human_review','englishReviewed':False,
+                   'vietnameseReviewed':False,'timingsReviewed':False,
+                   'desktopMobileTested':False,'rightsConfirmed':False}
+          for key in ('driveId','ambientVideo','resolution','videoCodec'):
+            m.pop(key,None)
           data['version']=int(data.get('version',1))+1
           p.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
           PY
 
-      - name: Commit website video and catalog
+      - name: Validate ALI web movie media and subtitles
+        run: node scripts/validate-ali-movies.cjs
+
+      - name: Publish web MP4, real thumbnail and correct catalog together
         run: |
-          git config user.name "ALI Academy Website Bot"
-          git config user.email "ali-website-bot@users.noreply.github.com"
-          git add media/spiderman-sync.mp4 ali-movies.json
-          git diff --cached --quiet && exit 0
-          git commit -m "Publish H.264 Spider-Man excerpt with interactive synchronized captions"
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add media/spiderman-nwh-2021-doing-this-long-time/video.mp4 \
+                  media/spiderman-nwh-2021-doing-this-long-time/poster.jpg \
+                  ali-movies.json
+          if git diff --cached --quiet; then
+            echo 'All movie assets are already published.'
+            exit 0
+          fi
+          git commit -m 'Publish synced HTML5 Spider-Man film with real poster and 264 bilingual cues'
+          git pull --rebase origin main
           git push origin HEAD:main
