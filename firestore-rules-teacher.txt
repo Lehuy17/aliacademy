@@ -1,0 +1,36 @@
+// ALI Teacher Dashboard security extension (MERGE with your existing rules).
+// Do NOT paste only this into a project with other app collections without review.
+// Teacher/Admin privilege comes from immutable custom claims assigned server-side.
+rules_version = '2';
+service cloud.firestore {
+ match /databases/{database}/documents {
+  function signedIn() { return request.auth != null; }
+  function staff() { return signedIn() && (request.auth.token.role == 'teacher' || request.auth.token.role == 'admin'); }
+  function admin() { return signedIn() && request.auth.token.role == 'admin'; }
+  match /users/{uid} {
+   allow get: if signedIn() && (request.auth.uid == uid || staff());
+   allow list: if staff();
+   allow create, update, delete: if false; // Admin SDK callable functions only
+  }
+  // Legacy singular collection remains readable for existing student logins.
+  match /user/{uid} {
+   allow get: if signedIn() && (request.auth.uid == uid || staff());
+   allow list, create, update, delete: if false;
+  }
+  match /teacherMovies/{movieId} {
+   allow get: if signedIn() && (resource.data.status == 'published' || staff());
+   // Students must query where('status','==','published'); staff may list all.
+   allow list: if signedIn() && (staff() || resource.data.status == 'published');
+   allow create, update, delete: if false; // publication from trusted Cloud Functions
+  }
+  match /teacherMovieCaptions/{movieId} {
+   allow get: if signedIn() && (
+     staff() || (exists(/databases/$(database)/documents/teacherMovies/$(movieId)) &&
+     get(/databases/$(database)/documents/teacherMovies/$(movieId)).data.status == 'published')
+   );
+   allow list, create, update, delete: if false;
+  }
+  // MERGE YOUR EXISTING COLLECTION RULES FOR TESTS/RESULTS HERE.
+  match /{document=**} { allow read, write: if false; }
+ }
+}
