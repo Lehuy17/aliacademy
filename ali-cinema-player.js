@@ -99,13 +99,16 @@ function showCues(){
  const help=$('aliTranscriptHelp');
  const footer=$('aliCinemaFootnote');
  const drive=currentMovie?.source?.type==='drive';
- const draft=currentMovie?.subtitleStatus==='draft_partial_unverified';
+ const draft=['draft_partial_unverified','machine_transcript_bilingual_unreviewed'].includes(currentMovie?.subtitleStatus);
+ const machineDraft=currentMovie?.subtitleStatus==='machine_transcript_bilingual_unreviewed';
  if(notice){
   notice.classList.toggle('hidden',!draft);
-  notice.textContent=draft?'BẢN NHÁP CHƯA KIỂM DUYỆT · '+cues.length+' đoạn lời thoại sơ bộ, không phải phụ đề đầy đủ. Mốc thời gian cần kiểm tra lại.':'';
+  notice.textContent=!draft?'':machineDraft?
+   'PHỤ ĐỀ ANH–VIỆT · '+cues.length+' đoạn được nhận dạng và dịch bằng AI. Chưa được kiểm duyệt; một số từ và mốc thời gian có thể chưa chính xác.':
+   'BẢN NHÁP CHƯA KIỂM DUYỆT · '+cues.length+' đoạn lời thoại sơ bộ, không phải phụ đề đầy đủ.';
  }
  if(help)help.textContent=drive?'Xem lời thoại tham khảo · không thể tua từ phụ đề khi phát bằng Drive':'Nhấn vào câu để phát lại';
- if(footer)footer.textContent=drive?'Trình phát Drive không cung cấp thời gian phát để ALI đồng bộ phụ đề. Các mốc bên cạnh câu chỉ mang tính tham khảo.':'Phụ đề của trình phát HTML5 tự cuộn và có thể phát lại từng câu.';
+ if(footer)footer.textContent=drive?'Lời thoại Anh–Việt hiển thị theo thứ tự kèm mốc thời gian. Do Google Drive không cung cấp thời gian phát, hãy cuộn theo phim; chưa thể tự chạy hoặc tua từ câu thoại.':'Phụ đề của trình phát HTML5 tự cuộn và có thể phát lại từng câu.';
  if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent='Chưa có phụ đề Anh–Việt được hoàn thiện cho phim này.';list.append(p);return;}
  cues.forEach((cue,i)=>{
   const row=document.createElement(drive?'div':'button');if(!drive)row.type='button';row.className='ali-cue';row.dataset.index=i;
