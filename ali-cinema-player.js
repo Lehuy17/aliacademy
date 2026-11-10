@@ -26,7 +26,7 @@ function setAmbientPoster(movie){
   ambientHost?.classList.remove('has-ambient-film');
   // New ALI-hosted movies may supply a low-resolution, silent film preview.
   // This is a real blurred movie background, not a thumbnail animation.
-  if(typeof movie?.ambientVideo==='string'&&movie.ambientVideo){
+  if(movie?.source?.type==='drive'&&typeof movie?.ambientVideo==='string'&&movie.ambientVideo){
    try{
     const src=new URL(movie.ambientVideo,location.href);
     if(src.origin===location.origin){
@@ -87,7 +87,7 @@ video.addEventListener('ended',()=>{stopAmbient(false);paintAmbient();});
 document.addEventListener('visibilitychange',()=>{if(document.hidden)stopAmbient(false);else refreshAmbient();});
 window.addEventListener('resize',()=>{
  refreshAmbient();
- if(!ambientFilm||!currentMovie?.ambientVideo||$('aliVideoPlayer').classList.contains('hidden'))return;
+ if(!ambientFilm||!currentMovie?.ambientVideo||currentMovie.source?.type!=='drive'||$('aliVideoPlayer').classList.contains('hidden'))return;
  if(ambientDesktop()&&ambientFilm.paused){ambientFilm.play().then(()=>ambientHost?.classList.add('has-ambient-film')).catch(()=>{});}
  else if(!ambientDesktop()){ambientFilm.pause();ambientHost?.classList.remove('has-ambient-film');}
 });
