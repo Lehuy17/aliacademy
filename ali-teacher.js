@@ -245,18 +245,8 @@ async function publishMovie(event){
   if(cues[cues.length-1].end>videoState.duration+1)throw Error("Phụ đề vượt thời lượng phim, vui lòng kiểm tra bản cắt.");
   const confirmations=["teacherRights","teacherEnglishChecked","teacherVietnameseChecked","teacherTimesChecked"];
   if(confirmations.some(x=>!$(x).checked))throw Error("Bạn cần xác nhận quyền sử dụng và đã rà soát đủ phụ đề.");
-  const userPoster=$("teacherMoviePoster").files?.[0];
-  let poster=videoState.posterBlob;
-  if(userPoster){
-   if(!userPoster.type.startsWith("image/")||userPoster.size>5*1024*1024)
-    throw Error("Ảnh xem trước phải là JPG/PNG/WebP, dưới 5 MB.");
-   const image=await createImageBitmap(userPoster);
-   const canvas=document.createElement("canvas");canvas.width=640;canvas.height=360;
-   const ctx=canvas.getContext("2d");ctx.fillStyle="#130e11";ctx.fillRect(0,0,640,360);
-   const scale=Math.min(640/image.width,360/image.height),w=image.width*scale,h=image.height*scale;
-   ctx.drawImage(image,(640-w)/2,(360-h)/2,w,h);image.close?.();
-   poster=await new Promise((resolve,reject)=>canvas.toBlob(b=>b?resolve(b):reject(Error("Không xuất được JPG.")),"image/jpeg",.82));
-  }
+  // Only a frame extracted from THIS uploaded film is accepted as its preview.
+  const poster=videoState.posterBlob;
   const captionBlob=new Blob([JSON.stringify({status:"reviewed",synchronized:true,
    duration:videoState.duration,cues})],{type:"application/json"});
   if(captionBlob.size>650000)throw Error("Phụ đề quá lớn. Hãy chia thành các bài ngắn hơn.");
