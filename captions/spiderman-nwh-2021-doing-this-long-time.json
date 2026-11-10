@@ -1,0 +1,81 @@
+{
+  "source": "User-supplied Spider-Man MP4. Preliminary short transcript excerpts derived from offline speech recognition. Manual review REQUIRED.",
+  "status": "draft_partial_unverified",
+  "duration": 581.289,
+  "synchronized": false,
+  "note": "Chỉ có một số câu được nhận dạng sơ bộ, chưa phải phụ đề đầy đủ hay được kiểm duyệt. Mốc thời gian ước lượng; trình nhúng Google Drive không cho điều khiển phát bằng hàng phụ đề.",
+  "cues": [
+    {
+      "start": 21.4,
+      "end": 25.4,
+      "en": "Try to cure them while they try to kill us.",
+      "vi": "Cố chữa cho họ trong khi họ đang cố giết chúng ta."
+    },
+    {
+      "start": 72.4,
+      "end": 75.2,
+      "en": "I won't turn into a supervillain.",
+      "vi": "Tôi sẽ không biến thành một siêu phản diện."
+    },
+    {
+      "start": 77.4,
+      "end": 78.4,
+      "en": "Okay.",
+      "vi": "Được thôi."
+    },
+    {
+      "start": 78.8,
+      "end": 80.4,
+      "en": "Thank you.",
+      "vi": "Cảm ơn."
+    },
+    {
+      "start": 84.8,
+      "end": 86.2,
+      "en": "Oh, hi.",
+      "vi": "Ồ, chào."
+    },
+    {
+      "start": 103.4,
+      "end": 105.1,
+      "en": "Ladies and gentlemen.",
+      "vi": "Thưa quý vị."
+    },
+    {
+      "start": 106,
+      "end": 110.4,
+      "en": "...the fugitive known as Spider-Man.",
+      "vi": "...kẻ đang bị truy nã được biết đến với tên Spider-Man."
+    },
+    {
+      "start": 169.1,
+      "end": 171.9,
+      "en": "Friendly neighborhood Spider-Man.",
+      "vi": "Người Nhện thân thiện của khu phố."
+    },
+    {
+      "start": 195.1,
+      "end": 198.3,
+      "en": "Cool electric eels. That'll do it.",
+      "vi": "Những con lươn điện thú vị đấy. Thế là đủ rồi."
+    },
+    {
+      "start": 238.2,
+      "end": 240.5,
+      "en": "Yeah, this is so cool.",
+      "vi": "Ừ, chuyện này thật tuyệt."
+    },
+    {
+      "start": 281,
+      "end": 284.2,
+      "en": "That is a hassle.",
+      "vi": "Chuyện đó phiền phức thật."
+    },
+    {
+      "start": 336.2,
+      "end": 340.1,
+      "en": "I think you are amazing.",
+      "vi": "Tôi nghĩ cậu thật tuyệt vời."
+    }
+  ]
+}
