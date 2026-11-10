@@ -92,7 +92,9 @@ async function init() {
           show(!p ? 'Tài khoản chưa có hồ sơ học viên trong Firestore. Vui lòng liên hệ ALI.' : 'Tài khoản không có quyền truy cập hoặc đã bị khóa.');
           return;
         }
-        window.location.assign('./movies.html');
+        const token=await user.getIdTokenResult();
+        const staff=['teacher','admin'].includes(token.claims.role);
+        window.location.assign(staff?'./teacher.html':'./movies.html');
       } catch (error) {
         console.error('ALI login error:', error);
         show(friendlyError(error));
