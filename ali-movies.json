@@ -1,5 +1,5 @@
 {
-  "version": 8,
+  "version": 9,
   "movies": [
     {
       "id": "ali-video-01",
@@ -42,6 +42,36 @@
         "timingsReviewed": false,
         "desktopMobileTested": false,
         "rightsConfirmed": false
+      }
+    },
+    {
+      "id": "kung-fu-panda-po-vs-tai-lung-final-battle",
+      "title": "Po vs. Tai Lung: The FINAL BATTLE! | Kung Fu Panda",
+      "category": "PHIM SONG NGỮ · KUNG FU PANDA",
+      "description": "Trận chiến cuối cùng giữa Po và Tai Lung · 09:10 · 58 câu phụ đề Anh–Việt, bản dịch đang rà soát.",
+      "duration": "09:10",
+      "durationSeconds": 550.082,
+      "poster": "./media/kung-fu-panda-po-vs-tai-lung-final-battle/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/kung-fu-panda-po-vs-tai-lung-final-battle/video.mp4"
+      },
+      "captions": "./captions/kung-fu-panda-po-vs-tai-lung-final-battle.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
       }
     }
   ]
