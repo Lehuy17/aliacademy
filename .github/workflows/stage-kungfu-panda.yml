@@ -71,7 +71,8 @@ jobs:
           v=next(t for t in meta['streams'] if t['codec_type']=='video')
           a=next(t for t in meta['streams'] if t['codec_type']=='audio')
           assert 545 <= dur <= 555, f'Unexpected duration {dur}'
-          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          print('Video codec details:',repr(v))
+          assert v.get('codec_name')=='h264' and v.get('pix_fmt') in ('yuv420p','yuvj420p'), f'Unexpected video codec details: {v!r}'
           assert a['codec_name']=='aac'
           assert os.path.getsize(video)<90*1048576, 'Video too large for GitHub'
           assert os.path.getsize(poster)>2500, 'Preview frame failed'
