@@ -52,7 +52,7 @@ function checkMedia(id,movie){
  catch(e){fail(id,'ffprobe failed: '+e.message);return}
  const streams=info.streams||[];
  const v=streams.find(s=>s.codec_type==='video'),a=streams.find(s=>s.codec_type==='audio');
- if(!v||v.codec_name!=='h264'||v.pix_fmt!=='yuv420p')fail(id,'Video must be H.264 yuv420p');
+ if(!v||v.codec_name!=='h264'||!['yuv420p','yuvj420p'].includes(v.pix_fmt))fail(id,'Video must be H.264 8-bit 4:2:0 (yuv420p/yuvj420p)');
  if(!a||a.codec_name!=='aac')fail(id,'Audio must be AAC');
  if(v&&(v.width>1280||v.height>720))fail(id,'Video must be 720p or smaller');
  if(Number.isFinite(movie.durationSeconds)&&Math.abs(Number(info.format?.duration)-movie.durationSeconds)>2)fail(id,'MP4 duration mismatch');
