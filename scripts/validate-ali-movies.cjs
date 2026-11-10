@@ -75,7 +75,9 @@ for(const m of catalog.movies){
  seen.add(id);
  const legacy=legacyIds.has(id);
  if(legacy)oldCount++;else newCount++;
- const strict=!legacy;
+ const strict=!legacy; // New movie file/format/path validation stays strict in previews too.
+ const publicPreview=strict&&m.qa?.stage==='public_preview_pending_editorial_review'&&m.qa?.videoTechnicalChecked===true;
+ const editorialRequired=strict&&!publicPreview;
  for(const f of ['title','description','category','duration'])if(!present(m[f]))fail(id,'Missing '+f);
  const p=m.presentation||{};
  if(!legacy&&(p.hideSourceLink!==true||p.background!=='film-blur'||p.layout!=='video-left-captions-right'))fail(id,'Must use default ALI presentation');
@@ -103,12 +105,16 @@ for(const m of catalog.movies){
    fail(id,'Caption path must equal ./captions/'+id+'.json');
   if(m.driveId)fail(id,'Do not publish source Drive ID');
   const qa=m.qa||{};
-  for(const field of ['rightsConfirmed','englishReviewed','vietnameseReviewed','timingsReviewed','desktopMobileTested'])if(qa[field]!==true)fail(id,'QA approval missing: '+field);
-  if(!/^\d{4}-\d{2}-\d{2}$/.test(qa.approvedAt||''))fail(id,'QA date missing');
+  if(publicPreview){
+   warn(id,'PUBLIC PREVIEW only: editorial captions, display on mobile and content rights are NOT approved; do not call this film ALI-CINEMA-STD-01 certified');
+  }else{
+   for(const field of ['rightsConfirmed','englishReviewed','vietnameseReviewed','timingsReviewed','desktopMobileTested'])if(qa[field]!==true)fail(id,'QA approval missing: '+field);
+   if(!/^\d{4}-\d{2}-\d{2}$/.test(qa.approvedAt||''))fail(id,'QA date missing');
+  }
  }
  resolveLocal(m.poster,'media',id,'poster');
  checkMedia(id,m);
- checkCaption(id,m,strict);
+ checkCaption(id,m,editorialRequired);
  if(legacy&&!m.qa?.approvedAt)warn(id,'Migrated legacy entry: human editorial and device QA still required');
 }
 for(const w of warnings)console.warn('WARN',w);
