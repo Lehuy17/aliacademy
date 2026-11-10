@@ -95,15 +95,26 @@ const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floo
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
 function showCues(){
  list.replaceChildren();
- if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent=currentMovie?.subtitleStatus==='pending'?'Phụ đề Anh–Việt cho phim này đang được chuẩn bị.':'Chưa có phụ đề được xác minh cho video này.';list.append(p);return;}
+ const notice=$('aliSubtitleNotice');
+ const help=$('aliTranscriptHelp');
+ const footer=$('aliCinemaFootnote');
+ const drive=currentMovie?.source?.type==='drive';
+ const draft=currentMovie?.subtitleStatus==='draft_partial_unverified';
+ if(notice){
+  notice.classList.toggle('hidden',!draft);
+  notice.textContent=draft?'BẢN NHÁP CHƯA KIỂM DUYỆT · '+cues.length+' đoạn lời thoại sơ bộ, không phải phụ đề đầy đủ. Mốc thời gian cần kiểm tra lại.':'';
+ }
+ if(help)help.textContent=drive?'Xem lời thoại tham khảo · không thể tua từ phụ đề khi phát bằng Drive':'Nhấn vào câu để phát lại';
+ if(footer)footer.textContent=drive?'Trình phát Drive không cung cấp thời gian phát để ALI đồng bộ phụ đề. Các mốc bên cạnh câu chỉ mang tính tham khảo.':'Phụ đề của trình phát HTML5 tự cuộn và có thể phát lại từng câu.';
+ if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent='Chưa có phụ đề Anh–Việt được hoàn thiện cho phim này.';list.append(p);return;}
  cues.forEach((cue,i)=>{
-  const row=document.createElement('button');row.type='button';row.className='ali-cue';row.dataset.index=i;
+  const row=document.createElement(drive?'div':'button');if(!drive)row.type='button';row.className='ali-cue';row.dataset.index=i;
   const stamp=document.createElement('span');stamp.className='ali-stamp';stamp.textContent=String(i+1).padStart(2,'0')+' · '+time(cue.start);
   const text=document.createElement('span');text.className='ali-cue-text';
   const en=document.createElement('strong');en.className='ali-en';en.textContent=cue.en;
   const vi=document.createElement('span');vi.className='ali-vi';vi.textContent=cue.vi;
   text.append(en,vi);row.append(stamp,text);
-  row.addEventListener('click',()=>{if(video.readyState){video.currentTime=cue.start;video.play().catch(()=>{});}});
+  if(!drive)row.addEventListener('click',()=>{if(video.readyState){video.currentTime=cue.start;video.play().catch(()=>{});}});
   list.append(row);
  });
  applyLanguage();
@@ -184,7 +195,7 @@ async function openMovie(movie){
  $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
  cues=[];
  clock.textContent='00:00 / '+(movie.duration||'--:--');
- status.textContent='Đang chuẩn bị '+(movie.resolution||'video')+'…';
+ status.textContent='Đang tải nội dung…';
  try{
   if(movie.captions){
    const url=new URL(movie.captions,location.href);
@@ -192,7 +203,7 @@ async function openMovie(movie){
    const response=await fetch(url.href);
    if(!response.ok)throw Error('No captions');
    const json=await response.json();
-   cues=(json.cues||[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&typeof x.en==='string'&&typeof x.vi==='string');
+   cues=(Array.isArray(json.cues)?json.cues:[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((a,b)=>a.start-b.start);
   }
  }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
  active=-1;showCues();
