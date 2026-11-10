@@ -1,4 +1,4 @@
-name: Stage Kung Fu Panda for ALI Cinema
+name: Restore ALI Kung Fu Panda HTML5 synchronized playback
 
 on:
   push:
@@ -10,86 +10,141 @@ permissions:
   contents: write
 
 concurrency:
-  group: ali-kung-fu-panda-stage
-  cancel-in-progress: true
+  group: ali-kung-fu-panda-original-source
+  cancel-in-progress: false
 
 jobs:
-  stage:
+  restore-sync:
     runs-on: ubuntu-latest
-    timeout-minutes: 60
+    timeout-minutes: 90
     steps:
-      - name: Check out ALI website
+      - name: Check out ALI Academy website
         uses: actions/checkout@v4
         with:
           persist-credentials: true
 
-      - name: Install FFmpeg and FFprobe
-        run: |
-          sudo apt-get update -qq
-          sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
-          command -v ffmpeg
-          command -v ffprobe
-
-      - name: Download ALI Descript MP4 export
-        env:
-          DESCRIPT_EXPORT_URL: 'https://media.descriptusercontent.com/v3/proxy/remux?url=https%3A%2F%2Fapi.descript.com%2Fv2%2Fpublished_projects%2F2fe01c1d-c616-41e7-86ee-287309c5fe50%2Fhls%3Fexpiration%3D1794374961137%26signature%3Daec16b7f5a878bc4264d0d750a651b11f9ceca1f65fe0c44a56341bd8ab6ad6f&filename=Transcript.mp4&mediaCacheBucketName=production-273614-media-cache&expiration=1794371361&signature=55dc90a1e23f2c8949c4d547bc981b50c1252ca6151a6617b41f3279b3271f42'
-        run: |
-          mkdir -p /tmp/ali-kungfu
-          curl --fail --location --silent --show-error \
-            --retry 4 --retry-delay 6 --retry-all-errors \
-            --output /tmp/ali-kungfu/input.mp4 "$DESCRIPT_EXPORT_URL"
-          test "$(stat -c%s /tmp/ali-kungfu/input.mp4)" -gt 3000000
-          ffprobe -v error -show_entries format=duration -of default=nw=1 /tmp/ali-kungfu/input.mp4
-
-      - name: Convert to standardized HTML5 MP4 and real poster
+      - name: Prepare FFmpeg and Google Drive downloader
         run: |
           set -euo pipefail
-          input="$(find /tmp/ali-kungfu -type f -size +3M -print -quit)"
-          target='media/kung-fu-panda-po-vs-tai-lung-final-battle'
-          mkdir -p "$target"
-          ffmpeg -hide_banner -loglevel error -y -nostdin -i "$input" \
-            -map 0:v:0 -map 0:a:0 \
-            -vf 'scale=854:480:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
-            -c:v libx264 -preset veryfast -crf 29 \
-            -pix_fmt yuv420p -c:a aac -b:a 64k -ar 44100 -ac 2 \
-            -movflags +faststart \
-            "$target/video.mp4"
-          ffmpeg -hide_banner -loglevel error -y -nostdin -ss 26 -i "$target/video.mp4" \
-            -frames:v 1 -q:v 3 "$target/poster.jpg"
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+          python3 -m venv /tmp/ali-gdown-venv
+          /tmp/ali-gdown-venv/bin/pip install -q 'gdown>=5.0,<6'
 
-      - name: Verify MP4, poster and bilingual JSON
+      - name: Download ALI-supplied original MP4 from Google Drive
+        env:
+          DRIVE_FILE_ID: 14DDhgLgLxBof5M9-vK_LdGI11k7faEFU
         run: |
+          set -euo pipefail
+          mkdir -p /tmp/ali-kungfu
+          for attempt in 1 2 3; do
+            echo "Fetching uploaded original, attempt $attempt"
+            if /tmp/ali-gdown-venv/bin/gdown --id "$DRIVE_FILE_ID" \
+              --output /tmp/ali-kungfu/original.mp4; then
+              break
+            fi
+            rm -f /tmp/ali-kungfu/original.mp4
+            sleep 15
+          done
+          test -s /tmp/ali-kungfu/original.mp4
+          test "$(stat -c%s /tmp/ali-kungfu/original.mp4)" -gt 400000000
+          ffprobe -v error -show_entries format=duration,size -of json \
+            /tmp/ali-kungfu/original.mp4
           python3 - <<'PY'
-          import json,os,subprocess,pathlib
-          slug='kung-fu-panda-po-vs-tai-lung-final-battle'
-          video=f'media/{slug}/video.mp4'
-          poster=f'media/{slug}/poster.jpg'
-          captions=json.loads(pathlib.Path(f'captions/{slug}.json').read_text())
-          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries',
-             'format=duration:stream=codec_type,codec_name,pix_fmt','-of','json',video]))
-          dur=float(meta['format']['duration'])
-          v=next(t for t in meta['streams'] if t['codec_type']=='video')
-          a=next(t for t in meta['streams'] if t['codec_type']=='audio')
-          assert 545 <= dur <= 555, f'Unexpected duration {dur}'
-          print('Video codec details:',repr(v))
-          assert v.get('codec_name')=='h264' and v.get('pix_fmt') in ('yuv420p','yuvj420p'), f'Unexpected video codec details: {v!r}'
-          assert a['codec_name']=='aac'
-          assert os.path.getsize(video)<90*1048576, 'Video too large for GitHub'
-          assert os.path.getsize(poster)>2500, 'Preview frame failed'
-          assert len(captions['cues'])==58, 'Unexpected subtitle count'
-          assert all(isinstance(c['start'],(int,float)) and c['end']>c['start']
-             and c['en'].strip() and c['vi'].strip() for c in captions['cues'])
-          print('Video and bilingual captions verified:',dur,'seconds; video',
-                round(os.path.getsize(video)/1048576,2),'MiB')
+          import subprocess,json
+          p='/tmp/ali-kungfu/original.mp4'
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',p]))
+          d=float(info['format']['duration'])
+          assert 548 <= d <= 553, f'Unexpected source duration: {d}'
           PY
 
-      - name: Commit staged media without public catalog changes
+      - name: Convert clean source to browser-seekable ALI HTML5 MP4
         run: |
+          set -euo pipefail
+          target='media/kung-fu-panda-po-vs-tai-lung-final-battle'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-kungfu/original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=960:540:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
+            -pix_fmt yuv420p -b:v 900k -maxrate 1150k -bufsize 2300k -g 48 \
+            -c:a aac -b:a 96k -ar 44100 -ac 2 \
+            -movflags +faststart \
+            "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 26 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+
+      - name: Verify playable MP4 and keep all 58 bilingual cues
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,os,pathlib,subprocess
+          slug='kung-fu-panda-po-vs-tai-lung-final-battle'
+          video=pathlib.Path('media')/slug/'video.mp4'
+          poster=pathlib.Path('media')/slug/'poster.jpg'
+          caption=json.loads((pathlib.Path('captions')/(slug+'.json')).read_text())
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries',
+              'format=duration:stream=codec_type,codec_name,pix_fmt,width,height','-of','json',str(video)]))
+          duration=float(info['format']['duration'])
+          size=video.stat().st_size
+          streams=info['streams']
+          v=next(s for s in streams if s['codec_type']=='video')
+          a=next(s for s in streams if s['codec_type']=='audio')
+          assert 548<=duration<=553, f'Video duration changed: {duration}'
+          assert 2000000<size<90*1048576, f'GitHub MP4 size out of limits: {size}'
+          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          assert v['width']<=1280 and v['height']<=720
+          assert a['codec_name']=='aac'
+          assert poster.stat().st_size>2000
+          assert len(caption['cues'])==58
+          assert all(x['end']>x['start'] and x['en'].strip() and x['vi'].strip() for x in caption['cues'])
+          with video.open('rb') as f: assert b'moov' in f.read(250000), 'MP4 must be faststart'
+          print(f'Validated {duration:.3f} seconds, {size/1048576:.1f} MiB, seekable H264/AAC and 58 cues')
+          PY
+
+      - name: Reactivate synced HTML5 player in ALI film catalog
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          path=pathlib.Path('ali-movies.json')
+          library=json.loads(path.read_text(encoding='utf-8'))
+          slug='kung-fu-panda-po-vs-tai-lung-final-battle'
+          movie=next(m for m in library['movies'] if m['id']==slug)
+          movie['source']={'type':'url','url':'./media/'+slug+'/video.mp4'}
+          movie.pop('driveId',None)
+          movie['poster']='./media/'+slug+'/poster.jpg'
+          movie['description']='Trận chiến cuối cùng giữa Po và Tai Lung · 09:10 · 58 câu phụ đề Anh–Việt, bản dịch đang rà soát.'
+          movie['duration']='09:10'
+          movie['durationSeconds']=550.082
+          movie['presentation']={'hideSourceLink':True,'background':'film-blur','layout':'video-left-captions-right'}
+          qa=movie.setdefault('qa',{})
+          qa['stage']='public_preview_pending_editorial_review'
+          qa['videoTechnicalChecked']=True
+          qa['englishReviewed']=False
+          qa['vietnameseReviewed']=False
+          qa['timingsReviewed']=False
+          qa['desktopMobileTested']=False
+          qa['rightsConfirmed']=False
+          library['version']=int(library.get('version',1))+1
+          path.write_text(json.dumps(library,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          node scripts/validate-ali-movies.cjs
+
+      - name: Publish verified film and restore caption seeking atomically
+        run: |
+          set -euo pipefail
           git config user.name 'ALI Academy Website Bot'
           git config user.email 'ali-website-bot@users.noreply.github.com'
-          git add media/kung-fu-panda-po-vs-tai-lung-final-battle/video.mp4 \
-                  media/kung-fu-panda-po-vs-tai-lung-final-battle/poster.jpg
-          git diff --cached --quiet && exit 0
-          git commit -m 'Stage verified HTML5 Kung Fu Panda media and preview for ALI'
+          git add ali-movies.json \
+            media/kung-fu-panda-po-vs-tai-lung-final-battle/video.mp4 \
+            media/kung-fu-panda-po-vs-tai-lung-final-battle/poster.jpg
+          if git diff --cached --quiet; then
+            echo "Already updated."
+            exit 0
+          fi
+          git commit -m 'Restore Kung Fu Panda original video with synchronized English-Vietnamese caption seeking'
           git pull --rebase origin main
           git push origin HEAD:main
