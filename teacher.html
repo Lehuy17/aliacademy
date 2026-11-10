@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex,nofollow"><title>Teacher Dashboard | ALI English</title>
+<link rel="stylesheet" href="./ali-logo.css?v=1"><link rel="stylesheet" href="./ali-teacher.css?v=1"></head>
+<body><header class="ali-teacher-nav">
+ <a class="teacher-brand" href="./index.html"><span class="ali-shared-logo" role="img" aria-label="ALI Academy"></span><span><strong>ALI ENGLISH</strong><small>TEACHER WORKSPACE</small></span></a>
+ <nav aria-label="Điều hướng"><a href="./index.html">Trang chủ</a><a href="./movies.html">Thư viện phim</a><button id="teacherLogout" type="button" class="nav-logout" hidden>Đăng xuất</button></nav>
+</header>
+<main class="dashboard-wrap">
+ <section class="teacher-hero">
+  <div><span class="teacher-eyebrow">ALI ACADEMY · STAFF WORKSPACE</span><h1>Teacher Dashboard<span class="accent">.</span></h1>
+  <p>Quản lý học viên và xuất bản phim song ngữ — cùng một hệ thống, không cần thao tác trực tiếp trên GitHub.</p></div>
+  <div class="hero-mark" aria-hidden="true"><span>ALI</span><small>YOUR ENGLISH<br>YOUR FUTURE</small></div>
+ </section>
+ <div id="teacherNotice" class="teacher-notice" role="status" aria-live="polite">Đang xác minh tài khoản giáo viên...</div>
+ <section id="teacherWorkspace" hidden>
+  <div class="teacher-toolbar">
+   <div><span class="teacher-eyebrow">TÀI KHOẢN ĐANG ĐĂNG NHẬP</span><strong id="teacherName">Giáo viên ALI</strong><span id="teacherEmail"></span></div>
+   <div class="teacher-account-badge" id="teacherRole">TEACHER</div>
+  </div>
+  <div class="teacher-stat-row">
+   <div class="teacher-stat"><span>Học viên trong hệ thống</span><strong id="teacherStudentCount">—</strong></div>
+   <div class="teacher-stat"><span>Học viên đang hoạt động</span><strong id="teacherActiveCount">—</strong></div>
+   <div class="teacher-stat"><span>Phim giáo viên đã đăng</span><strong id="teacherMovieCount">—</strong></div>
+  </div>
+  <div class="teacher-tabs" role="tablist" aria-label="Chọn chức năng">
+   <button class="teacher-tab is-selected" type="button" data-teacher-tab="students" role="tab" aria-selected="true">◉ Quản lý học viên</button>
+   <button class="teacher-tab" type="button" data-teacher-tab="movies" role="tab" aria-selected="false">▣ Đăng phim song ngữ</button>
+  </div>
+
+  <section id="teacherPaneStudents" class="teacher-section" role="tabpanel">
+   <div class="section-head"><div><span class="teacher-eyebrow">STUDENT MANAGEMENT</span><h2>Danh sách học viên</h2><p>Tạo tài khoản riêng cho từng học viên, quản lý trạng thái và theo dõi danh sách.</p></div>
+    <button type="button" class="teacher-outline" id="teacherRefreshStudents">↻ Tải lại danh sách</button></div>
+   <div class="teacher-layout">
+    <form class="teacher-panel teacher-create-form" id="teacherCreateStudent">
+     <div class="teacher-panel-heading"><span class="teacher-icon">+</span><div><h3>Tạo học viên mới</h3><p>Hệ thống cấp tài khoản và mật khẩu ban đầu.</p></div></div>
+     <label for="teacherStudentName">Họ và tên học viên</label><input id="teacherStudentName" placeholder="Nguyễn Văn A" autocomplete="off" required maxlength="100">
+     <label for="teacherStudentEmail">Email học viên</label><input id="teacherStudentEmail" type="email" placeholder="hocvien@example.com" autocomplete="off" required maxlength="180">
+     <button class="teacher-primary" type="submit" id="teacherCreateStudentBtn">+ Tạo tài khoản học viên</button>
+     <div class="teacher-password-box" id="teacherNewAccount" hidden>
+      <strong>Đã tạo tài khoản</strong><p>Email: <span id="teacherNewEmail"></span></p>
+      <p>Mật khẩu ban đầu (chỉ hiển thị lần này):</p>
+      <div class="teacher-copy-line"><code id="teacherTempPassword"></code><button type="button" id="teacherCopyPassword" class="teacher-outline">Sao chép</button></div>
+      <p>Hãy gửi riêng cho học viên và yêu cầu đổi mật khẩu ngay sau khi đăng nhập.</p>
+     </div>
+    </form>
+    <div class="teacher-panel teacher-student-list">
+     <div class="teacher-list-top"><h3>Học viên ALI</h3><input type="search" id="teacherStudentSearch" placeholder="Tìm theo tên hoặc email…" aria-label="Tìm học viên"></div>
+     <div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>Học viên</th><th>Email</th><th>Trạng thái</th><th>Quản lý</th></tr></thead>
+      <tbody id="teacherStudentRows"><tr><td colspan="4">Đang tải danh sách…</td></tr></tbody></table></div>
+     <p class="teacher-panel-tip">Chỉ tài khoản có quyền giáo viên hoặc quản trị viên mới được quản lý học viên.</p>
+    </div>
+   </div>
+  </section>
+
+  <section id="teacherPaneMovies" class="teacher-section" role="tabpanel" hidden>
+   <div class="section-head"><div><span class="teacher-eyebrow">BILINGUAL CINEMA · TEACHER PUBLISHING</span><h2>Đăng phim song ngữ</h2><p>Giáo viên được <strong>xuất bản trực tiếp, không cần Admin duyệt</strong>. Hệ thống vẫn kiểm tra MP4, tiếng, phụ đề và quyền sử dụng.</p></div>
+    <a href="./movies.html" class="teacher-outline">Xem thư viện ↗</a></div>
+   <div class="teacher-layout teacher-upload-layout">
+    <form id="teacherMovieForm" class="teacher-panel teacher-movie-form">
+      <div class="teacher-panel-heading"><span class="teacher-icon">▶</span><div><h3>Thêm video mới</h3><p>Định dạng đúng quy chuẩn ALI-CINEMA-STD-01.</p></div></div>
+      <label for="teacherMovieTitle">Tên video / phim</label><input id="teacherMovieTitle" required maxlength="180" placeholder="Tên phim song ngữ">
+      <label for="teacherMovieDescription">Mô tả</label><textarea id="teacherMovieDescription" required maxlength="500" rows="3" placeholder="Nội dung học tập, cấp độ phù hợp…"></textarea>
+      <div class="teacher-file-grid">
+       <div><label for="teacherMovieVideo">Video MP4 <em>*</em></label><input type="file" id="teacherMovieVideo" accept="video/mp4,.mp4" required><small>H.264 + AAC, ≤720p, dưới 90 MB. Không tải nguyên bản HEVC lên.</small></div>
+       <div><label for="teacherMovieCaptions">Phụ đề song ngữ <em>*</em></label><input type="file" id="teacherMovieCaptions" accept=".json,.srt,application/json,text/plain" required><small>JSON theo chuẩn ALI hoặc SRT: một dòng Anh, một dòng Việt.</small></div>
+      </div>
+      <label for="teacherMoviePoster">Ảnh xem trước (không bắt buộc)</label><input type="file" id="teacherMoviePoster" accept="image/jpeg,image/png,image/webp"><small class="form-hint">Bỏ trống để hệ thống tự lấy ảnh từ một khung hình của phim.</small>
+      <div class="teacher-preview-box" id="teacherPreviewBox">
+        <div class="teacher-preview-image" id="teacherPreviewImage"><span>▣</span><small>Ảnh xem trước video</small></div>
+        <div class="teacher-preview-info"><strong id="teacherPreviewDuration">Chưa chọn video</strong><span id="teacherCaptionCount">Chưa chọn phụ đề</span></div>
+      </div>
+      <div class="teacher-consents">
+       <label><input type="checkbox" id="teacherRights" required><span>Tôi xác nhận ALI có quyền sử dụng và phát video này cho học viên.</span></label>
+       <label><input type="checkbox" id="teacherEnglishChecked" required><span>Tôi đã nghe, kiểm tra lời thoại tiếng Anh.</span></label>
+       <label><input type="checkbox" id="teacherVietnameseChecked" required><span>Tôi đã kiểm tra bản dịch tiếng Việt.</span></label>
+       <label><input type="checkbox" id="teacherTimesChecked" required><span>Tôi đã đối chiếu mốc thời gian phụ đề với đúng video.</span></label>
+      </div>
+      <div id="teacherMovieProgress" class="teacher-upload-status" role="status" aria-live="polite" hidden>
+       <div class="teacher-upload-progress"><div id="teacherUploadFill"></div></div><span id="teacherUploadText">Đang tải video…</span>
+      </div>
+      <button type="submit" class="teacher-primary" id="teacherPublishBtn">↑ Tải lên & xuất bản phim ngay</button>
+      <p class="teacher-panel-tip">Không có bước Admin phê duyệt. Nếu video hoặc phụ đề sai định dạng, hệ thống sẽ từ chối xuất bản và nêu lý do.</p>
+    </form>
+    <aside class="teacher-panel teacher-guidelines">
+      <div class="teacher-panel-heading"><span class="teacher-icon">✓</span><div><h3>Quy chuẩn phim ALI</h3><p>Áp dụng tự động cho mọi video giáo viên tải lên.</p></div></div>
+      <ol>
+       <li><strong>Video chính:</strong> MP4 H.264/AAC, có thể tua trên trình HTML5.</li>
+       <li><strong>Phụ đề:</strong> có cả EN và VI, đúng thời gian từng câu.</li>
+       <li><strong>Giao diện:</strong> phim trái, phụ đề phải trên máy tính; điện thoại xếp trên–dưới.</li>
+       <li><strong>Học tập:</strong> tự cuộn, làm nổi bật câu hiện tại, nhấn câu để tua.</li>
+       <li><strong>Hiệu ứng:</strong> Minimal Glassmorphism và ảnh xem trước từ phim thật.</li>
+      </ol>
+      <a href="https://github.com/Lehuy17/aliacademy/blob/main/docs/ALI_MOVIE_STANDARD.md" target="_blank" rel="noopener noreferrer" class="teacher-guideline-link">Xem quy chuẩn ALI-CINEMA-STD-01 ↗</a>
+      <div class="teacher-published-list"><h3>Phim đã xuất bản qua Dashboard</h3><div id="teacherMovieRows">Đang tải danh sách…</div></div>
+    </aside>
+   </div>
+  </section>
+ </section>
+</main><script type="module" src="./ali-teacher.js?v=1"></script></body></html>
