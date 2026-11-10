@@ -31,17 +31,16 @@ jobs:
             sudo apt-get install -y ffmpeg
           fi
 
-      - name: Download ALI Descript render
+      - name: Download ALI Descript MP4 export
+        env:
+          DESCRIPT_EXPORT_URL: 'https://media.descriptusercontent.com/v3/proxy/remux?url=https%3A%2F%2Fapi.descript.com%2Fv2%2Fpublished_projects%2F2fe01c1d-c616-41e7-86ee-287309c5fe50%2Fhls%3Fexpiration%3D1794374961137%26signature%3Daec16b7f5a878bc4264d0d750a651b11f9ceca1f65fe0c44a56341bd8ab6ad6f&filename=Transcript.mp4&mediaCacheBucketName=production-273614-media-cache&expiration=1794371361&signature=55dc90a1e23f2c8949c4d547bc981b50c1252ca6151a6617b41f3279b3271f42'
         run: |
           mkdir -p /tmp/ali-kungfu
-          "$HOME/.local/bin/yt-dlp" \
-            --no-playlist \
-            --retries 5 --fragment-retries 5 \
-            --merge-output-format mp4 \
-            -o '/tmp/ali-kungfu/input.%(ext)s' \
-            'https://share.descript.com/view/NQp2HjjvSGV'
-          ls -lh /tmp/ali-kungfu
-          test -n "$(find /tmp/ali-kungfu -type f -size +3M -print -quit)"
+          curl --fail --location --silent --show-error \
+            --retry 4 --retry-delay 6 --retry-all-errors \
+            --output /tmp/ali-kungfu/input.mp4 "$DESCRIPT_EXPORT_URL"
+          test "$(stat -c%s /tmp/ali-kungfu/input.mp4)" -gt 3000000
+          ffprobe -v error -show_entries format=duration -of default=nw=1 /tmp/ali-kungfu/input.mp4
 
       - name: Convert to standardized HTML5 MP4 and real poster
         run: |
