@@ -1,81 +1,1861 @@
 {
-  "source": "User-supplied Spider-Man MP4. Preliminary short transcript excerpts derived from offline speech recognition. Manual review REQUIRED.",
-  "status": "draft_partial_unverified",
+  "source": "Descript automatically transcribed English from user-supplied 581.289s Spider-Man MP4; Vietnamese translations assistant drafted. NOT human reviewed.",
+  "status": "machine_transcript_in_progress",
   "duration": 581.289,
   "synchronized": false,
-  "note": "Chỉ có một số câu được nhận dạng sơ bộ, chưa phải phụ đề đầy đủ hay được kiểm duyệt. Mốc thời gian ước lượng; trình nhúng Google Drive không cho điều khiển phát bằng hàng phụ đề.",
+  "provenance": {
+    "project_url": "https://web.descript.com/382a24b8-8a72-412e-a233-55d92b8ff0f0/ca71f",
+    "language": "en",
+    "reviewed": false
+  },
   "cues": [
     {
-      "start": 21.4,
-      "end": 25.4,
-      "en": "Try to cure them while they try to kill us.",
-      "vi": "Cố chữa cho họ trong khi họ đang cố giết chúng ta."
+      "n": 1,
+      "start": 0.576,
+      "end": 0.867,
+      "en": "Peter.",
+      "vi": "Peter."
     },
     {
-      "start": 72.4,
-      "end": 75.2,
-      "en": "I won't turn into a supervillain.",
-      "vi": "Tôi sẽ không biến thành một siêu phản diện."
+      "n": 2,
+      "start": 1.174,
+      "end": 1.347,
+      "en": "Yeah.",
+      "vi": "Ừ."
     },
     {
-      "start": 77.4,
-      "end": 78.4,
+      "n": 3,
+      "start": 1.351,
+      "end": 1.689,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "n": 4,
+      "start": 2.195,
+      "end": 3.056,
+      "en": "Oh, sorry.",
+      "vi": "Ồ, xin lỗi."
+    },
+    {
+      "n": 5,
+      "start": 3.056,
+      "end": 3.34,
+      "en": "Oh, sorry.",
+      "vi": "Xin lỗi."
+    },
+    {
+      "n": 6,
+      "start": 3.341,
+      "end": 5.596,
+      "en": "Did you mean- Did you mean- That or Peter, Peter.",
+      "vi": "Ý cậu là... Peter nào ấy nhỉ?"
+    },
+    {
+      "n": 7,
+      "start": 5.728,
+      "end": 6.104,
+      "en": "We're all",
+      "vi": "Tất cả chúng ta đều"
+    },
+    {
+      "n": 8,
+      "start": 6.107,
+      "end": 6.411,
+      "en": "calling",
+      "vi": "gọi"
+    },
+    {
+      "n": 9,
+      "start": 6.411,
+      "end": 6.619,
+      "en": "you Peter.",
+      "vi": "cậu là Peter."
+    },
+    {
+      "n": 10,
+      "start": 6.619,
+      "end": 7.226,
+      "en": "Yeah, we're all-",
+      "vi": "Đúng, cả bọn đều..."
+    },
+    {
+      "n": 11,
+      "start": 7.253,
+      "end": 8.332,
+      "en": "Peter Parker.",
+      "vi": "Peter Parker."
+    },
+    {
+      "n": 12,
+      "start": 8.361,
+      "end": 8.801,
+      "en": "Same thing.",
+      "vi": "Cũng như nhau mà."
+    },
+    {
+      "n": 13,
+      "start": 9.058,
+      "end": 9.53,
+      "en": "We're all Peter",
+      "vi": "Tất cả chúng ta đều là Peter"
+    },
+    {
+      "n": 14,
+      "start": 9.53,
+      "end": 9.939,
+      "en": "Parker.",
+      "vi": "Parker."
+    },
+    {
+      "n": 15,
+      "start": 10.885,
+      "end": 11.661,
+      "en": "The computer.",
+      "vi": "Cái máy tính."
+    },
+    {
+      "n": 16,
+      "start": 11.802,
+      "end": 12.165,
+      "en": "Oh.",
+      "vi": "Ồ."
+    },
+    {
+      "n": 17,
+      "start": 13.604,
+      "end": 14.23,
+      "en": "Oh, I'm ready.",
+      "vi": "Ồ, tôi sẵn sàng rồi."
+    },
+    {
+      "n": 18,
+      "start": 14.292,
+      "end": 15.14,
+      "en": "Yeah, me too.",
+      "vi": "Ừ, tôi cũng vậy."
+    },
+    {
+      "n": 19,
+      "start": 15.153,
+      "end": 19.591,
+      "en": "Okay, so now all we gotta do is lure these guys someplace, right?",
+      "vi": "Được rồi, giờ ta chỉ cần dụ những gã này đến một chỗ, đúng không?"
+    },
+    {
+      "n": 20,
+      "start": 20.237,
+      "end": 24.942,
+      "en": "Try to cure them while they try to kill us, and then send them home.",
+      "vi": "Cố chữa cho họ trong khi họ tìm cách giết chúng ta, rồi đưa họ về nhà."
+    },
+    {
+      "n": 21,
+      "start": 25.426,
+      "end": 26.631,
+      "en": "Using a magic box.",
+      "vi": "Bằng một chiếc hộp phép thuật."
+    },
+    {
+      "n": 22,
+      "start": 26.631,
+      "end": 26.793,
+      "en": "Well,",
+      "vi": "Ừm,"
+    },
+    {
+      "n": 23,
+      "start": 26.898,
+      "end": 27.654,
+      "en": "that's the plan.",
+      "vi": "đó là kế hoạch."
+    },
+    {
+      "n": 24,
+      "start": 27.985,
+      "end": 30.195,
+      "en": "So wait, are you gonna go into battle dressed as a cool youth",
+      "vi": "Khoan, cậu định ra trận trong bộ dạng một mục sư thanh niên sành điệu"
+    },
+    {
+      "n": 25,
+      "start": 30.198,
+      "end": 31.987,
+      "en": "pastor, or you got your suit?",
+      "vi": "hay cậu có bộ đồ riêng?"
+    },
+    {
+      "n": 26,
+      "start": 34.559,
+      "end": 34.772,
+      "en": "Good.",
+      "vi": "Tốt."
+    },
+    {
+      "n": 27,
+      "start": 35.338,
+      "end": 36.305,
+      "en": "Here's your web cartridges.",
+      "vi": "Đạn tơ nhện của cậu đây."
+    },
+    {
+      "n": 28,
+      "start": 36.52,
+      "end": 37.347,
+      "en": "Oh, thanks, man.",
+      "vi": "Ồ, cảm ơn anh."
+    },
+    {
+      "n": 29,
+      "start": 37.698,
+      "end": 38.366,
+      "en": "What's that for?",
+      "vi": "Cái đó để làm gì?"
+    },
+    {
+      "n": 30,
+      "start": 39.259,
+      "end": 40.167,
+      "en": "Uh, it's my web fluid.",
+      "vi": "Ờ, đó là dung dịch tơ nhện của tôi."
+    },
+    {
+      "n": 31,
+      "start": 40.168,
+      "end": 41.166,
+      "en": "It's for my web shooters.",
+      "vi": "Dùng cho thiết bị bắn tơ."
+    },
+    {
+      "n": 32,
+      "start": 41.276,
+      "end": 41.573,
+      "en": "Why?",
+      "vi": "Sao cơ?"
+    },
+    {
+      "n": 33,
+      "start": 43.121,
+      "end": 43.659,
+      "en": "Whoa!",
+      "vi": "Chà!"
+    },
+    {
+      "n": 34,
+      "start": 45.56,
+      "end": 46.306,
+      "en": "That came out of you.",
+      "vi": "Cái đó phóng ra từ cơ thể anh à?"
+    },
+    {
+      "n": 35,
+      "start": 46.37,
+      "end": 46.832,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "n": 36,
+      "start": 47.306,
+      "end": 48.378,
+      "en": "You can't do that, huh?",
+      "vi": "Hai cậu không làm được thế hả?"
+    },
+    {
+      "n": 37,
+      "start": 48.543,
+      "end": 49.016,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "n": 38,
+      "start": 49.045,
+      "end": 51.666,
+      "en": "How on earth does that even- Anyway, we're getting sidetracked.",
+      "vi": "Thế quái nào mà... Thôi, chúng ta lạc đề rồi."
+    },
+    {
+      "n": 39,
+      "start": 51.666,
+      "end": 53.325,
+      "en": "Look, this is where we're gonna do this, okay?",
+      "vi": "Nghe này, chúng ta sẽ thực hiện ở đây, được chứ?"
+    },
+    {
+      "n": 40,
+      "start": 53.325,
+      "end": 55.07,
+      "en": "It's isolated, so no one should get hurt.",
+      "vi": "Nơi này biệt lập, sẽ không ai bị thương."
+    },
+    {
+      "n": 41,
+      "start": 56.372,
+      "end": 57.356,
+      "en": "We draw them there with the box.",
+      "vi": "Ta dùng chiếc hộp dụ họ đến đó."
+    },
+    {
+      "n": 42,
+      "start": 57.356,
+      "end": 58.485,
+      "en": "It's the one thing they all want.",
+      "vi": "Đó là thứ mà tất cả bọn họ đều muốn."
+    },
+    {
+      "n": 43,
+      "start": 58.73,
+      "end": 60.694,
+      "en": "All we have to do is figure out how we're gonna get there.",
+      "vi": "Ta chỉ cần tìm cách đến nơi đó."
+    },
+    {
+      "n": 44,
+      "start": 60.85,
+      "end": 61.735,
+      "en": "Oh, we could portal there.",
+      "vi": "Ồ, tôi có thể mở cổng dịch chuyển."
+    },
+    {
+      "n": 45,
+      "start": 61.978,
+      "end": 62.298,
+      "en": "What?",
+      "vi": "Cái gì?"
+    },
+    {
+      "n": 46,
+      "start": 62.382,
+      "end": 63.087,
+      "en": "I'm magic now.",
+      "vi": "Giờ tôi biết dùng phép thuật rồi."
+    },
+    {
+      "n": 47,
+      "start": 63.17,
+      "end": 63.408,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "n": 48,
+      "start": 63.41,
+      "end": 64.038,
+      "en": "No, no, he's right.",
+      "vi": "Không, cậu ấy nói đúng đấy."
+    },
+    {
+      "n": 49,
+      "start": 64.039,
+      "end": 64.904,
+      "en": "Yeah, he can, he can.",
+      "vi": "Ừ, cậu ấy làm được thật."
+    },
+    {
+      "n": 50,
+      "start": 64.956,
+      "end": 65.498,
+      "en": "Yeah, we saw.",
+      "vi": "Ừ, bọn tôi đã thấy."
+    },
+    {
+      "n": 51,
+      "start": 65.525,
+      "end": 66.051,
+      "en": "Yeah, he is.",
+      "vi": "Ừ, đúng vậy."
+    },
+    {
+      "n": 52,
+      "start": 67.027,
+      "end": 67.597,
+      "en": "Wait, really?",
+      "vi": "Khoan, thật sao?"
+    },
+    {
+      "n": 53,
+      "start": 67.621,
+      "end": 68.325,
+      "en": "Dude, I got Dr.",
+      "vi": "Này, tôi có phép thuật của Tiến sĩ"
+    },
+    {
+      "n": 54,
+      "start": 68.326,
+      "end": 69.275,
+      "en": "Strange magic.",
+      "vi": "Strange đấy."
+    },
+    {
+      "n": 55,
+      "start": 69.285,
+      "end": 69.367,
+      "en": "No",
+      "vi": "Không"
+    },
+    {
+      "n": 56,
+      "start": 69.375,
+      "end": 69.611,
+      "en": "way.",
+      "vi": "thể nào."
+    },
+    {
+      "n": 57,
+      "start": 69.613,
+      "end": 69.911,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "n": 58,
+      "start": 70.97,
+      "end": 74.039,
+      "en": "And I promise you, I won't turn into a super villain and try to kill you",
+      "vi": "Và tôi hứa sẽ không biến thành siêu phản diện rồi tìm cách giết các cậu."
+    },
+    {
+      "n": 59,
+      "start": 76.798,
+      "end": 77.649,
       "en": "Okay.",
-      "vi": "Được thôi."
+      "vi": "Được rồi."
     },
     {
-      "start": 78.8,
-      "end": 80.4,
-      "en": "Thank you.",
+      "n": 60,
+      "start": 78.902,
+      "end": 79.639,
+      "en": "Thank you",
       "vi": "Cảm ơn."
     },
     {
-      "start": 84.8,
-      "end": 86.2,
-      "en": "Oh, hi.",
-      "vi": "Ồ, chào."
+      "n": 61,
+      "start": 84.827,
+      "end": 86.505,
+      "en": "Um, all right.",
+      "vi": "Ừm, được rồi."
     },
     {
-      "start": 103.4,
-      "end": 105.1,
-      "en": "Ladies and gentlemen.",
-      "vi": "Thưa quý vị."
+      "n": 62,
+      "start": 86.538,
+      "end": 87.285,
+      "en": "Here goes nothing.",
+      "vi": "Thử xem nào."
     },
     {
-      "start": 106,
-      "end": 110.4,
-      "en": "...the fugitive known as Spider-Man.",
-      "vi": "...kẻ đang bị truy nã được biết đến với tên Spider-Man."
+      "n": 63,
+      "start": 87.285,
+      "end": 88.368,
+      "en": "What's that thing you always say?",
+      "vi": "Câu mà cậu hay nói là gì ấy nhỉ?"
     },
     {
-      "start": 169.1,
-      "end": 171.9,
-      "en": "Friendly neighborhood Spider-Man.",
-      "vi": "Người Nhện thân thiện của khu phố."
+      "n": 64,
+      "start": 89.294,
+      "end": 90.634,
+      "en": "Expect disappointment and-",
+      "vi": "Hãy chuẩn bị tinh thần thất vọng và..."
     },
     {
-      "start": 195.1,
-      "end": 198.3,
-      "en": "Cool electric eels. That'll do it.",
-      "vi": "Những con lươn điện thú vị đấy. Thế là đủ rồi."
+      "n": 65,
+      "start": 90.634,
+      "end": 91.41,
+      "en": "No, no, no, no.",
+      "vi": "Không, không, không."
     },
     {
-      "start": 238.2,
-      "end": 240.5,
-      "en": "Yeah, this is so cool.",
-      "vi": "Ừ, chuyện này thật tuyệt."
+      "n": 66,
+      "start": 93.207,
+      "end": 94.294,
+      "en": "We're gonna kick some ass.",
+      "vi": "Chúng ta sẽ cho chúng một trận!"
     },
     {
-      "start": 281,
-      "end": 284.2,
-      "en": "That is a hassle.",
-      "vi": "Chuyện đó phiền phức thật."
+      "n": 67,
+      "start": 95.157,
+      "end": 95.66,
+      "en": "Okay.",
+      "vi": "Được."
     },
     {
-      "start": 336.2,
-      "end": 340.1,
-      "en": "I think you are amazing.",
-      "vi": "Tôi nghĩ cậu thật tuyệt vời."
+      "n": 68,
+      "start": 96.577,
+      "end": 96.91,
+      "en": "Cure.",
+      "vi": "Chữa trị."
+    },
+    {
+      "n": 69,
+      "start": 98.003,
+      "end": 98.818,
+      "en": "Cure some ass.",
+      "vi": "Chữa cho chúng một trận!"
+    },
+    {
+      "n": 70,
+      "start": 99.417,
+      "end": 100.47,
+      "en": "Cure that ass",
+      "vi": "Chữa cho chúng!"
+    },
+    {
+      "n": 71,
+      "start": 103.479,
+      "end": 107.42,
+      "en": "Ladies and gentlemen, the Bugle tip line has just received a call from none other",
+      "vi": "Thưa quý vị, đường dây nóng Bugle vừa nhận được cuộc gọi từ chính"
+    },
+    {
+      "n": 72,
+      "start": 107.422,
+      "end": 112.42,
+      "en": "than the fugitive known as Spider-Man, fresh from his rampage in Queens.",
+      "vi": "kẻ bị truy nã mang tên Người Nhện, sau vụ náo loạn ở Queens."
+    },
+    {
+      "n": 73,
+      "start": 113.418,
+      "end": 117.25,
+      "en": "So Peter Parker, what pernicious propaganda are you peddling?",
+      "vi": "Peter Parker, cậu đang rao giảng trò tuyên truyền độc hại nào đây?"
+    },
+    {
+      "n": 74,
+      "start": 117.501,
+      "end": 118.216,
+      "en": "Just the truth.",
+      "vi": "Chỉ là sự thật thôi."
+    },
+    {
+      "n": 75,
+      "start": 118.285,
+      "end": 119.212,
+      "en": "Oh, sure.",
+      "vi": "Ồ, chắc rồi."
+    },
+    {
+      "n": 76,
+      "start": 119.564,
+      "end": 123.189,
+      "en": "The truth is that this is all my fault.",
+      "vi": "Sự thật là tất cả chuyện này đều do lỗi của tôi."
+    },
+    {
+      "n": 77,
+      "start": 123.606,
+      "end": 123.81,
+      "en": "Hmm.",
+      "vi": "Hừm."
+    },
+    {
+      "n": 78,
+      "start": 124.306,
+      "end": 126.575,
+      "en": "I accidentally brought those dangerous people here.",
+      "vi": "Tôi đã vô tình đưa những kẻ nguy hiểm đó đến đây."
+    },
+    {
+      "n": 79,
+      "start": 126.918,
+      "end": 128.401,
+      "en": "Well, he admits it.",
+      "vi": "Đấy, cậu ta thừa nhận rồi!"
+    },
+    {
+      "n": 80,
+      "start": 128.595,
+      "end": 129.853,
+      "en": "And if those people are watching-",
+      "vi": "Và nếu những người đó đang theo dõi..."
+    },
+    {
+      "n": 81,
+      "start": 132.288,
+      "end": 133.81,
+      "en": "Just know that I really did try to help you.",
+      "vi": "Xin hãy biết rằng tôi đã thực sự cố giúp các người."
+    },
+    {
+      "n": 82,
+      "start": 135.504,
+      "end": 140.119,
+      "en": "I mean, I could have killed you at any given moment, but I didn't",
+      "vi": "Tôi có thể giết các người bất kỳ lúc nào, nhưng tôi đã không làm vậy."
+    },
+    {
+      "n": 83,
+      "start": 142.66,
+      "end": 144.605,
+      "en": "'Cause my Aunt May taught me that everyone deserves a second",
+      "vi": "Vì dì May đã dạy tôi rằng ai cũng xứng đáng có cơ hội"
+    },
+    {
+      "n": 84,
+      "start": 144.606,
+      "end": 146.759,
+      "en": "chance, and that's why I'm here.",
+      "vi": "thứ hai, và đó là lý do tôi có mặt ở đây."
+    },
+    {
+      "n": 85,
+      "start": 146.958,
+      "end": 148.659,
+      "en": "And where is here exactly?",
+      "vi": "Vậy chính xác thì 'đây' là đâu?"
+    },
+    {
+      "n": 86,
+      "start": 150.814,
+      "end": 152.71,
+      "en": "A place that represents second chances",
+      "vi": "Một nơi tượng trưng cho cơ hội làm lại."
+    },
+    {
+      "n": 87,
+      "start": 155.774,
+      "end": 157.01,
+      "en": "The Statue of Liberty?",
+      "vi": "Tượng Nữ thần Tự do ư?"
+    },
+    {
+      "n": 88,
+      "start": 157.036,
+      "end": 158.075,
+      "en": "Good God, folks.",
+      "vi": "Trời đất, thưa quý vị!"
+    },
+    {
+      "n": 89,
+      "start": 158.454,
+      "end": 161.297,
+      "en": "He's about to destroy another national landmark",
+      "vi": "Cậu ta sắp phá hủy thêm một địa danh biểu tượng quốc gia!"
+    },
+    {
+      "n": 90,
+      "start": 161.886,
+      "end": 163.121,
+      "en": "The world, if you're watching-",
+      "vi": "Cả thế giới, nếu mọi người đang xem..."
+    },
+    {
+      "n": 91,
+      "start": 163.493,
+      "end": 164.818,
+      "en": "Believe me, the world is watching",
+      "vi": ""
+    },
+    {
+      "n": 92,
+      "start": 166.362,
+      "end": 167.003,
+      "en": "… wish me luck",
+      "vi": ""
+    },
+    {
+      "n": 93,
+      "start": 169.308,
+      "end": 171.217,
+      "en": "Your friendly neighborhood Spider-Man could really use some",
+      "vi": ""
+    },
+    {
+      "n": 94,
+      "start": 178.108,
+      "end": 179.721,
+      "en": "Okay, guys, it could be any minute now.",
+      "vi": ""
+    },
+    {
+      "n": 95,
+      "start": 180.577,
+      "end": 182.674,
+      "en": "Yep, almost done",
+      "vi": ""
+    },
+    {
+      "n": 96,
+      "start": 187.39,
+      "end": 193.179,
+      "en": "You know, Max was, like, the sweetest guy ever before he fell",
+      "vi": ""
+    },
+    {
+      "n": 97,
+      "start": 193.18,
+      "end": 196.277,
+      "en": "into a pool of electric eels.",
+      "vi": ""
+    },
+    {
+      "n": 98,
+      "start": 196.652,
+      "end": 197.446,
+      "en": "That'll do it.",
+      "vi": ""
+    },
+    {
+      "n": 99,
+      "start": 200.234,
+      "end": 201.42,
+      "en": "Oh, there it goes.",
+      "vi": ""
+    },
+    {
+      "n": 100,
+      "start": 204.243,
+      "end": 204.867,
+      "en": "You okay?",
+      "vi": ""
+    },
+    {
+      "n": 101,
+      "start": 204.97,
+      "end": 206.802,
+      "en": "Oh, it's my back.",
+      "vi": ""
+    },
+    {
+      "n": 102,
+      "start": 207.019,
+      "end": 210.053,
+      "en": "It's kinda stiff from all the swinging, I guess.",
+      "vi": ""
+    },
+    {
+      "n": 103,
+      "start": 210.089,
+      "end": 210.66,
+      "en": "Oh, yeah.",
+      "vi": ""
+    },
+    {
+      "n": 104,
+      "start": 210.661,
+      "end": 212.015,
+      "en": "No, I got a middle back thing too.",
+      "vi": ""
+    },
+    {
+      "n": 105,
+      "start": 212.037,
+      "end": 212.386,
+      "en": "Really?",
+      "vi": ""
+    },
+    {
+      "n": 106,
+      "start": 212.505,
+      "end": 212.939,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 107,
+      "start": 213.515,
+      "end": 214.418,
+      "en": "Y- you want me to crack it?",
+      "vi": ""
+    },
+    {
+      "n": 108,
+      "start": 215.922,
+      "end": 216.388,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 109,
+      "start": 216.641,
+      "end": 216.811,
+      "en": "Yeah?",
+      "vi": ""
+    },
+    {
+      "n": 110,
+      "start": 217.373,
+      "end": 217.978,
+      "en": "Yeah, that'd be great.",
+      "vi": ""
+    },
+    {
+      "n": 111,
+      "start": 218.042,
+      "end": 218.403,
+      "en": "All right.",
+      "vi": ""
+    },
+    {
+      "n": 112,
+      "start": 220.248,
+      "end": 220.584,
+      "en": "You ready?",
+      "vi": ""
+    },
+    {
+      "n": 113,
+      "start": 220.63,
+      "end": 220.917,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 114,
+      "start": 224.738,
+      "end": 225.786,
+      "en": "Yeah, that's good.",
+      "vi": ""
+    },
+    {
+      "n": 115,
+      "start": 227.184,
+      "end": 227.583,
+      "en": "That was it.",
+      "vi": ""
+    },
+    {
+      "n": 116,
+      "start": 228.152,
+      "end": 228.662,
+      "en": "Wow.",
+      "vi": ""
+    },
+    {
+      "n": 117,
+      "start": 230.49,
+      "end": 231.02,
+      "en": "That's good.",
+      "vi": ""
+    },
+    {
+      "n": 118,
+      "start": 231.18,
+      "end": 231.599,
+      "en": "Right?",
+      "vi": ""
+    },
+    {
+      "n": 119,
+      "start": 231.645,
+      "end": 232.181,
+      "en": "That's better.",
+      "vi": ""
+    },
+    {
+      "n": 120,
+      "start": 232.184,
+      "end": 232.599,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 121,
+      "start": 233.217,
+      "end": 233.682,
+      "en": "Wow.",
+      "vi": ""
+    },
+    {
+      "n": 122,
+      "start": 237.128,
+      "end": 238.026,
+      "en": "Ah, this is so cool.",
+      "vi": ""
+    },
+    {
+      "n": 123,
+      "start": 238.765,
+      "end": 239.731,
+      "en": "I always wanted brothers.",
+      "vi": ""
+    },
+    {
+      "n": 124,
+      "start": 241.511,
+      "end": 244.544,
+      "en": "So you, like, make your own web fluid in your body?",
+      "vi": ""
+    },
+    {
+      "n": 125,
+      "start": 244.813,
+      "end": 246.729,
+      "en": "I'd, I'd rather not talk about this.",
+      "vi": ""
+    },
+    {
+      "n": 126,
+      "start": 246.755,
+      "end": 247.823,
+      "en": "No, I don't mean to- But are",
+      "vi": ""
+    },
+    {
+      "n": 127,
+      "start": 247.823,
+      "end": 248.505,
+      "en": "you teasing",
+      "vi": ""
+    },
+    {
+      "n": 128,
+      "start": 248.511,
+      "end": 248.662,
+      "en": "me?",
+      "vi": ""
+    },
+    {
+      "n": 129,
+      "start": 248.662,
+      "end": 248.909,
+      "en": "No, no, no.",
+      "vi": ""
+    },
+    {
+      "n": 130,
+      "start": 248.91,
+      "end": 249.361,
+      "en": "No, no, no.",
+      "vi": ""
+    },
+    {
+      "n": 131,
+      "start": 249.361,
+      "end": 250.267,
+      "en": "He's not teasing you.",
+      "vi": ""
+    },
+    {
+      "n": 132,
+      "start": 250.268,
+      "end": 252.474,
+      "en": "It's just that we can't do that.",
+      "vi": ""
+    },
+    {
+      "n": 133,
+      "start": 252.475,
+      "end": 255.432,
+      "en": "So naturally we're curious as to how your web situation works.",
+      "vi": ""
+    },
+    {
+      "n": 134,
+      "start": 255.545,
+      "end": 255.903,
+      "en": "That's all.",
+      "vi": ""
+    },
+    {
+      "n": 135,
+      "start": 255.903,
+      "end": 257.99,
+      "en": "But if, if it's personal, I don't wanna, like, pry.",
+      "vi": ""
+    },
+    {
+      "n": 136,
+      "start": 258.018,
+      "end": 258.103,
+      "en": "No.",
+      "vi": ""
+    },
+    {
+      "n": 137,
+      "start": 258.103,
+      "end": 258.941,
+      "en": "But I just think it's cool.",
+      "vi": ""
+    },
+    {
+      "n": 138,
+      "start": 259.111,
+      "end": 262.077,
+      "en": "I, I wish I could tell you, but it's like I don't do it.",
+      "vi": ""
+    },
+    {
+      "n": 139,
+      "start": 262.077,
+      "end": 262.703,
+      "en": "Like, I don't…",
+      "vi": ""
+    },
+    {
+      "n": 140,
+      "start": 263.199,
+      "end": 264.445,
+      "en": "Like I don't do breathing.",
+      "vi": ""
+    },
+    {
+      "n": 141,
+      "start": 264.463,
+      "end": 265.932,
+      "en": "Like, breathing just happens.",
+      "vi": ""
+    },
+    {
+      "n": 142,
+      "start": 265.954,
+      "end": 266.329,
+      "en": "Whoa.",
+      "vi": ""
+    },
+    {
+      "n": 143,
+      "start": 266.44,
+      "end": 269.688,
+      "en": "Like, does it just come out of your wrists, or does it",
+      "vi": ""
+    },
+    {
+      "n": 144,
+      "start": 269.688,
+      "end": 270.991,
+      "en": "come out of anywhere else?",
+      "vi": ""
+    },
+    {
+      "n": 145,
+      "start": 271.208,
+      "end": 272.849,
+      "en": "Only, only the wrists.",
+      "vi": ""
+    },
+    {
+      "n": 146,
+      "start": 272.884,
+      "end": 273.991,
+      "en": "You never had a web block?",
+      "vi": ""
+    },
+    {
+      "n": 147,
+      "start": 274.035,
+      "end": 275.447,
+      "en": "'Cause I run out of webs all the time.",
+      "vi": ""
+    },
+    {
+      "n": 148,
+      "start": 275.51,
+      "end": 277.235,
+      "en": "I have to make my own in a lab.",
+      "vi": ""
+    },
+    {
+      "n": 149,
+      "start": 277.235,
+      "end": 277.245,
+      "en": "Right.",
+      "vi": ""
+    },
+    {
+      "n": 150,
+      "start": 277.713,
+      "end": 278.156,
+      "en": "That's- And",
+      "vi": ""
+    },
+    {
+      "n": 151,
+      "start": 278.156,
+      "end": 279.372,
+      "en": "it's a hassle",
+      "vi": ""
+    },
+    {
+      "n": 152,
+      "start": 279.385,
+      "end": 281.031,
+      "en": "compared to what you got … that sounds like a hassle, yeah.",
+      "vi": ""
+    },
+    {
+      "n": 153,
+      "start": 281.059,
+      "end": 282.108,
+      "en": "But I, I did, actually.",
+      "vi": ""
+    },
+    {
+      "n": 154,
+      "start": 282.108,
+      "end": 284.606,
+      "en": "You said that, I was like, \"Oh, I had a web block.\"",
+      "vi": ""
+    },
+    {
+      "n": 155,
+      "start": 284.747,
+      "end": 285.201,
+      "en": "Whoa.",
+      "vi": ""
+    },
+    {
+      "n": 156,
+      "start": 285.201,
+      "end": 285.211,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 157,
+      "start": 285.223,
+      "end": 285.723,
+      "en": "Why?",
+      "vi": ""
+    },
+    {
+      "n": 158,
+      "start": 285.967,
+      "end": 287.409,
+      "en": "Existential crisis stuff.",
+      "vi": ""
+    },
+    {
+      "n": 159,
+      "start": 287.747,
+      "end": 289.453,
+      "en": "Yeah, I mean, like, don't get me started on that.",
+      "vi": ""
+    },
+    {
+      "n": 160,
+      "start": 289.463,
+      "end": 293.507,
+      "en": "Hey, what are, like, some of the craziest villains that you guys have fought?",
+      "vi": ""
+    },
+    {
+      "n": 161,
+      "start": 293.576,
+      "end": 294.935,
+      "en": "Seems you've met some of them.",
+      "vi": ""
+    },
+    {
+      "n": 162,
+      "start": 295.938,
+      "end": 296.593,
+      "en": "That's a good question.",
+      "vi": ""
+    },
+    {
+      "n": 163,
+      "start": 296.595,
+      "end": 302.046,
+      "en": "Yeah, I, I fought, uh, an alien made out of black goo once.",
+      "vi": ""
+    },
+    {
+      "n": 164,
+      "start": 302.112,
+      "end": 302.64,
+      "en": "Oh, no way.",
+      "vi": ""
+    },
+    {
+      "n": 165,
+      "start": 302.94,
+      "end": 305.471,
+      "en": "I fought an alien too, on earth and in space.",
+      "vi": ""
+    },
+    {
+      "n": 166,
+      "start": 305.537,
+      "end": 305.787,
+      "en": "Oh.",
+      "vi": ""
+    },
+    {
+      "n": 167,
+      "start": 305.835,
+      "end": 306.253,
+      "en": "Yeah, he was",
+      "vi": ""
+    },
+    {
+      "n": 168,
+      "start": 306.253,
+      "end": 306.6,
+      "en": "purple.",
+      "vi": ""
+    },
+    {
+      "n": 169,
+      "start": 306.602,
+      "end": 307.735,
+      "en": "I wanna fight an alien.",
+      "vi": ""
+    },
+    {
+      "n": 170,
+      "start": 307.842,
+      "end": 311.735,
+      "en": "I'm, I'm, I'm still, like, that you fought an alien in space.",
+      "vi": ""
+    },
+    {
+      "n": 171,
+      "start": 312.59,
+      "end": 313.61,
+      "en": "I'm lame compare…",
+      "vi": ""
+    },
+    {
+      "n": 172,
+      "start": 313.633,
+      "end": 317.053,
+      "en": "Like, I fought a Russian guy in a, like a rhinoceros machine.",
+      "vi": ""
+    },
+    {
+      "n": 173,
+      "start": 317.216,
+      "end": 319.694,
+      "en": "Can, can we rewind it back to the I'm lame part?",
+      "vi": ""
+    },
+    {
+      "n": 174,
+      "start": 319.694,
+      "end": 320.675,
+      "en": "'Cause you are not.",
+      "vi": ""
+    },
+    {
+      "n": 175,
+      "start": 320.691,
+      "end": 321.335,
+      "en": "No, thanks.",
+      "vi": ""
+    },
+    {
+      "n": 176,
+      "start": 321.335,
+      "end": 322.205,
+      "en": "No, yeah, I appreciate that.",
+      "vi": ""
+    },
+    {
+      "n": 177,
+      "start": 322.207,
+      "end": 323.148,
+      "en": "I'm not saying I'm lame.",
+      "vi": ""
+    },
+    {
+      "n": 178,
+      "start": 323.178,
+      "end": 323.356,
+      "en": "I'm just",
+      "vi": ""
+    },
+    {
+      "n": 179,
+      "start": 323.356,
+      "end": 325.27,
+      "en": "saying, like- But it's just the self-talk maybe we should, you",
+      "vi": ""
+    },
+    {
+      "n": 180,
+      "start": 325.271,
+      "end": 325.954,
+      "en": "know- Listen, I-",
+      "vi": ""
+    },
+    {
+      "n": 181,
+      "start": 325.962,
+      "end": 328.207,
+      "en": "' Cause you're, you're amazing.",
+      "vi": ""
+    },
+    {
+      "n": 182,
+      "start": 328.468,
+      "end": 329.86,
+      "en": "Just to take it in for a minute.",
+      "vi": ""
+    },
+    {
+      "n": 183,
+      "start": 329.962,
+      "end": 330.472,
+      "en": "Yeah, yeah, yeah.",
+      "vi": ""
+    },
+    {
+      "n": 184,
+      "start": 330.472,
+      "end": 330.731,
+      "en": "I can take it",
+      "vi": ""
+    },
+    {
+      "n": 185,
+      "start": 330.825,
+      "end": 330.835,
+      "en": "in.",
+      "vi": ""
+    },
+    {
+      "n": 186,
+      "start": 330.835,
+      "end": 332.628,
+      "en": "You- No, I can take it in … you are amazing.",
+      "vi": ""
+    },
+    {
+      "n": 187,
+      "start": 332.638,
+      "end": 333.003,
+      "en": "I can take it in.",
+      "vi": ""
+    },
+    {
+      "n": 188,
+      "start": 333.018,
+      "end": 333.921,
+      "en": "You are amazing.",
+      "vi": ""
+    },
+    {
+      "n": 189,
+      "start": 333.941,
+      "end": 334.252,
+      "en": "Thank you.",
+      "vi": ""
+    },
+    {
+      "n": 190,
+      "start": 334.252,
+      "end": 334.432,
+      "en": "Yeah, thanks.",
+      "vi": ""
+    },
+    {
+      "n": 191,
+      "start": 334.432,
+      "end": 334.743,
+      "en": "Will you",
+      "vi": ""
+    },
+    {
+      "n": 192,
+      "start": 334.743,
+      "end": 335.182,
+      "en": "say it?",
+      "vi": ""
+    },
+    {
+      "n": 193,
+      "start": 335.291,
+      "end": 336.461,
+      "en": "No, I kinda needed to hear that.",
+      "vi": ""
+    },
+    {
+      "n": 194,
+      "start": 336.47,
+      "end": 336.976,
+      "en": "Thank you.",
+      "vi": ""
+    },
+    {
+      "n": 195,
+      "start": 338.026,
+      "end": 338.799,
+      "en": "All right, guys, focus.",
+      "vi": ""
+    },
+    {
+      "n": 196,
+      "start": 338.806,
+      "end": 340.43,
+      "en": "Uh, you feel that?",
+      "vi": ""
+    },
+    {
+      "n": 197,
+      "start": 340.51,
+      "end": 340.882,
+      "en": "Yeah.",
+      "vi": ""
+    },
+    {
+      "n": 198,
+      "start": 348.991,
+      "end": 349.691,
+      "en": "What's up, Peter?",
+      "vi": ""
+    },
+    {
+      "n": 199,
+      "start": 353.087,
+      "end": 354.052,
+      "en": "How you like the new new?",
+      "vi": ""
+    },
+    {
+      "n": 200,
+      "start": 355.748,
+      "end": 357.758,
+      "en": "Look, you give it to me,",
+      "vi": ""
+    },
+    {
+      "n": 201,
+      "start": 358.538,
+      "end": 359.565,
+      "en": "I'm gonna destroy it.",
+      "vi": ""
+    },
+    {
+      "n": 202,
+      "start": 360.796,
+      "end": 361.997,
+      "en": "But I'll let you live.",
+      "vi": ""
+    },
+    {
+      "n": 203,
+      "start": 362.856,
+      "end": 364.353,
+      "en": "Don't make me a murderer, Peter.",
+      "vi": ""
+    },
+    {
+      "n": 204,
+      "start": 367.354,
+      "end": 368.661,
+      "en": "Okay, guys, here he comes.",
+      "vi": ""
+    },
+    {
+      "n": 205,
+      "start": 377.113,
+      "end": 378.804,
+      "en": "I missed you, man.",
+      "vi": ""
+    },
+    {
+      "n": 206,
+      "start": 389.498,
+      "end": 390.062,
+      "en": "God, it's not closing",
+      "vi": ""
+    },
+    {
+      "n": 207,
+      "start": 390.062,
+      "end": 390.594,
+      "en": "Yeah, I know",
+      "vi": ""
+    },
+    {
+      "n": 208,
+      "start": 391.241,
+      "end": 391.816,
+      "en": "Why isn't it closing?",
+      "vi": ""
+    },
+    {
+      "n": 209,
+      "start": 392.121,
+      "end": 392.771,
+      "en": "I, I don't know.",
+      "vi": ""
+    },
+    {
+      "n": 210,
+      "start": 392.771,
+      "end": 392.938,
+      "en": "I- Have",
+      "vi": ""
+    },
+    {
+      "n": 211,
+      "start": 392.94,
+      "end": 393.522,
+      "en": "you closed it before?",
+      "vi": ""
+    },
+    {
+      "n": 212,
+      "start": 393.522,
+      "end": 394.401,
+      "en": "Did you, did you know?",
+      "vi": ""
+    },
+    {
+      "n": 213,
+      "start": 394.428,
+      "end": 394.777,
+      "en": "No.",
+      "vi": ""
+    },
+    {
+      "n": 214,
+      "start": 394.781,
+      "end": 396.026,
+      "en": "I mean, I've opened some",
+      "vi": ""
+    },
+    {
+      "n": 215,
+      "start": 406.027,
+      "end": 407.407,
+      "en": "Can we just talk for a second?",
+      "vi": ""
+    },
+    {
+      "n": 216,
+      "start": 407.409,
+      "end": 408.4,
+      "en": "Just you and me, just talk.",
+      "vi": ""
+    },
+    {
+      "n": 217,
+      "start": 408.407,
+      "end": 411.559,
+      "en": "Look who showed up, my old friend Spider-Man.",
+      "vi": ""
+    },
+    {
+      "n": 218,
+      "start": 411.585,
+      "end": 412.57,
+      "en": "I'm trying to save you, Max.",
+      "vi": ""
+    },
+    {
+      "n": 219,
+      "start": 412.57,
+      "end": 413.474,
+      "en": "That's all I've ever wanted.",
+      "vi": ""
+    },
+    {
+      "n": 220,
+      "start": 413.476,
+      "end": 414.556,
+      "en": "You're not trying to save me.",
+      "vi": ""
+    },
+    {
+      "n": 221,
+      "start": 414.661,
+      "end": 415.119,
+      "en": "I am.",
+      "vi": ""
+    },
+    {
+      "n": 222,
+      "start": 415.589,
+      "end": 416.979,
+      "en": "You ain't even the shit no more.",
+      "vi": ""
+    },
+    {
+      "n": 223,
+      "start": 417.163,
+      "end": 417.429,
+      "en": "Oh.",
+      "vi": ""
+    },
+    {
+      "n": 224,
+      "start": 417.8,
+      "end": 418.779,
+      "en": "Don't worry about me.",
+      "vi": ""
+    },
+    {
+      "n": 225,
+      "start": 418.817,
+      "end": 420.209,
+      "en": "I'll save myself.",
+      "vi": ""
+    },
+    {
+      "n": 226,
+      "start": 420.782,
+      "end": 420.948,
+      "en": "Murder!",
+      "vi": ""
+    },
+    {
+      "n": 227,
+      "start": 424.853,
+      "end": 425.701,
+      "en": "Jen, now what?",
+      "vi": ""
+    },
+    {
+      "n": 228,
+      "start": 425.972,
+      "end": 426.724,
+      "en": "Okay, great.",
+      "vi": ""
+    },
+    {
+      "n": 229,
+      "start": 428.022,
+      "end": 430.836,
+      "en": "Uh, just FYI, lizard guy's here too.",
+      "vi": ""
+    },
+    {
+      "n": 230,
+      "start": 432.657,
+      "end": 433.585,
+      "en": "Guys, comms check.",
+      "vi": ""
+    },
+    {
+      "n": 231,
+      "start": 433.706,
+      "end": 434.009,
+      "en": "Hello?",
+      "vi": ""
+    },
+    {
+      "n": 232,
+      "start": 435.293,
+      "end": 436.507,
+      "en": "I need Max's cure.",
+      "vi": ""
+    },
+    {
+      "n": 233,
+      "start": 436.599,
+      "end": 436.908,
+      "en": "Yeah,",
+      "vi": ""
+    },
+    {
+      "n": 234,
+      "start": 437.199,
+      "end": 437.692,
+      "en": "I'm on it.",
+      "vi": ""
+    },
+    {
+      "n": 235,
+      "start": 438.776,
+      "end": 440.05,
+      "en": "Peter, I need the lizard cure.",
+      "vi": ""
+    },
+    {
+      "n": 236,
+      "start": 440.691,
+      "end": 442.678,
+      "en": "Ah, okay, okay.",
+      "vi": ""
+    },
+    {
+      "n": 237,
+      "start": 447.513,
+      "end": 449.02,
+      "en": "Where's the box, Peter?",
+      "vi": ""
+    },
+    {
+      "n": 238,
+      "start": 449.034,
+      "end": 450.478,
+      "en": "Flint, we could help everyone.",
+      "vi": ""
+    },
+    {
+      "n": 239,
+      "start": 450.522,
+      "end": 451.904,
+      "en": "I don't care!",
+      "vi": ""
+    },
+    {
+      "n": 240,
+      "start": 467.102,
+      "end": 469.621,
+      "en": "I had to tell you Sandman, nobody's going home",
+      "vi": ""
+    },
+    {
+      "n": 241,
+      "start": 534.718,
+      "end": 535.447,
+      "en": "Is that a band?",
+      "vi": ""
+    },
+    {
+      "n": 242,
+      "start": 535.447,
+      "end": 536.218,
+      "en": "Are you in a band?",
+      "vi": ""
+    },
+    {
+      "n": 243,
+      "start": 536.56,
+      "end": 537.354,
+      "en": "No, I'm not in a band.",
+      "vi": ""
+    },
+    {
+      "n": 244,
+      "start": 537.354,
+      "end": 538.763,
+      "en": "No, The Avengers is just a, a",
+      "vi": ""
+    },
+    {
+      "n": 245,
+      "start": 542.203,
+      "end": 544.997,
+      "en": "Focus, trust your tingle, and coordinate our attacks, okay?",
+      "vi": ""
+    },
+    {
+      "n": 246,
+      "start": 545.169,
+      "end": 545.612,
+      "en": "Yes.",
+      "vi": ""
+    },
+    {
+      "n": 247,
+      "start": 545.886,
+      "end": 546.288,
+      "en": "Okay.",
+      "vi": ""
+    },
+    {
+      "n": 248,
+      "start": 546.942,
+      "end": 547.973,
+      "en": "Let's pick one target.",
+      "vi": ""
+    },
+    {
+      "n": 249,
+      "start": 548.217,
+      "end": 548.427,
+      "en": "Right.",
+      "vi": ""
+    },
+    {
+      "n": 250,
+      "start": 548.709,
+      "end": 550.383,
+      "en": "And we take them off the board one at a time.",
+      "vi": ""
+    },
+    {
+      "n": 251,
+      "start": 550.422,
+      "end": 551.082,
+      "en": "Now you got it.",
+      "vi": ""
+    },
+    {
+      "n": 252,
+      "start": 551.111,
+      "end": 551.442,
+      "en": "Okay.",
+      "vi": ""
+    },
+    {
+      "n": 253,
+      "start": 551.508,
+      "end": 552.551,
+      "en": "Peter One, Peter Two-",
+      "vi": ""
+    },
+    {
+      "n": 254,
+      "start": 552.551,
+      "end": 553.033,
+      "en": "Peter Two",
+      "vi": ""
+    },
+    {
+      "n": 255,
+      "start": 553.201,
+      "end": 553.688,
+      "en": "… Peter Three.",
+      "vi": ""
+    },
+    {
+      "n": 256,
+      "start": 553.688,
+      "end": 554,
+      "en": "Peter Three.",
+      "vi": ""
+    },
+    {
+      "n": 257,
+      "start": 554.054,
+      "end": 554.641,
+      "en": "All right, let's do this.",
+      "vi": ""
+    },
+    {
+      "n": 258,
+      "start": 554.718,
+      "end": 554.902,
+      "en": "Ready?",
+      "vi": ""
+    },
+    {
+      "n": 259,
+      "start": 554.905,
+      "end": 555.138,
+      "en": "Let's do this.",
+      "vi": ""
+    },
+    {
+      "n": 260,
+      "start": 555.138,
+      "end": 555.657,
+      "en": "Wait, wait, wait, wait, wait.",
+      "vi": ""
+    },
+    {
+      "n": 261,
+      "start": 557.211,
+      "end": 558.006,
+      "en": "I love you guys.",
+      "vi": ""
+    },
+    {
+      "n": 262,
+      "start": 561.116,
+      "end": 561.699,
+      "en": "Thank you",
+      "vi": ""
+    },
+    {
+      "n": 263,
+      "start": 563.843,
+      "end": 564.701,
+      "en": "All right, let's do this",
+      "vi": ""
+    },
+    {
+      "n": 264,
+      "start": 565.534,
+      "end": 566.096,
+      "en": "though",
+      "vi": ""
     }
   ]
 }
