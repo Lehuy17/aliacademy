@@ -104,13 +104,15 @@ function renderStudents(){
 async function loadStudents(){
  if(!db)return;
  try{
-  const [regular,legacy]=await Promise.all([
+  const [regular,legacy]=await Promise.allSettled([
    sdk.firestore.getDocs(sdk.firestore.query(sdk.firestore.collection(db,"users"),sdk.firestore.limit(300))),
    sdk.firestore.getDocs(sdk.firestore.query(sdk.firestore.collection(db,"user"),sdk.firestore.limit(300)))
   ]);
+  if(regular.status!=="fulfilled"&&legacy.status!=="fulfilled")
+   throw regular.reason||legacy.reason;
   const byUID=new Map();
-  for(const doc of legacy.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
-  for(const doc of regular.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
+  if(legacy.status==="fulfilled")for(const doc of legacy.value.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
+  if(regular.status==="fulfilled")for(const doc of regular.value.docs)byUID.set(doc.id,{uid:doc.id,...doc.data()});
   students=[...byUID.values()].filter(x=>x.role==="student")
    .sort((a,b)=>String(a.name||"").localeCompare(String(b.name||""),"vi"));
   renderStudents();updateStats();
