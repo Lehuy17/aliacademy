@@ -175,7 +175,7 @@ GitHub Actions chạy cùng kiểm tra khi thư viện được thay đổi. Nó
 **Ngoại lệ hiện tại (không phải mẫu chuẩn):**
 
 - `ali-video-01`: phim cũ đã thể hiện tính năng đồng bộ trong video mẫu, nhưng cấu trúc nguồn kiểu `chunked` riêng và metadata cũ.
-- `spiderman-nwh-2021-doing-this-long-time`: hiện vẫn dùng `source.type=drive`; phụ đề 264 câu là bản ASR + dịch tự động chưa được rà soát. Chưa đủ cơ sở công nhận đạt chuẩn dù giao diện giống mẫu.
+- `spiderman-nwh-2021-doing-this-long-time`: **đã chuyển sang MP4 H.264/AAC trên chính website** và có 264 cue Anh–Việt với thời gian. Chức năng tua/tự cuộn dùng chung trình HTML5; **phụ đề ASR + dịch tự động chưa được con người rà soát**, quyền sử dụng và kiểm thử đa thiết bị vẫn cần người phụ trách ALI xác nhận trước khi ghi `qa.approvedAt`.
 
 Khi nâng cấp mục cũ, phải chuyển về MP4 đồng bộ, dùng caption đúng bản video và hoàn tất QA; mọi chỉnh sửa khác bản baseline đều đi qua validator.
 
@@ -187,3 +187,15 @@ Khi nâng cấp mục cũ, phải chuyển về MP4 đồng bộ, dùng caption 
 
 **Đơn vị quản lý quy chuẩn:** ALI Academy · **Tài liệu gốc trên GitHub:** `docs/ALI_MOVIE_STANDARD.md`.  
 **Khi thay đổi giao diện hay chức năng phim về sau:** chỉnh một lần trong mã player dùng chung, cập nhật tài liệu này và chạy lại checklist; **không tạo ngoại lệ giao diện riêng cho từng bộ phim**.
+
+
+## 10. Kiểm soát lỗi khi đăng phim mới (đã tích hợp)
+
+- **Trang xem phim chung:** `movies.html` + `ali-cinema-player.js` + `ali-cinema-page.css`; tuyệt đối không nhân bản trang cho từng phim.
+- **Danh mục và dữ liệu:** `ali-movies.json`, `captions/<id>.json`, `media/<id>/video.mp4`, `media/<id>/poster.jpg`.
+- **Mẫu điền:** `docs/ALI_MOVIE_ENTRY_TEMPLATE.json`.
+- **Bộ kiểm tra tự động:** `scripts/validate-ali-movies.cjs`. Kiểm tra đường dẫn video/poster/phụ đề **cùng ID phim**, H.264/AAC, thời lượng, mốc thời gian, đủ EN/VI và phê duyệt QA.
+- **GitHub Actions:** `.github/workflows/validate-ali-movies.yml` chạy kiểm tra trên các thay đổi danh mục/tệp phim/phụ đề; khi thêm phim mới không đạt chuẩn sẽ báo lỗi.
+- **Phim Spider-Man mẫu nâng cấp:** tệp được xử lý bằng `.github/workflows/prepare-spiderman-sync.yml`. Quy trình tải bản gốc, xuất MP4 và poster, kiểm thử, chỉ cập nhật danh mục sau khi tệp được tạo thành công. Không chép nguyên workflow dành riêng Spider-Man để dùng cho phim khác; với phim mới theo SOP ở mục 6.
+
+**Vận hành quan trọng:** GitHub Actions báo lỗi **không tự khóa được việc push lên nhánh `main`** khi chưa bật branch protection. Quản trị ALI cần yêu cầu kiểm tra `ALI Movie Quality Gate` đạt thành công trước khi merge pull request, và phân công người duyệt nội dung. Các trường QA không được tự tích xanh khi chưa thực hiện kiểm tra thực tế.
