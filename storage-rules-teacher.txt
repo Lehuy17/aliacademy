@@ -1,0 +1,35 @@
+// ALI Teacher movie uploads. Deploy only after reviewing existing Storage rules.
+// An uploaded movie is NOT listed until teacherPublishMovie validates/commits it.
+rules_version = '2';
+service firebase.storage {
+ match /b/{bucket}/o {
+  function signedIn() { return request.auth != null; }
+  function staff() { return signedIn() && (request.auth.token.role == 'teacher' || request.auth.token.role == 'admin'); }
+  function publisher(owner) { return staff() && request.auth.uid == owner; }
+  function canRead(owner,id) {
+   return publisher(owner) ||
+    (signedIn() &&
+     firestore.exists(/databases/(default)/documents/teacherMovies/$(id)) &&
+     firestore.get(/databases/(default)/documents/teacherMovies/$(id)).data.status == 'published');
+  }
+  match /teacher_movies/{owner}/{id}/video.mp4 {
+   allow read: if canRead(owner,id);
+   allow create: if publisher(owner) && request.resource.size < 90*1024*1024 &&
+      request.resource.contentType == 'video/mp4';
+   allow update, delete: if false;
+  }
+  match /teacher_movies/{owner}/{id}/poster.jpg {
+   allow read: if canRead(owner,id);
+   allow create: if publisher(owner) && request.resource.size < 5*1024*1024 &&
+      request.resource.contentType == 'image/jpeg';
+   allow update, delete: if false;
+  }
+  match /teacher_movies/{owner}/{id}/captions.json {
+   allow read: if canRead(owner,id);
+   allow create: if publisher(owner) && request.resource.size < 2*1024*1024 &&
+      request.resource.contentType == 'application/json';
+   allow update, delete: if false;
+  }
+  match /{allPaths=**} { allow read, write: if false; }
+ }
+}
