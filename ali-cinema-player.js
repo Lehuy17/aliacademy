@@ -6,6 +6,7 @@ const scroller=$('aliTranscriptScroll');
 const status=$('aliVideoMode');
 const clock=$('aliVideoClock');
 let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
+let autoScroll=true, overlayEnabled=true;
 
 /* The ambient blur uses actual frames of the SAME playing HTML video.
    A tiny canvas at 8fps keeps the desktop glass backdrop lightweight.
@@ -93,54 +94,115 @@ window.addEventListener('resize',()=>{
 
 const time=t=>String(Math.floor((t||0)/60)).padStart(2,'0')+':'+String(Math.floor((t||0)%60)).padStart(2,'0');
 function message(s){$('notice').textContent=s;$('notice').classList.remove('hidden');}
+function syncReady(){
+ return !!currentMovie && currentMovie.source?.type!=='drive' && !video.classList.contains('hidden');
+}
+function updateSyncControls(){
+ const ready=syncReady();
+ const badge=$('aliSyncIndicator');
+ const label=$('aliSyncStatus');
+ const toggle=$('aliAutoScroll');
+ const cc=$('aliScreenCc');
+ const help=$('aliTranscriptHelp');
+ const note=document.querySelector('.cinema-player-tip span:last-child');
+ badge.classList.toggle('is-active',ready&&video.readyState>=1);
+ badge.classList.toggle('is-disabled',!ready);
+ label.textContent=!ready?'Đang xem phim':video.readyState<1?'Đang chuẩn bị video':video.paused?'Sẵn sàng đồng bộ':'Đang phát đồng bộ';
+ toggle.disabled=!ready;
+ toggle.setAttribute('aria-pressed',String(autoScroll));
+ toggle.textContent=autoScroll?'☷ Tự động cuộn':'☷ Cuộn thủ công';
+ cc.classList.toggle('hidden',!ready||!cues.length);
+ cc.setAttribute('aria-pressed',String(overlayEnabled));
+ help.textContent=ready?'Nhấn vào câu để nghe lại từ thời điểm đó':'Phụ đề song ngữ Anh–Việt';
+ if(note)note.textContent=ready?'Nhấn một câu trong cột phụ đề để nhảy đến đúng thời điểm trong phim.':'Theo dõi lời thoại Anh–Việt trong khi xem phim.';
+}
 function showCues(){
  list.replaceChildren();
- const notice=$('aliSubtitleNotice');
- const help=$('aliTranscriptHelp');
- const footer=$('aliCinemaFootnote');
- const drive=currentMovie?.source?.type==='drive';
- const draft=['draft_partial_unverified','machine_transcript_bilingual_unreviewed'].includes(currentMovie?.subtitleStatus);
- const machineDraft=currentMovie?.subtitleStatus==='machine_transcript_bilingual_unreviewed';
- if(notice){
-  notice.classList.toggle('hidden',!draft);
-  notice.textContent=!draft?'':machineDraft?
-   'PHỤ ĐỀ ANH–VIỆT · '+cues.length+' đoạn được nhận dạng và dịch bằng AI. Chưa được kiểm duyệt; một số từ và mốc thời gian có thể chưa chính xác.':
-   'BẢN NHÁP CHƯA KIỂM DUYỆT · '+cues.length+' đoạn lời thoại sơ bộ, không phải phụ đề đầy đủ.';
+ const ready=currentMovie?.source?.type!=='drive';
+ if(!cues.length){
+  const p=document.createElement('p');p.className='ali-empty';p.textContent='Phụ đề đang được cập nhật.';list.append(p);
+  updateSyncControls();return;
  }
- if(help)help.textContent=drive?'Xem lời thoại tham khảo · không thể tua từ phụ đề khi phát bằng Drive':'Nhấn vào câu để phát lại';
- if(footer)footer.textContent=drive?'Lời thoại Anh–Việt hiển thị theo thứ tự kèm mốc thời gian. Do Google Drive không cung cấp thời gian phát, hãy cuộn theo phim; chưa thể tự chạy hoặc tua từ câu thoại.':'Phụ đề của trình phát HTML5 tự cuộn và có thể phát lại từng câu.';
- if(!cues.length){const p=document.createElement('p');p.className='ali-empty';p.textContent='Chưa có phụ đề Anh–Việt được hoàn thiện cho phim này.';list.append(p);return;}
+ const fragment=document.createDocumentFragment();
  cues.forEach((cue,i)=>{
-  const row=document.createElement(drive?'div':'button');if(!drive)row.type='button';row.className='ali-cue';row.dataset.index=i;
+  const row=document.createElement(ready?'button':'div');
+  if(ready){row.type='button';row.setAttribute('aria-label','Phát lại từ '+time(cue.start)+': '+cue.en);}
+  row.className='ali-cue';row.dataset.index=i;
   const stamp=document.createElement('span');stamp.className='ali-stamp';stamp.textContent=String(i+1).padStart(2,'0')+' · '+time(cue.start);
   const text=document.createElement('span');text.className='ali-cue-text';
   const en=document.createElement('strong');en.className='ali-en';en.textContent=cue.en;
   const vi=document.createElement('span');vi.className='ali-vi';vi.textContent=cue.vi;
   text.append(en,vi);row.append(stamp,text);
-  if(!drive)row.addEventListener('click',()=>{if(video.readyState){video.currentTime=cue.start;video.play().catch(()=>{});}});
-  list.append(row);
+  if(ready){
+   const action=document.createElement('span');action.className='ali-cue-play';action.setAttribute('aria-hidden','true');action.textContent='▶';
+   row.append(action);
+   row.addEventListener('click',()=>{
+    if(video.readyState<1){status.textContent='Video đang tải. Hãy thử lại sau vài giây.';return;}
+    const max=Number.isFinite(video.duration)?Math.max(0,video.duration-.05):cue.start;
+    video.currentTime=Math.min(cue.start+.02,max);
+    active=-1;sync();
+    video.play().catch(()=>{updateSyncControls();});
+   });
+  }
+  fragment.append(row);
  });
- applyLanguage();
+ list.append(fragment);applyLanguage();updateSyncControls();
 }
 function applyLanguage(){
  list.querySelectorAll('.ali-en').forEach(e=>e.classList.toggle('hidden',lang==='vi'));
  list.querySelectorAll('.ali-vi').forEach(e=>e.classList.toggle('hidden',lang==='en'));
  list.style.setProperty('--textscale',fontScale);
+ updateScreenCaptions();
+}
+function updateScreenCaptions(){
+ const el=$('aliScreenCaptions');
+ if(!syncReady()||!overlayEnabled||active<0||!cues[active]||!video.readyState){
+  el.classList.add('hidden');return;
+ }
+ const cue=cues[active];
+ // Hide stale captions during long silent gaps, even if a transcript row remains highlighted.
+ if(video.currentTime>cue.end+.35||video.currentTime<cue.start){
+  el.classList.add('hidden');return;
+ }
+ $('aliScreenCaptionEn').textContent=cue.en;
+ $('aliScreenCaptionVi').textContent=cue.vi;
+ $('aliScreenCaptionEn').classList.toggle('hidden',lang==='vi');
+ $('aliScreenCaptionVi').classList.toggle('hidden',lang==='en');
+ el.classList.remove('hidden');
 }
 function sync(){
+ if(!syncReady()){updateScreenCaptions();return;}
  const now=video.currentTime;
- clock.textContent=time(now)+' / '+time(video.duration||53.4);
- const index=cues.findIndex(c=>now>=c.start&&now<c.end);
- if(index===active)return;
- const prev=list.querySelector('.ali-cue.current');if(prev){prev.classList.remove('current');prev.removeAttribute('aria-current');}
- active=index;
- if(index<0)return;
- const row=list.querySelector('[data-index="'+index+'"]');
- if(!row)return;
- row.classList.add('current');row.setAttribute('aria-current','true');
- scroller.scrollTo({top:Math.max(0,scroller.scrollTop+row.getBoundingClientRect().top-scroller.getBoundingClientRect().top-scroller.clientHeight/2+row.offsetHeight/2),behavior:'smooth'});
+ clock.textContent=time(now)+' / '+time(video.duration||Number(currentMovie?.durationSeconds)||0);
+ // Keep the most recent caption selected through short pauses between lines.
+ let lo=0,hi=cues.length-1,i=-1;
+ while(lo<=hi){const mid=(lo+hi)>>1;if(cues[mid].start<=now){i=mid;lo=mid+1;}else hi=mid-1;}
+ if(i===active){updateScreenCaptions();return;}
+ const previous=list.querySelector('.ali-cue.current');
+ if(previous){previous.classList.remove('current');previous.removeAttribute('aria-current');}
+ active=i;
+ if(i<0){updateScreenCaptions();return;}
+ const row=list.querySelector('[data-index="'+i+'"]');
+ if(row){
+  row.classList.add('current');row.setAttribute('aria-current','true');
+  if(autoScroll&&scroller.clientHeight){
+   const top=row.offsetTop - list.offsetTop - scroller.clientHeight/2 + row.offsetHeight/2;
+   scroller.scrollTo({top:Math.max(0,top),behavior:'smooth'});
+  }
+ }
+ updateScreenCaptions();
 }
-for(const ev of ['timeupdate','seeking','seeked','play','loadedmetadata'])video.addEventListener(ev,sync);
+for(const ev of ['timeupdate','seeking','seeked','play','playing','loadedmetadata','pause','ended'])video.addEventListener(ev,()=>{
+ sync();if(ev==='playing'||ev==='pause'||ev==='loadedmetadata'||ev==='ended')updateSyncControls();
+});
+$('aliAutoScroll').addEventListener('click',()=>{
+ if(!syncReady())return;
+ autoScroll=!autoScroll;updateSyncControls();
+ if(autoScroll){active=-1;sync();}
+});
+$('aliScreenCc').addEventListener('click',()=>{
+ overlayEnabled=!overlayEnabled;updateSyncControls();updateScreenCaptions();
+});
 function clearMedia(){stopAmbient();video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
 function fallback(){
  ++loadTicket;clearMedia();
@@ -154,7 +216,7 @@ function fallback(){
  // Never display an outbound original-source link in the student player.
  $('syncBtn').classList.add('hidden');$('syncBtn').textContent='Phát đồng bộ';
  clock.textContent='00:00 / '+(currentMovie?.duration||'--:--');
- status.textContent='Đang phát phim';
+ status.textContent='Đang phát phim';updateSyncControls();
 }
 async function openSync(){
  const ticket=++loadTicket;
@@ -186,8 +248,8 @@ async function openSync(){
    video.addEventListener('error',()=>{clearTimeout(timer);reject(Error('Cannot play video'));},{once:true});
   });
   if(ticket!==loadTicket)return;
-  status.textContent='Phụ đề đồng bộ theo video · nhấn một câu để nghe lại';
-  sync();
+  status.textContent='Đã sẵn sàng';updateSyncControls();
+  active=-1;sync();
  }catch(e){if(ticket===loadTicket){console.warn('Video playback unavailable',e);fallback();}}
 }
 async function openMovie(movie){
@@ -209,7 +271,7 @@ async function openMovie(movie){
    cues=(Array.isArray(json.cues)?json.cues:[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((a,b)=>a.start-b.start);
   }
  }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
- active=-1;showCues();
+ active=-1;autoScroll=true;showCues();
  if(movie.source?.type==='drive')fallback();else openSync();
 }
 function makeMovieCard(movie){
@@ -324,6 +386,7 @@ $('closeMovie').addEventListener('click',()=>{
  ++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
  if(ambientFilm){ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();}
  ambientHost?.classList.remove('has-ambient-film');
+ currentMovie=null;cues=[];active=-1;updateScreenCaptions();updateSyncControls();
 });
 $('fallbackBtn').addEventListener('click',fallback);
 $('syncBtn').addEventListener('click',()=>{
