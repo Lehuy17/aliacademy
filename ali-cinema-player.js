@@ -7,6 +7,7 @@ const status=$('aliVideoMode');
 const clock=$('aliVideoClock');
 let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
 let autoScroll=true, overlayEnabled=true;
+let firebaseMovieContext=null;
 
 /* The ambient blur uses actual frames of the SAME playing HTML video.
    A tiny canvas at 8fps keeps the desktop glass backdrop lightweight.
@@ -233,7 +234,7 @@ async function openSync(){
    mediaUrl=url;
   }else if(source.type==='url'){
    const resolved=new URL(source.url,location.href);
-   if(resolved.origin!==location.origin)throw Error('Video phải được tải từ website ALI để đồng bộ');
+   if(resolved.origin!==location.origin&&!currentMovie?.firebaseManaged)throw Error('Nguồn video không được hệ thống ALI xác minh');
    url=resolved.href;
   }else{
    fallback();return;
@@ -262,7 +263,9 @@ async function openMovie(movie){
  clock.textContent='00:00 / '+(movie.duration||'--:--');
  status.textContent='Đang tải nội dung…';
  try{
-  if(movie.captions){
+  if(Array.isArray(movie.captionsInline)){
+   cues=movie.captionsInline.filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((x,y)=>x.start-y.start);
+  }else if(movie.captions){
    const url=new URL(movie.captions,location.href);
    if(url.origin!==location.origin)throw Error('Chỉ tải phụ đề từ website ALI');
    const response=await fetch(url.href);
@@ -342,31 +345,76 @@ async function makeFramePreview(movie,img,note){
  note.classList.add('hidden');
  try{sessionStorage.setItem('ALI_MOVIE_PREVIEW_'+movie.id,src);}catch{}
 }
+async function teacherPublishedMovies(){
+ if(!firebaseMovieContext)return [];
+ const {db,dbSdk,app}=firebaseMovieContext;
+ const base='https://www.gstatic.com/firebasejs/13.2.0/';
+ const storageSdk=await import(base+'firebase-storage.js');
+ const storage=storageSdk.getStorage(app);
+ const snapshot=await dbSdk.getDocs(dbSdk.query(dbSdk.collection(db,'teacherMovies'),
+   dbSdk.where('status','==','published'),dbSdk.limit(250)));
+ const films=[];
+ await Promise.all(snapshot.docs.map(async document=>{
+  try{
+   const m=document.data();
+   if(!m.videoPath||!m.posterPath)return;
+   // Trusted URLs are resolved by the Firebase Storage SDK, not received from
+   // unauthenticated browser input or a public JSON catalog.
+   const [videoUrl,posterUrl,captionDoc]=await Promise.all([
+    storageSdk.getDownloadURL(storageSdk.ref(storage,m.videoPath)),
+    storageSdk.getDownloadURL(storageSdk.ref(storage,m.posterPath)),
+    dbSdk.getDoc(dbSdk.doc(db,'teacherMovieCaptions',document.id))
+   ]);
+   if(!captionDoc.exists())return;
+   const c=captionDoc.data();
+   if(!Array.isArray(c.cues)||!c.cues.length)return;
+   films.push({
+    id:document.id,title:m.title,category:m.category||'PHIM SONG NGỮ · ALI',
+    description:m.description||'Học tiếng Anh qua phim song ngữ',
+    duration:m.duration||'VIDEO',durationSeconds:m.durationSeconds,
+    poster:posterUrl,previewSrc:posterUrl,
+    source:{type:'url',url:videoUrl},captionsInline:c.cues,
+    firebaseManaged:true,publishedAt:m.publishedAt?.seconds||0,
+    presentation:m.presentation||{background:'film-blur',layout:'video-left-captions-right'}
+   });
+  }catch(error){console.warn('A teacher movie could not be loaded:',document.id,error);}
+ }));
+ return films.sort((a,b)=>b.publishedAt-a.publishedAt);
+}
 async function loadLibrary(){
  if(libraryLoaded)return;libraryLoaded=true;
  const host=$('aliMovieLibrary');
+ let staticMovies=[],teacherMovies=[];
  try{
   const response=await fetch('./ali-movies.json?v=1',{cache:'no-store'});
-  if(!response.ok)throw Error('Movie catalog unavailable');
+  if(!response.ok)throw Error('Static movie catalog unavailable');
   const data=await response.json();
-  const movies=(Array.isArray(data.movies)?data.movies:[]).filter(m=>m&&typeof m.id==='string'&&typeof m.title==='string'&&m.source);
-  host.replaceChildren();
-  $('aliLibraryCount').textContent=movies.length+' video';
-  if(!movies.length){
-   const empty=document.createElement('p');empty.className='ali-library-empty';empty.textContent='Chưa có phim song ngữ nào được đăng. ALI sẽ cập nhật thư viện tại đây.';host.append(empty);return;
-  }
-  movies.forEach(movie=>host.append(makeMovieCard(movie)));
- }catch(error){
-  console.warn('ALI cinema library unavailable',error);
-  host.textContent='Không tải được thư viện phim. Vui lòng làm mới trang.';
-  $('aliLibraryCount').textContent='Chưa tải được';
+  staticMovies=(Array.isArray(data.movies)?data.movies:[])
+   .filter(m=>m&&typeof m.id==='string'&&typeof m.title==='string'&&m.source);
+ }catch(e){console.warn('ALI static library unavailable',e);}
+ try{teacherMovies=await teacherPublishedMovies();}
+ catch(error){console.warn('Teacher movie library is not activated or access was denied.',error);}
+ const deduplicated=new Map();
+ for(const movie of staticMovies)deduplicated.set(movie.id,movie);
+ for(const movie of teacherMovies)deduplicated.set(movie.id,movie);
+ const movies=[...deduplicated.values()];
+ host.replaceChildren();
+ $('aliLibraryCount').textContent=movies.length+' video';
+ if(!movies.length){
+  const empty=document.createElement('p');
+  empty.className='ali-library-empty';
+  empty.textContent='Chưa có phim song ngữ nào. ALI sẽ cập nhật tại đây.';
+  host.append(empty);return;
  }
+ movies.forEach(movie=>host.append(makeMovieCard(movie)));
 }
 async function init(){
  try{
   const base='https://www.gstatic.com/firebasejs/13.2.0/';
   const [app,authSdk,dbSdk]=await Promise.all([import(base+'firebase-app.js'),import(base+'firebase-auth.js'),import(base+'firebase-firestore.js')]);
-  auth=authSdk.getAuth(app.initializeApp(firebaseConfig));
+  const appInstance=app.initializeApp(firebaseConfig);
+  auth=authSdk.getAuth(appInstance);
+  firebaseMovieContext={app:appInstance,db:dbSdk.getFirestore(appInstance),dbSdk};
   authSdk.onAuthStateChanged(auth,async user=>{
    if(!user){location.replace('./login.html?next=movies');return;}
    try{
@@ -375,6 +423,10 @@ async function init(){
     if(!doc.exists())doc=await dbSdk.getDoc(dbSdk.doc(db,'user',user.uid));
     if(!doc.exists()||doc.data().status!=='active'){await authSdk.signOut(auth);location.replace('./login.html?blocked=1');return;}
     $('memberName').textContent=doc.data().name||user.email||'Học viên';
+    const claim=await user.getIdTokenResult();
+    if(['teacher','admin'].includes(claim.claims.role)){
+      const staffLink=$('aliTeacherNavLink');if(staffLink)staffLink.hidden=false;
+    }
     $('loading').classList.add('hidden');$('memberContent').classList.remove('hidden');
     loadLibrary();
    }catch(err){message('Không thể xác minh tài khoản học viên.');}
