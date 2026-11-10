@@ -93,6 +93,14 @@ for(const m of catalog.movies){
  }
  if(m.source?.type!=='url'){fail(id,'New/synchronized movies must use HTML5 source.type=url');continue}
  if(strict){
+  // Every NEW movie uses its own source, image and caption paths; no cross-film reuse.
+  if(m.source.url!=='./media/'+id+'/video.mp4')
+   fail(id,'Source must equal ./media/'+id+'/video.mp4');
+  if(!/^\.\/media\/[a-z0-9-]+\/poster\.(jpg|jpeg|png|webp)$/.test(m.poster||'')||
+     !m.poster.startsWith('./media/'+id+'/'))
+   fail(id,'Poster must be a real frame in ./media/'+id+'/poster.*');
+  if(m.captions!=='./captions/'+id+'.json')
+   fail(id,'Caption path must equal ./captions/'+id+'.json');
   if(m.driveId)fail(id,'Do not publish source Drive ID');
   const qa=m.qa||{};
   for(const field of ['rightsConfirmed','englishReviewed','vietnameseReviewed','timingsReviewed','desktopMobileTested'])if(qa[field]!==true)fail(id,'QA approval missing: '+field);
