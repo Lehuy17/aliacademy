@@ -1,0 +1,361 @@
+{
+  "status": "machine_transcript_bilingual_unreviewed",
+  "synchronized": true,
+  "duration": 550.082,
+  "source": "Descript ASR from user-uploaded MP4. Vietnamese translations drafted by AI. No human verification yet. Original transcript contains short and uncertain recognition segments; timings may need adjustment.",
+  "provenance": {
+    "transcription": "Descript",
+    "projectId": "e7d59c1c-f93d-48b5-bb96-a1caf504f83f",
+    "reviewed": false
+  },
+  "cues": [
+    {
+      "start": 10.948,
+      "end": 12.492,
+      "en": "Who are you?",
+      "vi": "Ngươi là ai?"
+    },
+    {
+      "start": 13.102,
+      "end": 16.832,
+      "en": "Buddy, I am the Dragon Warrior.",
+      "vi": "Anh bạn, ta là Thần Long Đại Hiệp."
+    },
+    {
+      "start": 20.642,
+      "end": 21.368,
+      "en": "You?",
+      "vi": "Ngươi ư?"
+    },
+    {
+      "start": 22.934,
+      "end": 23.47,
+      "en": "Him?",
+      "vi": "Hắn sao?"
+    },
+    {
+      "start": 23.844,
+      "end": 24.789,
+      "en": "He's a panda.",
+      "vi": "Hắn là gấu trúc mà."
+    },
+    {
+      "start": 24.938,
+      "end": 25.768,
+      "en": "You're a panda.",
+      "vi": "Ngươi cũng là gấu trúc."
+    },
+    {
+      "start": 25.917,
+      "end": 26.555,
+      "en": "What are you gonna do,",
+      "vi": "Ngươi định làm gì,"
+    },
+    {
+      "start": 26.558,
+      "end": 27.209,
+      "en": "big guy?",
+      "vi": "anh bạn to xác?"
+    },
+    {
+      "start": 27.339,
+      "end": 28.267,
+      "en": "Sit on me?",
+      "vi": "Ngồi đè lên ta à?"
+    },
+    {
+      "start": 28.958,
+      "end": 29.741,
+      "en": "Don't tempt me.",
+      "vi": "Đừng có thách ta."
+    },
+    {
+      "start": 30.933,
+      "end": 33.876,
+      "en": "Nah, I'm gonna use this.",
+      "vi": "Không, ta sẽ dùng cái này."
+    },
+    {
+      "start": 34.973,
+      "end": 35.596,
+      "en": "You want it?",
+      "vi": "Muốn lấy nó không?"
+    },
+    {
+      "start": 35.953,
+      "end": 36.612,
+      "en": "Come get it.",
+      "vi": "Đến mà lấy."
+    },
+    {
+      "start": 36.962,
+      "end": 37.515,
+      "en": "Oh!",
+      "vi": "Ồ!"
+    },
+    {
+      "start": 38.649,
+      "end": 39.394,
+      "en": "Finally.",
+      "vi": "Cuối cùng cũng..."
+    },
+    {
+      "start": 104.942,
+      "end": 105.092,
+      "en": "Whoa!",
+      "vi": "Chà!"
+    },
+    {
+      "start": 215.798,
+      "end": 217.458,
+      "en": "Hey, I didn't get it the first time either",
+      "vi": "Này, lần đầu ta cũng chẳng hiểu đâu."
+    },
+    {
+      "start": 218.434,
+      "end": 218.772,
+      "en": "What?",
+      "vi": "Gì cơ?"
+    },
+    {
+      "start": 221.056,
+      "end": 222.744,
+      "en": "There is no secret ingredient",
+      "vi": "Chẳng có nguyên liệu bí mật nào cả."
+    },
+    {
+      "start": 226.201,
+      "end": 226.899,
+      "en": "Just you",
+      "vi": "Chỉ có chính ngươi thôi."
+    },
+    {
+      "start": 236.968,
+      "end": 237.559,
+      "en": "Stop it.",
+      "vi": "Thôi đi."
+    },
+    {
+      "start": 238.395,
+      "end": 239.07,
+      "en": "I'm gonna pee.",
+      "vi": "Ta sắp tè ra quần rồi!"
+    },
+    {
+      "start": 241.514,
+      "end": 243.622,
+      "en": "Don't.",
+      "vi": "Đừng!"
+    },
+    {
+      "start": 243.622,
+      "end": 245.713,
+      "en": "Don't, don't.",
+      "vi": "Đừng, đừng mà!"
+    },
+    {
+      "start": 323.614,
+      "end": 327.477,
+      "en": "Just a big fat panda.",
+      "vi": "Chỉ là một con gấu trúc béo ú."
+    },
+    {
+      "start": 328.883,
+      "end": 330.109,
+      "en": "I'm not a big fat panda.",
+      "vi": "Ta không phải một con gấu trúc béo ú."
+    },
+    {
+      "start": 331.979,
+      "end": 333.738,
+      "en": "I'm the big fat panda.",
+      "vi": "Ta chính là con gấu trúc béo ú đó!"
+    },
+    {
+      "start": 336.426,
+      "end": 336.57599999999996,
+      "en": "The",
+      "vi": "Đó là..."
+    },
+    {
+      "start": 336.565,
+      "end": 337.581,
+      "en": "Wuxi finger hold.",
+      "vi": "Chiêu khóa ngón tay Vô Tích."
+    },
+    {
+      "start": 338.025,
+      "end": 339.28,
+      "en": "Oh, you know this hold?",
+      "vi": "Ồ, ngươi biết chiêu này à?"
+    },
+    {
+      "start": 339.482,
+      "end": 340.104,
+      "en": "You're bluffing.",
+      "vi": "Ngươi đang dọa suông."
+    },
+    {
+      "start": 340.63,
+      "end": 341.366,
+      "en": "You're bluffing.",
+      "vi": "Ngươi đang dọa suông!"
+    },
+    {
+      "start": 341.549,
+      "end": 342.899,
+      "en": "Shifu didn't teach you that.",
+      "vi": "Sư phụ Shifu đâu có dạy ngươi chiêu đó."
+    },
+    {
+      "start": 343.504,
+      "end": 343.971,
+      "en": "Nope.",
+      "vi": "Không hề."
+    },
+    {
+      "start": 344.97,
+      "end": 345.887,
+      "en": "I figured it out.",
+      "vi": "Ta tự nghĩ ra đấy."
+    },
+    {
+      "start": 346.72,
+      "end": 347.556,
+      "en": "Skadoosh.",
+      "vi": "Skadoosh!"
+    },
+    {
+      "start": 449.061,
+      "end": 449.277,
+      "en": "Archer!",
+      "vi": "Cung thủ! [Cần đối chiếu âm thanh]"
+    },
+    {
+      "start": 450.169,
+      "end": 451.926,
+      "en": "Shifu, Shifu, are you okay?",
+      "vi": "Sư phụ, sư phụ, người có sao không?"
+    },
+    {
+      "start": 459.48,
+      "end": 460.622,
+      "en": "Master, I didn't die.",
+      "vi": "Sư phụ, con chưa chết."
+    },
+    {
+      "start": 461.317,
+      "end": 462.457,
+      "en": "I defeated Tai Lung",
+      "vi": "Con đã đánh bại Tai Lung."
+    },
+    {
+      "start": 463.064,
+      "end": 463.214,
+      "en": "You",
+      "vi": "Con..."
+    },
+    {
+      "start": 463.213,
+      "end": 463.636,
+      "en": "did?",
+      "vi": "thật sao?"
+    },
+    {
+      "start": 470.3,
+      "end": 472.856,
+      "en": "It is as Oogway foretold.",
+      "vi": "Đúng như lời Oogway tiên đoán."
+    },
+    {
+      "start": 474.299,
+      "end": 477.078,
+      "en": "You are the Dragon Warrior.",
+      "vi": "Con chính là Thần Long Đại Hiệp."
+    },
+    {
+      "start": 478.326,
+      "end": 481.796,
+      "en": "You have brought peace to this valley",
+      "vi": "Con đã mang bình yên đến cho thung lũng này..."
+    },
+    {
+      "start": 486.03,
+      "end": 486.17999999999995,
+      "en": "And to me.",
+      "vi": "Và cho cả ta."
+    },
+    {
+      "start": 486.059,
+      "end": 486.209,
+      "en": "Thank you",
+      "vi": "Cảm ơn con."
+    },
+    {
+      "start": 502.232,
+      "end": 502.635,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 503.722,
+      "end": 504.289,
+      "en": "Master.",
+      "vi": "Sư phụ!"
+    },
+    {
+      "start": 504.765,
+      "end": 505.671,
+      "en": "No, no, no!",
+      "vi": "Không, không, không!"
+    },
+    {
+      "start": 505.692,
+      "end": 507.281,
+      "en": "Don't die, Shifu, please.",
+      "vi": "Xin người đừng chết, sư phụ!"
+    },
+    {
+      "start": 507.281,
+      "end": 508.796,
+      "en": "I'm not dying, you idiot.",
+      "vi": "Ta đâu có chết, đồ ngốc."
+    },
+    {
+      "start": 509.157,
+      "end": 515.707,
+      "en": "Ah, Dragon Warrior, I am simply at peace.",
+      "vi": "À, Thần Long Đại Hiệp, ta chỉ đang cảm thấy bình yên thôi."
+    },
+    {
+      "start": 517.006,
+      "end": 517.366,
+      "en": "Finally",
+      "vi": "Cuối cùng cũng vậy."
+    },
+    {
+      "start": 519.964,
+      "end": 523.173,
+      "en": "Oh, so, um, I should stop talking?",
+      "vi": "Ồ, vậy... con nên ngừng nói chứ?"
+    },
+    {
+      "start": 524.499,
+      "end": 525.238,
+      "en": "If you can",
+      "vi": "Nếu con làm được."
+    },
+    {
+      "start": 544.318,
+      "end": 545.203,
+      "en": "Wanna get something to eat?",
+      "vi": "Muốn đi ăn gì không?"
+    },
+    {
+      "start": 548.59,
+      "end": 548.74,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    }
+  ]
+}
