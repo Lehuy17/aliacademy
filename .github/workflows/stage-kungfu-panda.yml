@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: ali-kung-fu-panda-stage
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   stage:
@@ -23,13 +23,10 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Install download and video tools
+      - name: Check FFmpeg and FFprobe availability
         run: |
-          python3 -m pip install --user --quiet --upgrade yt-dlp
-          if ! command -v ffmpeg >/dev/null 2>&1; then
-            sudo apt-get update -qq
-            sudo apt-get install -y ffmpeg
-          fi
+          command -v ffmpeg
+          command -v ffprobe
 
       - name: Download ALI Descript MP4 export
         env:
