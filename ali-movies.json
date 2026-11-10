@@ -1,5 +1,5 @@
 {
-  "version": 7,
+  "version": 8,
   "movies": [
     {
       "id": "ali-video-01",
@@ -20,23 +20,29 @@
       "id": "spiderman-nwh-2021-doing-this-long-time",
       "title": "\"I've Been Doing This For A Long Time\" | SPIDER-MAN: NO WAY HOME (2021)",
       "category": "PHIM SONG NGỮ · SPIDER-MAN: NO WAY HOME",
-      "description": "Trích đoạn Spider-Man: No Way Home (2021) · 09:41 · 264 đoạn phụ đề Anh–Việt dịch tự động, chưa kiểm duyệt.",
+      "description": "Trích đoạn Spider-Man: No Way Home (2021) · luyện nghe với phụ đề Anh–Việt theo từng câu.",
       "duration": "09:41",
-      "poster": "https://drive.google.com/thumbnail?id=1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx&sz=w960",
+      "poster": "./media/spiderman-nwh-2021-doing-this-long-time/poster.jpg",
       "source": {
-        "type": "drive"
+        "type": "url",
+        "url": "./media/spiderman-nwh-2021-doing-this-long-time/video.mp4"
       },
-      "driveId": "1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
-      "resolution": "1920x1080",
-      "videoCodec": "HEVC",
       "presentation": {
         "hideSourceLink": true,
         "background": "film-blur",
         "layout": "video-left-captions-right"
       },
-      "ambientVideo": "./media/ambient/spiderman-nwh-preview.mp4",
-      "captions": "./captions/spiderman-nwh-2021-doing-this-long-time.json?v=2"
+      "captions": "./captions/spiderman-nwh-2021-doing-this-long-time.json?v=2",
+      "durationSeconds": 581.289,
+      "qa": {
+        "stage": "pending_human_review",
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "rightsConfirmed": false
+      }
     }
   ]
 }
