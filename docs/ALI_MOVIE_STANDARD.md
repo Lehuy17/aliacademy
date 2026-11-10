@@ -199,3 +199,13 @@ Khi nâng cấp mục cũ, phải chuyển về MP4 đồng bộ, dùng caption 
 - **Phim Spider-Man mẫu nâng cấp:** tệp được xử lý bằng `.github/workflows/prepare-spiderman-sync.yml`. Quy trình tải bản gốc, xuất MP4 và poster, kiểm thử, chỉ cập nhật danh mục sau khi tệp được tạo thành công. Không chép nguyên workflow dành riêng Spider-Man để dùng cho phim khác; với phim mới theo SOP ở mục 6.
 
 **Vận hành quan trọng:** GitHub Actions báo lỗi **không tự khóa được việc push lên nhánh `main`** khi chưa bật branch protection. Quản trị ALI cần yêu cầu kiểm tra `ALI Movie Quality Gate` đạt thành công trước khi merge pull request, và phân công người duyệt nội dung. Các trường QA không được tự tích xanh khi chưa thực hiện kiểm tra thực tế.
+
+
+## 11. Ngoại lệ xem trước công khai được yêu cầu rõ ràng (không phải nghiệm thu)
+
+Khi người quản trị ALI **yêu cầu đăng trước** dù phụ đề mới là bản AI, có thể sử dụng trạng thái kỹ thuật `qa.stage: public_preview_pending_editorial_review` kết hợp `qa.videoTechnicalChecked: true` **chỉ sau khi MP4, poster, phụ đề và đồng bộ thời gian đã qua kiểm tra tự động**. Đây **không phải trạng thái đạt chuẩn đầy đủ** và phải được phân biệt rõ ở mô tả phim.
+
+- Bộ kiểm tra vẫn bắt buộc H.264/AAC, ảnh thật đúng ID phim, metadata, đủ hai ngôn ngữ và mốc thời gian hợp lệ; kiểm duyệt nội dung, quyền sử dụng và thử nghiệm thiết bị được ghi **cảnh báo**, không được tự động tích đã duyệt.
+- Chỉ sử dụng khi **người quản trị yêu cầu xuất bản rõ ràng**, không tự ý áp dụng làm mặc định cho phim mới.
+- Giáo viên/biên tập viên phải rà soát bản tiếng Anh, tiếng Việt và timecode, quyền sử dụng, giao diện desktop/mobile trước khi đổi `qa` sang trạng thái nghiệm thu, điền ngày `approvedAt`.
+- **Ví dụ ngoại lệ theo yêu cầu đăng trực tiếp 10/11/2026:** Kung Fu Panda – Po vs. Tai Lung. Đây là bản xem thử công khai, chưa chứng nhận đạt quy chuẩn ALI-CINEMA-STD-01.
