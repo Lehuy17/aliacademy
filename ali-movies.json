@@ -1,5 +1,5 @@
 {
-  "version": 6,
+  "version": 7,
   "movies": [
     {
       "id": "ali-video-01",
@@ -36,7 +36,7 @@
         "layout": "video-left-captions-right"
       },
       "ambientVideo": "./media/ambient/spiderman-nwh-preview.mp4",
-      "captions": "./captions/spiderman-nwh-2021-doing-this-long-time.json"
+      "captions": "./captions/spiderman-nwh-2021-doing-this-long-time.json?v=2"
     }
   ]
 }
