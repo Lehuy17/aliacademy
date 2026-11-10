@@ -1,0 +1,43 @@
+{
+  "note": "FROZEN 2026-11-10 snapshot for old ALI movies. Exemption is allowed only while an entry is byte-equivalent after JSON parsing. Any changed/new item must pass ALI-CINEMA-STD-01. Do not add new entries here to bypass QA.",
+  "frozenAt": "2026-11-10",
+  "movies": [
+    {
+      "id": "ali-video-01",
+      "title": "Video luyện nghe ALI · 01",
+      "category": "PHIM SONG NGỮ · ALI",
+      "description": "21 câu thoại Anh – Việt, xem phim kèm phụ đề song ngữ và nghe lại từng câu.",
+      "duration": "00:53",
+      "poster": "https://drive.google.com/thumbnail?id=1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B&sz=w960",
+      "previewSecond": 16,
+      "captions": "./captions/1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B.json",
+      "source": {
+        "type": "chunked",
+        "loader": "ali-video-01"
+      },
+      "driveId": "1FTYlfU8Aa1mRPyRwnrUFe5x3q6X6Bq8B"
+    },
+    {
+      "id": "spiderman-nwh-2021-doing-this-long-time",
+      "title": "\"I've Been Doing This For A Long Time\" | SPIDER-MAN: NO WAY HOME (2021)",
+      "category": "PHIM SONG NGỮ · SPIDER-MAN: NO WAY HOME",
+      "description": "Trích đoạn Spider-Man: No Way Home (2021) · 09:41 · 264 đoạn phụ đề Anh–Việt dịch tự động, chưa kiểm duyệt.",
+      "duration": "09:41",
+      "poster": "https://drive.google.com/thumbnail?id=1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx&sz=w960",
+      "source": {
+        "type": "drive"
+      },
+      "driveId": "1LshhXuuIT6HR1LpvXJ6uDdAthDNkZ8Dx",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "resolution": "1920x1080",
+      "videoCodec": "HEVC",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "ambientVideo": "./media/ambient/spiderman-nwh-preview.mp4",
+      "captions": "./captions/spiderman-nwh-2021-doing-this-long-time.json?v=2"
+    }
+  ]
+}
