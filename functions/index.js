@@ -64,10 +64,11 @@ exports.teacherSetStudentStatus=onCall({...config,timeoutSeconds:60},async reque
  if(!/^[A-Za-z0-9_-]{12,160}$/.test(uid)||!["active","inactive"].includes(status))
   invalid("Học viên hoặc trạng thái không hợp lệ.");
  if(uid===staff.uid)throw new HttpsError("permission-denied","Không thể tự khóa tài khoản.");
- const target=await getFirestore().doc("users/"+uid).get();
+ let target=await getFirestore().doc("users/"+uid).get();
+ if(!target.exists)target=await getFirestore().doc("user/"+uid).get();
  if(!target.exists||target.data().role!=="student")
   throw new HttpsError("permission-denied","Chỉ được điều chỉnh tài khoản học viên.");
- // Server Admin SDK controls both auth and profile; teachers cannot change claims.
+ // Also supports existing ALI profiles in the legacy singular 'user' collection.
  await getAuth().updateUser(uid,{disabled:status==="inactive"});
  await target.ref.update({status,updatedBy:staff.uid,updatedAt:FieldValue.serverTimestamp()});
  return {uid,status};
