@@ -1,5 +1,5 @@
 {
-  "version": 11,
+  "version": 12,
   "movies": [
     {
       "id": "ali-video-01",
@@ -57,6 +57,36 @@
         "url": "./media/kung-fu-panda-po-vs-tai-lung-final-battle/video.mp4"
       },
       "captions": "./captions/kung-fu-panda-po-vs-tai-lung-final-battle.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "jack-frost-defeats-pitch-black-guardian-oath",
+      "title": "Jack Frost DEFEATS Pitch Black & Takes The Guardian Oath! | Rise Of The Guardians",
+      "category": "PHIM SONG NGỮ · RISE OF THE GUARDIANS",
+      "description": "Jack Frost đối đầu Pitch Black và tuyên thệ trở thành Vệ Thần · 05:40 · phụ đề Anh–Việt đang rà soát.",
+      "duration": "05:40",
+      "durationSeconds": 340.335,
+      "poster": "./media/jack-frost-defeats-pitch-black-guardian-oath/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/jack-frost-defeats-pitch-black-guardian-oath/video.mp4"
+      },
+      "captions": "./captions/jack-frost-defeats-pitch-black-guardian-oath.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
