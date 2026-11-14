@@ -1,0 +1,113 @@
+name: Prepare Homelander as ALI synced HTML5 bilingual video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-homelander-ali.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-homelander-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install transcription and translation tools
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/ali-homelander-env
+          /tmp/ali-homelander-env/bin/pip install --no-cache-dir \
+            'gdown>=5.0,<6' 'faster-whisper>=1.1,<2' 'deep-translator>=1.11,<2'
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
+      - name: Retrieve the exact user-supplied Google Drive video
+        env:
+          DRIVE_FILE_ID: 1h44CiFl5gl14cVyK_VVXbNbGgUWjE1L2
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-homelander-env/bin/gdown --id "$DRIVE_FILE_ID" \
+                 --output /tmp/ali-homelander-original.mp4; then break; fi
+            rm -f /tmp/ali-homelander-original.mp4
+            sleep 10
+          done
+          test -s /tmp/ali-homelander-original.mp4
+          python3 - <<'PY'
+          import json,subprocess,pathlib
+          p=pathlib.Path('/tmp/ali-homelander-original.mp4')
+          d=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json',str(p)]))
+          sec=float(d['format']['duration'])
+          assert 229 < sec < 232, f'Wrong source clip: {sec} seconds'
+          assert p.stat().st_size > 100_000_000, f'Incomplete source: {p.stat().st_size}'
+          print(f'Confirmed Google Drive source {sec:.3f}s and {p.stat().st_size} bytes')
+          PY
+
+      - name: Produce same-origin, seekable H264/AAC movie and film poster
+        run: |
+          set -euo pipefail
+          target='media/the-boys-homelander-exposes-victoria-neuman'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-homelander-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=1280:720:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
+            -pix_fmt yuv420p -crf 26 -maxrate 1700k -bufsize 3400k -g 48 \
+            -c:a aac -b:a 96k -ar 44100 -ac 2 \
+            -movflags +faststart "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 40 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -i /tmp/ali-homelander-original.mp4 -vn -ac 1 -ar 16000 \
+            /tmp/ali-homelander-audio.wav
+
+      - name: Create real timed English dialogue and provisional Vietnamese translation
+        run: |
+          set -euo pipefail
+          /tmp/ali-homelander-env/bin/python scripts/prepare-homelander-ali.py
+
+      - name: Gate publication on complete media and caption structure
+        run: |
+          set -euo pipefail
+          node scripts/validate-ali-movies.cjs
+          python3 - <<'PY'
+          import json,pathlib
+          slug='the-boys-homelander-exposes-victoria-neuman'
+          p=pathlib.Path('captions')/(slug+'.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['status']=='machine_transcript_bilingual_unreviewed'
+          assert len(d['cues'])>=10, 'No usable timed subtitles'
+          assert all(c['en'].strip() and c['vi'].strip() for c in d['cues'])
+          print('Draft transcript verified. Editorial & rights approvals remain pending.')
+          PY
+
+      - name: Publish only after validation succeeds
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add ali-movies.json \
+            media/the-boys-homelander-exposes-victoria-neuman/video.mp4 \
+            media/the-boys-homelander-exposes-victoria-neuman/poster.jpg \
+            captions/the-boys-homelander-exposes-victoria-neuman.json
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+            exit 0
+          fi
+          git commit -m 'Publish Homelander ALI HTML5 film with timed bilingual draft'
+          git pull --rebase origin main
+          git push origin HEAD:main
