@@ -1,5 +1,5 @@
 {
-  "version": 17,
+  "version": 18,
   "movies": [
     {
       "id": "ali-video-01",
@@ -222,35 +222,6 @@
         "desktopMobileTested": false,
         "approvedAt": "",
         "videoTechnicalChecked": true
-      }
-    },
-    {
-      "id": "the-boys-homelander-exposes-victoria-neuman",
-      "title": "Homelander Exposes Victoria Neuman As A Supe | The Boys (Antony Starr)",
-      "category": "PHIM SONG NGỮ · THE BOYS",
-      "description": "Homelander tiết lộ bí mật của Victoria Neuman · 03:50 · video đang chờ biên tập phụ đề Anh–Việt. Nội dung có thể có bạo lực và ngôn ngữ người lớn.",
-      "duration": "03:50",
-      "durationSeconds": 230.249,
-      "poster": "https://drive.google.com/thumbnail?id=1h44CiFl5gl14cVyK_VVXbNbGgUWjE1L2&sz=w960",
-      "source": {
-        "type": "drive"
-      },
-      "driveId": "1h44CiFl5gl14cVyK_VVXbNbGgUWjE1L2",
-      "subtitleStatus": "awaiting_verified_bilingual_transcript",
-      "presentation": {
-        "hideSourceLink": true,
-        "background": "film-blur",
-        "layout": "video-left-captions-right"
-      },
-      "qa": {
-        "stage": "video_preview_pending_bilingual_transcript_and_technical_qa",
-        "englishReviewed": false,
-        "vietnameseReviewed": false,
-        "timingsReviewed": false,
-        "desktopMobileTested": false,
-        "rightsConfirmed": false,
-        "videoTechnicalChecked": true,
-        "approvedAt": ""
       }
     }
   ]
