@@ -1,0 +1,638 @@
+{
+  "movieId": "focker-in-law-did-you-pee-in-my-purse",
+  "duration": 227.788,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Descript automated English transcript from ALI supplied video; Vietnamese draft translation; cues require human editorial and timing review",
+  "cues": [
+    {
+      "start": 1.174,
+      "end": 2.413,
+      "en": "Is your name Olivia Jones?",
+      "vi": "Cô có tên là Olivia Jones phải không?"
+    },
+    {
+      "start": 2.469,
+      "end": 2.772,
+      "en": "Yes.",
+      "vi": "Vâng."
+    },
+    {
+      "start": 3.038,
+      "end": 4.404,
+      "en": "How did you meet Greg Falcone?",
+      "vi": "Cô gặp Greg Falcone như thế nào?"
+    },
+    {
+      "start": 7.225,
+      "end": 9.494,
+      "en": "Hey, there's a big line back there, so I was gonna use the restroom.",
+      "vi": "Này, phía sau xếp hàng dài quá nên tôi định dùng nhà vệ sinh ở đây."
+    },
+    {
+      "start": 9.497,
+      "end": 11.724,
+      "en": "You'll need to use the lavatory in your assigned cabin.",
+      "vi": "Anh phải dùng nhà vệ sinh ở khoang được chỉ định."
+    },
+    {
+      "start": 11.728,
+      "end": 12.596,
+      "en": "But I could be quick.",
+      "vi": "Nhưng tôi sẽ nhanh thôi."
+    },
+    {
+      "start": 12.979,
+      "end": 13.904,
+      "en": "It's the rule.",
+      "vi": "Đó là quy định."
+    },
+    {
+      "start": 15.817,
+      "end": 16.786,
+      "en": "I'm so sorry.",
+      "vi": "Tôi thật sự xin lỗi."
+    },
+    {
+      "start": 16.828,
+      "end": 18.231,
+      "en": "He crapped through his diaper.",
+      "vi": "Thằng bé ị tràn cả bỉm rồi."
+    },
+    {
+      "start": 18.323,
+      "end": 21.613,
+      "en": "We have a hazmat situation in the rear lavatory.",
+      "vi": "Chúng tôi gặp sự cố vệ sinh nghiêm trọng ở nhà vệ sinh phía sau."
+    },
+    {
+      "start": 28.238,
+      "end": 28.552,
+      "en": "What are you doing?",
+      "vi": "Ông đang làm gì vậy?"
+    },
+    {
+      "start": 29.419,
+      "end": 30.9,
+      "en": "Oh, I am in the wrong seat.",
+      "vi": "Ồ, tôi ngồi nhầm chỗ."
+    },
+    {
+      "start": 30.925,
+      "end": 32.128,
+      "en": "Did you pee in my purse?",
+      "vi": "Ông tè vào túi xách của tôi à?"
+    },
+    {
+      "start": 32.244,
+      "end": 32.595,
+      "en": "What?",
+      "vi": "Cái gì?"
+    },
+    {
+      "start": 32.619,
+      "end": 32.965,
+      "en": "No.",
+      "vi": "Không!"
+    },
+    {
+      "start": 33.064,
+      "end": 33.994,
+      "en": "Can I help you, sweetie?",
+      "vi": "Tôi giúp gì được cho cô, cô bé?"
+    },
+    {
+      "start": 34.043,
+      "end": 35.726,
+      "en": "This man was rifling through my bag.",
+      "vi": "Người đàn ông này vừa lục lọi túi của tôi."
+    },
+    {
+      "start": 35.726,
+      "end": 37.01,
+      "en": "I barely grazed the zipper.",
+      "vi": "Tôi chỉ vừa chạm nhẹ vào khóa kéo thôi."
+    },
+    {
+      "start": 37.031,
+      "end": 37.978,
+      "en": "What if he took something?",
+      "vi": "Lỡ ông ấy lấy thứ gì thì sao?"
+    },
+    {
+      "start": 37.995,
+      "end": 38.817,
+      "en": "Do you wanna search me?",
+      "vi": "Cô muốn khám người tôi à?"
+    },
+    {
+      "start": 38.947,
+      "end": 39.442,
+      "en": "Yes.",
+      "vi": "Có."
+    },
+    {
+      "start": 41.724,
+      "end": 42.24,
+      "en": "Go ahead.",
+      "vi": "Cứ tự nhiên."
+    },
+    {
+      "start": 42.799,
+      "end": 43.977,
+      "en": "Arms up, sir.",
+      "vi": "Xin ông giơ tay lên."
+    },
+    {
+      "start": 43.977,
+      "end": 44.17,
+      "en": "Oh.",
+      "vi": "Ồ."
+    },
+    {
+      "start": 44.199,
+      "end": 45.569,
+      "en": "Do you have anything sharp in your pockets?",
+      "vi": "Ông có vật sắc nhọn nào trong túi không?"
+    },
+    {
+      "start": 45.626,
+      "end": 48.655,
+      "en": "Uh, besides the Bowie knife and that hypodermic needle, yes.",
+      "vi": "Ờ, ngoài con dao Bowie và chiếc kim tiêm đó ra thì có đấy."
+    },
+    {
+      "start": 48.655,
+      "end": 50.189,
+      "en": "Please remove the Bowie knife and the hypodermic.",
+      "vi": "Xin hãy lấy con dao Bowie và chiếc kim tiêm ra."
+    },
+    {
+      "start": 50.191,
+      "end": 50.576,
+      "en": "Uh, come on.",
+      "vi": "Thôi nào."
+    },
+    {
+      "start": 50.583,
+      "end": 51.863,
+      "en": "Spread your legs, please, sir.",
+      "vi": "Xin ông dang chân ra."
+    },
+    {
+      "start": 52.788,
+      "end": 53.588,
+      "en": "Please turn around.",
+      "vi": "Xin quay người lại."
+    },
+    {
+      "start": 53.772,
+      "end": 54.096,
+      "en": "Oh.",
+      "vi": "Ồ."
+    },
+    {
+      "start": 54.637,
+      "end": 55.578,
+      "en": "Oh, oh, oh.",
+      "vi": "Ôi, ôi, ôi."
+    },
+    {
+      "start": 55.593,
+      "end": 56.697,
+      "en": "Sir, is this the needle?",
+      "vi": "Thưa ông, đây có phải là chiếc kim không?"
+    },
+    {
+      "start": 57.208,
+      "end": 57.43,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 58.146,
+      "end": 58.989,
+      "en": "Focker in Law.",
+      "vi": "Focker in Law."
+    },
+    {
+      "start": 59.016,
+      "end": 61.242,
+      "en": "Hey, Dad, this is my girlfriend, Olivia.",
+      "vi": "Bố ơi, đây là bạn gái con, Olivia."
+    },
+    {
+      "start": 62.251,
+      "end": 63.114,
+      "en": "Rated PG-13.",
+      "vi": "Phim được xếp loại PG-13."
+    },
+    {
+      "start": 65.79,
+      "end": 69.092,
+      "en": "Henry, I test all the potential new family members with this machine.",
+      "vi": "Henry, ông dùng chiếc máy này để kiểm tra tất cả thành viên tương lai của gia đình."
+    },
+    {
+      "start": 71.686,
+      "end": 72.991,
+      "en": "Is your name Olivia Jones?",
+      "vi": "Cô có tên là Olivia Jones phải không?"
+    },
+    {
+      "start": 73.05,
+      "end": 73.366,
+      "en": "Yes.",
+      "vi": "Vâng."
+    },
+    {
+      "start": 74.802,
+      "end": 75.831,
+      "en": "Do you love Henry Focker?",
+      "vi": "Cô có yêu Henry Focker không?"
+    },
+    {
+      "start": 76.777,
+      "end": 77.524,
+      "en": "Very much.",
+      "vi": "Rất nhiều ạ."
+    },
+    {
+      "start": 77.748,
+      "end": 80.389,
+      "en": "Do you have a positive impression of Henry's family so far?",
+      "vi": "Cho đến giờ, cô có ấn tượng tốt với gia đình Henry chứ?"
+    },
+    {
+      "start": 81.024,
+      "end": 81.285,
+      "en": "Yes.",
+      "vi": "Có ạ."
+    },
+    {
+      "start": 81.363,
+      "end": 81.868,
+      "en": "Hello.",
+      "vi": "Xin chào."
+    },
+    {
+      "start": 83.072,
+      "end": 83.426,
+      "en": "Hey.",
+      "vi": "Chào."
+    },
+    {
+      "start": 83.653,
+      "end": 84.548,
+      "en": "The old machine.",
+      "vi": "Chiếc máy cũ đây mà."
+    },
+    {
+      "start": 84.741,
+      "end": 87.118,
+      "en": "It's funny to be on the outside, used to being in the hot seat.",
+      "vi": "Lạ thật khi ngồi bên ngoài, trước đây tôi toàn là người bị tra hỏi."
+    },
+    {
+      "start": 87.175,
+      "end": 89.472,
+      "en": "Would you like to ask me some questions, Greg?",
+      "vi": "Greg, anh có muốn hỏi tôi vài câu không?"
+    },
+    {
+      "start": 89.685,
+      "end": 90.008,
+      "en": "Okay.",
+      "vi": "Được thôi."
+    },
+    {
+      "start": 90.072,
+      "end": 92.551,
+      "en": "Uh, Olivia, do you think I hold Henry emotionally hostage?",
+      "vi": "Ờ, Olivia, cô có nghĩ tôi đang thao túng cảm xúc của Henry không?"
+    },
+    {
+      "start": 93.283,
+      "end": 94.098,
+      "en": "I mean, yeah.",
+      "vi": "Ý tôi là, có đấy."
+    },
+    {
+      "start": 94.126,
+      "end": 95.196,
+      "en": "You call him Wee Wee.",
+      "vi": "Anh gọi cậu ấy là Wee Wee mà."
+    },
+    {
+      "start": 95.35,
+      "end": 95.548,
+      "en": "Wee Wee.",
+      "vi": "Wee Wee."
+    },
+    {
+      "start": 96.435,
+      "end": 100,
+      "en": "What is that, like, a joke about his wee-wee or— Oh, nope.",
+      "vi": "Đó là trò đùa về cái ấy của nó hay là... Ồ, thôi khỏi."
+    },
+    {
+      "start": 100.051,
+      "end": 101.414,
+      "en": "No jokes about Henry's little penis.",
+      "vi": "Không được đùa về cậu nhỏ bé xíu của Henry."
+    },
+    {
+      "start": 101.459,
+      "end": 102.436,
+      "en": "I mean, not little.",
+      "vi": "Ý tôi là, không hề bé."
+    },
+    {
+      "start": 102.884,
+      "end": 104.95,
+      "en": "You probably have more up-to-date info on it.",
+      "vi": "Chắc cô nắm thông tin cập nhật hơn tôi."
+    },
+    {
+      "start": 105.459,
+      "end": 107.361,
+      "en": "I haven't seen it for a while, so— Dad, please stop talking.",
+      "vi": "Lâu rồi tôi chưa thấy nên... Bố ơi, bố đừng nói nữa!"
+    },
+    {
+      "start": 107.368,
+      "end": 107.943,
+      "en": "Oh, all right.",
+      "vi": "Ồ, được rồi."
+    },
+    {
+      "start": 111.129,
+      "end": 112.164,
+      "en": "What do you think of Olivia?",
+      "vi": "Anh thấy Olivia thế nào?"
+    },
+    {
+      "start": 112.25,
+      "end": 114.143,
+      "en": "She's adorable, so smart.",
+      "vi": "Cô bé đáng yêu, lại rất thông minh."
+    },
+    {
+      "start": 114.186,
+      "end": 117.349,
+      "en": "Zas, good boy.",
+      "vi": "Zas, giỏi lắm."
+    },
+    {
+      "start": 117.729,
+      "end": 118.585,
+      "en": "He likes you.",
+      "vi": "Nó thích cô đấy."
+    },
+    {
+      "start": 118.932,
+      "end": 122.572,
+      "en": "With one sniff, dogs can tell more about a person's character than a human could.",
+      "vi": "Chỉ cần ngửi một cái, chó có thể hiểu tính cách một người hơn cả con người."
+    },
+    {
+      "start": 122.648,
+      "end": 123.77,
+      "en": "Ah, ah, jeez.",
+      "vi": "Á, á, trời ơi."
+    },
+    {
+      "start": 125.92,
+      "end": 130.687,
+      "en": "I don't know if you're aware, Greg, but when we first met, I didn't think you were good enough for my... Yeah, I didn't notice.",
+      "vi": "Không biết anh có nhớ không, Greg, nhưng lần đầu gặp, tôi không nghĩ anh đủ tốt cho con tôi... Ừ, tôi chẳng nhận ra đấy."
+    },
+    {
+      "start": 131.092,
+      "end": 132.35,
+      "en": "But Olivia's a powerhouse.",
+      "vi": "Nhưng Olivia đúng là một người rất bản lĩnh."
+    },
+    {
+      "start": 133.984,
+      "end": 138.105,
+      "en": "People underestimate me, but actually I was an FBI hostage negotiator.",
+      "vi": "Mọi người thường đánh giá thấp tôi, nhưng thực ra tôi từng là chuyên viên đàm phán con tin của FBI."
+    },
+    {
+      "start": 138.122,
+      "end": 138.899,
+      "en": "Oh, bada.",
+      "vi": "Ồ, tuyệt nhỉ."
+    },
+    {
+      "start": 139.146,
+      "end": 140.317,
+      "en": "Here comes the airplane.",
+      "vi": "Máy bay tới đây nào!"
+    },
+    {
+      "start": 141.134,
+      "end": 144.643,
+      "en": "I pull the strings of the hostage takers, like strategic emotional puppetry.",
+      "vi": "Tôi điều khiển tâm lý những kẻ bắt cóc con tin, như một màn múa rối cảm xúc có chiến lược."
+    },
+    {
+      "start": 144.679,
+      "end": 146.641,
+      "en": "That's how I'm gonna free Henry from you, Greg.",
+      "vi": "Đó là cách tôi sẽ giải thoát Henry khỏi anh, Greg."
+    },
+    {
+      "start": 148.854,
+      "end": 149.327,
+      "en": "Oh my God.",
+      "vi": "Ôi Chúa ơi."
+    },
+    {
+      "start": 150.187,
+      "end": 150.556,
+      "en": "What do we do?",
+      "vi": "Chúng ta làm gì đây?"
+    },
+    {
+      "start": 155.006,
+      "end": 157.392,
+      "en": "Oh my God, you baby-birdied Grandpa Jay.",
+      "vi": "Ôi trời, ông vừa mớm thức ăn kiểu chim mẹ cho ông Jay!"
+    },
+    {
+      "start": 159.74,
+      "end": 161.055,
+      "en": "I'm gonna ask Olivia to marry me.",
+      "vi": "Con định cầu hôn Olivia."
+    },
+    {
+      "start": 161.076,
+      "end": 161.296,
+      "en": "What?",
+      "vi": "Cái gì?"
+    },
+    {
+      "start": 161.534,
+      "end": 161.879,
+      "en": "Whoa.",
+      "vi": "Chà!"
+    },
+    {
+      "start": 162.478,
+      "end": 163.631,
+      "en": "Hey, you sure she's the one?",
+      "vi": "Này, con chắc cô ấy là người phù hợp chứ?"
+    },
+    {
+      "start": 164.026,
+      "end": 166.203,
+      "en": "Dad, why?",
+      "vi": "Bố, sao bố lại thế?"
+    },
+    {
+      "start": 166.374,
+      "end": 166.826,
+      "en": "Woo.",
+      "vi": "Úi!"
+    },
+    {
+      "start": 167.059,
+      "end": 168.246,
+      "en": "I'm a little worried about Henry.",
+      "vi": "Tôi hơi lo cho Henry."
+    },
+    {
+      "start": 168.465,
+      "end": 171.395,
+      "en": "He's so innocent, and she's trained to manipulate people.",
+      "vi": "Nó quá ngây thơ, còn cô ấy lại được đào tạo để thao túng người khác."
+    },
+    {
+      "start": 171.785,
+      "end": 174.711,
+      "en": "I love the lengths that you go to for your mishpocha.",
+      "vi": "Tôi rất thích cách anh làm mọi thứ vì gia đình mình."
+    },
+    {
+      "start": 174.907,
+      "end": 175.726,
+      "en": "Mishpocha.",
+      "vi": "Mishpocha."
+    },
+    {
+      "start": 175.79,
+      "end": 177.553,
+      "en": "That means family in Yiddish.",
+      "vi": "Từ đó nghĩa là gia đình trong tiếng Yiddish."
+    },
+    {
+      "start": 177.755,
+      "end": 178.532,
+      "en": "I know.",
+      "vi": "Tôi biết."
+    },
+    {
+      "start": 178.563,
+      "end": 180.444,
+      "en": "I'm not that easy to tame.",
+      "vi": "Không dễ gì thuần phục được tôi đâu."
+    },
+    {
+      "start": 180.621,
+      "end": 183.416,
+      "en": "I'm considering inviting Olivia into the circle of trust.",
+      "vi": "Tôi đang cân nhắc mời Olivia gia nhập vòng tròn tin tưởng."
+    },
+    {
+      "start": 183.45,
+      "end": 184.573,
+      "en": "Look at the guns on this guy.",
+      "vi": "Nhìn cơ bắp của anh chàng này kìa."
+    },
+    {
+      "start": 184.573,
+      "end": 185.954,
+      "en": "Well, thank you for noticing.",
+      "vi": "Ồ, cảm ơn vì đã để ý."
+    },
+    {
+      "start": 186.195,
+      "end": 188.153,
+      "en": "Watch me running up like flame.",
+      "vi": "Nhìn tôi lao lên như ngọn lửa này."
+    },
+    {
+      "start": 188.401,
+      "end": 189.721,
+      "en": "You can't just waltz in there.",
+      "vi": "Không thể cứ thế mà bước vào được."
+    },
+    {
+      "start": 189.78,
+      "end": 191.622,
+      "en": "I worked my ass off to get in there.",
+      "vi": "Tôi đã vất vả hết sức mới được vào đấy."
+    },
+    {
+      "start": 192.746,
+      "end": 194.325,
+      "en": "Should be an interesting weekend.",
+      "vi": "Có vẻ cuối tuần này sẽ thú vị đây."
+    },
+    {
+      "start": 195.201,
+      "end": 195.959,
+      "en": "Are you not entertained?",
+      "vi": "Mọi người chưa thấy đã mắt sao?"
+    },
+    {
+      "start": 196.726,
+      "end": 197.428,
+      "en": "Race you to the end?",
+      "vi": "Đua đến cuối đường nhé?"
+    },
+    {
+      "start": 197.54,
+      "end": 198.078,
+      "en": "Let's do it.",
+      "vi": "Chơi luôn."
+    },
+    {
+      "start": 198.494,
+      "end": 199.601,
+      "en": "Born got no brain.",
+      "vi": "Sinh ra đã chẳng có não rồi."
+    },
+    {
+      "start": 212.887,
+      "end": 215.409,
+      "en": "Thought this would be an opportunity to get to know me, to bond.",
+      "vi": "Tôi tưởng đây là cơ hội để hiểu nhau hơn, để gắn kết."
+    },
+    {
+      "start": 215.409,
+      "end": 217.244,
+      "en": "How do you bond with an emotional puppeteer?",
+      "vi": "Làm sao gắn kết được với một người chuyên thao túng cảm xúc?"
+    },
+    {
+      "start": 217.283,
+      "end": 219.772,
+      "en": "I won't be your little Pinocchio, Geppetto.",
+      "vi": "Tôi sẽ không làm Pinocchio bé nhỏ của ông đâu, Geppetto."
+    },
+    {
+      "start": 220.085,
+      "end": 221.289,
+      "en": "Evil Geppetto.",
+      "vi": "Geppetto độc ác."
+    },
+    {
+      "start": 223.56,
+      "end": 224.68,
+      "en": "I'm a real boy.",
+      "vi": "Tôi là một cậu bé thực sự!"
+    }
+  ]
+}
