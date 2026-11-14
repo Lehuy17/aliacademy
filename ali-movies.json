@@ -1,5 +1,5 @@
 {
-  "version": 12,
+  "version": 13,
   "movies": [
     {
       "id": "ali-video-01",
@@ -87,6 +87,36 @@
         "url": "./media/jack-frost-defeats-pitch-black-guardian-oath/video.mp4"
       },
       "captions": "./captions/jack-frost-defeats-pitch-black-guardian-oath.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "focker-in-law-did-you-pee-in-my-purse",
+      "title": "\"Did You Pee In My Purse?\" - FOCKER IN-LAW Movie Clip (2026)",
+      "category": "PHIM SONG NGỮ · FOCKER IN-LAW",
+      "description": "Trích đoạn Focker In-Law · 03:48 · phụ đề Anh–Việt đang rà soát.",
+      "duration": "03:48",
+      "durationSeconds": 227.788,
+      "poster": "./media/focker-in-law-did-you-pee-in-my-purse/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/focker-in-law-did-you-pee-in-my-purse/video.mp4"
+      },
+      "captions": "./captions/focker-in-law-did-you-pee-in-my-purse.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
