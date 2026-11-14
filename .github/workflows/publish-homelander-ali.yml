@@ -75,6 +75,7 @@ jobs:
             -i /tmp/ali-homelander-original.mp4 -vn -ac 1 -ar 16000 \
             /tmp/ali-homelander-audio.wav
 
+      # ASR uses WAV PCM decoding to avoid PyAV compatibility issues on Python 3.14.
       - name: Create real timed English dialogue and provisional Vietnamese translation
         run: |
           set -euo pipefail
