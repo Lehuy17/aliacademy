@@ -10,6 +10,9 @@ import re
 import subprocess
 import sys
 import time
+import wave
+
+import numpy as np
 
 from deep_translator import GoogleTranslator
 from faster_whisper import WhisperModel
@@ -70,8 +73,11 @@ def main():
     assert SOURCE.exists(), "Audio was not extracted"
     print("Transcribing exact 3m50s file with Whisper base.en", flush=True)
     model = WhisperModel("base.en", device="cpu", compute_type="int8", cpu_threads=4)
+    with wave.open(str(SOURCE), "rb") as wav:
+        assert wav.getframerate() == 16000 and wav.getnchannels() == 1 and wav.getsampwidth() == 2
+        pcm = np.frombuffer(wav.readframes(wav.getnframes()), dtype=np.int16).astype(np.float32) / 32768.0
     segments, _ = model.transcribe(
-        str(SOURCE), language="en", beam_size=4, vad_filter=True,
+        pcm, language="en", beam_size=4, vad_filter=True,
         condition_on_previous_text=False, no_speech_threshold=0.55)
     transcript = []
     for seg in segments:
