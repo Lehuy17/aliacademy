@@ -1,0 +1,145 @@
+name: Publish Sharkboy Lavagirl as synced ALI HTML5 bilingual video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-sharkboy-lavagirl-ali.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-sharkboy-lavagirl-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install gdown and ensure FFmpeg is available
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+          python3 -m venv /tmp/ali-gdown
+          /tmp/ali-gdown/bin/pip install -q 'gdown>=5.0,<6'
+
+      - name: Download ALI-supplied Sharkboy and Lavagirl MP4
+        env:
+          DRIVE_FILE_ID: 1K_LO3jCRItl-YYuk3ZWLcZIXa8oUkJy2
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-gdown/bin/gdown --id "$DRIVE_FILE_ID" --output /tmp/ali-sharkboy-original.mp4; then break; fi
+            rm -f /tmp/ali-sharkboy-original.mp4
+            sleep 15
+          done
+          test -s /tmp/ali-sharkboy-original.mp4
+          test "$(stat -c%s /tmp/ali-sharkboy-original.mp4)" -gt 300000000
+          python3 - <<'PY'
+          import json,subprocess
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json','/tmp/ali-sharkboy-original.mp4']))
+          duration=float(info['format']['duration'])
+          assert 391 <= duration <= 397, f'Unexpected source duration: {duration}'
+          print('Source duration:', duration)
+          PY
+
+      - name: Encode seekable HTML5 H264 AAC MP4 and thumbnail
+        run: |
+          set -euo pipefail
+          target='media/meeting-lavagirl-and-sharkboy'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-sharkboy-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=960:540:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
+            -pix_fmt yuv420p -b:v 1000k -maxrate 1300k -bufsize 2600k -g 48 \
+            -c:a aac -b:a 96k -ar 44100 -ac 2 \
+            -movflags +faststart \
+            "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 275 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+
+      - name: Verify converted MP4 and bilingual subtitles
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,subprocess,pathlib
+          slug='meeting-lavagirl-and-sharkboy'
+          video=pathlib.Path('media')/slug/'video.mp4'
+          poster=pathlib.Path('media')/slug/'poster.jpg'
+          captions=json.loads((pathlib.Path('captions')/(slug+'.json')).read_text())
+          info=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries',
+              'format=duration:stream=codec_type,codec_name,pix_fmt,width,height','-of','json',str(video)]))
+          duration=float(info['format']['duration'])
+          size=video.stat().st_size
+          streams=info['streams']
+          v=next(s for s in streams if s['codec_type']=='video')
+          a=next(s for s in streams if s['codec_type']=='audio')
+          assert 391<=duration<=397
+          assert 2_000_000<size<90*1024*1024
+          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          assert v['width']<=1280 and v['height']<=720 and a['codec_name']=='aac'
+          assert poster.stat().st_size>2000
+          assert len(captions['cues'])>=60
+          assert all(c['start']>=0 and c['end']>c['start'] and c['end']<=duration+1
+                     and c['en'].strip() and c['vi'].strip() for c in captions['cues'])
+          with video.open('rb') as f: assert b'moov' in f.read(250000)
+          print(f'Validated {duration:.3f}s; {size/1048576:.1f} MiB; {len(captions["cues"])} EN/VI cues')
+          PY
+
+      - name: Register ALI cinema public-preview film
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('ali-movies.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          slug='meeting-lavagirl-and-sharkboy'
+          movie={
+            'id':slug,
+            'title':'Meeting Lavagirl and Sharkboy | The Adventures of Sharkboy and Lavagirl',
+            'category':'PHIM SONG NGỮ · SHARKBOY AND LAVAGIRL',
+            'description':'Trích đoạn gặp Sharkboy và Lavagirl · 06:34 · phụ đề Anh–Việt đang rà soát.',
+            'duration':'06:34','durationSeconds':393.881,
+            'poster':f'./media/{slug}/poster.jpg',
+            'source':{'type':'url','url':f'./media/{slug}/video.mp4'},
+            'captions':f'./captions/{slug}.json',
+            'subtitleStatus':'machine_transcript_bilingual_unreviewed',
+            'presentation':{'hideSourceLink':True,'background':'film-blur','layout':'video-left-captions-right'},
+            'qa':{'stage':'public_preview_pending_editorial_review','rightsConfirmed':False,
+                  'englishReviewed':False,'vietnameseReviewed':False,'timingsReviewed':False,
+                  'desktopMobileTested':False,'approvedAt':'','videoTechnicalChecked':True}
+          }
+          for idx,item in enumerate(d['movies']):
+            if item['id']==slug:
+              d['movies'][idx]=movie
+              break
+          else:d['movies'].append(movie)
+          d['version']=int(d.get('version',1))+1
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          node scripts/validate-ali-movies.cjs
+
+      - name: Publish film and activate synchronized ALI player
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add ali-movies.json media/meeting-lavagirl-and-sharkboy/video.mp4 \
+            media/meeting-lavagirl-and-sharkboy/poster.jpg
+          if git diff --cached --quiet; then
+            echo 'Already published.'
+            exit 0
+          fi
+          git commit -m 'Publish Sharkboy Lavagirl synced ALI HTML5 film and provisional captions'
+          git pull --rebase origin main
+          git push origin HEAD:main
