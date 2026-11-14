@@ -14,7 +14,8 @@ import wave
 
 import numpy as np
 
-from deep_translator import GoogleTranslator
+import torch
+from transformers import AutoModelForSeq2SeqLM, AutoTokenizer
 from faster_whisper import WhisperModel
 
 SLUG = "the-boys-homelander-exposes-victoria-neuman"
@@ -48,24 +49,26 @@ def check_video():
     return duration
 
 def translate_lines(lines):
-    translator = GoogleTranslator(source="en", target="vi")
+    """Offline Apache-2.0 Marian EN->VI model avoids shared-IP rate limits."""
+    model_id = "Helsinki-NLP/opus-mt-en-vi"
+    print(f"Loading offline neural translator: {model_id}", flush=True)
+    torch.set_num_threads(4)
+    tokenizer = AutoTokenizer.from_pretrained(model_id)
+    model = AutoModelForSeq2SeqLM.from_pretrained(model_id)
+    model.eval()
+    languages = getattr(tokenizer, "supported_language_codes", None) or []
+    prefix = ">>vie<< " if ">>vie<<" in languages else ""
     translations = []
-    for index, line in enumerate(lines):
-        translated = ""
-        for attempt in range(5):
-            try:
-                translated = (translator.translate(line) or "").strip()
-                if translated:
-                    break
-            except Exception as exc:
-                print(f"Translation retry {index + 1}, attempt {attempt + 1}: {exc}", flush=True)
-            time.sleep(min(12, 2 ** attempt))
-        if not translated:
-            raise RuntimeError(f"Missing/unchanged Vietnamese translation at cue {index + 1}")
-        translations.append(translated)
-        if (index + 1) % 20 == 0:
-            print(f"Translated {index + 1}/{len(lines)}", flush=True)
-        time.sleep(0.35)
+    for start in range(0, len(lines), 8):
+        batch = [prefix + line for line in lines[start:start + 8]]
+        inputs = tokenizer(batch, return_tensors="pt", padding=True,
+                           truncation=True, max_length=192)
+        with torch.inference_mode():
+            ids = model.generate(**inputs, num_beams=4, max_new_tokens=120)
+        outputs = tokenizer.batch_decode(ids, skip_special_tokens=True)
+        translations.extend([x.strip() for x in outputs])
+        print(f"Translated {len(translations)}/{len(lines)}", flush=True)
+    assert len(translations) == len(lines) and all(translations), "Vietnamese translation incomplete"
     return translations
 
 def main():
@@ -98,7 +101,7 @@ def main():
         "movieId": SLUG,
         "duration": round(duration, 3),
         "status": "machine_transcript_bilingual_unreviewed",
-        "source": "Speech recognition from the user-supplied clip with Whisper base.en; automatic Vietnamese translation. Requires human review.",
+        "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
         "cues": cues
     }, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
