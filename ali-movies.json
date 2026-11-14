@@ -1,5 +1,5 @@
 {
-  "version": 18,
+  "version": 19,
   "movies": [
     {
       "id": "ali-video-01",
@@ -207,6 +207,36 @@
         "url": "./media/bad-boys-best-reggie-scenes/video.mp4"
       },
       "captions": "./captions/bad-boys-best-reggie-scenes.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "the-boys-homelander-exposes-victoria-neuman",
+      "title": "Homelander Exposes Victoria Neuman As A Supe | The Boys (Antony Starr)",
+      "category": "PHIM SONG NGỮ · THE BOYS",
+      "description": "Homelander tiết lộ Victoria Neuman là siêu nhân · 03:50 · phụ đề Anh–Việt tự động đang chờ rà soát. Nội dung người lớn, có thể chứa bạo lực và ngôn ngữ thô.",
+      "duration": "03:50",
+      "durationSeconds": 230.25,
+      "poster": "./media/the-boys-homelander-exposes-victoria-neuman/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/the-boys-homelander-exposes-victoria-neuman/video.mp4"
+      },
+      "captions": "./captions/the-boys-homelander-exposes-victoria-neuman.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
