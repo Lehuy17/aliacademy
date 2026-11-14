@@ -52,12 +52,12 @@ def translate_lines(lines):
         for attempt in range(5):
             try:
                 translated = (translator.translate(line) or "").strip()
-                if translated and translated.casefold() != line.casefold():
+                if translated:
                     break
             except Exception as exc:
                 print(f"Translation retry {index + 1}, attempt {attempt + 1}: {exc}", flush=True)
             time.sleep(min(12, 2 ** attempt))
-        if not translated or translated.casefold() == line.casefold():
+        if not translated:
             raise RuntimeError(f"Missing/unchanged Vietnamese translation at cue {index + 1}")
         translations.append(translated)
         if (index + 1) % 20 == 0:
