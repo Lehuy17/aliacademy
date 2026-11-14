@@ -22,12 +22,19 @@ jobs:
         with:
           persist-credentials: true
 
-      - name: Install transcription and translation tools
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install transcription and offline translation tools
         run: |
           set -euo pipefail
           python3 -m venv /tmp/ali-homelander-env
           /tmp/ali-homelander-env/bin/pip install --no-cache-dir \
-            'gdown>=5.0,<6' 'faster-whisper>=1.1,<2' 'deep-translator>=1.11,<2'
+            'gdown>=5.0,<6' 'faster-whisper>=1.1,<2' \
+            'transformers>=4.44,<5' 'sentencepiece>=0.2,<1'
+          /tmp/ali-homelander-env/bin/pip install --no-cache-dir \
+            --index-url https://download.pytorch.org/whl/cpu 'torch>=2.6,<3'
           if ! command -v ffmpeg >/dev/null 2>&1; then
             sudo apt-get update -qq
             sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
