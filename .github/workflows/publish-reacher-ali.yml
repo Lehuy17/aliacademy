@@ -43,7 +43,7 @@ jobs:
 
       - name: Retrieve the exact user-supplied Google Drive video
         env:
-          DRIVE_FILE_ID: 13l59tQpQwHF0bNFUfScBFs2NMy3BdFx2
+          DRIVE_FILE_ID: 1OrYpekXblDL9sDbH2QXa566GTBD6ae4t
         run: |
           set -euo pipefail
           for attempt in 1 2 3; do
