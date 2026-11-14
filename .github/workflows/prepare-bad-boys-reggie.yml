@@ -28,6 +28,10 @@ jobs:
           python3 -m venv /tmp/ali-media-env
           /tmp/ali-media-env/bin/pip install --no-cache-dir 'gdown>=5.0,<6' 'faster-whisper>=1.1,<2'
           /tmp/ali-media-env/bin/python -c 'import gdown, faster_whisper; print("Installed")'
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
+          fi
           command -v ffmpeg
           command -v ffprobe
 
