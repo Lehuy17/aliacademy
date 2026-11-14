@@ -26,7 +26,8 @@ jobs:
         run: |
           set -euo pipefail
           python3 -m venv /tmp/ali-media-env
-          /tmp/ali-media-env/bin/pip install -q 'gdown>=5.0,<6' 'faster-whisper>=1.1,<2'
+          /tmp/ali-media-env/bin/pip install --no-cache-dir 'gdown>=5.0,<6' 'faster-whisper>=1.1,<2'
+          /tmp/ali-media-env/bin/python -c 'import gdown, faster_whisper; print("Installed")'
           command -v ffmpeg
           command -v ffprobe
 
