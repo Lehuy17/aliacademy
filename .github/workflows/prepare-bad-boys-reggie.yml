@@ -1,0 +1,121 @@
+name: Prepare Bad Boys Reggie ALI Cinema media and English transcript
+
+on:
+  push:
+    paths:
+      - '.github/workflows/prepare-bad-boys-reggie.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-bad-boys-reggie-prepare
+  cancel-in-progress: false
+
+jobs:
+  prepare:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install transcription tools
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/ali-media-env
+          /tmp/ali-media-env/bin/pip install -q 'gdown>=5.0,<6' 'faster-whisper>=1.1,<2'
+          command -v ffmpeg
+          command -v ffprobe
+
+      - name: Download the user supplied original MP4
+        env:
+          DRIVE_FILE_ID: 19Hm5tRv_qdSPkwbfjNiIBwXgAfKb140F
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-media-env/bin/gdown --id "$DRIVE_FILE_ID" \
+                 --output /tmp/ali-reggie-original.mp4; then break; fi
+            rm -f /tmp/ali-reggie-original.mp4
+            sleep 15
+          done
+          test -s /tmp/ali-reggie-original.mp4
+          test "$(stat -c%s /tmp/ali-reggie-original.mp4)" -gt 450000000
+          ffprobe -v error -show_entries format=duration -of default=nw=1 /tmp/ali-reggie-original.mp4
+
+      - name: Optimize source to HTML5 MP4
+        run: |
+          set -euo pipefail
+          target='media/bad-boys-best-reggie-scenes'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-reggie-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=854:480:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
+            -pix_fmt yuv420p -b:v 680k -maxrate 880k -bufsize 1760k -g 48 \
+            -c:a aac -b:a 64k -ar 44100 -ac 2 \
+            -movflags +faststart "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 90 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -i /tmp/ali-reggie-original.mp4 -vn -ac 1 -ar 16000 \
+            /tmp/ali-reggie-audio.wav
+
+      - name: Transcribe dialogue in English using local speech recognition
+        run: |
+          set -euo pipefail
+          /tmp/ali-media-env/bin/python - <<'PY'
+          import json,pathlib
+          from faster_whisper import WhisperModel
+          model=WhisperModel("base.en", device="cpu", compute_type="int8",cpu_threads=4)
+          segments,info=model.transcribe("/tmp/ali-reggie-audio.wav",beam_size=3,vad_filter=True,language="en",
+              condition_on_previous_text=False)
+          cues=[]
+          for seg in segments:
+              line=seg.text.strip()
+              if not line or seg.end-seg.start<0.10: continue
+              cues.append({"start":round(seg.start,3),"end":round(seg.end,3),"en":line})
+          assert len(cues)>=12,f"Too few speech segments: {len(cues)}"
+          out=pathlib.Path("captions/bad-boys-best-reggie-scenes.en-draft.json")
+          out.parent.mkdir(parents=True,exist_ok=True)
+          out.write_text(json.dumps({"movieId":"bad-boys-best-reggie-scenes",
+            "status":"machine_transcript_unreviewed","duration":592.0,"cues":cues},
+            ensure_ascii=False,indent=2)+"\n")
+          print("English segments:",len(cues))
+          PY
+
+      - name: Validate staged video and do not expose incomplete movie
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import subprocess,json,pathlib
+          slug='bad-boys-best-reggie-scenes'
+          v=pathlib.Path('media')/slug/'video.mp4'
+          p=pathlib.Path('media')/slug/'poster.jpg'
+          j=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,pix_fmt,width,height','-of','json',str(v)]))
+          duration=float(j['format']['duration'])
+          assert 585<duration<600, duration
+          assert v.stat().st_size<90*1024*1024
+          a=next(x for x in j['streams'] if x['codec_type']=='audio')
+          video=next(x for x in j['streams'] if x['codec_type']=='video')
+          assert a['codec_name']=='aac'
+          assert video['codec_name']=='h264' and video['pix_fmt']=='yuv420p'
+          assert p.stat().st_size>2000
+          with v.open('rb') as f: assert b'moov' in f.read(250000)
+          print(f'MP4 validated: {duration:.3f}s {v.stat().st_size/1048576:.2f}MiB')
+          PY
+
+      - name: Save staged source and English captions for bilingual review
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add media/bad-boys-best-reggie-scenes/video.mp4 \
+                  media/bad-boys-best-reggie-scenes/poster.jpg \
+                  captions/bad-boys-best-reggie-scenes.en-draft.json
+          git commit -m 'Stage Bad Boys Reggie clean MP4 and draft English transcript'
+          git pull --rebase origin main
+          git push origin HEAD:main
