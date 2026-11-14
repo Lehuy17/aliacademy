@@ -1,0 +1,142 @@
+name: Publish Hotel Transylvania 3 DJ Battle as synced ALI movie
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-hotel-transylvania-3-ali.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-hotel-transylvania-3-publish
+  cancel-in-progress: false
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - name: Install Google Drive downloader and FFmpeg
+        run: |
+          set -euo pipefail
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo apt-get install -y ffmpeg
+          fi
+          python3 -m venv /tmp/ali-gdown
+          /tmp/ali-gdown/bin/pip install -q 'gdown>=5.0,<6'
+
+      - name: Download user supplied Hotel Transylvania 3 MP4
+        env:
+          DRIVE_FILE_ID: 1MXCrPVUffXSvjCdKYmkTfumMv57pYx_U
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-gdown/bin/gdown --id "$DRIVE_FILE_ID" --output /tmp/ali-hotel-original.mp4; then break; fi
+            rm -f /tmp/ali-hotel-original.mp4
+            sleep 15
+          done
+          test -s /tmp/ali-hotel-original.mp4
+          test "$(stat -c%s /tmp/ali-hotel-original.mp4)" -gt 400000000
+          python3 - <<'PY'
+          import subprocess,json
+          j=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration','-of','json','/tmp/ali-hotel-original.mp4']))
+          duration=float(j['format']['duration'])
+          assert 585 <= duration <= 590, f'Duration mismatch: {duration}'
+          print('Source duration',duration)
+          PY
+
+      - name: Produce browser-seekable H264 AAC MP4
+        run: |
+          set -euo pipefail
+          target='media/hotel-transylvania-3-dj-battle-kraken'
+          mkdir -p "$target"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-hotel-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf 'scale=960:540:force_original_aspect_ratio=decrease:force_divisible_by=2,fps=24' \
+            -c:v libx264 -preset veryfast -profile:v main -level 3.1 \
+            -pix_fmt yuv420p -b:v 950k -maxrate 1200k -bufsize 2400k -g 48 \
+            -c:a aac -b:a 96k -ar 44100 -ac 2 \
+            -movflags +faststart \
+            "$target/video.mp4"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 320 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+
+      - name: Validate MP4 and synchronized bilingual dialog
+        run: |
+          set -euo pipefail
+          python3 - <<'PY'
+          import json,pathlib,subprocess
+          slug='hotel-transylvania-3-dj-battle-kraken'
+          video=pathlib.Path('media')/slug/'video.mp4'
+          poster=pathlib.Path('media')/slug/'poster.jpg'
+          captions=json.loads((pathlib.Path('captions')/(slug+'.json')).read_text())
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error','-show_entries','format=duration:stream=codec_type,codec_name,pix_fmt,width,height','-of','json',str(video)]))
+          duration=float(meta['format']['duration'])
+          v=next(s for s in meta['streams'] if s['codec_type']=='video')
+          a=next(s for s in meta['streams'] if s['codec_type']=='audio')
+          assert 585<=duration<=590
+          assert 2_000_000<video.stat().st_size<90*1024*1024
+          assert v['codec_name']=='h264' and v['pix_fmt']=='yuv420p'
+          assert v['width']<=1280 and v['height']<=720
+          assert a['codec_name']=='aac'
+          assert poster.stat().st_size>2000
+          assert len(captions['cues'])>=50
+          assert all(c['start']>=0 and c['end']>c['start'] and c['end']<=duration+1 and c['en'].strip() and c['vi'].strip() for c in captions['cues'])
+          with video.open('rb') as f: assert b'moov' in f.read(250000)
+          print(f'Validated {duration:.3f}s / {video.stat().st_size/1048576:.1f} MiB / {len(captions["cues"])} dialog cues')
+          PY
+
+      - name: Add preview movie to ALI catalog and run standard QA
+        run: |
+          python3 - <<'PY'
+          import json,pathlib
+          p=pathlib.Path('ali-movies.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          slug='hotel-transylvania-3-dj-battle-kraken'
+          movie={
+            'id':slug,
+            'title':'The DJ Battle VS. The Kraken | Hotel Transylvania 3: Summer Vacation',
+            'category':'PHIM SONG NGỮ · HOTEL TRANSYLVANIA 3',
+            'description':'Trận đấu DJ với Kraken · 09:47 · phụ đề lời thoại Anh–Việt đang rà soát (không bao gồm toàn bộ lời bài hát).',
+            'duration':'09:47','durationSeconds':587.443,
+            'poster':f'./media/{slug}/poster.jpg',
+            'source':{'type':'url','url':f'./media/{slug}/video.mp4'},
+            'captions':f'./captions/{slug}.json',
+            'subtitleStatus':'machine_transcript_bilingual_unreviewed',
+            'presentation':{'hideSourceLink':True,'background':'film-blur','layout':'video-left-captions-right'},
+            'qa':{'stage':'public_preview_pending_editorial_review','rightsConfirmed':False,
+                  'englishReviewed':False,'vietnameseReviewed':False,'timingsReviewed':False,
+                  'desktopMobileTested':False,'approvedAt':'','videoTechnicalChecked':True}
+          }
+          for i,m in enumerate(d['movies']):
+            if m['id']==slug:
+              d['movies'][i]=movie
+              break
+          else:d['movies'].append(movie)
+          d['version']=int(d.get('version',1))+1
+          p.write_text(json.dumps(d,ensure_ascii=False,indent=2)+'\n',encoding='utf-8')
+          PY
+          node scripts/validate-ali-movies.cjs
+
+      - name: Commit verified video and publish to GitHub Pages
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add ali-movies.json media/hotel-transylvania-3-dj-battle-kraken/video.mp4 \
+            media/hotel-transylvania-3-dj-battle-kraken/poster.jpg
+          if git diff --cached --quiet; then
+            echo 'No changes needed.'
+            exit 0
+          fi
+          git commit -m 'Publish Hotel Transylvania 3 synced HTML5 movie with bilingual spoken dialog'
+          git pull --rebase origin main
+          git push origin HEAD:main
