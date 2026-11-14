@@ -1,5 +1,5 @@
 {
-  "version": 13,
+  "version": 14,
   "movies": [
     {
       "id": "ali-video-01",
@@ -117,6 +117,36 @@
         "url": "./media/focker-in-law-did-you-pee-in-my-purse/video.mp4"
       },
       "captions": "./captions/focker-in-law-did-you-pee-in-my-purse.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "meeting-lavagirl-and-sharkboy",
+      "title": "Meeting Lavagirl and Sharkboy | The Adventures of Sharkboy and Lavagirl",
+      "category": "PHIM SONG NGỮ · SHARKBOY AND LAVAGIRL",
+      "description": "Trích đoạn gặp Sharkboy và Lavagirl · 06:34 · phụ đề Anh–Việt đang rà soát.",
+      "duration": "06:34",
+      "durationSeconds": 393.881,
+      "poster": "./media/meeting-lavagirl-and-sharkboy/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/meeting-lavagirl-and-sharkboy/video.mp4"
+      },
+      "captions": "./captions/meeting-lavagirl-and-sharkboy.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
