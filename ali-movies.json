@@ -1,5 +1,5 @@
 {
-  "version": 14,
+  "version": 15,
   "movies": [
     {
       "id": "ali-video-01",
@@ -147,6 +147,36 @@
         "url": "./media/meeting-lavagirl-and-sharkboy/video.mp4"
       },
       "captions": "./captions/meeting-lavagirl-and-sharkboy.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "hotel-transylvania-3-dj-battle-kraken",
+      "title": "The DJ Battle VS. The Kraken | Hotel Transylvania 3: Summer Vacation",
+      "category": "PHIM SONG NGỮ · HOTEL TRANSYLVANIA 3",
+      "description": "Trận đấu DJ với Kraken · 09:47 · phụ đề lời thoại Anh–Việt đang rà soát (không bao gồm toàn bộ lời bài hát).",
+      "duration": "09:47",
+      "durationSeconds": 587.443,
+      "poster": "./media/hotel-transylvania-3-dj-battle-kraken/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/hotel-transylvania-3-dj-battle-kraken/video.mp4"
+      },
+      "captions": "./captions/hotel-transylvania-3-dj-battle-kraken.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
