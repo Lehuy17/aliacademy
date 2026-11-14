@@ -1,0 +1,464 @@
+{
+  "movieId": "reacher-season-3-gangster-bullies-innocent-maid",
+  "duration": 271.186,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 1.0,
+      "en": "You guys okay?",
+      "vi": "Mọi người ổn chứ?"
+    },
+    {
+      "start": 1.0,
+      "end": 2.0,
+      "en": "We're good.",
+      "vi": "Chúng tôi ổn."
+    },
+    {
+      "start": 2.0,
+      "end": 5.0,
+      "en": "Thanks for saving my s*** today.",
+      "vi": "Cảm ơn vì đã cứu tôi hôm nay."
+    },
+    {
+      "start": 5.0,
+      "end": 6.0,
+      "en": "I owe you.",
+      "vi": "Tôi nợ anh."
+    },
+    {
+      "start": 6.0,
+      "end": 10.0,
+      "en": "Saving the life of a good person is a pretty low bar for praise.",
+      "vi": "Cứu mạng một người tốt là một cây gậy khá thấp để ca ngợi."
+    },
+    {
+      "start": 10.0,
+      "end": 11.0,
+      "en": "Next moves.",
+      "vi": "Bước tiếp theo."
+    },
+    {
+      "start": 11.0,
+      "end": 13.0,
+      "en": "Billy's back in the cab and getting his car.",
+      "vi": "Billy quay lại xe và lấy xe."
+    },
+    {
+      "start": 13.0,
+      "end": 15.0,
+      "en": "We're going to split up to cover more ground.",
+      "vi": "Chúng ta sẽ tách ra để bao phủ nhiều mặt đất hơn."
+    },
+    {
+      "start": 15.0,
+      "end": 17.0,
+      "en": "Check on some of the addresses from Angel Joel's laptop.",
+      "vi": "Kiểm tra một số địa chỉ từ laptop của Angel Joel."
+    },
+    {
+      "start": 17.0,
+      "end": 19.0,
+      "en": "You wrote him down?",
+      "vi": "Anh ghi lại à?"
+    },
+    {
+      "start": 19.0,
+      "end": 22.0,
+      "en": "Why would I do that? They were on a laptop.",
+      "vi": "Tại sao tôi phải làm thế?"
+    },
+    {
+      "start": 22.0,
+      "end": 23.0,
+      "en": "Good point.",
+      "vi": "Ý hay đấy."
+    },
+    {
+      "start": 23.0,
+      "end": 25.0,
+      "en": "No, we remembered about five of them.",
+      "vi": "Không, chúng tôi nhớ về năm người trong số họ."
+    },
+    {
+      "start": 25.0,
+      "end": 27.0,
+      "en": "I'm going to hit a place that makes storage crates.",
+      "vi": "Tôi sẽ đến một nơi làm thùng chứa đồ."
+    },
+    {
+      "start": 27.0,
+      "end": 29.0,
+      "en": "Figure they use them to move the rugs.",
+      "vi": "Có lẽ họ dùng chúng để di chuyển tấm thảm."
+    },
+    {
+      "start": 29.0,
+      "end": 33.0,
+      "en": "Billy is going to run down some kind of industrial lubricant plant.",
+      "vi": "Billy sẽ tìm một nhà máy bôi trơn công nghiệp nào đó."
+    },
+    {
+      "start": 33.0,
+      "end": 36.0,
+      "en": "I have no idea what that's for, but from what I can find online,",
+      "vi": "Tôi không biết nó dùng để làm gì, nhưng từ những gì tôi có thể tìm thấy trên mạng,"
+    },
+    {
+      "start": 36.0,
+      "end": 40.0,
+      "en": "it looks like a legit operation that Quinn might buy product from for some reason.",
+      "vi": "Có vẻ như một chiến dịch hợp pháp mà Quinn có thể mua sản phẩm vì một lý do nào đó."
+    },
+    {
+      "start": 40.0,
+      "end": 43.0,
+      "en": "These guys could be waiting for you now that Quinn knows Fets are snooping around.",
+      "vi": "Những gã này có thể đang chờ anh lúc này khi Quinn biết Fets đang rình mò xung quanh."
+    },
+    {
+      "start": 43.0,
+      "end": 44.0,
+      "en": "They got no choice.",
+      "vi": "Họ không còn lựa chọn nào khác."
+    },
+    {
+      "start": 44.0,
+      "end": 48.0,
+      "en": "The location has been compromised, so they'll have to move to Risa.",
+      "vi": "Vị trí đã bị xâm nhập, nên họ sẽ phải chuyển đến Risa."
+    },
+    {
+      "start": 48.0,
+      "end": 53.0,
+      "en": "If we're lucky, maybe we catch him in the act, and if we do, I'm taking him out.",
+      "vi": "Nếu chúng ta may mắn, có lẽ chúng ta sẽ bắt được hắn trong màn diễn, và nếu có, tôi sẽ hạ hắn."
+    },
+    {
+      "start": 53.0,
+      "end": 55.0,
+      "en": "Sounds like a plan.",
+      "vi": "Nghe có vẻ là một kế hoạch."
+    },
+    {
+      "start": 55.0,
+      "end": 57.0,
+      "en": "Anything else?",
+      "vi": "Còn gì nữa không?"
+    },
+    {
+      "start": 57.0,
+      "end": 60.84,
+      "en": "Yeah, I have your badge.",
+      "vi": "Phải, tôi có huy hiệu của anh."
+    },
+    {
+      "start": 60.84,
+      "end": 63.12,
+      "en": "I didn't notice I lost it.",
+      "vi": "Tôi không để ý là tôi làm mất nó."
+    },
+    {
+      "start": 63.12,
+      "end": 65.12,
+      "en": "Give it back to me next time I see you.",
+      "vi": "Lần sau nhớ trả lại cho tôi."
+    },
+    {
+      "start": 65.12,
+      "end": 66.8,
+      "en": "Reach her.",
+      "vi": "Liên lạc với cô ấy."
+    },
+    {
+      "start": 66.8,
+      "end": 69.86,
+      "en": "I gotta go.",
+      "vi": "Tôi phải đi đây."
+    },
+    {
+      "start": 69.86,
+      "end": 72.58,
+      "en": "Reach her, where the hell are you?",
+      "vi": "Liên lạc với cô ấy đi, anh đang ở chỗ quái nào vậy?"
+    },
+    {
+      "start": 72.58,
+      "end": 74.14,
+      "en": "What the hell were you doing behind there?",
+      "vi": "Anh làm cái quái gì sau đó vậy?"
+    },
+    {
+      "start": 74.14,
+      "end": 75.58,
+      "en": "Had to take a piss.",
+      "vi": "Tôi phải đi tiểu."
+    },
+    {
+      "start": 75.58,
+      "end": 78.14,
+      "en": "I have nine bathrooms inside this house.",
+      "vi": "Tôi có chín phòng tắm trong nhà này."
+    },
+    {
+      "start": 78.14,
+      "end": 80.86,
+      "en": "Yeah, that was outside.",
+      "vi": "Phải, nó ở bên ngoài."
+    },
+    {
+      "start": 80.86,
+      "end": 82.02,
+      "en": "I just got a call from McCabe.",
+      "vi": "Tôi vừa nhận được một cuộc gọi từ McCabe."
+    },
+    {
+      "start": 82.02,
+      "end": 83.82,
+      "en": "Were those guys really feds?",
+      "vi": "Mấy gã đó có thật sự là FBI không?"
+    },
+    {
+      "start": 83.82,
+      "end": 85.14,
+      "en": "Not sure.",
+      "vi": "Không chắc."
+    },
+    {
+      "start": 85.14,
+      "end": 86.7,
+      "en": "Hardly got a better look than I did.",
+      "vi": "Khó mà có được một cái nhìn tốt hơn tôi."
+    },
+    {
+      "start": 86.7,
+      "end": 88.18,
+      "en": "Well, McCabe sent two of his men over here.",
+      "vi": "À, McCabe cử hai người của hắn tới đây."
+    },
+    {
+      "start": 88.18,
+      "end": 89.18,
+      "en": "They're in the kitchen now.",
+      "vi": "Họ đang ở trong bếp."
+    },
+    {
+      "start": 89.18,
+      "end": 91.46,
+      "en": "It's your house. You don't like it telling the leaf.",
+      "vi": "Đây là nhà anh, anh không thích nó nói chuyện với lá cây."
+    },
+    {
+      "start": 91.46,
+      "end": 92.62,
+      "en": "It doesn't work that way.",
+      "vi": "Nó không hoạt động theo cách đó."
+    },
+    {
+      "start": 92.62,
+      "end": 94.22,
+      "en": "McCabe isn't screwing around.",
+      "vi": "McCabe không đùa đâu."
+    },
+    {
+      "start": 94.22,
+      "end": 95.66,
+      "en": "First, the angel dog will...",
+      "vi": "Đầu tiên, con chó thiên thần sẽ..."
+    },
+    {
+      "start": 95.66,
+      "end": 96.9,
+      "en": "And now these Feds.",
+      "vi": "Và giờ là mấy tay FBI."
+    },
+    {
+      "start": 96.9,
+      "end": 98.94,
+      "en": "He's on edge and pissed.",
+      "vi": "Anh ta đang bực mình."
+    },
+    {
+      "start": 98.94,
+      "end": 100.78,
+      "en": "Two things you don't want that guy to be.",
+      "vi": "Có hai điều anh không muốn gã đó trở thành."
+    },
+    {
+      "start": 100.78,
+      "end": 117.56,
+      "en": "You're my head of security. Do your f***ing job.",
+      "vi": "Anh là trưởng ban an ninh của tôi, làm công việc của anh đi."
+    },
+    {
+      "start": 117.56,
+      "end": 119.72,
+      "en": "You heard things been tough lately.",
+      "vi": "Gần đây anh nghe nói mọi chuyện rất khó khăn."
+    },
+    {
+      "start": 119.72,
+      "end": 121.4,
+      "en": "Don't worry, Princess.",
+      "vi": "Đừng lo, công chúa."
+    },
+    {
+      "start": 121.4,
+      "end": 126.41,
+      "en": "Calgary's here.",
+      "vi": "Dạo này anh có chuyện gì vậy?"
+    },
+    {
+      "start": 126.41,
+      "end": 128.53,
+      "en": "What is hell? Black is pitch.",
+      "vi": "Cái quái gì vậy?"
+    },
+    {
+      "start": 128.53,
+      "end": 133.55,
+      "en": "Thank you.",
+      "vi": "Cảm ơn."
+    },
+    {
+      "start": 133.55,
+      "end": 137.09,
+      "en": "You like the coffee?",
+      "vi": "Anh thích cà phê chứ?"
+    },
+    {
+      "start": 137.09,
+      "end": 138.25,
+      "en": "It's okay.",
+      "vi": "Không sao đâu."
+    },
+    {
+      "start": 138.25,
+      "end": 140.65,
+      "en": "It's from a feline f***hole.",
+      "vi": "Nó là từ một f**hole."
+    },
+    {
+      "start": 140.65,
+      "end": 143.57,
+      "en": "Some posh bran Zachary likes.",
+      "vi": "Một vài con chó giống như nhà Zachary vậy."
+    },
+    {
+      "start": 143.57,
+      "end": 145.49,
+      "en": "They feed coffee beans to cats,",
+      "vi": "Họ cho mèo ăn đậu cà phê,"
+    },
+    {
+      "start": 145.49,
+      "end": 147.21,
+      "en": "then dig through the litter box",
+      "vi": "Sau đó đào thông qua các thùng rác"
+    },
+    {
+      "start": 147.21,
+      "end": 149.45,
+      "en": "after they pass them through.",
+      "vi": "Sau khi họ đi ngang qua."
+    },
+    {
+      "start": 149.45,
+      "end": 150.81,
+      "en": "What for?",
+      "vi": "Để làm gì?"
+    },
+    {
+      "start": 150.81,
+      "end": 153.93,
+      "en": "Something in their digestive system improves the taste.",
+      "vi": "Một cái gì đó trong hệ tiêu hóa của họ cải thiện hương vị."
+    },
+    {
+      "start": 155.33,
+      "end": 157.33,
+      "en": "It tastes like coffee.",
+      "vi": "Nó có vị như cà phê."
+    },
+    {
+      "start": 157.33,
+      "end": 159.21,
+      "en": "I want to leave the cat out of it.",
+      "vi": "Tôi muốn để con mèo ra khỏi đó."
+    },
+    {
+      "start": 159.21,
+      "end": 161.57,
+      "en": "You owe me 20 bucks, I don't you.",
+      "vi": "Anh nợ tôi 20 đô, tôi không nợ anh."
+    },
+    {
+      "start": 161.57,
+      "end": 165.85,
+      "en": "You don't like fucking speaking of fucking.",
+      "vi": "Anh không thích nói về chuyện làm tình."
+    },
+    {
+      "start": 165.85,
+      "end": 168.05,
+      "en": "I've never been so jealous of a fork in my life.",
+      "vi": "Tôi chưa bao giờ ghen tị với một cái nĩa trong đời."
+    },
+    {
+      "start": 169.41,
+      "end": 170.41,
+      "en": "You like Reema?",
+      "vi": "Anh thích Reema không?"
+    },
+    {
+      "start": 170.41,
+      "end": 173.41,
+      "en": "I know where you'd get some more.",
+      "vi": "Tôi biết anh lấy thêm ở đâu."
+    },
+    {
+      "start": 173.41,
+      "end": 175.41,
+      "en": "What's up, ma'am?",
+      "vi": "Có chuyện gì vậy, thưa bà?"
+    },
+    {
+      "start": 175.41,
+      "end": 177.78,
+      "en": "What'd she say?",
+      "vi": "Cô ấy nói gì?"
+    },
+    {
+      "start": 177.78,
+      "end": 182.42,
+      "en": "She said the cream came from your mother.",
+      "vi": "Cô ấy nói kem đến từ mẹ cậu."
+    },
+    {
+      "start": 182.42,
+      "end": 184.42,
+      "en": "Probably because she's a big fat cow.",
+      "vi": "Có lẽ vì cô ta là một con bò mập."
+    },
+    {
+      "start": 184.42,
+      "end": 186.42,
+      "en": "She's funny, though.",
+      "vi": "Dù sao thì cô ấy cũng vui tính."
+    },
+    {
+      "start": 186.42,
+      "end": 193.67,
+      "en": "You have any thoughts on dessert?",
+      "vi": "Anh có nghĩ gì về món tráng miệng không?"
+    },
+    {
+      "start": 193.67,
+      "end": 196.67,
+      "en": "No, ma'am. I got diabetes.",
+      "vi": "Không, tôi bị tiểu đường."
+    }
+  ]
+}

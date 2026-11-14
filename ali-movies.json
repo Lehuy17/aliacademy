@@ -1,5 +1,5 @@
 {
-  "version": 19,
+  "version": 20,
   "movies": [
     {
       "id": "ali-video-01",
@@ -237,6 +237,36 @@
         "url": "./media/the-boys-homelander-exposes-victoria-neuman/video.mp4"
       },
       "captions": "./captions/the-boys-homelander-exposes-victoria-neuman.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "reacher-season-3-gangster-bullies-innocent-maid",
+      "title": "Gangster Bullies Innocent Maid, Gets INSTANT Karma | Reacher Season 3 (Alan Ritchson)",
+      "category": "PHIM SONG NGỮ · REACHER SEASON 3",
+      "description": "Trích đoạn Reacher Season 3 · 04:31 · phụ đề Anh–Việt tự động đang chờ rà soát; có thể chứa ngôn ngữ thô và cảnh bạo lực.",
+      "duration": "04:31",
+      "durationSeconds": 271.186,
+      "poster": "./media/reacher-season-3-gangster-bullies-innocent-maid/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/reacher-season-3-gangster-bullies-innocent-maid/video.mp4"
+      },
+      "captions": "./captions/reacher-season-3-gangster-bullies-innocent-maid.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
