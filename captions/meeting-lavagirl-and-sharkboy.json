@@ -1,0 +1,416 @@
+{
+  "movieId": "meeting-lavagirl-and-sharkboy",
+  "duration": 393.881,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "ALI supplied video, Descript automated English transcript, Vietnamese translation draft; human review needed",
+  "cues": [
+    {
+      "start": 10.974,
+      "end": 12.753,
+      "en": "Who knows where tornadoes come from?",
+      "vi": "Ai biết lốc xoáy hình thành từ đâu nào?"
+    },
+    {
+      "start": 16.056,
+      "end": 23.38,
+      "en": "When cold air mixes with hot air, it can form a tornado as the hot and cold chase each other around and around and around.",
+      "vi": "Khi không khí lạnh hòa với không khí nóng, chúng có thể tạo thành lốc xoáy khi hai luồng khí xoay vòng quanh nhau."
+    },
+    {
+      "start": 23.494,
+      "end": 27.023,
+      "en": "I dreamt of a story kind of like Sharkboy and Lavagirl.",
+      "vi": "Tớ đã mơ một câu chuyện giống như Sharkboy và Lavagirl."
+    },
+    {
+      "start": 27.354,
+      "end": 28.756,
+      "en": "Ice Girl and Dream Boy.",
+      "vi": "Cô gái Băng Giá và Chàng trai Giấc Mơ."
+    },
+    {
+      "start": 29.278,
+      "end": 31.17,
+      "en": "Her powers come from her crystal heart.",
+      "vi": "Sức mạnh của cô ấy đến từ trái tim pha lê."
+    },
+    {
+      "start": 33.102,
+      "end": 34.149,
+      "en": "No more fairytales.",
+      "vi": "Đừng kể truyện cổ tích nữa."
+    },
+    {
+      "start": 34.668,
+      "end": 36.215,
+      "en": "Piranha Girl and Beluga Boy.",
+      "vi": "Cô gái Cá Piranha và Chàng trai Cá voi Trắng."
+    },
+    {
+      "start": 37.189,
+      "end": 38.98,
+      "en": "Plastic Boy and Metal Girl.",
+      "vi": "Chàng trai Nhựa và Cô gái Kim Loại."
+    },
+    {
+      "start": 39.647,
+      "end": 41.345,
+      "en": "Barf Boy and Vomit Girl.",
+      "vi": "Chàng trai Nôn Mửa và Cô gái Ói Mửa."
+    },
+    {
+      "start": 41.721,
+      "end": 42.7,
+      "en": "Does everyone hear me?",
+      "vi": "Cả lớp có nghe tôi nói không?"
+    },
+    {
+      "start": 43.045,
+      "end": 44.184,
+      "en": "I'm a teacher, right?",
+      "vi": "Tôi là giáo viên, đúng không?"
+    },
+    {
+      "start": 44.968,
+      "end": 45.539,
+      "en": "Wrong.",
+      "vi": "Sai rồi."
+    },
+    {
+      "start": 46.099,
+      "end": 52.172,
+      "en": "I'm an awakener, only I'm finding it more and more difficult to keep my class awake.",
+      "vi": "Tôi là người đánh thức tri thức, nhưng việc giữ cho cả lớp tỉnh táo ngày càng khó khăn."
+    },
+    {
+      "start": 53.105,
+      "end": 54.892,
+      "en": "And no recess again for you today, Marissa.",
+      "vi": "Hôm nay em lại không được ra chơi, Marissa."
+    },
+    {
+      "start": 54.892,
+      "end": 56.029,
+      "en": "You have too many allergies.",
+      "vi": "Em bị dị ứng quá nhiều thứ."
+    },
+    {
+      "start": 56.241,
+      "end": 58.431,
+      "en": "There are more boogers on your homework than there is homework.",
+      "vi": "Bài tập của em toàn nước mũi, còn nhiều hơn cả chữ viết."
+    },
+    {
+      "start": 59.127,
+      "end": 60.974,
+      "en": "I'm just cold.",
+      "vi": "Em chỉ thấy lạnh thôi."
+    },
+    {
+      "start": 61.686,
+      "end": 63.657,
+      "en": "I'll be happy to change places with you.",
+      "vi": "Tớ rất sẵn lòng đổi chỗ với cậu."
+    },
+    {
+      "start": 64.175,
+      "end": 66.191,
+      "en": "It's a lot warmer back there in my spot.",
+      "vi": "Chỗ tớ phía sau ấm hơn nhiều."
+    },
+    {
+      "start": 66.247,
+      "end": 68.595,
+      "en": "But I have to sit up front.",
+      "vi": "Nhưng tớ phải ngồi ở phía trước."
+    },
+    {
+      "start": 69.143,
+      "end": 71.373,
+      "en": "It's just that you're sitting right under the vent.",
+      "vi": "Chỉ là cậu đang ngồi ngay dưới cửa thông gió."
+    },
+    {
+      "start": 72.293,
+      "end": 74.032,
+      "en": "And it's August and you're sneezing.",
+      "vi": "Đang tháng Tám mà cậu vẫn hắt hơi."
+    },
+    {
+      "start": 74.441,
+      "end": 75.745,
+      "en": "You're gonna get me in trouble.",
+      "vi": "Cậu sẽ khiến tớ gặp rắc rối đấy."
+    },
+    {
+      "start": 76.099,
+      "end": 76.579,
+      "en": "Max.",
+      "vi": "Max."
+    },
+    {
+      "start": 79.493,
+      "end": 82.138,
+      "en": "Are you, uh, trying to make real friends?",
+      "vi": "Em đang cố kết bạn ngoài đời thật à?"
+    },
+    {
+      "start": 82.529,
+      "end": 84.468,
+      "en": "Yeah, trying like you told me to.",
+      "vi": "Vâng, em đang cố như thầy đã bảo."
+    },
+    {
+      "start": 85.031,
+      "end": 85.633,
+      "en": "That's good.",
+      "vi": "Tốt lắm."
+    },
+    {
+      "start": 86.575,
+      "end": 88.183,
+      "en": "Just not with my daughter, okay?",
+      "vi": "Nhưng đừng kết bạn với con gái thầy, được chứ?"
+    },
+    {
+      "start": 90.937,
+      "end": 93.043,
+      "en": "No, it, it wasn't like that.",
+      "vi": "Không, không phải như thế đâu."
+    },
+    {
+      "start": 93.043,
+      "end": 93.494,
+      "en": "It's just—",
+      "vi": "Chỉ là..."
+    },
+    {
+      "start": 93.984,
+      "end": 94.549,
+      "en": "Sit down, Max.",
+      "vi": "Ngồi xuống, Max."
+    },
+    {
+      "start": 106.253,
+      "end": 107.449,
+      "en": "Give me back my journal.",
+      "vi": "Trả cuốn nhật ký lại cho tớ."
+    },
+    {
+      "start": 107.46,
+      "end": 108.311,
+      "en": "Class has begun.",
+      "vi": "Giờ học bắt đầu rồi."
+    },
+    {
+      "start": 108.311,
+      "end": 109.524,
+      "en": "Everyone in your seats.",
+      "vi": "Tất cả về chỗ ngồi."
+    },
+    {
+      "start": 109.661,
+      "end": 111.39,
+      "en": "Linus took my journal.",
+      "vi": "Linus đã lấy nhật ký của em."
+    },
+    {
+      "start": 111.774,
+      "end": 112.621,
+      "en": "I did not.",
+      "vi": "Em không có."
+    },
+    {
+      "start": 112.649,
+      "end": 113.255,
+      "en": "Minus.",
+      "vi": "Minus."
+    },
+    {
+      "start": 114.238,
+      "end": 116.884,
+      "en": "I mean Linus, you get a minus for misconduct.",
+      "vi": "Ý tôi là Linus, em bị trừ điểm vì hành vi sai trái."
+    },
+    {
+      "start": 117.499,
+      "end": 118.645,
+      "en": "Give Max back his journal.",
+      "vi": "Trả nhật ký cho Max."
+    },
+    {
+      "start": 121.404,
+      "end": 124.884,
+      "en": "One more time, Linus, and we'll have to change your name to Minus.",
+      "vi": "Thêm lần nữa, Linus, chúng ta sẽ phải đổi tên em thành Minus."
+    },
+    {
+      "start": 132.942,
+      "end": 133.092,
+      "en": "He wa—",
+      "vi": "Cậu ta đã..."
+    },
+    {
+      "start": 136.068,
+      "end": 136.301,
+      "en": "I did not.",
+      "vi": "Em không làm."
+    },
+    {
+      "start": 136.335,
+      "end": 140.337,
+      "en": "Mr. Electric, send him to the principal's office and have him expelled.",
+      "vi": "Thầy Electric, đưa cậu ta lên văn phòng hiệu trưởng và đuổi học cậu ta đi."
+    },
+    {
+      "start": 141.364,
+      "end": 144.056,
+      "en": "You're in my class, not the other way around.",
+      "vi": "Em học trong lớp của tôi, chứ không phải ngược lại."
+    },
+    {
+      "start": 144.541,
+      "end": 147.786,
+      "en": "I know everything, and you know nothing.",
+      "vi": "Tôi biết tất cả, còn em chẳng biết gì."
+    },
+    {
+      "start": 148.523,
+      "end": 154.576,
+      "en": "At the end of class, both of you report to the principal's office with your parents.",
+      "vi": "Cuối buổi học, cả hai em cùng bố mẹ đến văn phòng hiệu trưởng."
+    },
+    {
+      "start": 244.346,
+      "end": 247.96,
+      "en": "Our solar system you should know, Max, you made it up.",
+      "vi": "Em phải biết hệ Mặt Trời của chúng ta chứ, Max, em đã bịa ra nó mà."
+    },
+    {
+      "start": 252.924,
+      "end": 254.573,
+      "en": "I can't go with you. Why not?",
+      "vi": "Tớ không thể đi cùng các cậu. Tại sao không?"
+    },
+    {
+      "start": 254.893,
+      "end": 256.409,
+      "en": "Because you're not real.",
+      "vi": "Vì các cậu không có thật."
+    },
+    {
+      "start": 256.87,
+      "end": 258.55,
+      "en": "Both of you are just a dream.",
+      "vi": "Cả hai chỉ là giấc mơ."
+    },
+    {
+      "start": 261.055,
+      "end": 264.213,
+      "en": "When I open my eyes, you'll be gone.",
+      "vi": "Khi tớ mở mắt ra, các cậu sẽ biến mất."
+    },
+    {
+      "start": 270.392,
+      "end": 271.058,
+      "en": "We're still here, Max.",
+      "vi": "Bọn tớ vẫn ở đây, Max."
+    },
+    {
+      "start": 272.605,
+      "end": 278.095,
+      "en": "If you wanna stop the darkness from destroying our world, come with us.",
+      "vi": "Nếu muốn ngăn bóng tối phá hủy thế giới của chúng tớ, hãy đi cùng bọn tớ."
+    },
+    {
+      "start": 279.252,
+      "end": 280.087,
+      "en": "You better go with us.",
+      "vi": "Tốt nhất là cậu nên đi cùng."
+    },
+    {
+      "start": 285.534,
+      "end": 286.118,
+      "en": "I'll go.",
+      "vi": "Tớ sẽ đi."
+    },
+    {
+      "start": 290.458,
+      "end": 291.167,
+      "en": "Everyone follow me.",
+      "vi": "Mọi người đi theo tớ."
+    },
+    {
+      "start": 291.545,
+      "end": 292.609,
+      "en": "We're gonna go find shelter.",
+      "vi": "Chúng ta sẽ tìm chỗ trú ẩn."
+    },
+    {
+      "start": 293.616,
+      "end": 297.664,
+      "en": "I can't believe I'm finally getting to ditch this place and go to Planet Drool.",
+      "vi": "Không thể tin cuối cùng tớ cũng được rời nơi này để đến Hành tinh Drool."
+    },
+    {
+      "start": 298.734,
+      "end": 300.148,
+      "en": "How are we getting there?",
+      "vi": "Làm sao chúng ta đến đó?"
+    },
+    {
+      "start": 312.506,
+      "end": 313.347,
+      "en": "Put these on, everybody.",
+      "vi": "Mọi người đeo cái này vào."
+    },
+    {
+      "start": 314.578,
+      "end": 317.744,
+      "en": "Blue goggles for the boys, pink for the girls.",
+      "vi": "Kính xanh cho các bạn nam, kính hồng cho các bạn nữ."
+    },
+    {
+      "start": 318.669,
+      "end": 320.211,
+      "en": "Do you have another pair of boy goggles?",
+      "vi": "Cậu còn đôi kính nam nào khác không?"
+    },
+    {
+      "start": 326.59,
+      "end": 326.875,
+      "en": "So?",
+      "vi": "Rồi sao?"
+    },
+    {
+      "start": 327.855,
+      "end": 328.509,
+      "en": "How do you fly it?",
+      "vi": "Làm sao lái nó?"
+    },
+    {
+      "start": 329.267,
+      "end": 329.963,
+      "en": "You don't know?",
+      "vi": "Cậu không biết à?"
+    },
+    {
+      "start": 330.478,
+      "end": 331.083,
+      "en": "Duh.",
+      "vi": "Rõ ràng rồi."
+    },
+    {
+      "start": 331.78,
+      "end": 333.276,
+      "en": "That's sort of an old problem.",
+      "vi": "Đó là vấn đề muôn thuở rồi."
+    },
+    {
+      "start": 335.633,
+      "end": 336.381,
+      "en": "You press go.",
+      "vi": "Cứ bấm nút đi thôi."
+    }
+  ]
+}
