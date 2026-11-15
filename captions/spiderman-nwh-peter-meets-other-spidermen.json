@@ -6,19 +6,19 @@
   "cues": [
     {
       "start": 2.1,
-      "end": 59.68,
+      "end": 7,
       "en": "Wait, wait, wait, wait.",
       "vi": "Khoan, khoan, khoan, khoan."
     },
     {
       "start": 59.68,
-      "end": 68.11,
+      "end": 63.18,
       "en": "Sorry about me.",
       "vi": "Xin lỗi về tôi."
     },
     {
       "start": 68.11,
-      "end": 73.31,
+      "end": 71.61,
       "en": "Yeah.",
       "vi": "Ừ."
     },
@@ -276,7 +276,7 @@
     },
     {
       "start": 253.3,
-      "end": 264.52,
+      "end": 261.6,
       "en": "She told me that was a great power.",
       "vi": "Cô ấy nói đó là một sức mạnh vĩ đại."
     },
