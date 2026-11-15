@@ -1,0 +1,308 @@
+{
+  "movieId": "spiderman-nwh-peter-meets-other-spidermen",
+  "duration": 286.72,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 2.1,
+      "end": 59.68,
+      "en": "Wait, wait, wait, wait.",
+      "vi": "Khoan, khoan, khoan, khoan."
+    },
+    {
+      "start": 59.68,
+      "end": 68.11,
+      "en": "Sorry about me.",
+      "vi": "Xin lỗi về tôi."
+    },
+    {
+      "start": 68.11,
+      "end": 73.31,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "start": 73.31,
+      "end": 74.31,
+      "en": "Sorry.",
+      "vi": "Xin lỗi."
+    },
+    {
+      "start": 74.31,
+      "end": 78.33,
+      "en": "I've got some understanding of what it's-",
+      "vi": "Tôi đã hiểu nó là gì..."
+    },
+    {
+      "start": 78.33,
+      "end": 80.33,
+      "en": "No, no, no. Please don't tell me that you know what I'm going through.",
+      "vi": "Làm ơn đừng nói với tôi là anh biết tôi đang phải trải qua chuyện gì."
+    },
+    {
+      "start": 80.33,
+      "end": 83.93,
+      "en": "She's gone.",
+      "vi": "Cô ấy đi rồi."
+    },
+    {
+      "start": 83.93,
+      "end": 87.68,
+      "en": "It's all my fault.",
+      "vi": "Tất cả là lỗi của tôi."
+    },
+    {
+      "start": 87.68,
+      "end": 92.84,
+      "en": "She died for nothing.",
+      "vi": "Cô ấy chết vô ích."
+    },
+    {
+      "start": 92.84,
+      "end": 99.65,
+      "en": "So I'm going to do what I should have done in the first place.",
+      "vi": "Vì vậy, tôi sẽ làm những gì tôi nên làm ngay từ đầu."
+    },
+    {
+      "start": 99.65,
+      "end": 101.65,
+      "en": "Peter, please don't.",
+      "vi": "Peter, làm ơn đừng."
+    },
+    {
+      "start": 101.65,
+      "end": 103.65,
+      "en": "You don't belong here.",
+      "vi": "Anh không thuộc về nơi này."
+    },
+    {
+      "start": 103.65,
+      "end": 104.65,
+      "en": "Neither are you.",
+      "vi": "Anh cũng vậy."
+    },
+    {
+      "start": 104.65,
+      "end": 106.65,
+      "en": "So I'm sending you home.",
+      "vi": "Nên tôi sẽ đưa cô về nhà."
+    },
+    {
+      "start": 106.65,
+      "end": 109.65,
+      "en": "Those other guys are from your worlds, right?",
+      "vi": "Những người khác đến từ thế giới của anh, phải không?"
+    },
+    {
+      "start": 109.65,
+      "end": 111.65,
+      "en": "So you deal with it.",
+      "vi": "Vậy là anh phải đối mặt với nó."
+    },
+    {
+      "start": 111.65,
+      "end": 116.65,
+      "en": "If they die, if you kill them, it's on you.",
+      "vi": "Nếu họ chết, nếu anh giết họ, là do anh."
+    },
+    {
+      "start": 116.65,
+      "end": 118.65,
+      "en": "It's not my problem.",
+      "vi": "Đó không phải là vấn đề của tôi."
+    },
+    {
+      "start": 118.65,
+      "end": 120.65,
+      "en": "I don't care anymore.",
+      "vi": "Tôi không quan tâm nữa."
+    },
+    {
+      "start": 120.65,
+      "end": 122.65,
+      "en": "I'm done.",
+      "vi": "Tôi xong rồi."
+    },
+    {
+      "start": 122.65,
+      "end": 129.42,
+      "en": "I'm really sorry that I dragged you into this,",
+      "vi": "Tôi thực sự xin lỗi vì đã lôi cô vào chuyện này."
+    },
+    {
+      "start": 129.42,
+      "end": 134.52,
+      "en": "but you have to go home now.",
+      "vi": "nhưng anh phải về nhà ngay."
+    },
+    {
+      "start": 134.52,
+      "end": 138.95,
+      "en": "Good luck.",
+      "vi": "Chúc may mắn."
+    },
+    {
+      "start": 138.95,
+      "end": 146.46,
+      "en": "My Uncle Ben was killed.",
+      "vi": "Chú Ben của tôi đã bị giết."
+    },
+    {
+      "start": 146.46,
+      "end": 149.77,
+      "en": "It was my fault.",
+      "vi": "Đó là lỗi của tôi."
+    },
+    {
+      "start": 149.77,
+      "end": 151.77,
+      "en": "I lost... I lost Gwen.",
+      "vi": "Tôi đã mất Gwen."
+    },
+    {
+      "start": 151.77,
+      "end": 158.86,
+      "en": "My, um... she was my MJ.",
+      "vi": "Cô ấy là MJ của tôi."
+    },
+    {
+      "start": 158.86,
+      "end": 165.46,
+      "en": "MJ, I couldn't save her.",
+      "vi": "MJ, tôi không thể cứu cô ấy."
+    },
+    {
+      "start": 165.46,
+      "end": 170.65,
+      "en": "I'm never gonna be able to forgive myself for that.",
+      "vi": "Tôi sẽ không bao giờ có thể tha thứ cho bản thân vì điều đó."
+    },
+    {
+      "start": 170.65,
+      "end": 173.65,
+      "en": "But I carried on, tried to, um,",
+      "vi": "Nhưng tôi tiếp tục, cố gắng, um,"
+    },
+    {
+      "start": 173.65,
+      "end": 177.65,
+      "en": "try to keep going, try to keep being the, uh,",
+      "vi": "Cố gắng tiếp tục, cố gắng tiếp tục, uh,"
+    },
+    {
+      "start": 177.65,
+      "end": 179.65,
+      "en": "a friendly neighborhood Spider-Man,",
+      "vi": "Một Người Nhện thân thiện ở khu phố lân cận."
+    },
+    {
+      "start": 179.65,
+      "end": 182.65,
+      "en": "because I know that's what she would've wanted, but",
+      "vi": "Bởi vì tôi biết đó là điều cô ấy muốn, nhưng"
+    },
+    {
+      "start": 182.65,
+      "end": 189.92,
+      "en": "at some point, I just, I stopped pulling my punches.",
+      "vi": "Tại một thời điểm nào đó, tôi chỉ ngừng đấm."
+    },
+    {
+      "start": 189.92,
+      "end": 196.1,
+      "en": "I got rageful. I got bitter.",
+      "vi": "Tôi giận dữ, cay đắng."
+    },
+    {
+      "start": 196.1,
+      "end": 200.1,
+      "en": "I just don't want you to end up, like, like me.",
+      "vi": "Anh chỉ không muốn em kết thúc như anh."
+    },
+    {
+      "start": 200.1,
+      "end": 207.88,
+      "en": "The night Ben died, I hunted down the man who I thought did it.",
+      "vi": "Cái đêm Ben chết, tôi đã săn lùng người đàn ông mà tôi nghĩ đã làm việc đó."
+    },
+    {
+      "start": 207.88,
+      "end": 210.82,
+      "en": "I wanted him dead.",
+      "vi": "Tôi muốn hắn chết."
+    },
+    {
+      "start": 210.82,
+      "end": 215.38,
+      "en": "I got what I wanted.",
+      "vi": "Tôi đã có thứ tôi muốn."
+    },
+    {
+      "start": 215.38,
+      "end": 223.34,
+      "en": "It didn't make it better.",
+      "vi": "Nó không làm cho nó tốt hơn."
+    },
+    {
+      "start": 223.34,
+      "end": 229.16,
+      "en": "It took me a long time to learn to get through that darkness.",
+      "vi": "Phải mất một thời gian dài tôi mới học được cách vượt qua bóng tối đó."
+    },
+    {
+      "start": 229.16,
+      "end": 233.88,
+      "en": "I want to kill him.",
+      "vi": "Tôi muốn giết hắn."
+    },
+    {
+      "start": 233.88,
+      "end": 242.22,
+      "en": "I want to tear him apart.",
+      "vi": "Tôi muốn xé xác hắn."
+    },
+    {
+      "start": 242.22,
+      "end": 244.22,
+      "en": "I can still hear her voice.",
+      "vi": "Tôi vẫn có thể nghe thấy giọng nói của cô ấy."
+    },
+    {
+      "start": 244.22,
+      "end": 253.3,
+      "en": "Even after she was hurt, she said to me that we did the right thing.",
+      "vi": "Ngay cả sau khi cô ấy bị thương, cô ấy nói với tôi rằng chúng tôi đã làm điều đúng đắn."
+    },
+    {
+      "start": 253.3,
+      "end": 264.52,
+      "en": "She told me that was a great power.",
+      "vi": "Cô ấy nói đó là một sức mạnh vĩ đại."
+    },
+    {
+      "start": 264.52,
+      "end": 268.02,
+      "en": "Comes great responsibility.",
+      "vi": "Đó là trách nhiệm lớn."
+    },
+    {
+      "start": 268.02,
+      "end": 275.05,
+      "en": "Wait, what, how do you know that?",
+      "vi": "Chờ đã, sao anh biết?"
+    },
+    {
+      "start": 275.05,
+      "end": 277.05,
+      "en": "Uncle Ben said it.",
+      "vi": "Chú Ben đã nói thế."
+    },
+    {
+      "start": 277.05,
+      "end": 285.46,
+      "en": "The day he died, maybe she didn't die from nothing, Peter.",
+      "vi": "Vào cái ngày ông ấy chết, có lẽ bà ấy không chết vì gì cả, Peter."
+    }
+  ]
+}
