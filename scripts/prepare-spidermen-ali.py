@@ -88,6 +88,13 @@ def main():
         start = max(0.0, round(float(seg.start), 3))
         end = min(duration, round(float(seg.end), 3))
         if en and end - start >= 0.2:
+            # Whisper occasionally stretches a short utterance across long silence.
+            # Keep provisional captions from lingering on-screen; editorial review is still required.
+            words = len(en.split())
+            if end - start > 9.5:
+                end = round(min(end, start + max(4.0, min(8.5, 1.5 + 0.85 * words))), 3)
+            elif words <= 3 and end - start > 5.0:
+                end = round(min(end, start + 3.5), 3)
             transcript.append({"start": start, "end": end, "en": en})
     assert len(transcript) >= 10, f"Insufficient English dialogue: {len(transcript)}"
     assert all(transcript[i]["start"] <= transcript[i + 1]["start"]
