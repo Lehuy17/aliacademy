@@ -54,7 +54,8 @@ function checkMedia(id,movie){
  const v=streams.find(s=>s.codec_type==='video'),a=streams.find(s=>s.codec_type==='audio');
  if(!v||v.codec_name!=='h264'||!['yuv420p','yuvj420p'].includes(v.pix_fmt))fail(id,'Video must be H.264 8-bit 4:2:0 (yuv420p/yuvj420p)');
  if(!a||a.codec_name!=='aac')fail(id,'Audio must be AAC');
- if(v&&(v.width>1280||v.height>720))fail(id,'Video must be 720p or smaller');
+ if(v&&(v.width>1920||v.height>1080))fail(id,'Video must be 1080p or smaller');
+ if(v&&(v.width>1280||v.height>720))warn(id,'1080p high-quality MP4: verify fast playback, seek and total Pages repository size');
  if(Number.isFinite(movie.durationSeconds)&&Math.abs(Number(info.format?.duration)-movie.durationSeconds)>2)fail(id,'MP4 duration mismatch');
  const buf=Buffer.alloc(Math.min(262144,size));
  const fd=fs.openSync(video,'r');
