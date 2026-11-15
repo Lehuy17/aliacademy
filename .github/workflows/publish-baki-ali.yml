@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: ali-baki-publish
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   publish:
@@ -98,6 +98,7 @@ jobs:
             /tmp/ali-baki-audio.wav
 
       # ASR uses WAV PCM decoding to avoid PyAV compatibility issues on Python 3.14.
+      # Script verifies the original 1920x1080 quality before exporting timed bilingual subtitles.
       - name: Create real timed English dialogue and provisional Vietnamese translation
         run: |
           set -euo pipefail
