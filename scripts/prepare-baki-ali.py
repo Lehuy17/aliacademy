@@ -42,7 +42,7 @@ def check_video():
     video = next(s for s in info["streams"] if s["codec_type"] == "video")
     audio = next(s for s in info["streams"] if s["codec_type"] == "audio")
     assert video["codec_name"] == "h264" and video["pix_fmt"] == "yuv420p"
-    assert video["width"] <= 1280 and video["height"] <= 720
+    assert video["width"] == 1920 and video["height"] == 1080, "1080p source required"
     assert audio["codec_name"] == "aac"
     with VIDEO.open("rb") as f:
         assert b"moov" in f.read(262144), "MP4 faststart metadata missing"
