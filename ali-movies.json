@@ -1,5 +1,5 @@
 {
-  "version": 21,
+  "version": 22,
   "movies": [
     {
       "id": "ali-video-01",
@@ -297,6 +297,36 @@
         "url": "./media/spiderman-nwh-peter-meets-other-spidermen/video.mp4"
       },
       "captions": "./captions/spiderman-nwh-peter-meets-other-spidermen.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "baki-hanma-rumina-meets-baki",
+      "title": "How Rumina And Baki Met | Baki Hanma",
+      "category": "PHIM SONG NGỮ · BAKI HANMA",
+      "description": "Cuộc gặp gỡ giữa Rumina và Baki · 03:00 · bản phát Full HD 1080p, giữ 30 fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
+      "duration": "03:00",
+      "durationSeconds": 179.839,
+      "poster": "./media/baki-hanma-rumina-meets-baki/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/baki-hanma-rumina-meets-baki/video.mp4"
+      },
+      "captions": "./captions/baki-hanma-rumina-meets-baki.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,

@@ -1,0 +1,176 @@
+{
+  "movieId": "baki-hanma-rumina-meets-baki",
+  "duration": 179.839,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.11,
+      "end": 1.11,
+      "en": "Whoa.",
+      "vi": "Whoa."
+    },
+    {
+      "start": 2.81,
+      "end": 6.05,
+      "en": "He came.",
+      "vi": "Hắn tới rồi."
+    },
+    {
+      "start": 6.05,
+      "end": 9.35,
+      "en": "The strongest high schooler in the world came to fight me!",
+      "vi": "Người mạnh mẽ nhất trên thế giới đã đến đấu với tôi!"
+    },
+    {
+      "start": 9.35,
+      "end": 10.35,
+      "en": "Yeah!",
+      "vi": "Yeah!"
+    },
+    {
+      "start": 12.35,
+      "end": 15.85,
+      "en": "My name's Bakihama.",
+      "vi": "Tên tôi là Bakihama."
+    },
+    {
+      "start": 22.02,
+      "end": 25.52,
+      "en": "To be honest, for being the world's strongest,",
+      "vi": "Thành thật mà nói, vì là người mạnh nhất thế giới,"
+    },
+    {
+      "start": 25.52,
+      "end": 28.52,
+      "en": "he's a lot smaller than I imagined he'd be.",
+      "vi": "Nó nhỏ hơn nhiều so với tôi tưởng tượng."
+    },
+    {
+      "start": 29.02,
+      "end": 31.02,
+      "en": "I'm roomy now, Ayakawa.",
+      "vi": "Bây giờ tôi ở cùng phòng rồi, Aykawa."
+    },
+    {
+      "start": 31.02,
+      "end": 32.02,
+      "en": "Hi.",
+      "vi": "Chào."
+    },
+    {
+      "start": 35.46,
+      "end": 37.46,
+      "en": "So, you gonna use that?",
+      "vi": "Vậy, anh sẽ dùng nó chứ?"
+    },
+    {
+      "start": 37.46,
+      "end": 45.96,
+      "en": "The first time in my life seeing real muscles.",
+      "vi": "Lần đầu tiên trong đời tôi nhìn thấy cơ bắp thật sự."
+    },
+    {
+      "start": 49.86,
+      "end": 58.36,
+      "en": "In that case, and then, right before my eyes, as clear as day, to the world's strongest.",
+      "vi": "Trong trường hợp đó, và sau đó, ngay trước mắt tôi, rõ ràng như ban ngày, đến thế giới mạnh nhất."
+    },
+    {
+      "start": 61.14,
+      "end": 65.54,
+      "en": "Don't expect me to hold back.",
+      "vi": "Đừng mong tôi kiềm chế."
+    },
+    {
+      "start": 65.54,
+      "end": 67.54,
+      "en": "Against an elementary school student?",
+      "vi": "Chống lại một học sinh tiểu học?"
+    },
+    {
+      "start": 67.54,
+      "end": 71.58,
+      "en": "Is he kidding?",
+      "vi": "Anh ta đùa à?"
+    },
+    {
+      "start": 71.58,
+      "end": 72.58,
+      "en": "He's not kidding.",
+      "vi": "Anh ta không đùa đâu."
+    },
+    {
+      "start": 72.58,
+      "end": 76.22,
+      "en": "He's ready to fight.",
+      "vi": "Hắn đã sẵn sàng chiến đấu."
+    },
+    {
+      "start": 76.22,
+      "end": 78.22,
+      "en": "He can't be serious.",
+      "vi": "Anh ta không nghiêm túc đâu."
+    },
+    {
+      "start": 78.22,
+      "end": 84.28,
+      "en": "We'll eat into this.",
+      "vi": "Chúng ta sẽ ăn cái này."
+    },
+    {
+      "start": 84.28,
+      "end": 89.72,
+      "en": "But not once did I really believe that a high schooler would seriously agree to take on",
+      "vi": "Nhưng không một lần nào tôi thực sự tin rằng một học sinh trung học sẽ thực sự đồng ý để chăm sóc"
+    },
+    {
+      "start": 89.72,
+      "end": 96.12,
+      "en": "an elementary school student and he's the world's best I'm only pretending to be",
+      "vi": "Một học sinh tiểu học và anh ấy là người giỏi nhất thế giới tôi chỉ giả vờ"
+    },
+    {
+      "start": 96.12,
+      "end": 104.62,
+      "en": "tough to give me a big smile and take it easy on me was so wrong can you swim",
+      "vi": "Thật khó để cho tôi một nụ cười lớn và nhẹ nhàng với tôi là như vậy sai trái có thể bơi"
+    },
+    {
+      "start": 108.38,
+      "end": 116.88,
+      "en": "there you are world's strongest disappeared right before my eyes and if I",
+      "vi": "Anh là người mạnh mẽ nhất trên thế giới biến mất ngay trước mắt em và nếu em..."
+    },
+    {
+      "start": 129.39,
+      "end": 137.89,
+      "en": "lift to be 80 years old this will undoubtedly be yes he was serious what",
+      "vi": "Nâng lên 80 tuổi điều này chắc chắn sẽ là đồng ý ông đã nghiêm trọng những gì"
+    },
+    {
+      "start": 149.59,
+      "end": 152.59,
+      "en": "What the hell, it's shallow.",
+      "vi": "Cái quái gì thế, nông cạn quá."
+    },
+    {
+      "start": 152.59,
+      "end": 161.09,
+      "en": "That day, for the first time in 12 years, for the first time in my whole life.",
+      "vi": "Ngày đó, lần đầu tiên trong 12 năm, lần đầu tiên trong đời tôi."
+    },
+    {
+      "start": 174.64,
+      "end": 177.64,
+      "en": "From now on, we're friends.",
+      "vi": "Kể từ bây giờ, chúng ta là bạn."
+    },
+    {
+      "start": 177.64,
+      "end": 179.839,
+      "en": "I became aware that...",
+      "vi": "Tôi nhận ra rằng..."
+    }
+  ]
+}
