@@ -1,3 +1,4 @@
+## Uses resilient per-cue subtitle translation retries to avoid incomplete machine draft.
 name: Prepare Spider-Man Brand New Day MJ Says I Dont Love You as ALI synced HTML5 bilingual video
 
 on:
