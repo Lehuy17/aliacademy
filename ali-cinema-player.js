@@ -8,6 +8,7 @@ const clock=$('aliVideoClock');
 let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
 let autoScroll=true, overlayEnabled=true;
 let firebaseMovieContext=null;
+let selectionTicket=0;
 
 /* The ambient blur uses actual frames of the SAME playing HTML video.
    A tiny canvas at 8fps keeps the desktop glass backdrop lightweight.
@@ -178,6 +179,8 @@ function sync(){
  // Keep the most recent caption selected through short pauses between lines.
  let lo=0,hi=cues.length-1,i=-1;
  while(lo<=hi){const mid=(lo+hi)>>1;if(cues[mid].start<=now){i=mid;lo=mid+1;}else hi=mid-1;}
+ // A transcript row is current only while its words are actually being spoken.
+ if(i>=0&&now>cues[i].end+.35)i=-1;
  if(i===active){updateScreenCaptions();return;}
  const previous=list.querySelector('.ali-cue.current');
  if(previous){previous.classList.remove('current');previous.removeAttribute('aria-current');}
@@ -254,6 +257,10 @@ async function openSync(){
  }catch(e){if(ticket===loadTicket){console.warn('Video playback unavailable',e);fallback();}}
 }
 async function openMovie(movie){
+ const selected=++selectionTicket;
+ // Cancel the previous film immediately, even if its captions are still loading.
+ ++loadTicket;clearMedia();
+ $('aliDrivePlayer').removeAttribute('src');$('aliDrivePlayer').classList.add('hidden');
  currentMovie=movie;
  $('aliCurrentMovieTitle').textContent=movie.title||'Phim song ngữ ALI';
  $('aliVideoPlayer').classList.remove('hidden');
@@ -274,6 +281,8 @@ async function openMovie(movie){
    cues=(Array.isArray(json.cues)?json.cues:[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((a,b)=>a.start-b.start);
   }
  }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
+ // Ignore a stale caption fetch after a learner switches to another movie.
+ if(selected!==selectionTicket)return;
  active=-1;autoScroll=true;showCues();
  if(movie.source?.type==='drive')fallback();else openSync();
 }
@@ -435,7 +444,7 @@ async function init(){
  }catch(err){message('Không kết nối được Firebase. Hãy thử tải lại trang.');}
 }
 $('closeMovie').addEventListener('click',()=>{
- ++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
+ ++selectionTicket;++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
  if(ambientFilm){ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();}
  ambientHost?.classList.remove('has-ambient-film');
  currentMovie=null;cues=[];active=-1;updateScreenCaptions();updateSyncControls();
