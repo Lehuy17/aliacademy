@@ -1,5 +1,5 @@
 {
-  "version": 26,
+  "version": 27,
   "movies": [
     {
       "id": "ali-video-01",
@@ -447,6 +447,36 @@
         "url": "./media/the-crown-queen-margaret-heated-conversation/video.mp4"
       },
       "captions": "./captions/the-crown-queen-margaret-heated-conversation.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "a-few-good-men-objection-overruled",
+      "title": "Objection Overruled | A Few Good Men (Tom Cruise, Jack Nicholson)",
+      "category": "PHIM SONG NGỮ · A FEW GOOD MEN",
+      "description": "Trích đoạn phòng xử án trong A Few Good Men · 07:01 · bản phát Full HD 1080p/30fps; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "07:01",
+      "durationSeconds": 421.118,
+      "poster": "./media/a-few-good-men-objection-overruled/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/a-few-good-men-objection-overruled/video.mp4"
+      },
+      "captions": "./captions/a-few-good-men-objection-overruled.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,

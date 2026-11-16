@@ -1,0 +1,842 @@
+{
+  "movieId": "a-few-good-men-objection-overruled",
+  "duration": 421.118,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 4.08,
+      "end": 11.08,
+      "en": "Private Santiago was admitted to the ER at 0012 and he was pronounced dead at 0037.",
+      "vi": "Binh nhất Santiago được cấp cứu lúc 0012 và được tuyên bố là đã chết lúc 0037."
+    },
+    {
+      "start": 11.08,
+      "end": 14.08,
+      "en": "Dr. Stone, what is lactic acidosis?",
+      "vi": "Tiến sĩ Stone, nhiễm axit Lactic là gì?"
+    },
+    {
+      "start": 14.08,
+      "end": 20.08,
+      "en": "If the muscles and other cells of the body burn sugar instead of oxygen, lactic acid is produced.",
+      "vi": "Nếu cơ bắp và các tế bào khác của cơ thể đốt cháy đường thay vì oxy, axit tic được sản xuất."
+    },
+    {
+      "start": 20.08,
+      "end": 24.08,
+      "en": "That lactic acid is what caused Santiago's lungs to bleed.",
+      "vi": "Đó là nguyên nhân gây chảy máu phổi của Santiago."
+    },
+    {
+      "start": 24.08,
+      "end": 30.08,
+      "en": "Normally, how long does it take for the muscles and other cells to begin burning sugar instead of oxygen?",
+      "vi": "Thông thường, cơ bắp và các tế bào khác phải mất bao lâu để bắt đầu đốt đường thay vì oxy?"
+    },
+    {
+      "start": 30.08,
+      "end": 32.08,
+      "en": "20 to 30 minutes.",
+      "vi": "20 đến 30 phút."
+    },
+    {
+      "start": 32.08,
+      "end": 36.08,
+      "en": "And what caused this process to be sped up in Santiago's muscles?",
+      "vi": "Và điều gì đã khiến quá trình này tăng vọt trong cơ bắp của Santiago?"
+    },
+    {
+      "start": 36.08,
+      "end": 38.08,
+      "en": "An ingested poison of some kind.",
+      "vi": "Một loại thuốc độc đã nuốt."
+    },
+    {
+      "start": 38.08,
+      "end": 41.08,
+      "en": "Your Honor, we object at this point. The witness is speculating.",
+      "vi": "Thưa quý tòa, chúng tôi phản đối vào lúc này nhân chứng đang suy đoán."
+    },
+    {
+      "start": 41.08,
+      "end": 43.08,
+      "en": "Commander Stone is an expert medical witness.",
+      "vi": "Chỉ huy Stone là nhân chứng y tế chuyên nghiệp."
+    },
+    {
+      "start": 43.08,
+      "end": 46.08,
+      "en": "In this courtroom, his opinion is not considered speculation.",
+      "vi": "Trong phiên tòa này, ý kiến của ông không được xem là suy đoán."
+    },
+    {
+      "start": 46.08,
+      "end": 49.08,
+      "en": "Commander Stone is an internist, not a criminologist,",
+      "vi": "Chỉ huy Stone là thực tập sinh, không phải bác sĩ tội phạm,"
+    },
+    {
+      "start": 49.08,
+      "end": 52.08,
+      "en": "and the medical facts here are ultimately inconclusive.",
+      "vi": "Và sự thật y học ở đây cuối cùng cũng không xác định được."
+    },
+    {
+      "start": 52.08,
+      "end": 55.08,
+      "en": "A point I'm confident you'll illustrate to the court members on a cross-examination.",
+      "vi": "Một điểm tôi tự tin là anh sẽ minh họa cho các thành viên tòa án về việc xét xử."
+    },
+    {
+      "start": 55.08,
+      "end": 59.08,
+      "en": "So I'm sure you won't mind if his opinion is admitted now.",
+      "vi": "Nên tôi chắc là anh sẽ không phiền nếu ý kiến của anh ta được công nhận đâu."
+    },
+    {
+      "start": 59.08,
+      "end": 63.58,
+      "en": "Not at all, sir.",
+      "vi": "Không hề, thưa ngài."
+    },
+    {
+      "start": 63.58,
+      "end": 68.06,
+      "en": "Dr. Stone, did Willie Santiago die of poisoning?",
+      "vi": "Bác sĩ Stone, liệu Willie Santiago có chết vì ngộ độc không?"
+    },
+    {
+      "start": 68.06,
+      "end": 69.56,
+      "en": "Absolutely.",
+      "vi": "Chắc chắn rồi."
+    },
+    {
+      "start": 69.56,
+      "end": 71.96,
+      "en": "Now, you're aware that the lab report and the coroner's report",
+      "vi": "Bây giờ, anh đã biết báo cáo phòng thí nghiệm và báo cáo của nhân viên điều tra."
+    },
+    {
+      "start": 71.96,
+      "end": 74.0,
+      "en": "show no traces of poison?",
+      "vi": "Không thấy dấu vết chất độc à?"
+    },
+    {
+      "start": 74.0,
+      "end": 75.0,
+      "en": "Yes, I am.",
+      "vi": "Phải, đúng vậy."
+    },
+    {
+      "start": 75.0,
+      "end": 76.2,
+      "en": "Then how do you justify...",
+      "vi": "Vậy làm sao anh có thể biện minh..."
+    },
+    {
+      "start": 76.2,
+      "end": 77.96,
+      "en": "There are literally dozens of toxins",
+      "vi": "Có hàng tá độc tố."
+    },
+    {
+      "start": 77.96,
+      "end": 79.64,
+      "en": "which are virtually undetectable,",
+      "vi": "mà hầu như không bị phát hiện,"
+    },
+    {
+      "start": 79.64,
+      "end": 82.1,
+      "en": "both in the human body and on the fabric.",
+      "vi": "Cả trong cơ thể con người lẫn trên vải."
+    },
+    {
+      "start": 82.1,
+      "end": 83.64,
+      "en": "The nature of the acidosis",
+      "vi": "Bản chất của bệnh axit"
+    },
+    {
+      "start": 83.64,
+      "end": 86.68,
+      "en": "is the compelling factor in this issue.",
+      "vi": "là yếu tố thuyết phục trong vấn đề này."
+    },
+    {
+      "start": 86.68,
+      "end": 90.53,
+      "en": "Thank you, sir.",
+      "vi": "Cảm ơn ngài."
+    },
+    {
+      "start": 90.53,
+      "end": 93.03,
+      "en": "Commander, is it possible for a person",
+      "vi": "Tư lệnh, một người có thể làm được không?"
+    },
+    {
+      "start": 93.03,
+      "end": 95.47,
+      "en": "to have an affliction, some sort of condition,",
+      "vi": "để có một nỗi đau, một số loại tình trạng,"
+    },
+    {
+      "start": 95.47,
+      "end": 98.47,
+      "en": "which might also speed up the process of acidosis.",
+      "vi": "mà cũng có thể tăng tốc quá trình nhiễm axit."
+    },
+    {
+      "start": 98.47,
+      "end": 102.9,
+      "en": "Commander, is it possible?",
+      "vi": "Chỉ huy, có thể không?"
+    },
+    {
+      "start": 102.9,
+      "end": 104.9,
+      "en": "It's possible.",
+      "vi": "Có thể."
+    },
+    {
+      "start": 104.9,
+      "end": 107.9,
+      "en": "What might some of those conditions mean?",
+      "vi": "Một số tình trạng như thế có thể có nghĩa gì?"
+    },
+    {
+      "start": 107.9,
+      "end": 111.9,
+      "en": "If a person had a coronary disorder or cerebral disorder,",
+      "vi": "Nếu một người bị rối loạn động mạch vành hay rối loạn não bộ,"
+    },
+    {
+      "start": 111.9,
+      "end": 113.9,
+      "en": "the process would be more rapid.",
+      "vi": "quá trình sẽ nhanh hơn."
+    },
+    {
+      "start": 113.9,
+      "end": 115.9,
+      "en": "Commander, if I had a coronary condition",
+      "vi": "Chỉ huy, nếu tôi bị bệnh tim mạch."
+    },
+    {
+      "start": 115.9,
+      "end": 117.9,
+      "en": "and a perfectly clean rag was placed in my mouth",
+      "vi": "Và một miếng vải sạch hoàn toàn được đặt trong miệng tôi"
+    },
+    {
+      "start": 117.9,
+      "end": 119.9,
+      "en": "and the rag was accidentally pushed too far down,",
+      "vi": "Và miếng vải đã bị đẩy quá xa xuống,"
+    },
+    {
+      "start": 119.9,
+      "end": 122.9,
+      "en": "is it possible that my cells would continue burning sugar",
+      "vi": "Có khả năng tế bào của tôi sẽ tiếp tục đốt đường"
+    },
+    {
+      "start": 122.9,
+      "end": 124.9,
+      "en": "after the rag was taken out?",
+      "vi": "Sau khi miếng giẻ rách được lấy ra?"
+    },
+    {
+      "start": 124.9,
+      "end": 126.9,
+      "en": "It would have to be a very serious condition.",
+      "vi": "Nó phải là một tình trạng rất nghiêm trọng."
+    },
+    {
+      "start": 126.9,
+      "end": 128.9,
+      "en": "Is it possible to have a serious coronary condition",
+      "vi": "Có thể nào bị bệnh tim mạch nghiêm trọng không?"
+    },
+    {
+      "start": 128.9,
+      "end": 130.9,
+      "en": "where the initial warning signals were so mild",
+      "vi": "nơi mà tín hiệu cảnh báo ban đầu rất nhẹ"
+    },
+    {
+      "start": 130.9,
+      "end": 134.9,
+      "en": "as to escape a physician during a routine medical exam?",
+      "vi": "trốn khỏi bác sĩ trong kỳ kiểm tra sức khỏe thường lệ?"
+    },
+    {
+      "start": 134.9,
+      "end": 138.9,
+      "en": "Possibly. There would still be symptoms, though.",
+      "vi": "Có thể, nhưng vẫn có triệu chứng."
+    },
+    {
+      "start": 138.9,
+      "end": 139.9,
+      "en": "What kind of symptoms?",
+      "vi": "Triệu chứng gì?"
+    },
+    {
+      "start": 139.9,
+      "end": 140.9,
+      "en": "There are hundreds of...",
+      "vi": "Có hàng trăm..."
+    },
+    {
+      "start": 140.9,
+      "end": 142.9,
+      "en": "Chest pains?",
+      "vi": "Đau ngực?"
+    },
+    {
+      "start": 142.9,
+      "end": 143.9,
+      "en": "Yes.",
+      "vi": "Phải."
+    },
+    {
+      "start": 143.9,
+      "end": 144.9,
+      "en": "Shortness of breath?",
+      "vi": "Hơi thở ngắn?"
+    },
+    {
+      "start": 144.9,
+      "end": 145.9,
+      "en": "Yes.",
+      "vi": "Phải."
+    },
+    {
+      "start": 145.9,
+      "end": 146.9,
+      "en": "Fatigue?",
+      "vi": "Sợ à?"
+    },
+    {
+      "start": 146.9,
+      "end": 147.9,
+      "en": "Of course.",
+      "vi": "Tất nhiên."
+    },
+    {
+      "start": 147.9,
+      "end": 155.76,
+      "en": "Doctor, is this your signature?",
+      "vi": "Bác sĩ, đây là chữ ký của ông à?"
+    },
+    {
+      "start": 155.76,
+      "end": 159.39,
+      "en": "Yes, it is.",
+      "vi": "Đúng vậy."
+    },
+    {
+      "start": 159.39,
+      "end": 162.39,
+      "en": "This is in order for Private Santiago to be put on restricted duty.",
+      "vi": "Đây là để Binh nhất Santiago được giao nhiệm vụ giới hạn."
+    },
+    {
+      "start": 162.39,
+      "end": 163.59,
+      "en": "on restricted duty.",
+      "vi": "Trong nhiệm vụ bị hạn chế."
+    },
+    {
+      "start": 163.59,
+      "end": 165.07,
+      "en": "Would you read your handwritten remarks",
+      "vi": "Anh có thể đọc lời nhận xét viết tay của mình không?"
+    },
+    {
+      "start": 165.07,
+      "end": 167.99,
+      "en": "at the bottom of the page, please, sir?",
+      "vi": "Ở cuối trang, thưa ông?"
+    },
+    {
+      "start": 167.99,
+      "end": 169.79,
+      "en": "Initial testing, negative.",
+      "vi": "Xét nghiệm ban đầu, âm tính."
+    },
+    {
+      "start": 169.79,
+      "end": 171.87,
+      "en": "Patient complains of chest pains,",
+      "vi": "Bệnh nhân than phiền về cơn đau ngực,"
+    },
+    {
+      "start": 171.87,
+      "end": 174.23,
+      "en": "shortness of breath, and fatigue.",
+      "vi": "Hơi thở ngắn, và mệt mỏi."
+    },
+    {
+      "start": 174.23,
+      "end": 175.63,
+      "en": "Restricted from running distances",
+      "vi": "Giới hạn từ khoảng cách chạy"
+    },
+    {
+      "start": 175.63,
+      "end": 180.77,
+      "en": "over five miles for one week.",
+      "vi": "Hơn 5 dặm trong 1 tuần."
+    },
+    {
+      "start": 180.77,
+      "end": 182.57,
+      "en": "Commander, isn't it possible that Santiago",
+      "vi": "Chỉ huy, không thể nào Santiago."
+    },
+    {
+      "start": 182.57,
+      "end": 184.29,
+      "en": "had a serious coronary condition?",
+      "vi": "Có vấn đề nghiêm trọng về tim mạch?"
+    },
+    {
+      "start": 184.29,
+      "end": 186.73,
+      "en": "It was that condition and not some mysterious poison",
+      "vi": "Đó là điều kiện chứ không phải là thuốc độc bí ẩn."
+    },
+    {
+      "start": 186.73,
+      "end": 189.69,
+      "en": "that caused the accelerated chemical reaction.",
+      "vi": "Nó gây ra phản ứng hóa học tăng tốc."
+    },
+    {
+      "start": 189.69,
+      "end": 191.49,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 191.49,
+      "end": 193.23,
+      "en": "Is that possible?",
+      "vi": "Có thể được không?"
+    },
+    {
+      "start": 193.23,
+      "end": 194.09,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 194.09,
+      "end": 197.73,
+      "en": "I personally give each man a thorough physical examination.",
+      "vi": "Cá nhân tôi kiểm tra kỹ lưỡng từng người một."
+    },
+    {
+      "start": 197.73,
+      "end": 201.07,
+      "en": "Private Santiago was given a clean bill of health.",
+      "vi": "Binh nhất Santiago được cấp một hóa đơn y tế sạch sẽ."
+    },
+    {
+      "start": 201.07,
+      "end": 203.47,
+      "en": "That's why it had to be poison, right, Commander?",
+      "vi": "Đó là lý do tại sao nó phải là thuốc độc, phải không Trung tá?"
+    },
+    {
+      "start": 203.47,
+      "end": 204.87,
+      "en": "Because Lord knows if you put a man",
+      "vi": "Bởi vì Chúa biết nếu bạn đặt một người đàn ông"
+    },
+    {
+      "start": 204.87,
+      "end": 206.87,
+      "en": "with a serious coronary condition on duty",
+      "vi": "Với tình trạng tim mạch nghiêm trọng khi làm nhiệm vụ"
+    },
+    {
+      "start": 206.87,
+      "end": 208.53,
+      "en": "with a clean bill of health and that man died",
+      "vi": "Với một hóa đơn sức khỏe sạch sẽ và người đàn ông đó đã chết"
+    },
+    {
+      "start": 208.53,
+      "end": 210.19,
+      "en": "from a heart-related incident,",
+      "vi": "từ một sự cố liên quan đến tim,"
+    },
+    {
+      "start": 210.19,
+      "end": 211.91,
+      "en": "you'd have a lot to answer for it, wouldn't you, Doctor?",
+      "vi": "Anh sẽ phải trả lời rất nhiều, phải không, bác sĩ?"
+    },
+    {
+      "start": 211.91,
+      "end": 213.99,
+      "en": "Object, move to strike.",
+      "vi": "Đối tượng, di chuyển để tấn công."
+    },
+    {
+      "start": 213.99,
+      "end": 215.07,
+      "en": "Sustained.",
+      "vi": "Chấp thuận."
+    },
+    {
+      "start": 216.63,
+      "end": 219.83,
+      "en": "I have no more questions, Your Honor.",
+      "vi": "Tôi không còn câu hỏi nào nữa, thưa tòa."
+    },
+    {
+      "start": 219.83,
+      "end": 221.59,
+      "en": "Dr. Stone, you've held a license",
+      "vi": "Tiến sĩ Stone, ông đã có bằng lái."
+    },
+    {
+      "start": 221.59,
+      "end": 223.49,
+      "en": "to practice medicine for 17 years.",
+      "vi": "để thực hành y khoa trong 17 năm."
+    },
+    {
+      "start": 223.49,
+      "end": 225.39,
+      "en": "You're board-certified in internal medicine.",
+      "vi": "Anh được chứng minh trong nội khoa."
+    },
+    {
+      "start": 225.39,
+      "end": 231.49,
+      "en": "You are chief of internal medicine at a hospital which has served 5,426 people.",
+      "vi": "Anh là trưởng khoa nội khoa tại một bệnh viện đã phục vụ 5.426 người."
+    },
+    {
+      "start": 231.49,
+      "end": 236.27,
+      "en": "In your professional medical opinion, was Willie Santiago poisoned?",
+      "vi": "Theo ý kiến chuyên môn của anh, Willie Santiago có bị đầu độc không?"
+    },
+    {
+      "start": 236.27,
+      "end": 239.87,
+      "en": "Your Honor, we renew our objection to Commander Stone's testimony and ask that it be stricken",
+      "vi": "Thưa quý tòa, chúng tôi phản đối lời khai của Tư lệnh Stone và yêu cầu nó bị trừng phạt."
+    },
+    {
+      "start": 239.87,
+      "end": 241.03,
+      "en": "from the record.",
+      "vi": "từ hồ sơ."
+    },
+    {
+      "start": 241.03,
+      "end": 244.27,
+      "en": "We further ask the court to instruct the court members to lend no weight to this witness's",
+      "vi": "Chúng tôi yêu cầu tòa án yêu cầu các quan tòa không cho nhân chứng này cân nặng."
+    },
+    {
+      "start": 244.27,
+      "end": 245.27,
+      "en": "testimony.",
+      "vi": "Làm chứng."
+    },
+    {
+      "start": 245.27,
+      "end": 247.11,
+      "en": "The objection is overruled, counsel.",
+      "vi": "Phản đối bị bác bỏ, luật sư."
+    },
+    {
+      "start": 247.11,
+      "end": 251.31,
+      "en": "Your Honor, the defense strenuously objects and requests an 802 conference so that his",
+      "vi": "Thưa quý tòa, các vật thể phòng thủ và yêu cầu một hội nghị 802 để cho anh ta"
+    },
+    {
+      "start": 251.31,
+      "end": 255.35,
+      "en": "honor might have an opportunity to hear discussion before ruling on this objection.",
+      "vi": "Danh dự có thể có cơ hội để nghe thảo luận trước khi lên án sự phản đối này."
+    },
+    {
+      "start": 255.35,
+      "end": 260.19,
+      "en": "objection of the defense has been heard and overruled. Move to reconsider. Your",
+      "vi": "Phản đối biện hộ đã được nghe và bác bỏ."
+    },
+    {
+      "start": 260.19,
+      "end": 263.99,
+      "en": "objection is noted. The witness is an expert and the court will hear his",
+      "vi": "Nhân chứng là một chuyên gia và tòa án sẽ nghe thấy"
+    },
+    {
+      "start": 263.99,
+      "end": 272.49,
+      "en": "opinion. Dr. Stone, in your expert, professional opinion, was Willie Santiago",
+      "vi": "Tiến sĩ Stone, theo chuyên gia, ý kiến chuyên môn của anh, là Willie Santiago."
+    },
+    {
+      "start": 276.2,
+      "end": 284.88,
+      "en": "poisoned? Yes. Thank you, sir. I have no more questions. Commander, you may step down.",
+      "vi": "- Tôi không còn câu hỏi nào nữa."
+    },
+    {
+      "start": 284.88,
+      "end": 293.02,
+      "en": "Please, the court, while we reserve the right to call rebuttal, witnesses of the",
+      "vi": "Làm ơn, tòa án, trong khi chúng tôi có quyền từ chối, nhân chứng của"
+    },
+    {
+      "start": 293.02,
+      "end": 294.42,
+      "en": "The need arises.",
+      "vi": "Nhu cầu phát sinh."
+    },
+    {
+      "start": 294.42,
+      "end": 296.02,
+      "en": "Government rests.",
+      "vi": "Chính phủ nghỉ ngơi."
+    },
+    {
+      "start": 296.02,
+      "end": 298.74,
+      "en": "We'll stand in recess until 10-hundred,",
+      "vi": "Chúng tôi sẽ đứng trong giờ giải lao cho đến 10 trăm,"
+    },
+    {
+      "start": 298.74,
+      "end": 303.46,
+      "en": "Monday the 19th, at which time the defense will call its first witness.",
+      "vi": "Thứ Hai ngày 19, lúc đó phòng thủ sẽ gọi nhân chứng đầu tiên của nó."
+    },
+    {
+      "start": 303.46,
+      "end": 307.46,
+      "en": "All rise.",
+      "vi": "Tất cả đứng lên."
+    },
+    {
+      "start": 314.36,
+      "end": 316.6,
+      "en": "I strenuously object.",
+      "vi": "Tôi kịch liệt phản đối."
+    },
+    {
+      "start": 316.6,
+      "end": 319.51,
+      "en": "Is that how it works?",
+      "vi": "Đó là cách nó hoạt động à?"
+    },
+    {
+      "start": 319.51,
+      "end": 321.91,
+      "en": "Objection overruled. No, no, no, no.",
+      "vi": "Phản đối bị bác bỏ."
+    },
+    {
+      "start": 321.91,
+      "end": 324.19,
+      "en": "No, I strenuously object. Oh, wow.",
+      "vi": "Không, tôi kịch liệt phản đối."
+    },
+    {
+      "start": 324.19,
+      "end": 327.03,
+      "en": "I strenuously object and I should take some time to reconsider.",
+      "vi": "Tôi kịch liệt phản đối và tôi nên dành thời gian để xem xét lại."
+    },
+    {
+      "start": 327.03,
+      "end": 328.15,
+      "en": "I got it on the record.",
+      "vi": "Tôi có ghi âm rồi."
+    },
+    {
+      "start": 328.15,
+      "end": 330.55,
+      "en": "You also got the court members thinking we're afraid of the doctor.",
+      "vi": "Anh cũng khiến các thành viên tòa án nghĩ chúng tôi sợ bác sĩ."
+    },
+    {
+      "start": 330.55,
+      "end": 333.39,
+      "en": "You object once so they can hear us say he's not a criminologist.",
+      "vi": "Anh phản đối một lần để họ có thể nghe thấy chúng tôi nói anh ta không phải là một nhà tội phạm học."
+    },
+    {
+      "start": 333.39,
+      "end": 336.99,
+      "en": "You keep after it the way you did and suddenly our great cross looks like a bunch of fancy lawyer tricks.",
+      "vi": "Anh cứ tiếp tục theo đuổi nó như anh đã làm và đột nhiên thập giá tuyệt vời của chúng tôi trông giống như một loạt các mánh khóe luật sư sang trọng."
+    },
+    {
+      "start": 336.99,
+      "end": 339.89,
+      "en": "It's a difference between paper law and trial law.",
+      "vi": "Đó là sự khác biệt giữa luật giấy tờ và luật xét xử."
+    },
+    {
+      "start": 339.89,
+      "end": 340.39,
+      "en": "Sam.",
+      "vi": "Sam."
+    },
+    {
+      "start": 340.39,
+      "end": 342.39,
+      "en": "Christ, you even had the judge saying stone was an expert.",
+      "vi": "Chúa ơi, anh thậm chí còn nói viên đá là một chuyên gia."
+    },
+    {
+      "start": 342.39,
+      "end": 345.39,
+      "en": "Sam, she made a mistake. It's not reliveted.",
+      "vi": "Sam, cô ấy đã phạm sai lầm."
+    },
+    {
+      "start": 347.06,
+      "end": 352.85,
+      "en": "I'm not gonna go call my wife. I'll, uh, see you tonight.",
+      "vi": "Tôi sẽ không gọi cho vợ tôi."
+    },
+    {
+      "start": 352.85,
+      "end": 354.85,
+      "en": "Why do you hate them so much?",
+      "vi": "Tại sao anh ghét họ đến thế?"
+    },
+    {
+      "start": 354.85,
+      "end": 357.85,
+      "en": "They beat up on a weakling. That's all they did.",
+      "vi": "Họ đánh một kẻ yếu đuối, đó là tất cả những gì họ làm."
+    },
+    {
+      "start": 357.85,
+      "end": 360.85,
+      "en": "Alright, the rest of this is just smoke-filled coffee house crap.",
+      "vi": "Được rồi, phần còn lại chỉ là những thứ tào lao trong quán cà phê."
+    },
+    {
+      "start": 360.85,
+      "end": 364.35,
+      "en": "They tortured and tormented a weaker kid.",
+      "vi": "Họ tra tấn và hành hạ một đứa trẻ yếu hơn."
+    },
+    {
+      "start": 364.35,
+      "end": 366.15,
+      "en": "They didn't like him, so they killed him.",
+      "vi": "Họ không thích anh ta, nên họ giết anh ta."
+    },
+    {
+      "start": 366.15,
+      "end": 367.45,
+      "en": "And why?",
+      "vi": "Và tại sao?"
+    },
+    {
+      "start": 367.45,
+      "end": 369.45,
+      "en": "Because he couldn't run very fast.",
+      "vi": "Bởi vì hắn không chạy nhanh được."
+    },
+    {
+      "start": 369.45,
+      "end": 371.29,
+      "en": "All right. All right.",
+      "vi": "Được rồi."
+    },
+    {
+      "start": 371.29,
+      "end": 373.25,
+      "en": "Everybody take the night off.",
+      "vi": "Mọi người nghỉ đêm nay đi."
+    },
+    {
+      "start": 373.25,
+      "end": 374.65,
+      "en": "Oh, sorry. No, I know.",
+      "vi": "Ồ, xin lỗi, không, tôi biết."
+    },
+    {
+      "start": 374.65,
+      "end": 376.45,
+      "en": "Look, we were working 20 hours a day",
+      "vi": "Nghe này, chúng tôi đã làm việc 20 tiếng một ngày."
+    },
+    {
+      "start": 376.45,
+      "end": 377.95,
+      "en": "for three-and-a-half weeks straight.",
+      "vi": "3 tuần rưỡi liên tục."
+    },
+    {
+      "start": 377.95,
+      "end": 379.65,
+      "en": "Just take the night off.",
+      "vi": "Cứ nghỉ một đêm đi."
+    },
+    {
+      "start": 379.65,
+      "end": 381.75,
+      "en": "Go see your wife, see your daughter, Joe.",
+      "vi": "Đi gặp vợ anh, gặp con gái anh, Joe."
+    },
+    {
+      "start": 381.75,
+      "end": 388.72,
+      "en": "Go do whatever it is you do when you're not here.",
+      "vi": "Hãy làm bất cứ điều gì anh làm khi anh không có ở đây."
+    },
+    {
+      "start": 388.72,
+      "end": 391.22,
+      "en": "What day is tomorrow? Saturday.",
+      "vi": "Ngày mai là ngày gì?"
+    },
+    {
+      "start": 391.22,
+      "end": 394.72,
+      "en": "Start at 10.",
+      "vi": "Bắt đầu lúc 10 giờ."
+    },
+    {
+      "start": 397.19,
+      "end": 403.87,
+      "en": "Why do you like them so much?",
+      "vi": "Tại sao anh lại thích chúng đến thế?"
+    },
+    {
+      "start": 403.87,
+      "end": 409.87,
+      "en": "Because they stand on a wall, and they say nothing's going to hurt you tonight, not on my watch.",
+      "vi": "Bởi vì họ đứng trên tường, và họ nói sẽ không có gì làm tổn thương em tối nay, không phải trong ca trực của anh."
+    },
+    {
+      "start": 409.87,
+      "end": 417.92,
+      "en": "Don't worry about it, Doctor. This trial starts Monday.",
+      "vi": "Đừng lo lắng, bác sĩ, phiên tòa bắt đầu vào thứ hai."
+    }
+  ]
+}
