@@ -1,0 +1,248 @@
+{
+  "movieId": "ghost-rider-carter-slade-last-ride",
+  "duration": 409.902,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 6.86,
+      "end": 8.86,
+      "en": "Where's Roxanne?",
+      "vi": "Roxanne đâu?"
+    },
+    {
+      "start": 8.86,
+      "end": 13.86,
+      "en": "Dude, where have you been, man? Everybody's out looking for you.",
+      "vi": "Anh bạn, cậu đã ở đâu vậy?"
+    },
+    {
+      "start": 13.86,
+      "end": 17.86,
+      "en": "Jesus.",
+      "vi": "Chúa ơi."
+    },
+    {
+      "start": 34.48,
+      "end": 36.48,
+      "en": "Not even close.",
+      "vi": "Thậm chí không gần gũi."
+    },
+    {
+      "start": 36.48,
+      "end": 45.22,
+      "en": "You have his heart.",
+      "vi": "Anh có trái tim của anh ta."
+    },
+    {
+      "start": 45.22,
+      "end": 49.22,
+      "en": "Roxanne?",
+      "vi": "Roxanne?"
+    },
+    {
+      "start": 56.5,
+      "end": 63.95,
+      "en": "And instead, does it work on me?",
+      "vi": "Và thay vào đó, nó có tác dụng với tôi không?"
+    },
+    {
+      "start": 88.49,
+      "end": 90.49,
+      "en": "I have no soul to burn.",
+      "vi": "Tôi không có linh hồn để thiêu đốt."
+    },
+    {
+      "start": 90.49,
+      "end": 95.12,
+      "en": "Guess the caretaker forgot to mention that, huh?",
+      "vi": "Chắc là ông quản gia quên nhắc đến chuyện đó, hả?"
+    },
+    {
+      "start": 95.12,
+      "end": 97.12,
+      "en": "Surprise.",
+      "vi": "Ngạc nhiên chưa."
+    },
+    {
+      "start": 97.12,
+      "end": 99.12,
+      "en": "He said you'd bring me back.",
+      "vi": "Ông ấy nói anh sẽ đưa tôi trở lại."
+    },
+    {
+      "start": 99.12,
+      "end": 101.12,
+      "en": "I'm not going back.",
+      "vi": "Tôi sẽ không quay lại đâu."
+    },
+    {
+      "start": 101.12,
+      "end": 107.32,
+      "en": "I like it here.",
+      "vi": "Tôi thích ở đây."
+    },
+    {
+      "start": 107.32,
+      "end": 109.32,
+      "en": "He thinks you're better than me?",
+      "vi": "Anh ta nghĩ cô giỏi hơn tôi?"
+    },
+    {
+      "start": 109.32,
+      "end": 111.02,
+      "en": "I don't know who's more pathetic.",
+      "vi": "Tôi không biết ai đáng thương hơn."
+    },
+    {
+      "start": 111.02,
+      "end": 113.02,
+      "en": "You are him.",
+      "vi": "Anh chính là hắn."
+    },
+    {
+      "start": 115.24,
+      "end": 119.74,
+      "en": "Now, listen to me and try to get it through that thick skull of yours.",
+      "vi": "Bây giờ, hãy nghe tôi và cố gắng để nó thông qua cái sọ dày của anh."
+    },
+    {
+      "start": 119.74,
+      "end": 121.94,
+      "en": "You don't work for my father anymore.",
+      "vi": "Anh không còn làm việc cho cha tôi nữa."
+    },
+    {
+      "start": 121.94,
+      "end": 123.74,
+      "en": "You work for me.",
+      "vi": "Anh làm việc cho tôi."
+    },
+    {
+      "start": 123.74,
+      "end": 125.84,
+      "en": "Get the contract from the caretaker.",
+      "vi": "Nhận hợp đồng từ người trông nom."
+    },
+    {
+      "start": 125.84,
+      "end": 128.14,
+      "en": "Bring it to me in San Vanganza.",
+      "vi": "Mang nó đến San Vanganza cho tôi."
+    },
+    {
+      "start": 128.14,
+      "end": 131.64,
+      "en": "And maybe I'll spare your girl's life.",
+      "vi": "Và có lẽ tôi sẽ tha mạng cho cô gái của anh."
+    },
+    {
+      "start": 131.64,
+      "end": 135.64,
+      "en": "And Johnny.",
+      "vi": "Và Johnny."
+    },
+    {
+      "start": 159.54,
+      "end": 163.24,
+      "en": "Figured he'd be back to bonehead.",
+      "vi": "Tôi đoán là hắn sẽ trở lại cục nợ."
+    },
+    {
+      "start": 163.24,
+      "end": 164.24,
+      "en": "Where's the contract?",
+      "vi": "Hợp đồng đâu?"
+    },
+    {
+      "start": 164.24,
+      "end": 172.74,
+      "en": "I can't end this without it, but I'm in place of myself.",
+      "vi": "Tôi không thể kết thúc chuyện này mà không có nó, nhưng tôi đã thế chỗ bản thân mình."
+    },
+    {
+      "start": 190.87,
+      "end": 192.03,
+      "en": "How long, Earth?",
+      "vi": "Còn bao lâu nữa, Trái Đất?"
+    },
+    {
+      "start": 192.03,
+      "end": 200.07,
+      "en": "You have to trust me.",
+      "vi": "Anh phải tin tôi."
+    },
+    {
+      "start": 200.07,
+      "end": 208.57,
+      "en": "He may have my soul, but he doesn't have my spirit.",
+      "vi": "Hắn có thể có linh hồn của tôi, nhưng hắn không có linh hồn của tôi."
+    },
+    {
+      "start": 211.9,
+      "end": 215.5,
+      "en": "And he's got the guts to sell his soul from him.",
+      "vi": "Và hắn có gan bán linh hồn của hắn."
+    },
+    {
+      "start": 215.5,
+      "end": 221.36,
+      "en": "He got the power to change the world.",
+      "vi": "Hắn có sức mạnh để thay đổi thế giới."
+    },
+    {
+      "start": 221.36,
+      "end": 228.81,
+      "en": "He did it for the right reason.",
+      "vi": "Anh ta làm thế vì lý do chính đáng."
+    },
+    {
+      "start": 237.75,
+      "end": 245.83,
+      "en": "I was 500 miles from here.",
+      "vi": "Tôi cách đây 500 dặm."
+    },
+    {
+      "start": 245.83,
+      "end": 249.83,
+      "en": "Wait.",
+      "vi": "Chờ đã."
+    },
+    {
+      "start": 271.08,
+      "end": 275.98,
+      "en": "Can you keep up?",
+      "vi": "Anh có thể theo kịp không?"
+    },
+    {
+      "start": 290.56,
+      "end": 294.61,
+      "en": "Right ever since.",
+      "vi": "Kể từ đó."
+    },
+    {
+      "start": 388.12,
+      "end": 390.16,
+      "en": "Guess all I can do now is hope he sees",
+      "vi": "Tôi đoán tất cả những gì tôi có thể làm bây giờ là hy vọng ông nhìn thấy"
+    },
+    {
+      "start": 390.16,
+      "end": 393.36,
+      "en": "fit to give me a second chance.",
+      "vi": "phù hợp để cho tôi một cơ hội thứ hai."
+    },
+    {
+      "start": 393.36,
+      "end": 396.72,
+      "en": "Thank you.",
+      "vi": "Cảm ơn."
+    },
+    {
+      "start": 396.72,
+      "end": 397.72,
+      "en": "Thank you, Kim.",
+      "vi": "Cảm ơn, Kim."
+    }
+  ]
+}

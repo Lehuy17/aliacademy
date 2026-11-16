@@ -1,5 +1,5 @@
 {
-  "version": 22,
+  "version": 23,
   "movies": [
     {
       "id": "ali-video-01",
@@ -327,6 +327,36 @@
         "url": "./media/baki-hanma-rumina-meets-baki/video.mp4"
       },
       "captions": "./captions/baki-hanma-rumina-meets-baki.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "ghost-rider-carter-slade-last-ride",
+      "title": "The Legendary LAST Ride of Carter Slade | Ghost Rider (Nicolas Cage)",
+      "category": "PHIM SONG NGỮ · GHOST RIDER",
+      "description": "Carter Slade thực hiện chuyến cưỡi ngựa cuối cùng cùng Johnny Blaze · 06:50 · bản phát 1080p/30fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
+      "duration": "06:50",
+      "durationSeconds": 409.902,
+      "poster": "./media/ghost-rider-carter-slade-last-ride/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/ghost-rider-carter-slade-last-ride/video.mp4"
+      },
+      "captions": "./captions/ghost-rider-carter-slade-last-ride.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
