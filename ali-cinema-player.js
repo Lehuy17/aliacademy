@@ -1,5 +1,5 @@
 import {firebaseConfig} from './firebase-config.js';
-import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=2';
+import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=3';
 const $=id=>document.getElementById(id);
 const video=$('aliHtmlVideo');
 const list=$('aliTranscriptList');
