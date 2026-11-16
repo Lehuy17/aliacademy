@@ -84,7 +84,7 @@ def translate_lines(lines):
             if not vi:
                 # The Marian model can emit zero tokens for very short speech.
                 # Retry with a sentence boundary instead of inventing a translation.
-                for variant in (original.strip() + ".", original.strip() + " Please."):
+                for variant in (original.strip() + ".", original.strip() + "!"):
                     vi = generate([variant], beams=5)[0].strip()
                     if vi:
                         break
