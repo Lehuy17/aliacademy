@@ -1,40 +1,40 @@
-<!doctype html><html lang="vi"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>ALI TOEIC Reading Practice</title><style>body{font:16px system-ui;background:#fff8f2;color:#28222a;margin:0}header,main{max-width:900px;margin:auto;padding:24px}section{background:#fff;border:1px solid #f1dccc;border-radius:18px;padding:25px;margin:20px 0}h1,a{color:#e95c17}fieldset{border:0;border-bottom:1px solid #f3e2d6;padding:18px 0}legend{font-weight:700}label{display:block;padding:7px}button{padding:14px 20px;background:#f3651c;color:white;border:0;border-radius:10px;font-weight:800}
-/* ALI English unified assessment design */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
-:root{--ali-orange:#ff681e;--ali-ink:#24222d;--ali-muted:#706975;--ali-line:#f0e3db}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{font-family:'Be Vietnam Pro',system-ui,Arial,sans-serif!important;font-size:14px;line-height:1.65;background:linear-gradient(145deg,#fffaf6 0%,#fff4ec 100%);color:var(--ali-ink);margin:0}
-header{background:#fff!important;border-bottom:1px solid var(--ali-line)!important;box-shadow:0 4px 20px #78472008;padding:18px max(24px,calc((100vw - 1040px)/2))!important}
-header a{font-size:13px;font-weight:800;color:#d65b1d;text-decoration:none}
-main{max-width:1040px!important;margin:34px auto 80px!important;padding:0 22px!important}
-main>h1{font-size:clamp(27px,3.2vw,39px);letter-spacing:-.045em;color:var(--ali-ink)!important;line-height:1.3;margin:0 0 8px}
-main>p{max-width:850px;line-height:1.9;color:var(--ali-muted);font-size:13px;margin:0 0 27px}
-section{background:#fff!important;border:1px solid var(--ali-line)!important;border-radius:22px!important;padding:30px!important;margin:20px 0!important;box-shadow:0 15px 44px #8551260b}
-section h2{font-size:clamp(19px,2.2vw,25px);letter-spacing:-.03em;color:#28222c;margin:0 0 20px}
-section h3{color:#342c31;font-size:17px;letter-spacing:-.02em}
-fieldset{border:1px solid #eee6e0!important;border-radius:16px!important;padding:19px!important;margin:15px 0!important;min-width:0;background:#fffdfa}
-fieldset legend{padding:0 9px;font-weight:800;max-width:100%;line-height:1.75;color:#29242e}
-fieldset label{display:flex!important;align-items:center;gap:12px;padding:13px 15px!important;margin:8px 0!important;border:1px solid #eee7e2;border-radius:11px;cursor:pointer;color:#514b55;transition:background .18s,border-color .18s}
-fieldset label:hover{background:#fff7f0;border-color:#ffbd90}
-fieldset label:has(input:checked){background:#fff0e5;border-color:#ff9f62;color:#a7410b;font-weight:800}
-input[type=radio]{accent-color:#ff681e;width:17px;height:17px;flex:none}
-textarea,input[type=text],input:not([type]),select{font-family:inherit;max-width:100%;border:1px solid #e7d9cf!important;border-radius:12px!important;padding:12px!important;background:#fffdfa}
-textarea:focus,input:focus,select:focus,button:focus-visible,a:focus-visible{outline:3px solid #ffc8a4;outline-offset:2px}
-button{font:inherit;background:#ff681e!important;color:#fff!important;padding:14px 23px!important;border-radius:12px!important;border:0!important;font-weight:850!important;min-height:48px;cursor:pointer;box-shadow:0 8px 18px #ff681e1c}
-button:hover{background:#e75a12!important}
-#result,#out{background:#fff1e5!important;color:#793d1d!important;border:1px solid #ffd1b1;border-radius:13px;padding:20px!important;line-height:1.75}
-a{color:#dc5b17}
-@media(max-width:700px){main{padding:0 14px!important;margin-top:24px!important}section{padding:19px!important;border-radius:16px!important}fieldset{padding:13px!important}fieldset label{padding:11px!important}header{padding:16px!important}}
-
-/* ALI Academy placement UI refresh — 2026 */
-@import url('https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800;900&display=swap');
-:root{--ali-orange:#ff681e;--ali-ink:#23212d;--ali-border:#f0dcd0;--ali-cream:#fff8f3}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{font-family:'Be Vietnam Pro',system-ui,Arial,sans-serif!important;background:radial-gradient(ellipse at 85% 0%,#fff0e3 0%,transparent 52%),#fff9f5!important;color:var(--ali-ink)!important;font-size:14px!important;line-height:1.7}
-header{position:sticky;top:0;z-index:30;background:#fffdfbee!important;border-bottom:1px solid #f2e1d5!important;backdrop-filter:blur(14px);box-shadow:0 5px 22px #b3632410}header a{display:inline-flex;align-items:center;gap:8px;color:#ae4c19!important;font-weight:800;text-decoration:none!important}header a:hover{color:#ff681e!important}
-main{width:min(1060px,calc(100% - 40px));max-width:1060px!important;margin:32px auto 70px!important;padding:0!important}main>h1{font-size:clamp(27px,3.4vw,42px)!important;line-height:1.24;letter-spacing:-.055em;color:#25222e!important;margin:16px 0 13px}main>p:first-of-type{font-size:14px;line-height:1.85;max-width:880px;color:#77717a!important;margin-bottom:26px}
-section{background:#fff!important;border:1px solid var(--ali-border)!important;border-radius:22px!important;padding:clamp(20px,3vw,34px)!important;box-shadow:0 14px 42px #ae612112;margin:22px 0!important;overflow:visible}section h2{font-size:clamp(20px,2.4vw,26px);letter-spacing:-.035em;line-height:1.35;color:#24222d;margin:0 0 16px}section h3{font-size:18px;color:#ba501a;line-height:1.5;margin:25px 0 13px}section p{line-height:1.9!important}
-fieldset{padding:19px!important;margin:0 0 10px!important;border:1px solid #f1e6de!important;border-radius:15px!important;background:#fffefd!important;min-width:0}fieldset legend{font-size:14px!important;font-weight:800!important;line-height:1.75!important;color:#24222d!important;max-width:100%;padding:0 8px}fieldset label{display:flex!important;align-items:center;gap:10px;margin:9px 0!important;padding:13px 15px!important;border:1px solid #efe7e1;border-radius:11px;background:#fff;font-size:14px;cursor:pointer;transition:background .18s,border-color .18s,color .18s}fieldset label:hover{background:#fff4ec;border-color:#ffbd90}fieldset label:has(input:checked){background:#fff0e6;border-color:#ff995c;color:#b94910;font-weight:750}input[type=radio],input[type=checkbox]{accent-color:#ff681e;flex:none;width:17px;height:17px}input[type=text],section input:not([type]),textarea,select{font:inherit;border:1px solid #e7d6ca!important;border-radius:12px!important;padding:12px 14px!important;max-width:100%;background:white;color:#25222d}textarea:focus,input:focus,select:focus{outline:2px solid #ffc097;outline-offset:1px;border-color:#ff681e!important}a:focus-visible,button:focus-visible{outline:3px solid #ffad74;outline-offset:3px}button{background:#ff681e!important;color:white!important;border:0;border-radius:13px!important;padding:14px 21px!important;font:800 13px 'Be Vietnam Pro',sans-serif;box-shadow:0 8px 20px #ff681e1f;transition:transform .2s,background .2s}button:hover{background:#e75816!important;transform:translateY(-1px)}button:disabled{opacity:.5;cursor:not-allowed}
-#result,#out,section[aria-live]{line-height:1.8!important;font-size:14px!important;scroll-margin-top:100px}
-@media(min-width:1000px){main>section{padding:32px 38px!important}}@media(max-width:650px){body{font-size:13px!important}header{padding:15px 18px!important}main{width:calc(100% - 28px)!important;margin:22px auto 45px!important}section{padding:18px!important;border-radius:17px!important}fieldset{padding:12px!important}fieldset label{padding:12px!important}main>h1{font-size:27px!important}button{min-height:45px;width:100%}}
-</style><link rel="stylesheet" href="./ali-test-theme.css?v=1"><link rel="stylesheet" href="./ali-test-workflow.css?v=1"><link rel="stylesheet" href="./ali-exam-unified.css?v=2"><link rel="stylesheet" href="./ali-logo.css?v=1"><header class="ali-exam-header"><div class="ali-exam-header-inner"><a class="ali-exam-brand" href="./index.html" aria-label="ALI English Trang chủ"><span class="ali-shared-logo" role="img" aria-label="Logo ALI Academy"></span><span><strong>ALI ENGLISH</strong><small>FIND YOUR LEVEL</small></span></a><span class="ali-exam-header-meta">TOEIC PRACTICE</span><a class="ali-exam-back" href="./tests.html?step=choose">← Danh sách bài test</a></div></header><main class="ali-exam-page"><h1>TOEIC 400 / 550 · Reading Practice</h1><p>Chưa có audio TOEIC nên Listening chưa mở. Đây là 15 câu ngữ pháp luyện tập được biên soạn theo chủ điểm TOEIC, không phải toàn bộ bài placement 55 câu trong tài liệu ALI. Điểm /15 không dùng để xếp lớp TOEIC 400 hoặc 550.</p><section><h2>Reading · Grammar & Vocabulary</h2><div id="questions"></div><button id="grade">Chấm /15</button><div id="aliUnifiedResult" class="ali-result-wrap ali-hidden" hidden aria-live="polite"></div></section><section><h2>Listening · Chưa có audio</h2><p>Phần nghe 25 câu sẽ được bổ sung khi ALI cung cấp audio phù hợp và đáp án đã đối chiếu.</p></section></main><script>const Q=[["The office is located ___ the end of the street.",["in","at","along","under"],1],["She performs very ___ under pressure.",["good","well","excellent","best"],1],["We plan ___ a new branch next year.",["open","opening","to open","opened"],2],["Please contact my ___ while I am away.",["associate","associated","associating","association"],0],["The manager will choose ___ the two candidates.",["among","between","through","along"],1],["This is a ___ market.",["locally","local","locality","locals"],1],["He ___ to London on a business trip.",["has gone","has went","go","going"],0],["Submit the form ___ Friday.",["at","by","in","for"],1],["The chips are popular because of ___ durability.",["they","their","them","theirs"],1],["Our staff are highly ___.",["experience","experiencing","experienced","experiences"],2],["The game was cancelled ___ heavy rain.",["because","due to","although","despite of"],1],["The report will be ___ tomorrow.",["release","released","releasing","releases"],1],["You cannot enter ___ you have a badge.",["unless","because","although","during"],0],["All workers need ___ of the policy.",["remind","reminding","to be reminded","reminded"],2],["The supervisor got her assistant ___ the documents.",["prepare","to prepare","prepared","preparing"],1]];document.getElementById('questions').innerHTML=Q.map((q,i)=>'<fieldset><legend>'+(i+1)+'. '+q[0]+'</legend>'+q[1].map((v,j)=>'<label><input type="radio" name="q'+i+'" value="'+j+'"> '+String.fromCharCode(65+j)+'. '+v+'</label>').join('')+'</fieldset>').join('');document.getElementById('grade').onclick=()=>{let s=0,n=0;Q.forEach((q,i)=>{let a=document.querySelector('input[name=q'+i+']:checked');if(a){n++;if(+a.value===q[2])s++}});ALIResults.render('aliUnifiedResult',{total:s,max:15,eyebrow:'TOEIC PRACTICE · KẾT QUẢ',heading:'Bạn đã hoàn thành bài test!',ringLabel:'ĐIỂM LUYỆN TẬP',title:'Đã hoàn thành phần Grammar',description:'Bạn đã trả lời '+n+'/15 câu trong bài luyện tập Grammar TOEIC.',breakdown:[{label:'Grammar Practice',score:s,max:15},{label:'Listening',score:null,max:25}],note:'Đây là điểm luyện tập '+s+'/15, không phải điểm TOEIC Placement /55 hay điểm TOEIC quy đổi. Bài Listening chưa có audio và không được tính vào tổng.'})};</script><script src="./ali-results.js?v=2" defer></script><script src="./ali-exam-unified.js?v=1" defer></script></html>
+<!doctype html>
+<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#ff681e"><title>ALI Academy · TOEIC Placement Test 400/550</title>
+<link rel="stylesheet" href="./ali-test-theme.css?v=1">
+<link rel="stylesheet" href="./ali-test-workflow.css?v=1">
+<link rel="stylesheet" href="./ali-exam-unified.css?v=2">
+<link rel="stylesheet" href="./ali-logo.css?v=1">
+<link rel="stylesheet" href="./ali-toeic-placement.css?v=1">
+<style>body{margin:0;background:#fff9f5;color:#27232d;font:14px/1.75 'Be Vietnam Pro',system-ui,sans-serif}
+main{max-width:1100px;margin:30px auto;padding:0 18px}
+main>h1{margin:0 0 10px}main>p{color:#746d73;line-height:1.8}
+main>section{border:1px solid #f0ded2;padding:28px;border-radius:20px;background:#fff;margin:22px 0}
+main>section h2{margin:0 0 13px}
+button{font:inherit;background:#ff681e;color:white;border:0;border-radius:12px;padding:14px 20px;font-weight:800;cursor:pointer}
+button:focus-visible,a:focus-visible,input:focus-visible,textarea:focus-visible{outline:3px solid #ffb785;outline-offset:2px}
+@media(max-width:700px){main>section{padding:18px}}
+</style></head><body>
+<header class="ali-exam-header"><div class="ali-exam-header-inner">
+<a href="./index.html" class="ali-exam-brand" aria-label="ALI English Trang chủ"><span class="ali-shared-logo" role="img" aria-label="Logo ALI Academy"></span><span><strong>ALI ENGLISH</strong><small>FIND YOUR LEVEL</small></span></a>
+<span class="ali-exam-header-meta">TOEIC PLACEMENT 400 / 550</span>
+<a href="./tests.html?step=choose" class="ali-exam-back">← Danh sách bài test</a>
+</div></header>
+<main class="ali-exam-page">
+<h1>ALI Academy · TOEIC Placement Test</h1>
+<p>Bài kiểm tra xếp lớp nội bộ theo tài liệu ALI: <strong>Listening 25 câu (khoảng 12 phút)</strong>, <strong>Reading 30 câu (30 phút)</strong>. Phần Writing riêng (15 phút) chỉ dành cho học viên đăng ký TOEIC Speaking &amp; Writing. Tổng Listening &amp; Reading tối đa 55 điểm dùng để định hướng TOEIC 400/550 khi có đầy đủ đáp án và audio hợp lệ.</p>
+<section aria-label="TOEIC Listening"><h2>1. Listening · Questions 1–25</h2>
+<p class="ali-toeic-instruction">Parts 1–4: Photographs, Question–Response, Conversations, Talks. Các câu nghe cần đúng audio TOEIC Test 1 và đáp án gốc để chấm chính xác.</p>
+<div id="toeicListen"></div></section>
+<section aria-label="TOEIC Reading"><h2>2. Reading · Questions 26–55</h2>
+<p class="ali-toeic-instruction">Parts 5–7: Incomplete Sentences, Text Completion, Reading Comprehension. Hệ thống đối chiếu đáp án theo tệp KEY của ALI (30 câu).</p>
+<div id="toeicRead"></div></section>
+<section aria-label="TOEIC Speaking and Writing optional"><h2>3. Writing · Tùy chọn</h2><div id="toeicWriting"></div></section>
+<p class="ali-toeic-status" id="toeicProgressLive" aria-live="polite">Đã chọn 0/55 câu Listening &amp; Reading</p>
+<button id="grade" type="button">Nộp bài &amp; xem kết quả Reading</button>
+<section id="aliUnifiedResult" hidden class="ali-result-wrap ali-hidden" aria-live="polite"></section>
+</main>
+<script src="./ali-toeic-placement.js?v=1"></script>
+<script src="./ali-results.js?v=2" defer></script>
+<script src="./ali-exam-unified.js?v=1" defer></script>
+</body></html>
