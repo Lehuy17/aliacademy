@@ -194,7 +194,7 @@ function comprehensionCandidates(pairs){
   const pair=list[i];
   const choices=[];
   for(let j=1;j<list.length&&choices.length<3;j++){
-   const neighbor=list[(i+j*5)%list.length];
+   const neighbor=list[(i+j)%list.length];
    if(neighbor===pair)continue;
    const o=normalized(neighbor.en);
    if(o!==pair.en&&!choices.includes(o)&&o.length>=18)choices.push(o);
