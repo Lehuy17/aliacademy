@@ -1,0 +1,464 @@
+{
+  "movieId": "angry-birds-2-zeta-mighty-eagle-wedding",
+  "duration": 311.543,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 6.58,
+      "end": 8.58,
+      "en": "This is like our wedding, but expensive.",
+      "vi": "Đây giống như đám cưới của chúng ta, nhưng đắt lắm."
+    },
+    {
+      "start": 8.58,
+      "end": 9.58,
+      "en": "Ha ha ha ha.",
+      "vi": "Ha ha ha ha."
+    },
+    {
+      "start": 9.58,
+      "end": 13.11,
+      "en": "That's me.",
+      "vi": "Đó là tôi."
+    },
+    {
+      "start": 13.11,
+      "end": 14.11,
+      "en": "That is good.",
+      "vi": "Tốt lắm."
+    },
+    {
+      "start": 14.11,
+      "end": 15.11,
+      "en": "Yes!",
+      "vi": "Phải!"
+    },
+    {
+      "start": 15.11,
+      "end": 16.11,
+      "en": "Birds and pigs.",
+      "vi": "Chim và lợn."
+    },
+    {
+      "start": 16.11,
+      "end": 19.11,
+      "en": "We are gathered here today because of these two characters.",
+      "vi": "Hôm nay chúng ta tụ họp ở đây vì hai nhân vật này."
+    },
+    {
+      "start": 19.11,
+      "end": 23.11,
+      "en": "Not only because they're being joined in holy matrimony,",
+      "vi": "Không chỉ vì họ đang tham gia vào cuộc hôn nhân thiêng liêng,"
+    },
+    {
+      "start": 23.11,
+      "end": 26.11,
+      "en": "but also because one of them tried to destroy our islands",
+      "vi": "Nhưng cũng bởi vì một trong số họ đã cố gắng phá hủy hòn đảo của chúng ta"
+    },
+    {
+      "start": 26.11,
+      "end": 29.11,
+      "en": "for her own selfish reasons.",
+      "vi": "Vì những lý do ích kỷ của cô ấy."
+    },
+    {
+      "start": 29.11,
+      "end": 30.11,
+      "en": "Guess who?",
+      "vi": "Đoán xem ai đây?"
+    },
+    {
+      "start": 30.11,
+      "end": 33.49,
+      "en": "It's such a beautiful wedding.",
+      "vi": "Đám cưới thật đẹp."
+    },
+    {
+      "start": 33.49,
+      "end": 36.49,
+      "en": "But Mighty Eagle swooped in at the last second",
+      "vi": "Nhưng anh Bàng huyền thoại đã đến vào giây cuối cùng."
+    },
+    {
+      "start": 36.49,
+      "end": 38.49,
+      "en": "and got all the credit for stopping her.",
+      "vi": "và nhận được tất cả công lao vì đã ngăn chặn cô ta."
+    },
+    {
+      "start": 38.49,
+      "end": 39.31,
+      "en": "stopping her.",
+      "vi": "Ngăn cô ta lại."
+    },
+    {
+      "start": 39.31,
+      "end": 41.01,
+      "en": "Yes, you did, babe.",
+      "vi": "Có đấy, em yêu."
+    },
+    {
+      "start": 41.01,
+      "end": 42.97,
+      "en": "I love you.",
+      "vi": "Anh yêu em."
+    },
+    {
+      "start": 42.97,
+      "end": 44.25,
+      "en": "Wrap it up.",
+      "vi": "Gói lại đi."
+    },
+    {
+      "start": 44.25,
+      "end": 47.29,
+      "en": "I now pronounce you eagle and honey.",
+      "vi": "Ta tuyên bố ngươi là đại bàng và mật ong."
+    },
+    {
+      "start": 47.29,
+      "end": 48.65,
+      "en": "You may now kiss them.",
+      "vi": "Bây giờ anh có thể hôn họ."
+    },
+    {
+      "start": 48.65,
+      "end": 49.65,
+      "en": "Come here.",
+      "vi": "Lại đây."
+    },
+    {
+      "start": 49.65,
+      "end": 50.65,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "start": 50.65,
+      "end": 51.65,
+      "en": "All right.",
+      "vi": "Được rồi."
+    },
+    {
+      "start": 51.65,
+      "end": 52.65,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "start": 52.65,
+      "end": 53.65,
+      "en": "All right, eagle.",
+      "vi": "Được rồi, đại bàng."
+    },
+    {
+      "start": 53.65,
+      "end": 54.65,
+      "en": "Oh, that is disgusting.",
+      "vi": "Thật kinh tởm."
+    },
+    {
+      "start": 54.65,
+      "end": 55.65,
+      "en": "Go, Dana.",
+      "vi": "Đi đi, Dana."
+    },
+    {
+      "start": 55.65,
+      "end": 56.65,
+      "en": "Go down.",
+      "vi": "Xuống đi."
+    },
+    {
+      "start": 56.65,
+      "end": 57.65,
+      "en": "Come down.",
+      "vi": "Xuống đây."
+    },
+    {
+      "start": 57.65,
+      "end": 58.65,
+      "en": "Come down.",
+      "vi": "Xuống đây."
+    },
+    {
+      "start": 58.65,
+      "end": 59.65,
+      "en": "Touch everybody.",
+      "vi": "Chạm vào tất cả mọi người."
+    },
+    {
+      "start": 59.65,
+      "end": 60.65,
+      "en": "Eyes on me.",
+      "vi": "Nhìn tôi này."
+    },
+    {
+      "start": 60.65,
+      "end": 61.65,
+      "en": "Hi.",
+      "vi": "Chào."
+    },
+    {
+      "start": 61.65,
+      "end": 62.65,
+      "en": "Hi.",
+      "vi": "Chào."
+    },
+    {
+      "start": 62.65,
+      "end": 63.65,
+      "en": "Look up here.",
+      "vi": "Nhìn lên đây."
+    },
+    {
+      "start": 63.65,
+      "end": 66.69,
+      "en": "I would like to propose a toast to the bird who made all of this",
+      "vi": "Tôi muốn nâng ly chúc mừng con chim đã tạo ra tất cả những thứ này."
+    },
+    {
+      "start": 66.69,
+      "end": 67.69,
+      "en": "possible.",
+      "vi": "Có thể."
+    },
+    {
+      "start": 67.69,
+      "end": 69.69,
+      "en": "Our hero, Red!",
+      "vi": "Người hùng của chúng ta, Red!"
+    },
+    {
+      "start": 69.69,
+      "end": 73.69,
+      "en": "Holoboam!",
+      "vi": "Holoboam!"
+    },
+    {
+      "start": 82.38,
+      "end": 86.38,
+      "en": "Holoboam!",
+      "vi": "Holoboam!"
+    },
+    {
+      "start": 98.17,
+      "end": 100.17,
+      "en": "Looks like they still love you, Red.",
+      "vi": "Có vẻ như họ vẫn còn yêu anh, Red."
+    },
+    {
+      "start": 100.17,
+      "end": 103.17,
+      "en": "Uh, okay, well, you know, I'm, um...",
+      "vi": "Uh, okay, well, cậu biết đấy, tớ, um..."
+    },
+    {
+      "start": 103.17,
+      "end": 105.17,
+      "en": "I'm honored, everybody.",
+      "vi": "Tôi rất vinh dự, mọi người."
+    },
+    {
+      "start": 105.17,
+      "end": 107.17,
+      "en": "I really, and I just, um...",
+      "vi": "Tôi thực sự, và tôi chỉ, um..."
+    },
+    {
+      "start": 107.17,
+      "end": 110.67,
+      "en": "Two seconds.",
+      "vi": "Hai giây."
+    },
+    {
+      "start": 113.16,
+      "end": 115.16,
+      "en": "Give me two seconds, I'll be right back.",
+      "vi": "Cho tôi hai giây, tôi sẽ quay lại ngay."
+    },
+    {
+      "start": 115.16,
+      "end": 117.16,
+      "en": "Whoo! Good speech!",
+      "vi": "Nói hay lắm!"
+    },
+    {
+      "start": 117.16,
+      "end": 118.16,
+      "en": "Yeah!",
+      "vi": "Yeah!"
+    },
+    {
+      "start": 118.16,
+      "end": 120.16,
+      "en": "Excuse me, pardon me, pardon me, excuse me.",
+      "vi": "Xin lỗi, xin lỗi, xin lỗi, xin lỗi."
+    },
+    {
+      "start": 120.16,
+      "end": 122.16,
+      "en": "I'm just trying to squeeze through here.",
+      "vi": "Tôi chỉ đang cố chui qua đây."
+    },
+    {
+      "start": 122.16,
+      "end": 124.16,
+      "en": "Oh, hey, hey, hey, silver!",
+      "vi": "Ồ, này, này, bạc!"
+    },
+    {
+      "start": 124.16,
+      "end": 126.16,
+      "en": "Huh?",
+      "vi": "Hả?"
+    },
+    {
+      "start": 126.16,
+      "end": 134.66,
+      "en": "Wow, I, um, thank you guys. I thank you for this and for all the support and love. You know, it means, uh, well, it means everything to me, but, um, I don't deserve it. She does.",
+      "vi": "Cảm ơn mọi người vì tất cả sự ủng hộ và tình yêu. nhưng tôi không xứng đáng với điều đó."
+    },
+    {
+      "start": 147.68,
+      "end": 151.68,
+      "en": "What just happened? Is that the nerd from our physics class?",
+      "vi": "Có phải đó là gã mọt sách trong lớp vật lý của chúng ta không?"
+    },
+    {
+      "start": 151.68,
+      "end": 158.0,
+      "en": "This is the real hero right here silver is the one who came up with the plan to stop the super weapon and",
+      "vi": "Đây là anh hùng thực sự ở đây bạc là người nghĩ ra kế hoạch để ngăn chặn siêu vũ khí và"
+    },
+    {
+      "start": 158.52,
+      "end": 160.52,
+      "en": "Ultimately saved all our lives",
+      "vi": "Cuối cùng đã cứu mạng tất cả chúng ta."
+    },
+    {
+      "start": 162.04,
+      "end": 167.6,
+      "en": "Red I didn't do this all on my own right cuz we're a team",
+      "vi": "Đỏ Tôi không làm tất cả điều này theo cách của riêng tôi bởi vì chúng tôi là một đội"
+    },
+    {
+      "start": 169.12,
+      "end": 171.46,
+      "en": "We couldn't have done anything without Chuck",
+      "vi": "Chúng tôi không thể làm gì nếu không có Chuck."
+    },
+    {
+      "start": 173.52,
+      "end": 179.52,
+      "en": "Gary or Leonard you know what actually you probably could have done it without let's be honest, huh?",
+      "vi": "Gary hay Leonard cậu biết thực sự cậu có thể làm gì mà không cần phải thành thật, phải không?"
+    },
+    {
+      "start": 181.68,
+      "end": 185.12,
+      "en": "I got the sum and even mighty eagle so",
+      "vi": "Tôi đã có số tiền và thậm chí đại bàng hùng mạnh như vậy"
+    },
+    {
+      "start": 185.76,
+      "end": 189.48,
+      "en": "And last but certainly not least those adorable hatchlings",
+      "vi": "Và cuối cùng nhưng chắc chắn không ít nhất những con chim non đáng yêu"
+    },
+    {
+      "start": 191.12,
+      "end": 194.0,
+      "en": "We are strongest when we all band together",
+      "vi": "Chúng ta mạnh mẽ nhất khi chúng ta hợp lại với nhau."
+    },
+    {
+      "start": 194.76,
+      "end": 196.76,
+      "en": "Just like super straight",
+      "vi": "Giống như siêu bình thường."
+    },
+    {
+      "start": 196.76,
+      "end": 205.26,
+      "en": "You see these guys are the real heroes. They're the ones who deserve your love not me",
+      "vi": "Anh thấy đó, những người này mới là anh hùng thực sự, những người xứng đáng với tình yêu của anh chứ không phải tôi."
+    },
+    {
+      "start": 265.47,
+      "end": 267.47,
+      "en": "Getting I know it just",
+      "vi": "Làm cho tôi biết nó chỉ cần"
+    },
+    {
+      "start": 267.47,
+      "end": 273.47,
+      "en": "You know, I was actually feeling sarcastic when I said that was my favorite food for the rest.",
+      "vi": "Anh biết không, tôi thực sự cảm thấy mỉa mai khi tôi nói đó là thức ăn ưa thích của tôi cho phần còn lại."
+    },
+    {
+      "start": 273.47,
+      "end": 277.47,
+      "en": "What? No sarcastic. No way.",
+      "vi": "Không mỉa mai, không đời nào."
+    },
+    {
+      "start": 277.47,
+      "end": 278.47,
+      "en": "I see what you're doing.",
+      "vi": "Tôi hiểu anh đang làm gì rồi."
+    },
+    {
+      "start": 278.47,
+      "end": 280.47,
+      "en": "Maybe you can beat me sometime.",
+      "vi": "Có lẽ lúc nào đó anh có thể đánh bại tôi."
+    },
+    {
+      "start": 280.47,
+      "end": 283.47,
+      "en": "Yeah, maybe I will when you're not too busy saving the world.",
+      "vi": "Ừ, có lẽ anh sẽ làm thế khi em không quá bận rộn cứu thế giới."
+    },
+    {
+      "start": 283.47,
+      "end": 288.47,
+      "en": "Oh, you know, I actually just finished doing that, so I'm pretty free.",
+      "vi": "Oh, anh biết đấy, em thực sự vừa làm xong việc đó, nên em khá tự do."
+    },
+    {
+      "start": 288.47,
+      "end": 290.47,
+      "en": "No way, because I'm pretty free too.",
+      "vi": "Không đời nào, bởi vì tôi cũng khá tự do."
+    },
+    {
+      "start": 290.47,
+      "end": 293.47,
+      "en": "Well, I don't have anything to do either.",
+      "vi": "Tôi cũng chẳng có việc gì để làm."
+    },
+    {
+      "start": 293.47,
+      "end": 295.47,
+      "en": "Wait a minute, what's that down?",
+      "vi": "Khoan đã, cái gì dưới đó vậy?"
+    },
+    {
+      "start": 295.47,
+      "end": 299.47,
+      "en": "From the Eagle Train, coming up through the field, get back, no!",
+      "vi": "Từ Đại bàng, đi qua cánh đồng, quay lại, không!"
+    },
+    {
+      "start": 299.47,
+      "end": 303.47,
+      "en": "Get the ring, get the ring, get the ring!",
+      "vi": "Lấy chiếc nhẫn, lấy chiếc nhẫn, lấy chiếc nhẫn!"
+    }
+  ]
+}

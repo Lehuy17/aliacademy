@@ -1,5 +1,5 @@
 {
-  "version": 23,
+  "version": 24,
   "movies": [
     {
       "id": "ali-video-01",
@@ -357,6 +357,36 @@
         "url": "./media/ghost-rider-carter-slade-last-ride/video.mp4"
       },
       "captions": "./captions/ghost-rider-carter-slade-last-ride.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "angry-birds-2-zeta-mighty-eagle-wedding",
+      "title": "Zeta's and Mighty Eagle's Wedding | The Angry Birds Movie 2",
+      "category": "PHIM SONG NGỮ · THE ANGRY BIRDS MOVIE 2",
+      "description": "Lễ cưới của Zeta và Mighty Eagle trong The Angry Birds Movie 2 · 05:12 · bản phát 1080p/30fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
+      "duration": "05:12",
+      "durationSeconds": 311.543,
+      "poster": "./media/angry-birds-2-zeta-mighty-eagle-wedding/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/angry-birds-2-zeta-mighty-eagle-wedding/video.mp4"
+      },
+      "captions": "./captions/angry-birds-2-zeta-mighty-eagle-wedding.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
