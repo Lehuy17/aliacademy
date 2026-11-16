@@ -52,7 +52,7 @@ function autoQuiz(cues){
    output.push({type:'vocabulary',question:'Từ nào xuất hiện trong câu lời thoại: “'+sentence.slice(0,90)+'”?',...v,explanation:'Từ “'+word+'” xuất hiện nguyên văn trong câu được trích.'});
   }
  }
- const patterns=[/\\bI (am)\\b/i,/\\b(?:he|she|it) (is)\\b/i,/\\b(?:we|they|you) (are)\\b/i,/\\bI (was)\\b/i,/\\b(?:he|she|it) (was)\\b/i,/\\b(?:we|they|you) (were)\\b/i];
+ const patterns=[/\bI (am)\b/i,/\b(?:he|she|it) (is)\b/i,/\b(?:we|they|you) (are)\b/i,/\bI (was)\b/i,/\b(?:he|she|it) (was)\b/i,/\b(?:we|they|you) (were)\b/i];
  let syntax=null;
  for(const line of lines){for(const re of patterns){const m=re.exec(line);if(m){syntax={line,verb:m[1],index:m.index+m[0].lastIndexOf(m[1])};break;}}if(syntax)break;}
  if(syntax){
