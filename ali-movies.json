@@ -1,5 +1,5 @@
 {
-  "version": 30,
+  "version": 31,
   "movies": [
     {
       "id": "ali-video-01",
@@ -528,27 +528,30 @@
       "id": "moneyball-billy-boston-red-sox-offer",
       "title": "Billy Gets the Offer of a Lifetime from the Boston Red Sox | Moneyball",
       "category": "PHIM SONG NGỮ · MONEYBALL",
-      "description": "Trích đoạn Moneyball: Billy nhận lời đề nghị từ Boston Red Sox. Nguồn phát Google Drive; phụ đề song ngữ đang chờ xử lý, chưa đạt quy chuẩn phát đồng bộ.",
-      "duration": "VIDEO",
-      "poster": "https://drive.google.com/thumbnail?id=13QndbT9m59s2uL671YeGxb_rDLvEGQnv&sz=w960",
+      "description": "Trích đoạn Billy nhận lời đề nghị từ Boston Red Sox trong Moneyball · 09:49 · bản phát Full HD 1080p/30fps; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "09:49",
+      "durationSeconds": 589.486,
+      "poster": "./media/moneyball-billy-boston-red-sox-offer/poster.jpg",
       "source": {
-        "type": "drive"
+        "type": "url",
+        "url": "./media/moneyball-billy-boston-red-sox-offer/video.mp4"
       },
-      "driveId": "13QndbT9m59s2uL671YeGxb_rDLvEGQnv",
-      "subtitleStatus": "pending_bilingual_transcript",
+      "captions": "./captions/moneyball-billy-boston-red-sox-offer.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
         "background": "film-blur",
         "layout": "video-left-captions-right"
       },
       "qa": {
-        "stage": "temporary_drive_preview_pending_full_standard",
+        "stage": "public_preview_pending_editorial_review",
         "rightsConfirmed": false,
         "englishReviewed": false,
         "vietnameseReviewed": false,
         "timingsReviewed": false,
         "desktopMobileTested": false,
-        "videoTechnicalChecked": false
+        "approvedAt": "",
+        "videoTechnicalChecked": true
       }
     },
     {

@@ -1,0 +1,704 @@
+{
+  "movieId": "moneyball-billy-boston-red-sox-offer",
+  "duration": 589.486,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 45.1,
+      "end": 49.44,
+      "en": "The Coliseum, but this is a ballpark.",
+      "vi": "Đấu trường Coliseum, nhưng đây là sân bóng chày."
+    },
+    {
+      "start": 49.44,
+      "end": 50.78,
+      "en": "Yes, it is.",
+      "vi": "Đúng vậy."
+    },
+    {
+      "start": 50.78,
+      "end": 55.57,
+      "en": "We're going to have some lunch in a little bit.",
+      "vi": "Chúng ta sẽ ăn trưa một chút nữa."
+    },
+    {
+      "start": 55.57,
+      "end": 58.83,
+      "en": "Why don't I have some coffee sent up?",
+      "vi": "Sao tôi không có chút cà phê nào nhỉ?"
+    },
+    {
+      "start": 58.83,
+      "end": 62.33,
+      "en": "Denise.",
+      "vi": "Denise."
+    },
+    {
+      "start": 65.26,
+      "end": 68.76,
+      "en": "Thank you, Denise.",
+      "vi": "Cám ơn, Denise."
+    },
+    {
+      "start": 73.02,
+      "end": 76.1,
+      "en": "It's her birthday, and I need to get her a present,",
+      "vi": "Hôm nay là sinh nhật cô ấy, và tôi cần tặng cô ấy một món quà,"
+    },
+    {
+      "start": 76.1,
+      "end": 78.6,
+      "en": "but she's usually the one that does that for me.",
+      "vi": "nhưng cô ấy thường là người làm điều đó cho tôi."
+    },
+    {
+      "start": 78.6,
+      "end": 82.74,
+      "en": "So do you have any ideas?",
+      "vi": "Vậy anh có ý tưởng gì không?"
+    },
+    {
+      "start": 82.74,
+      "end": 84.48,
+      "en": "Scarf.",
+      "vi": "Scarf."
+    },
+    {
+      "start": 84.48,
+      "end": 85.84,
+      "en": "You mean like wool?",
+      "vi": "Ý anh là lông cừu?"
+    },
+    {
+      "start": 85.84,
+      "end": 89.24,
+      "en": "No, I meant what women wear with, you know,",
+      "vi": "Không, ý tôi là phụ nữ mặc gì, anh biết đấy,"
+    },
+    {
+      "start": 89.24,
+      "end": 92.74,
+      "en": "Oh, uh, and where would I get something like that?",
+      "vi": "Oh, uh, và tôi có thể lấy thứ gì đó như thế ở đâu?"
+    },
+    {
+      "start": 92.74,
+      "end": 95.52,
+      "en": "John, no disrespect.",
+      "vi": "John, không có ý xúc phạm."
+    },
+    {
+      "start": 95.52,
+      "end": 97.52,
+      "en": "I just lost in fire for the second year in a row.",
+      "vi": "Tôi vừa thua trong vụ cháy năm thứ hai liên tiếp."
+    },
+    {
+      "start": 97.52,
+      "end": 99.52,
+      "en": "Get her a bowling ball for all I care.",
+      "vi": "Mua cho cô ấy quả bóng bowling cho tất cả những gì tôi quan tâm."
+    },
+    {
+      "start": 99.52,
+      "end": 106.84,
+      "en": "Steve told me he's offering you a new contract.",
+      "vi": "Steve nói với tôi là anh ta sẽ đưa ra một hợp đồng mới."
+    },
+    {
+      "start": 106.84,
+      "end": 109.84,
+      "en": "Yes.",
+      "vi": "Phải."
+    },
+    {
+      "start": 109.84,
+      "end": 111.84,
+      "en": "So why did you return my call?",
+      "vi": "Vậy tại sao anh lại gọi lại cho tôi?"
+    },
+    {
+      "start": 111.84,
+      "end": 119.21,
+      "en": "Because I believe science might offer an answer",
+      "vi": "Bởi vì tôi tin rằng khoa học có thể cung cấp một câu trả lời"
+    },
+    {
+      "start": 119.21,
+      "end": 121.21,
+      "en": "to the curse of the Bambino.",
+      "vi": "vì lời nguyền của Babino."
+    },
+    {
+      "start": 121.21,
+      "end": 125.76,
+      "en": "I hear Bill James.",
+      "vi": "Tôi nghe thấy Bill James."
+    },
+    {
+      "start": 125.76,
+      "end": 127.76,
+      "en": "Yep.",
+      "vi": "Ừ."
+    },
+    {
+      "start": 127.76,
+      "end": 130.76,
+      "en": "You know, why someone took so long to hire that guy",
+      "vi": "Anh biết không, tại sao lại mất nhiều thời gian đến thế để thuê gã đó"
+    },
+    {
+      "start": 130.76,
+      "end": 132.76,
+      "en": "is beyond me.",
+      "vi": "là vượt ra ngoài khả năng của tôi."
+    },
+    {
+      "start": 132.76,
+      "end": 135.64,
+      "en": "Well, baseball hates him.",
+      "vi": "Bóng chày ghét anh ta."
+    },
+    {
+      "start": 135.64,
+      "end": 139.33,
+      "en": "Baseball?",
+      "vi": "Bóng chày?"
+    },
+    {
+      "start": 139.33,
+      "end": 141.97,
+      "en": "Baseball can hate him, you know.",
+      "vi": "Bóng chày có thể ghét anh ta."
+    },
+    {
+      "start": 141.97,
+      "end": 146.21,
+      "en": "One of the great things about money is that it buys a lot of things.",
+      "vi": "Một trong những điều quan trọng về tiền bạc là nó mua rất nhiều thứ."
+    },
+    {
+      "start": 146.21,
+      "end": 150.55,
+      "en": "One of which is the luxury to disregard what baseball likes, doesn't like, what baseball",
+      "vi": "Một trong số đó là sự xa xỉ của việc coi thường những gì bóng chày thích, không thích, những gì bóng chày"
+    },
+    {
+      "start": 150.55,
+      "end": 155.03,
+      "en": "thinks, doesn't think.",
+      "vi": "Suy nghĩ, không suy nghĩ."
+    },
+    {
+      "start": 155.03,
+      "end": 156.67,
+      "en": "Sounds nice.",
+      "vi": "Nghe hay đấy."
+    },
+    {
+      "start": 156.67,
+      "end": 161.95,
+      "en": "Well, I was grateful for the call.",
+      "vi": "Tôi rất biết ơn vì cuộc gọi."
+    },
+    {
+      "start": 161.95,
+      "end": 162.95,
+      "en": "You were grateful?",
+      "vi": "Anh biết ơn?"
+    },
+    {
+      "start": 162.95,
+      "end": 167.88,
+      "en": "Yeah.",
+      "vi": "Ừ."
+    },
+    {
+      "start": 167.88,
+      "end": 171.12,
+      "en": "For 41 million, you built a playoff team.",
+      "vi": "Với 41 triệu, anh đã xây dựng một đội."
+    },
+    {
+      "start": 171.12,
+      "end": 178.18,
+      "en": "You lost Damon, Giambi, Isringhausen, Peña, and you won more games without them than you",
+      "vi": "Anh thua Damon, Giabib, Isringhausen, Peña, và anh thắng nhiều trận mà không có họ hơn anh."
+    },
+    {
+      "start": 178.18,
+      "end": 179.52,
+      "en": "did with them.",
+      "vi": "Đã làm với họ."
+    },
+    {
+      "start": 179.52,
+      "end": 185.06,
+      "en": "You won the exact same number of games that the Yankees won, but the Yankees spent $1.4",
+      "vi": "Anh đã thắng chính xác số trận đấu mà đội Yankees thắng, nhưng đội Yankees chi 1,4 đô la."
+    },
+    {
+      "start": 185.06,
+      "end": 190.84,
+      "en": "million per win, and you paid $260,000.",
+      "vi": "1 triệu đô mỗi lần thắng, và anh đã trả 260.000 đô-la."
+    },
+    {
+      "start": 190.84,
+      "end": 195.44,
+      "en": "I know you're taking the teeth out there, but the first guy through the wall, he always",
+      "vi": "Tôi biết anh đang lấy răng ra ngoài đó, nhưng người đầu tiên xuyên qua tường, anh ta luôn luôn"
+    },
+    {
+      "start": 195.44,
+      "end": 196.94,
+      "en": "gets bloody.",
+      "vi": "chảy máu."
+    },
+    {
+      "start": 196.94,
+      "end": 197.94,
+      "en": "Always.",
+      "vi": "Luôn luôn."
+    },
+    {
+      "start": 197.94,
+      "end": 202.54,
+      "en": "This is threatening, not just a way of doing business, but in their minds it's threatening",
+      "vi": "Điều này đe dọa, không chỉ là một cách làm ăn, nhưng trong tâm trí của họ nó đe dọa"
+    },
+    {
+      "start": 202.54,
+      "end": 203.54,
+      "en": "the game.",
+      "vi": "Trò chơi."
+    },
+    {
+      "start": 203.54,
+      "end": 207.78,
+      "en": "But really what's threatening is their livelihoods, threatening their jobs, threatening the way",
+      "vi": "Nhưng điều thực sự đe dọa là kế sinh nhai của họ, đe dọa công việc của họ, đe dọa cách thức"
+    },
+    {
+      "start": 207.78,
+      "end": 210.5,
+      "en": "that they do things.",
+      "vi": "rằng họ làm những điều."
+    },
+    {
+      "start": 210.5,
+      "end": 213.42,
+      "en": "And every time that happens, whether it's a government or a way of doing business or",
+      "vi": "Và mỗi lần điều đó xảy ra, cho dù đó là một chính phủ hoặc một cách làm kinh doanh hoặc"
+    },
+    {
+      "start": 213.42,
+      "end": 221.18,
+      "en": "whatever it is, the people who are holding the reins, their hands on the switch, they",
+      "vi": "Dù nó là gì, những người đang nắm giữ dây cương, bàn tay của họ trên công tắc, họ"
+    },
+    {
+      "start": 221.18,
+      "end": 224.59,
+      "en": "go batshit crazy.",
+      "vi": "Điên hết cả lên."
+    },
+    {
+      "start": 224.59,
+      "end": 229.55,
+      "en": "I mean, anybody who's not tearing their team down right now",
+      "vi": "Ý tôi là, bất cứ ai không làm tan nát đội của họ ngay bây giờ."
+    },
+    {
+      "start": 229.55,
+      "end": 233.15,
+      "en": "and rebuilding it using your model,",
+      "vi": "Và xây dựng lại nó bằng cách sử dụng mô hình của bạn,"
+    },
+    {
+      "start": 233.15,
+      "end": 236.03,
+      "en": "they're dinosaurs.",
+      "vi": "Chúng là khủng long."
+    },
+    {
+      "start": 236.03,
+      "end": 240.59,
+      "en": "They'll be sitting on their ass on the sofa in October",
+      "vi": "Họ sẽ ngồi trên ghế sofa vào tháng 10"
+    },
+    {
+      "start": 240.59,
+      "end": 249.49,
+      "en": "watching the Boston Red Sox win the World Series.",
+      "vi": "Xem đội Boston Red Sox thắng giải World Series."
+    },
+    {
+      "start": 249.49,
+      "end": 251.61,
+      "en": "What's this?",
+      "vi": "Cái gì đây?"
+    },
+    {
+      "start": 251.61,
+      "end": 253.17,
+      "en": "I want you to be my general manager.",
+      "vi": "Tôi muốn anh làm tổng giám đốc của tôi."
+    },
+    {
+      "start": 253.17,
+      "end": 257.22,
+      "en": "That's my offer.",
+      "vi": "Đó là đề nghị của tôi."
+    },
+    {
+      "start": 301.99,
+      "end": 305.21,
+      "en": "Heads up.",
+      "vi": "Coi chừng."
+    },
+    {
+      "start": 305.21,
+      "end": 307.37,
+      "en": "What was that?",
+      "vi": "Cái gì vậy?"
+    },
+    {
+      "start": 307.37,
+      "end": 309.33,
+      "en": "Sorry, I don't know.",
+      "vi": "Xin lỗi, tôi không biết."
+    },
+    {
+      "start": 309.33,
+      "end": 311.21,
+      "en": "What the hell was that?",
+      "vi": "Cái quái gì thế?"
+    },
+    {
+      "start": 311.21,
+      "end": 315.21,
+      "en": "You knucklehead.",
+      "vi": "Đồ ngốc."
+    },
+    {
+      "start": 321.06,
+      "end": 323.9,
+      "en": "How's Boston?",
+      "vi": "Boston thế nào?"
+    },
+    {
+      "start": 323.9,
+      "end": 327.4,
+      "en": "Impressive.",
+      "vi": "Ấn tượng đấy."
+    },
+    {
+      "start": 332.25,
+      "end": 336.82,
+      "en": "Did Henry make you a good offer, at least?",
+      "vi": "Henry có đề nghị tốt không?"
+    },
+    {
+      "start": 336.82,
+      "end": 337.74,
+      "en": "It doesn't matter.",
+      "vi": "Không quan trọng."
+    },
+    {
+      "start": 337.74,
+      "end": 338.64,
+      "en": "What was it?",
+      "vi": "Đó là gì?"
+    },
+    {
+      "start": 338.64,
+      "end": 339.46,
+      "en": "It doesn't matter.",
+      "vi": "Không quan trọng."
+    },
+    {
+      "start": 339.46,
+      "end": 340.38,
+      "en": "What was it?",
+      "vi": "Đó là gì?"
+    },
+    {
+      "start": 340.38,
+      "end": 344.43,
+      "en": "It doesn't matter.",
+      "vi": "Không quan trọng."
+    },
+    {
+      "start": 364.5,
+      "end": 365.72,
+      "en": "What was it that makes you the highest paid GM",
+      "vi": "Điều gì khiến anh trở thành giám đốc điều hành được trả lương cao nhất?"
+    },
+    {
+      "start": 365.72,
+      "end": 370.3,
+      "en": "in the history of sports?",
+      "vi": "trong lịch sử thể thao?"
+    },
+    {
+      "start": 370.3,
+      "end": 373.8,
+      "en": "So, so what?",
+      "vi": "Thì sao?"
+    },
+    {
+      "start": 377.5,
+      "end": 380.46,
+      "en": "I made one decision in my life based on money.",
+      "vi": "Tôi đã đưa ra một quyết định trong đời mình dựa trên tiền bạc."
+    },
+    {
+      "start": 380.46,
+      "end": 386.01,
+      "en": "And I swore I would never do it again.",
+      "vi": "Và tôi đã thề tôi sẽ không bao giờ làm thế nữa."
+    },
+    {
+      "start": 386.01,
+      "end": 389.47,
+      "en": "You're not doing it for the money?",
+      "vi": "Anh không làm vì tiền à?"
+    },
+    {
+      "start": 389.47,
+      "end": 393.05,
+      "en": "No.",
+      "vi": "Không."
+    },
+    {
+      "start": 393.05,
+      "end": 397.02,
+      "en": "You're doing it for what the money says.",
+      "vi": "Anh làm thế vì những gì tiền nói."
+    },
+    {
+      "start": 397.02,
+      "end": 401.38,
+      "en": "And it says what it says to any player that makes big money,",
+      "vi": "Và nó nói lên những gì nó nói với bất kỳ người chơi nào kiếm được nhiều tiền,"
+    },
+    {
+      "start": 401.38,
+      "end": 406.28,
+      "en": "that they're worth it.",
+      "vi": "Rằng họ xứng đáng."
+    },
+    {
+      "start": 417.53,
+      "end": 424.13,
+      "en": "I really wanted to win here.",
+      "vi": "Tôi thực sự muốn thắng ở đây."
+    },
+    {
+      "start": 428.96,
+      "end": 431.92,
+      "en": "I think you won pretty big, Billy.",
+      "vi": "Tôi nghĩ anh đã thắng khá lớn, Billy."
+    },
+    {
+      "start": 431.92,
+      "end": 435.68,
+      "en": "Pete, we lost.",
+      "vi": "Pete, chúng ta thua rồi."
+    },
+    {
+      "start": 435.68,
+      "end": 437.84,
+      "en": "We lost.",
+      "vi": "Chúng ta thua rồi."
+    },
+    {
+      "start": 437.84,
+      "end": 438.96,
+      "en": "It's only been a few days.",
+      "vi": "Chỉ vài ngày thôi."
+    },
+    {
+      "start": 438.96,
+      "end": 441.76,
+      "en": "You got to give yourself some time to get over it.",
+      "vi": "Anh phải dành thời gian cho bản thân để vượt qua nó."
+    },
+    {
+      "start": 441.76,
+      "end": 450.06,
+      "en": "Man, I don't get over these things ever.",
+      "vi": "Tôi không bao giờ vượt qua được những chuyện này."
+    },
+    {
+      "start": 453.68,
+      "end": 455.64,
+      "en": "Come with me to the video room.",
+      "vi": "Đi với tôi đến phòng video."
+    },
+    {
+      "start": 455.64,
+      "end": 456.84,
+      "en": "I want to show you something.",
+      "vi": "Tôi muốn cho anh xem cái này."
+    },
+    {
+      "start": 456.84,
+      "end": 463.53,
+      "en": "Man, I'm not for filming right now.",
+      "vi": "Anh bạn, bây giờ tôi không phải quay phim."
+    },
+    {
+      "start": 463.53,
+      "end": 464.41,
+      "en": "Come on.",
+      "vi": "Đi nào."
+    },
+    {
+      "start": 464.41,
+      "end": 465.81,
+      "en": "Seriously.",
+      "vi": "Nghiêm túc đấy."
+    },
+    {
+      "start": 465.81,
+      "end": 466.61,
+      "en": "Come on, Billy.",
+      "vi": "Thôi nào, Billy."
+    },
+    {
+      "start": 466.61,
+      "end": 469.75,
+      "en": "Come on.",
+      "vi": "Đi nào."
+    },
+    {
+      "start": 469.75,
+      "end": 473.91,
+      "en": "The Visalia Oaks and our 240 pound catcher, Jeremy Brown,",
+      "vi": "Cây Vsalia Oaks và người bắt bóng 240 pound của chúng tôi, Jeremy Brown,"
+    },
+    {
+      "start": 473.91,
+      "end": 477.75,
+      "en": "who as you know, is scared to run the second base.",
+      "vi": "Ai mà biết, sợ chạy ở căn cứ thứ 2 chứ."
+    },
+    {
+      "start": 477.75,
+      "end": 480.15,
+      "en": "This was in the game six weeks ago.",
+      "vi": "Đây là trận đấu 6 tuần trước."
+    },
+    {
+      "start": 480.15,
+      "end": 482.35,
+      "en": "This guy's gonna start him off with a fastball.",
+      "vi": "Gã này sẽ bắt đầu với một quả cầu nhanh."
+    },
+    {
+      "start": 482.35,
+      "end": 487.06,
+      "en": "Jeremy's gonna take him to deep center.",
+      "vi": "Jeremy sẽ đưa anh ta đến trung tâm."
+    },
+    {
+      "start": 487.06,
+      "end": 488.66,
+      "en": "Here's what's really interesting,",
+      "vi": "Đây là những gì thực sự thú vị,"
+    },
+    {
+      "start": 488.66,
+      "end": 491.9,
+      "en": "because Jeremy's gonna do what he never does.",
+      "vi": "Bởi vì Jeremy sẽ làm điều mà nó không bao giờ làm."
+    },
+    {
+      "start": 491.9,
+      "end": 493.22,
+      "en": "He's gonna go for it.",
+      "vi": "Anh ta sẽ làm được."
+    },
+    {
+      "start": 493.22,
+      "end": 502.45,
+      "en": "He's gonna round first and he's gonna go for it, okay?",
+      "vi": "Anh ta sẽ đi vòng đầu tiên và anh ta sẽ làm điều đó, được chứ?"
+    },
+    {
+      "start": 502.45,
+      "end": 509.57,
+      "en": "This is all of Jeremy's nightmares coming to life.",
+      "vi": "Đây là tất cả những cơn ác mộng của Jeremy."
+    },
+    {
+      "start": 509.57,
+      "end": 511.29,
+      "en": "Oh, they're laughing at him.",
+      "vi": "Oh, họ đang cười anh ta."
+    },
+    {
+      "start": 511.29,
+      "end": 516.22,
+      "en": "And Jeremy's about to find out why.",
+      "vi": "Và Jeremy sắp biết tại sao."
+    },
+    {
+      "start": 516.22,
+      "end": 520.73,
+      "en": "Jeremy's about to realize that the ball went",
+      "vi": "Jeremy sắp nhận ra rằng quả bóng đã ra đi."
+    },
+    {
+      "start": 520.73,
+      "end": 525.77,
+      "en": "60 feet over the fence.",
+      "vi": "60 feet qua hàng rào."
+    },
+    {
+      "start": 525.77,
+      "end": 534.27,
+      "en": "He hit a home run and didn't even realize it.",
+      "vi": "Anh ta đánh một cú home run và thậm chí còn không nhận ra điều đó."
+    },
+    {
+      "start": 559.49,
+      "end": 567.44,
+      "en": "How can you not be romantic about baseball?",
+      "vi": "Sao anh không lãng mạn về bóng chày?"
+    },
+    {
+      "start": 567.44,
+      "end": 568.24,
+      "en": "It's a metaphor.",
+      "vi": "Đó là phép ẩn dụ."
+    },
+    {
+      "start": 568.24,
+      "end": 575.09,
+      "en": "I know it's a metaphor.",
+      "vi": "Tôi biết đó là phép ẩn dụ."
+    },
+    {
+      "start": 575.09,
+      "end": 578.59,
+      "en": "OK.",
+      "vi": "Được rồi."
+    },
+    {
+      "start": 580.54,
+      "end": 587.02,
+      "en": "Pete, you're a good egg.",
+      "vi": "Pete, anh là một người tốt."
+    },
+    {
+      "start": 587.02,
+      "end": 588.9,
+      "en": "I'll call you.",
+      "vi": "Anh sẽ gọi cho em."
+    }
+  ]
+}
