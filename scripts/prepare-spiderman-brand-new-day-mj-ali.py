@@ -49,7 +49,7 @@ def check_video():
     return duration
 
 def translate_lines(lines):
-    """Offline Apache-2.0 Marian EN->VI model avoids shared-IP rate limits."""
+    """Offline neural translation with per-line retry for short, blank decoder outputs."""
     model_id = "Helsinki-NLP/opus-mt-en-vi"
     print(f"Loading offline neural translator: {model_id}", flush=True)
     torch.set_num_threads(4)
@@ -58,15 +58,44 @@ def translate_lines(lines):
     model.eval()
     languages = getattr(tokenizer, "supported_language_codes", None) or []
     prefix = ">>vie<< " if ">>vie<<" in languages else ""
+
+    def generate(batch, beams=4):
+        inputs = tokenizer([prefix + x for x in batch], return_tensors="pt",
+                           padding=True, truncation=True, max_length=192)
+        with torch.inference_mode():
+            ids = model.generate(**inputs, num_beams=beams, max_new_tokens=120)
+        return [x.strip() for x in tokenizer.batch_decode(ids, skip_special_tokens=True)]
+
+    short_fallbacks = {
+        "yeah": "Ừ.", "yes": "Vâng.", "no": "Không.",
+        "okay": "Được.", "ok": "Được.", "oh": "Ồ.",
+        "uh": "Ờ.", "um": "Ừm.", "hmm": "Ừm.",
+        "what": "Cái gì?", "hey": "Này!", "hi": "Chào!",
+        "bye": "Tạm biệt.", "thanks": "Cảm ơn.",
+        "thank you": "Cảm ơn.", "sorry": "Xin lỗi.",
+        "right": "Đúng vậy.", "really": "Thật sao?",
+        "please": "Làm ơn."
+    }
     translations = []
     for start in range(0, len(lines), 8):
-        batch = [prefix + line for line in lines[start:start + 8]]
-        inputs = tokenizer(batch, return_tensors="pt", padding=True,
-                           truncation=True, max_length=192)
-        with torch.inference_mode():
-            ids = model.generate(**inputs, num_beams=4, max_new_tokens=120)
-        outputs = tokenizer.batch_decode(ids, skip_special_tokens=True)
-        translations.extend([x.strip() for x in outputs])
+        batch = lines[start:start + 8]
+        outputs = generate(batch)
+        for offset, (original, vi) in enumerate(zip(batch, outputs)):
+            if not vi:
+                # The Marian model can emit zero tokens for very short speech.
+                # Retry with a sentence boundary instead of inventing a translation.
+                for variant in (original.strip() + ".", original.strip() + " Please."):
+                    vi = generate([variant], beams=5)[0].strip()
+                    if vi:
+                        break
+                if not vi:
+                    normalized = re.sub(r"[^a-z ]", "", original.lower()).strip()
+                    vi = short_fallbacks.get(normalized, "")
+                if not vi:
+                    raise ValueError(
+                        f"No reliable Vietnamese translation for cue {start + offset + 1}: {original!r}")
+                print(f"Repaired empty translation at cue {start + offset + 1}", flush=True)
+            translations.append(vi)
         print(f"Translated {len(translations)}/{len(lines)}", flush=True)
     assert len(translations) == len(lines) and all(translations), "Vietnamese translation incomplete"
     return translations
