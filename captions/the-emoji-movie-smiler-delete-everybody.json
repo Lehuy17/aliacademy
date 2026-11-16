@@ -5,10 +5,10 @@
   "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
   "cues": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 8.22,
-      "en": "Look at that expression is that for realizing you've put all of test opal is at risk",
-      "vi": "Hãy nhìn vào biểu hiện đó là vì nhận ra rằng bạn đã đặt tất cả các opal là nguy hiểm"
+      "en": "Look at that expression. Is that for realizing you've put all of Textopolis at risk?",
+      "vi": "Nhìn vẻ mặt ấy xem. Có phải vì cậu nhận ra mình đã khiến cả Textopolis gặp nguy hiểm không?"
     },
     {
       "start": 8.92,
@@ -43,8 +43,8 @@
     {
       "start": 30.28,
       "end": 35.84,
-      "en": "You delete Jean, you'll have to delete me too.",
-      "vi": "Anh xóa Jean đi, anh cũng sẽ phải xóa tôi luôn."
+      "en": "You delete Gene, you'll have to delete me too.",
+      "vi": "Nếu cô xóa Gene, cô cũng sẽ phải xóa cả tôi."
     },
     {
       "start": 35.84,
@@ -80,7 +80,7 @@
       "start": 60.86,
       "end": 64.86,
       "en": "Smiler, I think you might be making too much stink out of all this.",
-      "vi": "Cười lên nào, tôi nghĩ có lẽ anh đã gây ra quá nhiều mùi hôi thối từ chuyện này."
+      "vi": "Smiler, tôi nghĩ cô đang làm quá chuyện này rồi."
     },
     {
       "start": 64.86,
@@ -481,8 +481,8 @@
     {
       "start": 466.17,
       "end": 469.17,
-      "en": "Jane, you did it! You saved us all!",
-      "vi": "Jane, em đã làm được, em đã cứu tất cả chúng ta!"
+      "en": "Gene, you did it! You saved us all!",
+      "vi": "Gene, cậu làm được rồi! Cậu đã cứu tất cả chúng ta!"
     },
     {
       "start": 469.17,
@@ -493,8 +493,8 @@
     {
       "start": 484.4,
       "end": 488.45,
-      "en": "Jane! Jane! Jane!",
-      "vi": "Jane!"
+      "en": "Gene! Gene! Gene!",
+      "vi": "Gene! Gene! Gene!"
     },
     {
       "start": 500.64,
