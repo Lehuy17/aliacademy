@@ -68,7 +68,45 @@ def translate_lines(lines):
         outputs = tokenizer.batch_decode(ids, skip_special_tokens=True)
         translations.extend([x.strip() for x in outputs])
         print(f"Translated {len(translations)}/{len(lines)}", flush=True)
-    assert len(translations) == len(lines) and all(translations), "Vietnamese translation incomplete"
+    assert len(translations) == len(lines), "Vietnamese translation count mismatch"
+    # Marian can return EOS/empty for short interjections in movie dialogue.
+    # Never publish an empty or invented Vietnamese cue: retry the actual line.
+    short_interjections = {
+        "uh": "Ờ.", "um": "Ừm.", "hmm": "Ừm.", "hm": "Hừm.",
+        "ah": "À.", "oh": "Ồ.", "huh": "Hả?", "hey": "Này!",
+        "hi": "Chào.", "hello": "Xin chào.", "yes": "Vâng.",
+        "yeah": "Ừ.", "yep": "Ừ.", "yup": "Ừ.", "no": "Không.",
+        "okay": "Được.", "ok": "Được.", "right": "Đúng.",
+        "wow": "Chà!", "uh-huh": "Ừ.", "mm-hmm": "Ừ."
+    }
+    missing = [i for i, result in enumerate(translations) if not result]
+    for i in missing:
+        original = lines[i].strip()
+        print(f"Retrying missing Vietnamese translation at cue {i+1}: {original!r}", flush=True)
+        key = re.sub(r"[.!?…]+$", "", original.lower()).strip()
+        if key in short_interjections:
+            translations[i] = short_interjections[key]
+            continue
+        # Avoid batch-dependent decoding problems; try grammatical variants
+        # while still translating the same line, not a made-up paraphrase.
+        variants = [
+            original.rstrip(" .!?") + ".",
+            original.rstrip(" .!?") + "!",
+            original,
+        ]
+        for variant in dict.fromkeys(variants):
+            enc = tokenizer([prefix + variant], return_tensors="pt",
+                            padding=True, truncation=True, max_length=192)
+            with torch.inference_mode():
+                generated = model.generate(**enc, num_beams=6, max_new_tokens=128,
+                                           min_new_tokens=2, early_stopping=False)
+            candidate = tokenizer.batch_decode(generated, skip_special_tokens=True)[0].strip()
+            if candidate:
+                translations[i] = candidate
+                break
+    unresolved = [(i + 1, lines[i]) for i, t in enumerate(translations) if not t]
+    if unresolved:
+        raise ValueError(f"Empty VI translations after safe retries; manual review required: {unresolved}")
     return translations
 
 def main():
