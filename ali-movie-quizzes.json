@@ -1180,6 +1180,130 @@
         "answer": 0,
         "explanation": "MJ nói cô không có những ký ức Peter nhắc tới."
       }
+    ],
+    "step-brothers-what-not-to-do-in-an-interview": [
+      {
+        "type": "vocabulary",
+        "question": "Trong bối cảnh xin việc, 'references' nghĩa là gì?",
+        "options": [
+          "Người tham chiếu/giới thiệu",
+          "Mức lương cơ bản",
+          "Ngày nghỉ phép",
+          "Phòng họp"
+        ],
+        "answer": 0,
+        "explanation": "References là những người có thể xác nhận hoặc nhận xét về ứng viên."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Weaknesses' trong phỏng vấn thường chỉ điều gì?",
+        "options": [
+          "Các thành tích",
+          "Những điểm yếu",
+          "Các chứng chỉ",
+          "Các đồng nghiệp"
+        ],
+        "answer": 1,
+        "explanation": "Weaknesses là điểm yếu, đối lập với strengths."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn từ đúng theo câu thoại: 'We're ___ as a team.'",
+        "options": [
+          "interviewed",
+          "interviewing",
+          "interview",
+          "interviews"
+        ],
+        "answer": 1,
+        "explanation": "We're interviewing là thì hiện tại tiếp diễn, diễn tả hoạt động đang diễn ra."
+      },
+      {
+        "type": "comprehension",
+        "question": "Brennan và người đi cùng muốn tham gia phỏng vấn như thế nào?",
+        "options": [
+          "Đi riêng mỗi người",
+          "Qua điện thoại",
+          "Cùng nhau như một đội",
+          "Chỉ nộp CV"
+        ],
+        "answer": 2,
+        "explanation": "Họ nói: 'We'll be interviewing as a team.'"
+      },
+      {
+        "type": "comprehension",
+        "question": "Trong cuộc phỏng vấn, người phỏng vấn phàn nàn vì điều gì?",
+        "options": [
+          "Hai ứng viên mặc tuxedo không phù hợp công việc",
+          "Hai ứng viên đến quá sớm",
+          "Không ai biết lái xe",
+          "Họ không mang giấy tờ"
+        ],
+        "answer": 0,
+        "explanation": "Người phỏng vấn chỉ ra họ mặc tuxedo cho một công việc dọn vệ sinh."
+      }
+    ],
+    "better-call-saul-howard-exposes-jimmy-court": [
+      {
+        "type": "vocabulary",
+        "question": "'Testimony' trong bối cảnh tòa án có nghĩa là gì?",
+        "options": [
+          "Lời khai/lời làm chứng",
+          "Hợp đồng mua bán",
+          "Lời giới thiệu",
+          "Báo cáo tài chính"
+        ],
+        "answer": 0,
+        "explanation": "Testimony là lời khai hoặc lời chứng tại phiên điều trần."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Nepotism' trong tuyển dụng nghĩa là gì?",
+        "options": [
+          "Thiên vị người thân",
+          "Thăng tiến theo năng lực",
+          "Chấm công",
+          "Làm việc từ xa"
+        ],
+        "answer": 0,
+        "explanation": "Nepotism là sự ưu ái người thân trong tuyển dụng hay bổ nhiệm."
+      },
+      {
+        "type": "grammar",
+        "question": "Điền đúng: 'He ___ a hard worker.'",
+        "options": [
+          "was",
+          "were",
+          "be",
+          "am"
+        ],
+        "answer": 0,
+        "explanation": "He là chủ ngữ số ít, và người nói kể về Jimmy trong quá khứ nên dùng was."
+      },
+      {
+        "type": "comprehension",
+        "question": "Theo lời khai, Jimmy đã làm gì với cuộn băng cassette?",
+        "options": [
+          "Sao chép nó",
+          "Đập vỡ thành nhiều mảnh",
+          "Gửi qua bưu điện",
+          "Đưa vào két sắt"
+        ],
+        "answer": 1,
+        "explanation": "Nhân chứng mô tả Jimmy đã làm vỡ cuộn băng."
+      },
+      {
+        "type": "comprehension",
+        "question": "Theo lời khai, Jimmy từng bắt đầu làm công việc gì tại công ty luật?",
+        "options": [
+          "Luật sư chính thức",
+          "Nhân viên phòng thư tín",
+          "Giám đốc điều hành",
+          "Kế toán trưởng"
+        ],
+        "answer": 1,
+        "explanation": "Jimmy từng được nhận vào làm việc ở mail room (phòng thư tín)."
+      }
     ]
   }
 }
