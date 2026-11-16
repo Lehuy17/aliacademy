@@ -155,6 +155,7 @@ function applyLanguage(){
  list.querySelectorAll('.ali-en').forEach(e=>e.classList.toggle('hidden',lang==='vi'));
  list.querySelectorAll('.ali-vi').forEach(e=>e.classList.toggle('hidden',lang==='en'));
  list.style.setProperty('--textscale',fontScale);
+ movieScreen?.style.setProperty('--caption-textscale',String(fontScale));
  updateScreenCaptions();
 }
 function updateScreenCaptions(){
@@ -470,7 +471,7 @@ $('syncBtn').addEventListener('click',()=>{
  openSync();
 });
 document.querySelectorAll('[data-language]').forEach(button=>button.addEventListener('click',()=>{
- lang=button.dataset.language;document.querySelectorAll('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));applyLanguage();
+ lang=button.dataset.language;document.querySelectorAll('[data-language]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.language===lang)));applyLanguage();
 }));
 $('smaller').addEventListener('click',()=>{fontScale=Math.max(.8,fontScale-.1);applyLanguage();});
 $('larger').addEventListener('click',()=>{fontScale=Math.min(1.5,fontScale+.1);applyLanguage();});
