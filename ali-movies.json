@@ -1,5 +1,5 @@
 {
-  "version": 27,
+  "version": 28,
   "movies": [
     {
       "id": "ali-video-01",
@@ -477,6 +477,36 @@
         "url": "./media/a-few-good-men-objection-overruled/video.mp4"
       },
       "captions": "./captions/a-few-good-men-objection-overruled.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "the-emoji-movie-smiler-delete-everybody",
+      "title": "Smiler Want's to Delete Everybody! | The Emoji Movie",
+      "category": "PHIM SONG NGỮ · THE EMOJI MOVIE",
+      "description": "Smiler muốn xóa mọi người trong The Emoji Movie · 08:26 · bản phát Full HD 1080p/30fps; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "08:26",
+      "durationSeconds": 505.685,
+      "poster": "./media/the-emoji-movie-smiler-delete-everybody/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/the-emoji-movie-smiler-delete-everybody/video.mp4"
+      },
+      "captions": "./captions/the-emoji-movie-smiler-delete-everybody.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,

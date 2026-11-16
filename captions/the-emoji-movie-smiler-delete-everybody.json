@@ -1,0 +1,512 @@
+{
+  "movieId": "the-emoji-movie-smiler-delete-everybody",
+  "duration": 505.685,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 8.22,
+      "en": "Look at that expression is that for realizing you've put all of test opal is at risk",
+      "vi": "Hãy nhìn vào biểu hiện đó là vì nhận ra rằng bạn đã đặt tất cả các opal là nguy hiểm"
+    },
+    {
+      "start": 8.92,
+      "end": 11.08,
+      "en": "Causing Alex to question her reliability",
+      "vi": "Làm Alex nghi ngờ sự đáng tin cậy của mình"
+    },
+    {
+      "start": 13.42,
+      "end": 19.84,
+      "en": "Hey, that's going too far even for me if we could delete this malfunction before his appointment",
+      "vi": "Này, chuyện đó quá sức đối với tôi nếu chúng ta có thể xóa được lỗi này trước cuộc hẹn của anh ta"
+    },
+    {
+      "start": 19.84,
+      "end": 23.58,
+      "en": "Don't discover there's nothing wrong with the phone any last words",
+      "vi": "Đừng phát hiện ra không có gì sai với điện thoại bất kỳ từ cuối cùng"
+    },
+    {
+      "start": 26.28,
+      "end": 28.28,
+      "en": "Well, it's too late for that",
+      "vi": "Đã quá muộn cho việc đó rồi."
+    },
+    {
+      "start": 28.28,
+      "end": 30.28,
+      "en": "You delete em!",
+      "vi": "Anh xóa chúng đi!"
+    },
+    {
+      "start": 30.28,
+      "end": 35.84,
+      "en": "You delete Jean, you'll have to delete me too.",
+      "vi": "Anh xóa Jean đi, anh cũng sẽ phải xóa tôi luôn."
+    },
+    {
+      "start": 35.84,
+      "end": 36.84,
+      "en": "What?",
+      "vi": "Cái gì?"
+    },
+    {
+      "start": 36.84,
+      "end": 39.84,
+      "en": "I have the same malfunction Jean does.",
+      "vi": "Jean cũng gặp trục trặc tương tự."
+    },
+    {
+      "start": 40.84,
+      "end": 47.65,
+      "en": "Gosh, I don't know what to do! Yes I do!",
+      "vi": "Chúa ơi, tôi không biết phải làm gì!"
+    },
+    {
+      "start": 52.02,
+      "end": 55.55,
+      "en": "Sorry, Mrs. May.",
+      "vi": "Xin lỗi, bà May."
+    },
+    {
+      "start": 58.86,
+      "end": 60.86,
+      "en": "Oh, I did not see that one coming.",
+      "vi": "Ồ, tôi không thấy cái đó đang đến."
+    },
+    {
+      "start": 60.86,
+      "end": 64.86,
+      "en": "Smiler, I think you might be making too much stink out of all this.",
+      "vi": "Cười lên nào, tôi nghĩ có lẽ anh đã gây ra quá nhiều mùi hôi thối từ chuyện này."
+    },
+    {
+      "start": 64.86,
+      "end": 66.86,
+      "en": "Oh really? How about your next?",
+      "vi": "Tiếp theo thì sao?"
+    },
+    {
+      "start": 66.86,
+      "end": 75.36,
+      "en": "next I was wrong Jean I should have believed in you all along Oh what a",
+      "vi": "Tiếp theo tôi đã sai Jean lẽ ra tôi nên tin tưởng vào bạn trong suốt thời gian Oh những gì một"
+    },
+    {
+      "start": 76.6,
+      "end": 81.14,
+      "en": "touching daddy's son reunion moment it reminds me of the time I deleted you",
+      "vi": "Cảm động con trai của cha đoàn tụ thời gian nó nhắc nhở tôi về thời gian tôi xóa bạn"
+    },
+    {
+      "start": 81.14,
+      "end": 83.36,
+      "en": "both",
+      "vi": "cả hai"
+    },
+    {
+      "start": 83.36,
+      "end": 86.36,
+      "en": "This time, delete the two of them bunch of them!",
+      "vi": "Lần này, xóa hết bọn chúng đi!"
+    },
+    {
+      "start": 88.77,
+      "end": 89.27,
+      "en": "No!",
+      "vi": "Không!"
+    },
+    {
+      "start": 89.27,
+      "end": 92.94,
+      "en": "Fuck!",
+      "vi": "Mẹ kiếp!"
+    },
+    {
+      "start": 92.94,
+      "end": 93.44,
+      "en": "For an ench-",
+      "vi": "Cho một..."
+    },
+    {
+      "start": 98.16,
+      "end": 101.66,
+      "en": "Great.",
+      "vi": "Tuyệt."
+    },
+    {
+      "start": 104.19,
+      "end": 108.19,
+      "en": "Jailbreak?",
+      "vi": "Phá án?"
+    },
+    {
+      "start": 145.58,
+      "end": 150.22,
+      "en": "Oh, Jean. Really are a man.",
+      "vi": "Jean, đàn ông thật đấy."
+    },
+    {
+      "start": 150.72,
+      "end": 152.72,
+      "en": "What happened to looking out for number one?",
+      "vi": "Chuyện gì đã xảy ra khi chú ý đến số một?"
+    },
+    {
+      "start": 153.22,
+      "end": 157.22,
+      "en": "Bean number one. Doesn't matter if there aren't any other numbers.",
+      "vi": "Đậu số 1 không quan trọng nếu không có con số nào khác."
+    },
+    {
+      "start": 157.72,
+      "end": 162.87,
+      "en": "Alex's appointment! He's deleting the phone!",
+      "vi": "Cuộc hẹn của Alex, anh ta đang xóa điện thoại."
+    },
+    {
+      "start": 162.87,
+      "end": 164.87,
+      "en": "No, no, no, no, no, no, no!",
+      "vi": "Không, không, không, không, không, không!"
+    },
+    {
+      "start": 164.87,
+      "end": 165.87,
+      "en": "Show me Alex.",
+      "vi": "Cho tôi xem Alex."
+    },
+    {
+      "start": 165.87,
+      "end": 171.84,
+      "en": "Who do you want to delete everything?",
+      "vi": "Anh muốn xóa hết mọi thứ?"
+    },
+    {
+      "start": 171.84,
+      "end": 172.84,
+      "en": "Do it.",
+      "vi": "Làm đi."
+    },
+    {
+      "start": 172.84,
+      "end": 176.84,
+      "en": "Game over.",
+      "vi": "Trò chơi kết thúc."
+    },
+    {
+      "start": 194.23,
+      "end": 195.23,
+      "en": "Last call.",
+      "vi": "Cuộc gọi cuối cùng."
+    },
+    {
+      "start": 195.23,
+      "end": 197.23,
+      "en": "Dude, Addy's here.",
+      "vi": "Này, Addy đến rồi."
+    },
+    {
+      "start": 197.23,
+      "end": 198.23,
+      "en": "You should go over.",
+      "vi": "Anh nên qua đó."
+    },
+    {
+      "start": 198.23,
+      "end": 204.3,
+      "en": "Every time I try, I screw it up.",
+      "vi": "Mỗi lần tôi cố gắng, tôi lại làm hỏng nó."
+    },
+    {
+      "start": 204.3,
+      "end": 207.3,
+      "en": "I don't know how to tell her how I feel.",
+      "vi": "Tôi không biết làm sao để nói cho cô ấy biết cảm giác của tôi."
+    },
+    {
+      "start": 207.3,
+      "end": 210.3,
+      "en": "If we help Alex connect to Addy, maybe he won't delete us.",
+      "vi": "Nếu chúng ta giúp Alex kết nối với Addy, có lẽ anh ta sẽ không xóa chúng ta."
+    },
+    {
+      "start": 210.3,
+      "end": 213.3,
+      "en": "I might be able to bypass the wife and get a text through to him.",
+      "vi": "Tôi có thể qua mặt bà vợ và nhắn tin cho anh ta."
+    },
+    {
+      "start": 213.3,
+      "end": 215.3,
+      "en": "But we'll only have time to send one.",
+      "vi": "Nhưng chúng ta chỉ có thời gian để gửi một cái."
+    },
+    {
+      "start": 215.3,
+      "end": 216.3,
+      "en": "Maybe I should go.",
+      "vi": "Có lẽ tôi nên đi."
+    },
+    {
+      "start": 216.3,
+      "end": 218.3,
+      "en": "He has love in his eyes.",
+      "vi": "Anh ta có tình yêu trong mắt."
+    },
+    {
+      "start": 218.3,
+      "end": 221.3,
+      "en": "Send me. Alex looks nervous too.",
+      "vi": "Alex cũng có vẻ lo lắng."
+    },
+    {
+      "start": 221.3,
+      "end": 223.3,
+      "en": "He's more shy than nervous.",
+      "vi": "Anh ta nhút nhát hơn là lo lắng."
+    },
+    {
+      "start": 223.3,
+      "end": 224.3,
+      "en": "Stop!",
+      "vi": "Dừng lại!"
+    },
+    {
+      "start": 224.3,
+      "end": 227.03,
+      "en": "It's Jean.",
+      "vi": "Jean đây."
+    },
+    {
+      "start": 227.03,
+      "end": 229.03,
+      "en": "He's all of those things.",
+      "vi": "Hắn là tất cả những thứ đó."
+    },
+    {
+      "start": 230.03,
+      "end": 233.03,
+      "en": "The emoji should only be one thing.",
+      "vi": "Emoji chỉ nên là một chuyện."
+    },
+    {
+      "start": 233.03,
+      "end": 235.03,
+      "en": "Oh, really?",
+      "vi": "Ồ, vậy sao?"
+    },
+    {
+      "start": 235.03,
+      "end": 237.03,
+      "en": "The princess.",
+      "vi": "Công chúa."
+    },
+    {
+      "start": 237.03,
+      "end": 238.03,
+      "en": "Linda!",
+      "vi": "Linda!"
+    },
+    {
+      "start": 238.03,
+      "end": 240.47,
+      "en": "Jean.",
+      "vi": "Jean."
+    },
+    {
+      "start": 240.47,
+      "end": 242.47,
+      "en": "You got this.",
+      "vi": "Anh làm được mà."
+    },
+    {
+      "start": 243.47,
+      "end": 245.47,
+      "en": "That's not me anymore.",
+      "vi": "Đó không còn là tôi nữa."
+    },
+    {
+      "start": 245.47,
+      "end": 251.22,
+      "en": "But I have to try.",
+      "vi": "Nhưng tôi phải thử."
+    },
+    {
+      "start": 261.52,
+      "end": 265.52,
+      "en": "Almost in.",
+      "vi": "Sắp xong rồi."
+    },
+    {
+      "start": 278.43,
+      "end": 279.43,
+      "en": "I'm working on it.",
+      "vi": "Tôi đang làm đây."
+    },
+    {
+      "start": 279.43,
+      "end": 283.15,
+      "en": "Mom?",
+      "vi": "Mẹ?"
+    },
+    {
+      "start": 283.15,
+      "end": 284.15,
+      "en": "Dad?",
+      "vi": "Bố?"
+    },
+    {
+      "start": 286.15,
+      "end": 288.15,
+      "en": "I'm in!",
+      "vi": "Tôi tham gia!"
+    },
+    {
+      "start": 288.15,
+      "end": 292.15,
+      "en": "Last time I was in this cube, I screwed everything up.",
+      "vi": "Lần cuối cùng tôi ở trong khối lập phương này, tôi đã phá hỏng mọi thứ."
+    },
+    {
+      "start": 292.15,
+      "end": 296.15,
+      "en": "Jean, why do you think I came back?",
+      "vi": "Jean, anh nghĩ tại sao tôi quay lại?"
+    },
+    {
+      "start": 296.15,
+      "end": 298.15,
+      "en": "It's because of you.",
+      "vi": "Đó là vì anh."
+    },
+    {
+      "start": 298.15,
+      "end": 300.15,
+      "en": "Me?",
+      "vi": "Tôi?"
+    },
+    {
+      "start": 300.15,
+      "end": 302.15,
+      "en": "It's all inside of you, Jean.",
+      "vi": "Tất cả đều ở trong anh, Jean."
+    },
+    {
+      "start": 302.15,
+      "end": 304.15,
+      "en": "Just try to bring it back.",
+      "vi": "Chỉ cần cố gắng mang nó trở lại."
+    },
+    {
+      "start": 304.15,
+      "end": 306.15,
+      "en": "And do you.",
+      "vi": "Và anh cũng vậy."
+    },
+    {
+      "start": 306.15,
+      "end": 310.29,
+      "en": "I don't want to wait this long.",
+      "vi": "Tôi không muốn đợi lâu đến thế."
+    },
+    {
+      "start": 310.29,
+      "end": 312.29,
+      "en": "It's now or never, Jean.",
+      "vi": "Bây giờ hoặc không bao giờ, Jean."
+    },
+    {
+      "start": 312.29,
+      "end": 317.19,
+      "en": "Jean will break. Now!",
+      "vi": "Jean sẽ tan vỡ ngay bây giờ!"
+    },
+    {
+      "start": 336.85,
+      "end": 340.85,
+      "en": "Woah!",
+      "vi": "Woah!"
+    },
+    {
+      "start": 353.22,
+      "end": 361.72,
+      "en": "check out this emoji I got your checks that's that's one super cool emoji I",
+      "vi": "Kiểm tra xem tôi có tờ séc của anh. Đó là một tờ giấy rất đẹp."
+    },
+    {
+      "start": 390.35,
+      "end": 398.61,
+      "en": "know right a lot of feelings in one I get it I like that you're one of those",
+      "vi": "Biết rất nhiều cảm xúc trong một tôi nhận được nó Tôi thích rằng bạn là một trong những"
+    },
+    {
+      "start": 398.61,
+      "end": 407.11,
+      "en": "guys you can actually express his feelings yeah that's me so do you think",
+      "vi": "Các cậu có thể thực sự thể hiện cảm xúc của anh ấy. Yeah đó là tôi nên bạn có nghĩ rằng"
+    },
+    {
+      "start": 412.36,
+      "end": 420.86,
+      "en": "you wanna I'd love to go to the dance with you hey excuse me oh I could have",
+      "vi": "Em muốn anh đi khiêu vũ với em xin lỗi anh có thể"
+    },
+    {
+      "start": 447.68,
+      "end": 452.68,
+      "en": "You've lost you Peter Pinky, muah you Reggie ring finger, even you Tiberius Thumb.",
+      "vi": "Anh đã mất Peter Pinky, muah anh là Reggie, ngay cả tên Tiberius."
+    },
+    {
+      "start": 452.68,
+      "end": 456.18,
+      "en": "Change your mind?",
+      "vi": "Thay đổi ý định?"
+    },
+    {
+      "start": 460.92,
+      "end": 462.92,
+      "en": "Yeah, maybe it's weird but...",
+      "vi": "Ừ, có thể hơi lạ nhưng..."
+    },
+    {
+      "start": 462.92,
+      "end": 466.17,
+      "en": "I'm gonna hold on to it.",
+      "vi": "Tôi sẽ giữ nó."
+    },
+    {
+      "start": 466.17,
+      "end": 469.17,
+      "en": "Jane, you did it! You saved us all!",
+      "vi": "Jane, em đã làm được, em đã cứu tất cả chúng ta!"
+    },
+    {
+      "start": 469.17,
+      "end": 473.17,
+      "en": "Oh man...",
+      "vi": "Ôi trời..."
+    },
+    {
+      "start": 484.4,
+      "end": 488.45,
+      "en": "Jane! Jane! Jane!",
+      "vi": "Jane!"
+    },
+    {
+      "start": 500.64,
+      "end": 503.64,
+      "en": "High five! High five! High five! High five! High five!",
+      "vi": "Đập tay nào."
+    },
+    {
+      "start": 503.64,
+      "end": 505.64,
+      "en": "I will not carry the mask!",
+      "vi": "Tôi sẽ không mang mặt nạ!"
+    }
+  ]
+}
