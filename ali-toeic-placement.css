@@ -1,0 +1,31 @@
+/* ALI TOEIC Placement · official source-aligned responsive assessment */
+.ali-toeic-notice{background:#fff1e7;border:1px solid #f4d2b8;padding:14px 17px;border-radius:13px;color:#7d411f;font-size:13px;line-height:1.8}
+.ali-toeic-block{padding:8px 0 22px;border-bottom:1px solid #f1e7df}
+.ali-toeic-block:last-child{border:0}
+.ali-toeic-block h3{font-size:19px!important;color:#b74a17;margin:20px 0 10px}
+.ali-toeic-block h4{font-size:15px;margin:22px 0 12px;color:#34303a}
+.ali-toeic-instruction{font-size:13px;color:#766d71;line-height:1.75}
+.ali-toeic-question{border:1px solid #eee3db;border-radius:15px;margin:16px 0;background:#fffefa;padding:16px 20px}
+.ali-toeic-question legend{max-width:98%;font-size:14px;font-weight:750;line-height:1.6;white-space:normal}
+.ali-toeic-num{color:#d45413;font-weight:900}
+.ali-toeic-option{display:flex;gap:12px;align-items:flex-start;line-height:1.5;padding:10px 12px;margin:7px 0;border:1px solid #efe4df;border-radius:10px;cursor:pointer}
+.ali-toeic-option:has(input:checked){border-color:#ff944c;background:#fff2e8}
+.ali-toeic-option input{margin-top:3px;flex:0 0 auto;accent-color:#ff681e;width:18px;height:18px}
+.ali-toeic-option b{color:#bd5018}
+.ali-toeic-option i{color:#9a8982;font-size:12px}
+.ali-toeic-photo{margin:18px 0 6px;text-align:center;background:#fffaf6;border:1px solid #f0e3db;padding:14px;border-radius:13px}
+.ali-toeic-photo img{width:min(100%,490px);height:auto;min-height:160px;object-fit:contain;border-radius:9px;background:white}
+.ali-toeic-photo figcaption{font-size:11px;color:#82727a;margin-top:7px}
+.ali-toeic-passage{margin:14px 0;padding:18px 22px;border:1px solid #e9ded5;background:#fffdfb;border-radius:12px;font:14px/1.85 Georgia,serif}
+.ali-toeic-passage p{margin:0 0 13px;white-space:pre-wrap;overflow-wrap:anywhere}
+.ali-toeic-passage p:last-child{margin-bottom:0}
+.ali-toeic-toggle{display:flex;align-items:center;gap:12px;padding:16px;background:#fff6ee;border:1px solid #f5d7c3;border-radius:13px;cursor:pointer;margin:12px 0}
+.ali-toeic-toggle input{width:18px;height:18px;accent-color:#ff681e}
+.ali-toeic-write{display:block;margin:18px 0}.ali-toeic-write span{display:block;margin-bottom:8px;font-weight:650}
+.ali-toeic-write input{width:100%;box-sizing:border-box}
+#toeicW2{min-height:220px;width:100%;box-sizing:border-box}
+.ali-toeic-scroll{max-width:100%;overflow-x:auto}.ali-toeic-table{border-collapse:collapse;width:100%;min-width:620px}
+.ali-toeic-table th,.ali-toeic-table td{text-align:left;border:1px solid #e8d9d0;padding:10px;vertical-align:top;font-size:12px}
+.ali-toeic-table th{background:#fff0e5;color:#9b4214}
+.ali-toeic-result-detail{margin-top:20px}.ali-toeic-status{color:#89736b;font-size:12px;margin:12px 0}
+@media(max-width:660px){.ali-toeic-question{padding:12px}.ali-toeic-passage{padding:13px}.ali-toeic-option{padding:10px}.ali-toeic-photo img{min-height:120px}}
