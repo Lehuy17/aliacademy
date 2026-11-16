@@ -1,5 +1,5 @@
 import {firebaseConfig} from './firebase-config.js';
-import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=1';
+import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=2';
 const $=id=>document.getElementById(id);
 const video=$('aliHtmlVideo');
 const list=$('aliTranscriptList');
@@ -288,7 +288,7 @@ async function openMovie(movie){
  cues=loadedCues;
  active=-1;autoScroll=true;showCues();
  // Quiz is independent from playback and must not delay loading the film.
- showMovieQuiz(movie,cues);
+ showMovieQuiz(movie,cues,auth?.currentUser?.uid||'guest');
  if(movie.source?.type==='drive')fallback();else openSync();
 }
 function makeMovieCard(movie){
