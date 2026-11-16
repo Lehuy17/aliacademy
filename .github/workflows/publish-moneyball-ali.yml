@@ -4,6 +4,7 @@ on:
   push:
     paths:
       - '.github/workflows/publish-moneyball-ali.yml'
+      - 'scripts/prepare-moneyball-ali.py'
   workflow_dispatch:
 
 permissions:
