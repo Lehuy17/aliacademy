@@ -1,5 +1,5 @@
 {
-  "version": 31,
+  "version": 32,
   "movies": [
     {
       "id": "ali-video-01",
@@ -567,6 +567,36 @@
         "url": "./media/spiderman-brand-new-day-mj-says-i-dont-love-you/video.mp4"
       },
       "captions": "./captions/spiderman-brand-new-day-mj-says-i-dont-love-you.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "step-brothers-what-not-to-do-in-an-interview",
+      "title": "What NOT To Do In An Interview | Step Brothers",
+      "category": "PHIM SONG NGỮ · STEP BROTHERS",
+      "description": "Trích đoạn phỏng vấn xin việc trong Step Brothers · 05:33 · bản phát HTML5 đồng bộ; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "05:33",
+      "durationSeconds": 332.533,
+      "poster": "./media/step-brothers-what-not-to-do-in-an-interview/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/step-brothers-what-not-to-do-in-an-interview/video.mp4"
+      },
+      "captions": "./captions/step-brothers-what-not-to-do-in-an-interview.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
