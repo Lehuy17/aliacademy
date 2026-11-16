@@ -1,5 +1,5 @@
 {
-  "version": 24,
+  "version": 25,
   "movies": [
     {
       "id": "ali-video-01",
@@ -387,6 +387,36 @@
         "url": "./media/angry-birds-2-zeta-mighty-eagle-wedding/video.mp4"
       },
       "captions": "./captions/angry-birds-2-zeta-mighty-eagle-wedding.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "the-crown-she-is-our-caesar",
+      "title": "\"She Is Our Caesar\" Explaining the Coup Strategy Involving the Queen | The Crown (Olivia Colman)",
+      "category": "PHIM SONG NGỮ · THE CROWN",
+      "description": "Trích đoạn giải thích chiến lược đảo chính liên quan đến Nữ hoàng trong The Crown · 04:50 · bản phát 1080p/30fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
+      "duration": "04:50",
+      "durationSeconds": 289.646,
+      "poster": "./media/the-crown-she-is-our-caesar/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/the-crown-she-is-our-caesar/video.mp4"
+      },
+      "captions": "./captions/the-crown-she-is-our-caesar.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,

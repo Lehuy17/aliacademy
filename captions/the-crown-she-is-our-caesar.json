@@ -1,0 +1,248 @@
+{
+  "movieId": "the-crown-she-is-our-caesar",
+  "duration": 289.646,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 25.1,
+      "end": 33.6,
+      "en": "Gentlemen, the past decade alone, they have, by my reckoning, been 73 coups in 46 different countries around the world.",
+      "vi": "Các quý ông, chỉ trong một thập kỷ qua, họ đã, theo tính toán của tôi, là 73 cuộc đảo chính ở 46 quốc gia khác nhau trên thế giới."
+    },
+    {
+      "start": 37.45,
+      "end": 42.45,
+      "en": "And the success of some of these might encourage us.",
+      "vi": "Và sự thành công của một số điều này có thể khích lệ chúng ta."
+    },
+    {
+      "start": 42.45,
+      "end": 48.45,
+      "en": "In Ghana, two years ago, President Unkuma was ousted with just 500 men.",
+      "vi": "Ở Ghana, hai năm trước, tổng thống Unkuma bị trục xuất chỉ với 500 người."
+    },
+    {
+      "start": 48.45,
+      "end": 56.95,
+      "en": "And in 1961, South Korea, Major General Park Chung-hee seized power with 3,500 men.",
+      "vi": "Và vào năm 1961, Hàn Quốc, Đại tướng Park Chung-hee nắm quyền với 3.500 người."
+    },
+    {
+      "start": 58.85,
+      "end": 67.35,
+      "en": "And in 1964, in Gabon, just 150 men were able to arrest President Umber and thus gain control",
+      "vi": "Và vào năm 1964, ở Gabon, chỉ 150 người đã có thể bắt giữ Tổng thống Umber và do đó giành quyền kiểm soát"
+    },
+    {
+      "start": 68.73,
+      "end": 70.77,
+      "en": "over the levers of state power.",
+      "vi": "trên đòn bẩy quyền lực bang."
+    },
+    {
+      "start": 70.77,
+      "end": 76.29,
+      "en": "And of course, it was with just one legion that seized across the Rubicon.",
+      "vi": "Và tất nhiên, chỉ với một quân đoàn đã chiếm giữ toàn bộ Rubicon."
+    },
+    {
+      "start": 76.29,
+      "end": 84.49,
+      "en": "And perhaps we would not seek to follow his fate, a 6th Semper to run this, gentlemen.",
+      "vi": "Và có lẽ chúng ta sẽ không tìm cách đi theo số phận của hắn, một tên lính thứ 6 để điều hành vụ này, thưa các quý ông."
+    },
+    {
+      "start": 84.49,
+      "end": 92.89,
+      "en": "Now what all successful insurgents is having common are five key elements, control of the",
+      "vi": "Bây giờ những gì tất cả các quân nổi dậy thành công là có phổ biến là năm yếu tố then chốt, kiểm soát của"
+    },
+    {
+      "start": 92.89,
+      "end": 99.33,
+      "en": "media, control of the economy, and the capture of administrative targets for which you need",
+      "vi": "Phương tiện truyền thông, kiểm soát nền kinh tế, và bắt giữ các mục tiêu hành chính mà bạn cần"
+    },
+    {
+      "start": 99.33,
+      "end": 102.81,
+      "en": "the fourth element, the loyalty of the military.",
+      "vi": "Yếu tố thứ tư, sự trung thành của quân đội."
+    },
+    {
+      "start": 102.81,
+      "end": 109.73,
+      "en": "Now, in Ghana and Gabon, this can be achieved with a handful of battalions, but here, in the",
+      "vi": "Bây giờ, ở Ghana và Gabon, điều này có thể đạt được với một số ít các tiểu đoàn, nhưng ở đây, trong"
+    },
+    {
+      "start": 109.73,
+      "end": 118.23,
+      "en": "United Kingdom, they would need to secure Parliament, Whitehall, Ministry of Defense, and the Cabinet",
+      "vi": "Anh Quốc, họ cần bảo vệ Quốc hội, Whitehall, Bộ Quốc Phòng, và Nội các."
+    },
+    {
+      "start": 120.46,
+      "end": 121.46,
+      "en": "office.",
+      "vi": "Văn phòng."
+    },
+    {
+      "start": 121.46,
+      "end": 126.3,
+      "en": "Prime Minister will be arrested, of course, along with other politicians still loyal.",
+      "vi": "Tất nhiên Thủ tướng sẽ bị bắt cùng với các chính trị gia khác vẫn trung thành."
+    },
+    {
+      "start": 126.3,
+      "end": 132.82,
+      "en": "They would have to shut down the airports, air traffic control, same with the train stations,",
+      "vi": "Họ sẽ phải đóng cửa các sân bay, kiểm soát không lưu, cũng như với các trạm xe lửa,"
+    },
+    {
+      "start": 132.82,
+      "end": 137.06,
+      "en": "The perfumes will be put in place, martial law declared,",
+      "vi": "Nước hoa sẽ được đặt vào vị trí, luật quân sự tuyên bố,"
+    },
+    {
+      "start": 137.06,
+      "end": 140.98,
+      "en": "and I haven't even mentioned the police.",
+      "vi": "và tôi thậm chí còn chưa đề cập đến cảnh sát."
+    },
+    {
+      "start": 140.98,
+      "end": 144.42,
+      "en": "It would take tens of thousands of unquestioningly loyal",
+      "vi": "Sẽ cần đến hàng chục ngàn người trung thành một cách không chối cãi."
+    },
+    {
+      "start": 144.42,
+      "end": 151.04,
+      "en": "servicemen, and even in my heyday, I could never command that.",
+      "vi": "Những người phục vụ, và ngay cả trong thời hoàng kim của tôi, tôi không bao giờ có thể chỉ huy điều đó."
+    },
+    {
+      "start": 151.04,
+      "end": 156.9,
+      "en": "Which brings me to the Fifth Element, legitimacy.",
+      "vi": "Điều đó đưa tôi tới yếu tố số 5, hợp pháp."
+    },
+    {
+      "start": 156.9,
+      "end": 159.14,
+      "en": "Now, our government draws its strength",
+      "vi": "Bây giờ, chính phủ của chúng ta đang thu hút sức mạnh của nó."
+    },
+    {
+      "start": 159.14,
+      "end": 163.14,
+      "en": "from long-established institutions that support it.",
+      "vi": "từ những tổ chức được thiết lập lâu đời ủng hộ nó."
+    },
+    {
+      "start": 163.14,
+      "end": 171.42,
+      "en": "Because body of common law, the Constitution, for any action against the state to succeed,",
+      "vi": "Bởi vì cơ thể của luật chung, Hiến pháp, cho bất kỳ hành động chống lại quốc gia để thành công,"
+    },
+    {
+      "start": 171.42,
+      "end": 174.38,
+      "en": "you'd have to overthrow these as well.",
+      "vi": "Anh sẽ phải lật đổ cả những thứ này nữa."
+    },
+    {
+      "start": 174.38,
+      "end": 183.01,
+      "en": "But in a highly evolved democracy, such as ours, their authority is sacrosanct, which",
+      "vi": "Nhưng trong một nền dân chủ được tiến hóa cao như chúng ta, quyền lực của họ là bất khả xâm phạm."
+    },
+    {
+      "start": 183.01,
+      "end": 191.51,
+      "en": "is why, gentlemen, a coup d'etat in the United Kingdom doesn't stand a chance.",
+      "vi": "là lý do tại sao, các quý ông, một cuộc đảo chính ở Anh không có cơ hội."
+    },
+    {
+      "start": 199.1,
+      "end": 207.6,
+      "en": "Unless we had the support of the one person not yet mentioned, the crown has at its disposal",
+      "vi": "Trừ khi chúng ta có sự ủng hộ của một người chưa được đề cập đến, vương miện có quyền sử dụng."
+    },
+    {
+      "start": 217.4,
+      "end": 223.72,
+      "en": "unique constitutional powers, which could still make something like this possible.",
+      "vi": "Sức mạnh hiến pháp độc đáo, vẫn có thể biến điều này thành hiện thực."
+    },
+    {
+      "start": 223.72,
+      "end": 230.12,
+      "en": "In 1834 William IV used them to dismiss his government in the face of opposition from the",
+      "vi": "Năm 1834 William IV đã sử dụng họ để loại bỏ chính phủ của mình khi đối mặt với sự chống đối từ"
+    },
+    {
+      "start": 230.12,
+      "end": 231.12,
+      "en": "house.",
+      "vi": "Nhà."
+    },
+    {
+      "start": 231.12,
+      "end": 239.62,
+      "en": "And in 1920 the Emergency Powers Act was passed, which gives the sovereign power in certain circumstances to declare a state of emergency by proclamation, meaning our queen could dissolve parliament and appoint a new government and a prime minister as well.",
+      "vi": "Và vào năm 1920 Đạo luật Cấp Cứu đã được thông qua, điều đó cho quyền lực tối cao trong những hoàn cảnh nhất định để tuyên bố tình trạng khẩn cấp bằng lời tuyên bố, nghĩa là nữ hoàng của chúng ta có thể giải tán nghị viện và bổ nhiệm một chính phủ mới và một thủ tướng."
+    },
+    {
+      "start": 251.12,
+      "end": 255.12,
+      "en": "She's also commander-in-chief of the armed forces.",
+      "vi": "Cô ấy cũng là tổng tư lệnh của quân đội."
+    },
+    {
+      "start": 255.12,
+      "end": 258.12,
+      "en": "They swear allegiance to her, and not to part,",
+      "vi": "Họ thề trung thành với cô ấy, và không rời xa cô ấy,"
+    },
+    {
+      "start": 258.12,
+      "end": 261.12,
+      "en": "so could count on their support to see it through.",
+      "vi": "Vì thế, họ có thể tin cậy nơi sự ủng hộ của họ để thấy được điều đó."
+    },
+    {
+      "start": 261.12,
+      "end": 266.02,
+      "en": "She is our season.",
+      "vi": "Cô ấy là mùa giải của chúng ta."
+    },
+    {
+      "start": 273.75,
+      "end": 276.75,
+      "en": "Do you think she might entertain this idea?",
+      "vi": "Anh có nghĩ cô ấy sẽ thích thú với ý tưởng này không?"
+    },
+    {
+      "start": 276.75,
+      "end": 279.75,
+      "en": "The circumstances are certainly compelling.",
+      "vi": "Hoàn cảnh chắc chắn rất thuyết phục."
+    },
+    {
+      "start": 279.75,
+      "end": 283.75,
+      "en": "I've made a list here of exactly how compelling.",
+      "vi": "Tôi đã làm một danh sách về sự thuyết phục."
+    },
+    {
+      "start": 283.75,
+      "end": 288.75,
+      "en": "And as her second cousin, I am in an ideal position to ask.",
+      "vi": "Và là em họ thứ hai của cô ấy, tôi ở một vị trí lý tưởng để hỏi."
+    }
+  ]
+}
