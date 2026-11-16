@@ -1,0 +1,45 @@
+name: One-time import ALI TOEIC source photos
+on:
+  push:
+    paths:
+      - '.github/workflows/import-toeic-source-photos.yml'
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  import:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout website
+        uses: actions/checkout@v4
+      - name: Fetch original examination photos
+        env:
+          PHOTO_Q4: "https://docs.google.com/docs-images-rt/AIpPl2Bngok-iMAlp1lhH5mUq1y4FclBA492mqdJStxRJuPdljQeHp-c1vwCS6afB8dRSH_tBtd4BP1vcEpJWUgM9vzRTorYJbRXRGirm4cGWfZLycCIdWmjySSmjCWSyvQAr7z0-4etpbSwHypedNpi-nmUBoRkWnBcRRXXYwcxTMGkn1C4-ro=s2048?key=YeHl32qYP70VOMLt_ja0Rw"
+          PHOTO_EXAMPLE: "https://docs.google.com/docs-images-rt/AIpPl2DMmtWHosbfXUwsTB4gy4-nmFZCMo2i6O2FKgzN_zDH0iHU1goz1-FUDkSczIGDZtVVijksSFPpERDFhgh2wJElnjE6C-DFWNUHPm-fjKE0hkIlJpxHDwUHKt-P4EZX3hBD5hQNHdmQSkwCPrJ3ZDu3cbWzJQfI3J5XOiOFn_1QTfDHjTs=s2048?key=YeHl32qYP70VOMLt_ja0Rw"
+          PHOTO_Q3: "https://docs.google.com/docs-images-rt/AIpPl2D7EHpcqAUFxRcQ2uJEbWTzx7HAX0hJX93EtxhVWzmdVaNHP2ZtEqfbq0wJOXvs2eQ2XWUXfFJwB1PPFpLnTnkB9HEYA8TgO2n3OFXKj-XdbGJPGF01DHYDLN9pJ_qZsjZRMu2DGmT5NF9UqERpxYwTcuZ1P9TbZEziEa6XfUmyxOZKJeg=s2048?key=YeHl32qYP70VOMLt_ja0Rw"
+          PHOTO_Q2: "https://docs.google.com/docs-images-rt/AIpPl2B2E9PmUfgXV9hUbp315TnC0iOM4S1t2finGp9CmeQmOfAY6TGw4AeVVoESRz7tLAPQ0QCOSXqJrAzpQM6cvnH8BaHrSJOqMhJl2scgeyecOkSxI32iNXi_Bw2zTdtzuN6egxDXmBCGUJdPcjknCrCn3HPiU1yKTU-EGQGnxI4yDtf4=s2048?key=YeHl32qYP70VOMLt_ja0Rw"
+          PHOTO_Q1: "https://docs.google.com/docs-images-rt/AIpPl2CVIhD9hhJp0dfaeU21zVVeHfWg2aGju_VME7nald4NjLGkCrrfjxrucSMiqgBkj2-J5zwO1K8jOS4V20GryJjJd181RTZtRUWyjCkHoQbptc5S9mljXn8gLrBzI9N698UsOM1gI9Xy9jIx3qp5nOGPxgmL6pa65UnWR6CmcBsgh78Qjh8=s2048?key=YeHl32qYP70VOMLt_ja0Rw"
+        run: |
+          python3 - <<'PY'
+          import os, pathlib, urllib.request, time
+          targets={"EXAMPLE":"toeic-placement-example.jpg","Q1":"toeic-placement-q1.jpg","Q2":"toeic-placement-q2.jpg","Q3":"toeic-placement-q3.jpg","Q4":"toeic-placement-q4.jpg"}
+          for k,path in targets.items():
+              uri=os.environ["PHOTO_"+k]
+              req=urllib.request.Request(uri,headers={"User-Agent":"Mozilla/5.0"})
+              with urllib.request.urlopen(req,timeout=30) as response:
+                  blob=response.read()
+                  ctype=response.headers.get("Content-Type","")
+              if len(blob)<2000 or not ("image/" in ctype or blob.startswith(b"\\xff\\xd8") or blob.startswith(b"\\x89PNG")):
+                  raise SystemExit("Image download failed or returned non-image: "+k+" "+ctype+" len "+str(len(blob)))
+              pathlib.Path(path).write_bytes(blob)
+              print(k,path,len(blob),ctype)
+          PY
+      - name: Commit source images
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add toeic-placement-*.jpg
+          git diff --cached --quiet && exit 0
+          git commit -m "Import original ALI TOEIC Part 1 photos from source document"
+          git pull --rebase origin main
+          git push origin HEAD:main
