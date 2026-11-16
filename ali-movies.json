@@ -1,5 +1,5 @@
 {
-  "version": 25,
+  "version": 26,
   "movies": [
     {
       "id": "ali-video-01",
@@ -417,6 +417,36 @@
         "url": "./media/the-crown-she-is-our-caesar/video.mp4"
       },
       "captions": "./captions/the-crown-she-is-our-caesar.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "the-crown-queen-margaret-heated-conversation",
+      "title": "Heated Conversation Between The Queen and Margaret | The Crown (Olivia Colman, Gillian Anderson)",
+      "category": "PHIM SONG NGỮ · THE CROWN",
+      "description": "Cuộc đối thoại căng thẳng giữa Nữ hoàng và Margaret trong The Crown · 04:50 · bản phát 1080p/30fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
+      "duration": "04:50",
+      "durationSeconds": 289.646,
+      "poster": "./media/the-crown-queen-margaret-heated-conversation/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/the-crown-queen-margaret-heated-conversation/video.mp4"
+      },
+      "captions": "./captions/the-crown-queen-margaret-heated-conversation.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,

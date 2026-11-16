@@ -1,0 +1,410 @@
+{
+  "movieId": "the-crown-queen-margaret-heated-conversation",
+  "duration": 289.646,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 6.48,
+      "en": "I checked with the Cabinet Secretary, and it turns out that in the seven years I have been Prime Minister,",
+      "vi": "Tôi đã kiểm tra với Bộ trưởng Nội các, và hóa ra trong 7 năm tôi là Thủ tướng,"
+    },
+    {
+      "start": 6.48,
+      "end": 14.88,
+      "en": "we have had 164 audiences, always the model of cordiality, productivity, and mutual respect.",
+      "vi": "Chúng ta đã có 154 khán giả, luôn luôn là mô hình về sự thân thiện, năng suất và sự tôn trọng lẫn nhau."
+    },
+    {
+      "start": 15.36,
+      "end": 21.68,
+      "en": "So it is perhaps not unreasonable to expect an isolated hiccup.",
+      "vi": "Vì thế, có lẽ mong đợi một nấc cục lẻ loi không phải là điều vô lý."
+    },
+    {
+      "start": 21.68,
+      "end": 22.48,
+      "en": "What hiccup?",
+      "vi": "nấc cục nào?"
+    },
+    {
+      "start": 22.48,
+      "end": 28.96,
+      "en": "I was under the impression that Her Majesty never expressed her political views in public.",
+      "vi": "Tôi có ấn tượng là Nữ Hoàng không bao giờ bày tỏ quan điểm chính trị của bà trước công chúng."
+    },
+    {
+      "start": 30.0,
+      "end": 31.8,
+      "en": "I don't.",
+      "vi": "Tôi không biết."
+    },
+    {
+      "start": 31.8,
+      "end": 36.96,
+      "en": "But there was an unbreakable code of silence between sovereign and first minister.",
+      "vi": "Nhưng có một sự im lặng không thể phá vỡ giữa chủ quyền và mục sư đầu tiên."
+    },
+    {
+      "start": 36.96,
+      "end": 41.08,
+      "en": "If you're referring to the Sunday Times, I've always advised my prime ministers against",
+      "vi": "Nếu ngài đang đề cập đến tờ Sunday Times, tôi luôn khuyên các thủ tướng của tôi chống lại"
+    },
+    {
+      "start": 41.08,
+      "end": 42.08,
+      "en": "reading the newspapers.",
+      "vi": "Đọc báo."
+    },
+    {
+      "start": 42.08,
+      "end": 43.08,
+      "en": "I don't.",
+      "vi": "Tôi không biết."
+    },
+    {
+      "start": 43.08,
+      "end": 44.08,
+      "en": "Ma.",
+      "vi": "Mẹ."
+    },
+    {
+      "start": 44.08,
+      "end": 48.44,
+      "en": "In misunderstanding, misquote and misrepresent, then everybody gets into a fluster.",
+      "vi": "Trong sự hiểu lầm, trích dẫn sai và xuyên tạc, sau đó mọi người trở thành kẻ phá hoại."
+    },
+    {
+      "start": 48.44,
+      "end": 51.08,
+      "en": "My press secretary does.",
+      "vi": "Thư ký báo chí của tôi thì có."
+    },
+    {
+      "start": 51.08,
+      "end": 56.24,
+      "en": "And he has working relationships with all of the editors, and the editor in this case assured",
+      "vi": "Và ông ấy đã làm việc với tất cả các biên tập viên, và các biên tập viên trong trường hợp này đảm bảo"
+    },
+    {
+      "start": 56.24,
+      "end": 64.74,
+      "en": "him that the sources were unimpeachable, close to the Queen, unprecedentedly close.",
+      "vi": "Anh ta cho rằng nguồn tin đó là không thể thuyết phục được, gần gũi với Nữ hoàng, gần như chưa từng thấy."
+    },
+    {
+      "start": 67.92,
+      "end": 73.88,
+      "en": "Well I'm sure a clarification will soon be forthcoming. In the meantime, should we not",
+      "vi": "Tôi chắc là sẽ sớm có sự làm sáng tỏ thôi."
+    },
+    {
+      "start": 73.88,
+      "end": 78.92,
+      "en": "make a star from the business of the week, only I am mindful of the time.",
+      "vi": "Tạo ra một ngôi sao từ công việc của tuần, chỉ có tôi nhớ đến thời gian."
+    },
+    {
+      "start": 78.92,
+      "end": 86.8,
+      "en": "This is the business, ma'am. The only business. I think we have enough respect for one another",
+      "vi": "Đây là việc làm ăn, thưa bà, tôi nghĩ chúng ta đã đủ tôn trọng lẫn nhau rồi."
+    },
+    {
+      "start": 86.8,
+      "end": 95.3,
+      "en": "But personally, to ask ourselves some of the bigger questions, woman to woman, we are the same age after all.",
+      "vi": "Nhưng cá nhân chúng ta, tự hỏi chúng ta một số câu hỏi lớn hơn, phụ nữ với phụ nữ, chúng ta đều bằng tuổi nhau."
+    },
+    {
+      "start": 96.8,
+      "end": 99.8,
+      "en": "Really? Just six months between us.",
+      "vi": "Chỉ có 6 tháng giữa chúng ta thôi."
+    },
+    {
+      "start": 99.8,
+      "end": 101.8,
+      "en": "Oh, and who is the senior?",
+      "vi": "Oh, và ai là học sinh năm cuối?"
+    },
+    {
+      "start": 101.8,
+      "end": 105.08,
+      "en": "I am.",
+      "vi": "Đúng vậy."
+    },
+    {
+      "start": 105.08,
+      "end": 106.08,
+      "en": "Mal.",
+      "vi": "Mal."
+    },
+    {
+      "start": 106.08,
+      "end": 109.58,
+      "en": "Uncaring.",
+      "vi": "Không quan tâm."
+    },
+    {
+      "start": 114.16,
+      "end": 118.16,
+      "en": "Confrontational and socially divisive.",
+      "vi": "Xung đột và chia rẽ xã hội."
+    },
+    {
+      "start": 118.16,
+      "end": 122.16,
+      "en": "That's how these sources so close to the Queen describe me.",
+      "vi": "Đó là cách những nguồn tin này miêu tả tôi."
+    },
+    {
+      "start": 122.16,
+      "end": 124.8,
+      "en": "Prime Minister. That I lack compassion.",
+      "vi": "Thủ tướng, tôi thiếu lòng trắc ẩn."
+    },
+    {
+      "start": 124.8,
+      "end": 129.04,
+      "en": "And that my government has done irretrievable damage",
+      "vi": "Và chính phủ của tôi đã gây ra những thiệt hại không thể tránh khỏi."
+    },
+    {
+      "start": 129.04,
+      "end": 138.42,
+      "en": "to the country's social fabric.",
+      "vi": "để xây dựng xã hội của đất nước."
+    },
+    {
+      "start": 138.42,
+      "end": 143.38,
+      "en": "My responsibility for the time I have in office",
+      "vi": "Trách nhiệm của tôi về thời gian tôi làm việc trong văn phòng"
+    },
+    {
+      "start": 143.38,
+      "end": 147.14,
+      "en": "is to put sentimentality to one side",
+      "vi": "là để đặt tình cảm vào một bên"
+    },
+    {
+      "start": 147.14,
+      "end": 150.02,
+      "en": "and look after these country's interest",
+      "vi": "Và chăm sóc lợi ích của đất nước này"
+    },
+    {
+      "start": 150.02,
+      "end": 153.86,
+      "en": "with the perspective of a cold balance sheet.",
+      "vi": "Với quan điểm của một bảng cân đối lạnh."
+    },
+    {
+      "start": 153.86,
+      "end": 156.82,
+      "en": "And while I greatly admire your sense of fairness",
+      "vi": "Và trong khi tôi rất ngưỡng mộ sự công bằng của anh."
+    },
+    {
+      "start": 156.82,
+      "end": 159.7,
+      "en": "and compassion for those less fortunate than us?",
+      "vi": "và lòng trắc ẩn với những người kém may mắn hơn chúng ta?"
+    },
+    {
+      "start": 159.7,
+      "end": 160.82,
+      "en": "Do you? Really?",
+      "vi": "Thật sao?"
+    },
+    {
+      "start": 160.82,
+      "end": 166.18,
+      "en": "Let us not forget that of the two of us,",
+      "vi": "Chúng ta đừng quên rằng hai chúng ta,"
+    },
+    {
+      "start": 166.18,
+      "end": 172.5,
+      "en": "I am the one from a small street in an irrelevant town,",
+      "vi": "Tôi là người từ một con đường nhỏ trong một thị trấn không liên quan,"
+    },
+    {
+      "start": 172.5,
+      "end": 177.54,
+      "en": "with a father who could not bequeath me a title or a commonwealth,",
+      "vi": "Với một người cha không thể để lại cho tôi một tước hiệu hay một mối quan hệ bình thường,"
+    },
+    {
+      "start": 177.54,
+      "end": 181.7,
+      "en": "but only grit, good sense and determination.",
+      "vi": "nhưng chỉ có tính bền bỉ, ý thức tốt và quyết tâm."
+    },
+    {
+      "start": 181.7,
+      "end": 185.38,
+      "en": "And I don't want people's pity or charity",
+      "vi": "Và tôi không muốn người khác thương hại hay từ thiện."
+    },
+    {
+      "start": 185.38,
+      "end": 189.38,
+      "en": "or compassion, nothing would insult me more.",
+      "vi": "hay lòng trắc ẩn, không gì có thể xúc phạm tôi hơn."
+    },
+    {
+      "start": 190.18,
+      "end": 198.38,
+      "en": "My goal is to change this country from being dependent to self-reliant,",
+      "vi": "Mục tiêu của tôi là thay đổi đất nước này từ việc phụ thuộc vào sự tự chủ,"
+    },
+    {
+      "start": 198.38,
+      "end": 201.38,
+      "en": "and I think in that I am succeeding.",
+      "vi": "Và tôi nghĩ rằng tôi đang thành công."
+    },
+    {
+      "start": 201.38,
+      "end": 204.38,
+      "en": "I have had to learn many difficult lessons as sovereigns.",
+      "vi": "Tôi phải học nhiều bài học khó với tư cách chủ quyền."
+    },
+    {
+      "start": 204.38,
+      "end": 207.38,
+      "en": "Britons are learning to look after number one,",
+      "vi": "Người Anh đang học cách chăm sóc người thứ nhất,"
+    },
+    {
+      "start": 207.38,
+      "end": 210.38,
+      "en": "to get ahead and only then,",
+      "vi": "để tiến lên phía trước và chỉ sau đó,"
+    },
+    {
+      "start": 210.38,
+      "end": 215.38,
+      "en": "if they choose to look after their neighbour?",
+      "vi": "nếu họ chọn chăm sóc người lân cận?"
+    },
+    {
+      "start": 215.38,
+      "end": 216.38,
+      "en": "Of those?",
+      "vi": "Về những thứ đó?"
+    },
+    {
+      "start": 216.38,
+      "end": 220.38,
+      "en": "No one would remember the good Samaritan",
+      "vi": "Không ai nhớ được người Sa - ma - ri tốt bụng"
+    },
+    {
+      "start": 220.38,
+      "end": 224.38,
+      "en": "if he only had good intentions.",
+      "vi": "nếu anh ta chỉ có ý tốt."
+    },
+    {
+      "start": 224.38,
+      "end": 229.38,
+      "en": "You see, he had money as well.",
+      "vi": "Anh thấy đấy, hắn cũng có tiền."
+    },
+    {
+      "start": 229.38,
+      "end": 232.38,
+      "en": "Perhaps the hardest is that I am obliged",
+      "vi": "Có lẽ điều khó khăn nhất là tôi có bổn phận"
+    },
+    {
+      "start": 232.38,
+      "end": 237.38,
+      "en": "to support my prime ministers on any position they take, even yours,",
+      "vi": "để hỗ trợ thủ tướng của ta ở bất cứ vị trí nào, kể cả của ngươi,"
+    },
+    {
+      "start": 237.38,
+      "end": 240.38,
+      "en": "regarding sanctions against South Africa.",
+      "vi": "Về việc trừng phạt Nam Phi."
+    },
+    {
+      "start": 240.38,
+      "end": 246.22,
+      "en": "My question is, given the lack of impact it has",
+      "vi": "Câu hỏi của tôi là, vì sự thiếu ảnh hưởng của nó"
+    },
+    {
+      "start": 246.22,
+      "end": 248.22,
+      "en": "on your day-to-day political fortunes,",
+      "vi": "trong tài sản chính trị hàng ngày của bạn,"
+    },
+    {
+      "start": 248.22,
+      "end": 251.22,
+      "en": "yet how important it is to me,",
+      "vi": "Nhưng nó quan trọng thế nào đối với tôi,"
+    },
+    {
+      "start": 251.22,
+      "end": 255.22,
+      "en": "could you not have supported me just once?",
+      "vi": "Anh có thể không ủng hộ tôi chỉ một lần?"
+    },
+    {
+      "start": 255.22,
+      "end": 257.22,
+      "en": "My fellow Commonwealth leaders,",
+      "vi": "Những người lãnh đạo của ta,"
+    },
+    {
+      "start": 257.22,
+      "end": 260.22,
+      "en": "many of whom I consider to be friends,",
+      "vi": "Nhiều người trong số đó mà tôi coi là bạn,"
+    },
+    {
+      "start": 260.22,
+      "end": 266.22,
+      "en": "now feel that I have betrayed them on an issue most important to them.",
+      "vi": "Bây giờ cảm thấy rằng tôi đã phản bội họ về một vấn đề quan trọng nhất đối với họ."
+    },
+    {
+      "start": 266.22,
+      "end": 270.18,
+      "en": "Well, they need only read the Sunday times.",
+      "vi": "Họ chỉ cần đọc lần chủ nhật thôi."
+    },
+    {
+      "start": 270.18,
+      "end": 273.54,
+      "en": "It will give them no doubt as to your position.",
+      "vi": "Nó sẽ không nghi ngờ gì về vị trí của anh."
+    },
+    {
+      "start": 273.54,
+      "end": 280.14,
+      "en": "Oh, look how time is up.",
+      "vi": "Oh, nhìn xem thời gian đã hết rồi."
+    },
+    {
+      "start": 284.03,
+      "end": 288.51,
+      "en": "How it flies.",
+      "vi": "Nó bay như thế nào."
+    },
+    {
+      "start": 288.51,
+      "end": 289.646,
+      "en": "You must be very much.",
+      "vi": "Hẳn là cô rất thích."
+    }
+  ]
+}
