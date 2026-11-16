@@ -60,3 +60,10 @@
 @media(prefers-reduced-motion:reduce){
  #aliVideoPlayer .ali-quiz-fill,#aliVideoPlayer .ali-quiz-option{transition:none}
 }
+
+#aliVideoPlayer .ali-quiz-fresh-note{
+ margin:18px 0 0;color:#775747;font-size:12px;line-height:1.75;
+}
+#aliVideoPlayer .ali-quiz-count{
+ padding:5px 9px;border-radius:99px;background:#fff0e6;
+}
