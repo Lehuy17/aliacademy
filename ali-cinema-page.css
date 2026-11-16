@@ -451,3 +451,69 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
 @media(prefers-reduced-motion:reduce){
  #aliVideoPlayer .ali-cue-play{transition:none}
 }
+
+
+/* ALI Cinema mobile: film and readable captions share one dark player frame.
+   Keep the image unobstructed: captions dock directly below the 16:9 film. */
+#aliVideoPlayer .ali-mobile-caption-toolbar{display:none}
+@media(max-width:700px){
+ #aliVideoPlayer .screen{
+  display:flex;flex-direction:column;align-items:stretch;justify-content:flex-start;
+  width:calc(100% - 16px);height:auto;min-height:0;max-height:none;
+  margin:0 8px;aspect-ratio:auto;overflow:hidden;
+  border-radius:14px;background:#111015;
+ }
+ #aliVideoPlayer .screen>video,#aliVideoPlayer .screen>iframe{
+  display:block;width:100%;height:auto;max-height:none;min-height:0;
+  aspect-ratio:16/9;flex:0 0 auto;object-fit:contain;background:#0d0c10;
+ }
+ #aliVideoPlayer .screen.has-mobile-captions .ali-mobile-caption-toolbar{
+  display:flex;align-items:center;justify-content:space-between;gap:7px;
+  flex-wrap:wrap;width:100%;padding:10px 12px 7px;
+  background:#17151b;border-top:1px solid rgba(255,255,255,.1);
+  color:#ffb183;font-size:10px;font-weight:900;letter-spacing:.05em;
+ }
+ #aliVideoPlayer .ali-mobile-caption-toolbar .language{display:flex;gap:5px}
+ #aliVideoPlayer .ali-mobile-caption-toolbar .language button{
+  min-height:31px;padding:6px 9px;border-radius:8px;font-size:10px;
+  border:1px solid rgba(255,255,255,.25);color:#f5e7e0;background:#332930;
+ }
+ #aliVideoPlayer .ali-mobile-caption-toolbar .language button[aria-pressed="true"]{
+  background:#ff681e;border-color:#ff681e;color:#fff;
+ }
+ #aliVideoPlayer .ali-screen-captions{
+  position:relative;inset:auto;left:auto;right:auto;bottom:auto;
+  z-index:2;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  width:100%;min-height:106px;max-height:none;flex:0 0 auto;
+  padding:11px 16px 15px;border-radius:0;
+  background:linear-gradient(180deg,#17151b,#0e0d12);color:#fff;
+  text-align:center;gap:6px;overflow-wrap:anywhere;
+  box-shadow:inset 0 1px rgba(255,255,255,.08);
+ }
+ #aliVideoPlayer .ali-screen-captions strong{
+  display:block;max-width:100%;font-size:clamp(15px,4.5vw,19px);
+  font-weight:850;line-height:1.42;letter-spacing:0;
+  text-shadow:0 2px 3px #000b;
+ }
+ #aliVideoPlayer .ali-screen-captions span{
+  display:block;max-width:100%;font-size:clamp(13px,3.8vw,16px);
+  font-weight:650;line-height:1.46;color:#ffd2b2;text-shadow:0 1px 3px #0009;
+ }
+ #aliVideoPlayer .ali-screen-captions.is-idle strong{
+  font-size:13px;font-weight:650;color:#bcb5bd;text-shadow:none;
+ }
+ #aliVideoPlayer .ali-screen-cc{
+  top:9px;right:9px;min-width:39px;min-height:32px;padding:6px 9px;
+  border-radius:8px;background:rgba(12,10,13,.8);
+ }
+ #aliVideoPlayer .video-panel-label{padding:10px 12px;font-size:10px}
+ #aliVideoPlayer .cinema-player-tip{display:none}
+ #aliVideoPlayer .transcript{height:clamp(325px,54vh,400px)}
+ #aliVideoPlayer .transcript-head{padding:13px}
+ #aliVideoPlayer .transcript-scroll{padding:6px 9px 10px}
+}
+@media(max-width:355px){
+ #aliVideoPlayer .screen.has-mobile-captions .ali-mobile-caption-toolbar{padding:8px 9px 6px}
+ #aliVideoPlayer .ali-mobile-caption-toolbar .language button{padding:5px 7px;font-size:9px}
+ #aliVideoPlayer .ali-screen-captions{padding:10px 11px 14px}
+}
