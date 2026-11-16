@@ -1,5 +1,5 @@
 {
-  "version": 32,
+  "version": 33,
   "movies": [
     {
       "id": "ali-video-01",
@@ -588,7 +588,7 @@
       "id": "step-brothers-what-not-to-do-in-an-interview",
       "title": "What NOT To Do In An Interview | Step Brothers",
       "category": "PHIM SONG NGỮ · STEP BROTHERS",
-      "description": "Trích đoạn phỏng vấn xin việc trong Step Brothers · 05:33 · bản phát HTML5 đồng bộ; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "description": "Trích đoạn phỏng vấn xin việc hài hước trong Step Brothers · 05:33 · phụ đề Anh–Việt tự động đang chờ giáo viên rà soát. Lưu ý: phim có lời thoại tục, hài hước người lớn, không phù hợp với học viên nhỏ tuổi.",
       "duration": "05:33",
       "durationSeconds": 332.533,
       "poster": "./media/step-brothers-what-not-to-do-in-an-interview/poster.jpg",
@@ -612,6 +612,11 @@
         "desktopMobileTested": false,
         "approvedAt": "",
         "videoTechnicalChecked": true
+      },
+      "contentAdvisory": {
+        "profanity": true,
+        "sexualReferences": true,
+        "teacherReviewRequired": true
       }
     }
   ]
