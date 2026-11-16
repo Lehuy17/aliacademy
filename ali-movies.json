@@ -1,5 +1,5 @@
 {
-  "version": 29,
+  "version": 30,
   "movies": [
     {
       "id": "ali-video-01",
@@ -549,6 +549,36 @@
         "timingsReviewed": false,
         "desktopMobileTested": false,
         "videoTechnicalChecked": false
+      }
+    },
+    {
+      "id": "spiderman-brand-new-day-mj-says-i-dont-love-you",
+      "title": "MJ says “I Don't Love You” to Peter | Spider-Man: Brand New Day",
+      "category": "PHIM SONG NGỮ · SPIDER-MAN: BRAND NEW DAY",
+      "description": "Trích đoạn MJ nói với Peter trong Spider-Man: Brand New Day · 05:08 · bản phát Full HD 1080p/30fps; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "05:08",
+      "durationSeconds": 308.385,
+      "poster": "./media/spiderman-brand-new-day-mj-says-i-dont-love-you/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/spiderman-brand-new-day-mj-says-i-dont-love-you/video.mp4"
+      },
+      "captions": "./captions/spiderman-brand-new-day-mj-says-i-dont-love-you.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
       }
     }
   ]

@@ -1,0 +1,176 @@
+{
+  "movieId": "spiderman-brand-new-day-mj-says-i-dont-love-you",
+  "duration": 308.385,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.0,
+      "end": 3.5,
+      "en": "It worked! She's in custody. You're safe now.",
+      "vi": "Cô ấy đang bị giam giữ, giờ cô an toàn rồi."
+    },
+    {
+      "start": 6.66,
+      "end": 15.16,
+      "en": "You left this? Did you want me to find it?",
+      "vi": "Anh để quên cái này, anh có muốn tôi tìm nó không?"
+    },
+    {
+      "start": 17.16,
+      "end": 23.56,
+      "en": "No. Look, I can explain.",
+      "vi": "Không, nghe này, tôi có thể giải thích."
+    },
+    {
+      "start": 23.56,
+      "end": 25.06,
+      "en": "Can you take that off, please?",
+      "vi": "Anh cởi nó ra được không?"
+    },
+    {
+      "start": 25.06,
+      "end": 33.56,
+      "en": "The mask. I think I deserve to have this conversation with Peter Parker.",
+      "vi": "Mặt nạ, tôi nghĩ tôi xứng đáng được nói chuyện này với Peter Parker."
+    },
+    {
+      "start": 36.69,
+      "end": 45.19,
+      "en": "It came to the party at our apartment the other night.",
+      "vi": "Nó đến bữa tiệc ở căn hộ của chúng tôi đêm hôm trước."
+    },
+    {
+      "start": 64.63,
+      "end": 73.13,
+      "en": "And the donut shop. The year I went off to school.",
+      "vi": "Và cửa hàng bánh rán, năm tôi đi học."
+    },
+    {
+      "start": 75.68,
+      "end": 80.05,
+      "en": "Why didn't you tell me then?",
+      "vi": "Tại sao lúc đó anh không nói với em?"
+    },
+    {
+      "start": 80.05,
+      "end": 82.05,
+      "en": "I was trying to protect you.",
+      "vi": "Tôi đã cố bảo vệ cô."
+    },
+    {
+      "start": 82.05,
+      "end": 87.05,
+      "en": "Oh, I've almost been killed like five times the past 24 hours, so it's not really working that well.",
+      "vi": "Tôi suýt bị giết 5 lần trong 24 giờ qua, nên nó không hoạt động tốt lắm."
+    },
+    {
+      "start": 87.05,
+      "end": 89.05,
+      "en": "I know, I'm sorry.",
+      "vi": "Tôi biết, tôi xin lỗi."
+    },
+    {
+      "start": 89.05,
+      "end": 92.05,
+      "en": "Were you ever gonna tell me?",
+      "vi": "Anh đã bao giờ định nói với em chưa?"
+    },
+    {
+      "start": 92.05,
+      "end": 100.55,
+      "en": "So you just were gonna make that decision for me.",
+      "vi": "Vậy là anh sẽ đưa ra quyết định đó cho tôi."
+    },
+    {
+      "start": 104.17,
+      "end": 105.17,
+      "en": "I know, I'm sorry.",
+      "vi": "Tôi biết, tôi xin lỗi."
+    },
+    {
+      "start": 105.17,
+      "end": 107.17,
+      "en": "I don't really need you to keep saying that you're sorry.",
+      "vi": "Em không cần anh cứ nói xin lỗi mãi."
+    },
+    {
+      "start": 107.17,
+      "end": 109.17,
+      "en": "I don't know what you want me to tell you.",
+      "vi": "Tôi không biết anh muốn tôi nói gì với anh."
+    },
+    {
+      "start": 109.17,
+      "end": 111.17,
+      "en": "I want you to tell me why you would do this to me.",
+      "vi": "Tôi muốn anh nói cho tôi biết tại sao anh lại làm thế với tôi."
+    },
+    {
+      "start": 111.17,
+      "end": 114.67,
+      "en": "I lost someone.",
+      "vi": "Tôi đã mất một người."
+    },
+    {
+      "start": 118.28,
+      "end": 124.54,
+      "en": "They'd still be here if it wasn't for me.",
+      "vi": "Nếu không có tôi thì họ vẫn còn ở đây."
+    },
+    {
+      "start": 124.54,
+      "end": 133.99,
+      "en": "I didn't read you that letter because I didn't want anything like that to happen to you.",
+      "vi": "Tôi không đọc lá thư đó cho cô vì tôi không muốn chuyện như thế xảy ra với cô."
+    },
+    {
+      "start": 133.99,
+      "end": 134.99,
+      "en": "But that's not really your decision.",
+      "vi": "Nhưng đó không phải quyết định của anh."
+    },
+    {
+      "start": 134.99,
+      "end": 143.49,
+      "en": "really your decision. I know it's not but you mean everything to me and I've been",
+      "vi": "Tôi biết đó không phải là quyết định của anh, nhưng anh là tất cả đối với tôi và tôi đã được"
+    },
+    {
+      "start": 144.77,
+      "end": 153.27,
+      "en": "trying to live my life without you but I... Spell or whatever it is that you did",
+      "vi": "Cố sống một cuộc sống không có em nhưng anh... đánh vần hay bất cứ điều gì em đã làm"
+    },
+    {
+      "start": 171.72,
+      "end": 180.22,
+      "en": "it worked all these memories that you're saying that we have together I I don't",
+      "vi": "Nó có tác dụng với tất cả những ký ức mà anh đang nói rằng chúng ta có với nhau tôi không"
+    },
+    {
+      "start": 182.59,
+      "end": 191.09,
+      "en": "I don't have them and I do see why you know she would love you the girl you",
+      "vi": "Tôi không có và tôi hiểu tại sao bạn biết cô ấy sẽ yêu bạn cô gái bạn"
+    },
+    {
+      "start": 192.83,
+      "end": 201.33,
+      "en": "wrote that letter to but I understand that you did what you had to do and for",
+      "vi": "viết lá thư đó cho tôi nhưng tôi hiểu rằng bạn đã làm những gì bạn phải làm và cho"
+    },
+    {
+      "start": 207.35,
+      "end": 215.85,
+      "en": "that I'm so grateful but I don't love you I don't even know you I should",
+      "vi": "Rằng tôi rất biết ơn nhưng tôi không yêu bạn Tôi thậm chí không biết bạn tôi nên"
+    },
+    {
+      "start": 236.25,
+      "end": 244.75,
+      "en": "probably I'm sorry Peter I don't have a phone do you mind taking me home",
+      "vi": "Có lẽ tôi xin lỗi Peter Tôi không có điện thoại Anh có phiền đưa tôi về nhà không?"
+    }
+  ]
+}
