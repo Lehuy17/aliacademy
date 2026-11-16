@@ -1,0 +1,191 @@
+name: Prepare Spider-Man Brand New Day MJ Says I Dont Love You as ALI synced HTML5 bilingual video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-spiderman-brand-new-day-mj-ali.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-spiderman-mj-publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install transcription and offline translation tools
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/ali-spiderman-mj-env
+          /tmp/ali-spiderman-mj-env/bin/pip install --no-cache-dir \
+            'gdown>=5.0,<6' 'faster-whisper>=1.1,<2' \
+            'transformers>=4.44,<5' 'sentencepiece>=0.2,<1'
+          /tmp/ali-spiderman-mj-env/bin/pip install --no-cache-dir \
+            --index-url https://download.pytorch.org/whl/cpu 'torch>=2.6,<3'
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
+      - name: Retrieve the exact user-supplied Google Drive video
+        env:
+          DRIVE_FILE_ID: 14ysOPB-YK_BdkzALAcnDY_wnBcmF2uJR
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-spiderman-mj-env/bin/gdown --id "$DRIVE_FILE_ID" \
+                 --output /tmp/ali-spiderman-mj-original.mp4; then break; fi
+            rm -f /tmp/ali-spiderman-mj-original.mp4
+            sleep 10
+          done
+          test -s /tmp/ali-spiderman-mj-original.mp4
+          python3 - <<'PY'
+          import json, subprocess, pathlib
+          p=pathlib.Path('/tmp/ali-spiderman-mj-original.mp4')
+          info=json.loads(subprocess.check_output([
+            'ffprobe','-v','error','-show_entries',
+            'format=duration:stream=codec_type,width,height,avg_frame_rate',
+            '-of','json',str(p)]))
+          sec=float(info['format']['duration'])
+          assert 60 < sec < 1500, f'Unexpected original length: {sec:.3f}s'
+          assert p.stat().st_size == 224_967_103, f'Wrong Drive source size: {p.stat().st_size}'
+          streams=info['streams']
+          video=next(v for v in streams if v['codec_type']=='video')
+          assert video['width']>=1280 and video['height']>=720, (
+            f'Cannot export HD without upscaling {video["width"]}x{video["height"]}; use a high-quality source')
+          target_w,target_h=(1920,1080) if video['width']>=1920 and video['height']>=1080 else (1280,720)
+          pathlib.Path('/tmp/ali-spiderman-mj-target-w').write_text(str(target_w))
+          pathlib.Path('/tmp/ali-spiderman-mj-target-h').write_text(str(target_h)
+          video_kbps=int((82*1048576*8)/(sec*1000)-128-35)
+          assert video_kbps >= 550, f'Clip too long for useful 1080p within 90 MiB ({video_kbps}kbps); use video CDN'
+          maxrate_kbps=int(min(5800,video_kbps*1.65))
+          pathlib.Path('/tmp/ali-spiderman-mj-vrate').write_text(str(video_kbps)+'k')
+          pathlib.Path('/tmp/ali-spiderman-mj-maxrate').write_text(str(maxrate_kbps)+'k')
+          pathlib.Path('/tmp/ali-spiderman-mj-bufsize').write_text(str(maxrate_kbps*2)+'k')
+          print(f'Confirmed source: {sec:.3f}s, {p.stat().st_size} bytes, {video["width"]}x{video["height"]}, {video["avg_frame_rate"]}')
+          print(f'1080p30 two-pass target video bitrate: {video_kbps} kbps; audio 128 kbps')
+          PY
+
+      - name: Produce same-origin, seekable H264/AAC movie and film poster
+        run: |
+          set -euo pipefail
+          target='media/spiderman-brand-new-day-mj-says-i-dont-love-you'
+          mkdir -p "$target"
+          # Dynamic bitrate maximizes 1080p30 clarity without exceeding GitHub's <90 MiB gate.
+          v_rate="$(cat /tmp/ali-spiderman-mj-vrate)"
+          v_maxrate="$(cat /tmp/ali-spiderman-mj-maxrate)"
+          v_bufsize="$(cat /tmp/ali-spiderman-mj-bufsize)"
+          target_w="$(cat /tmp/ali-spiderman-mj-target-w)"
+          target_h="$(cat /tmp/ali-spiderman-mj-target-h)"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-spiderman-mj-original.mp4 \
+            -map 0:v:0 -an \
+            -vf "scale=${target_w}:${target_h}:force_original_aspect_ratio=decrease:force_divisible_by=2" \
+            -c:v libx264 -preset slow -profile:v high -level 4.1 \
+            -pix_fmt yuv420p -r 30 -b:v "$v_rate" -maxrate "$v_maxrate" -bufsize "$v_bufsize" -g 60 \
+            -pass 1 -passlogfile /tmp/ali-spiderman-mj-x264 -f null /dev/null
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-spiderman-mj-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf "scale=${target_w}:${target_h}:force_original_aspect_ratio=decrease:force_divisible_by=2" \
+            -c:v libx264 -preset slow -profile:v high -level 4.1 \
+            -pix_fmt yuv420p -r 30 -b:v "$v_rate" -maxrate "$v_maxrate" -bufsize "$v_bufsize" -g 60 \
+            -pass 2 -passlogfile /tmp/ali-spiderman-mj-x264 \
+            -c:a aac -b:a 128k -ar 48000 -ac 2 -movflags +faststart \
+            "$target/video.mp4"
+          test "$(stat -c%s "$target/video.mp4")" -lt $((90*1024*1024))
+          # Poster from the final encoded movie.
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 45 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -i /tmp/ali-spiderman-mj-original.mp4 -vn -ac 1 -ar 16000 \
+            /tmp/ali-spiderman-mj-audio.wav
+
+      # ASR uses WAV PCM decoding to avoid PyAV compatibility issues on Python 3.14.
+      # Script verifies the original 1920x1080 quality before exporting timed bilingual subtitles.
+      - name: Create real timed English dialogue and provisional Vietnamese translation
+        run: |
+          set -euo pipefail
+          /tmp/ali-spiderman-mj-env/bin/python scripts/prepare-spiderman-brand-new-day-mj-ali.py
+
+      - name: Gate publication on complete media and caption structure
+        run: |
+          set -euo pipefail
+          node scripts/validate-ali-single-preview.cjs spiderman-brand-new-day-mj-says-i-dont-love-you
+          python3 - <<'PY'
+          import json,pathlib
+          slug='spiderman-brand-new-day-mj-says-i-dont-love-you'
+          p=pathlib.Path('captions')/(slug+'.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['status']=='machine_transcript_bilingual_unreviewed'
+          assert len(d['cues'])>=10, 'No usable timed subtitles'
+          assert all(c['en'].strip() and c['vi'].strip() for c in d['cues'])
+          video=pathlib.Path('media')/slug/'video.mp4'
+          import subprocess
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error',
+                 '-show_entries','stream=codec_type,width,height,avg_frame_rate','-of','json',str(video)]))
+          v=next(x for x in meta['streams'] if x['codec_type']=='video')
+          assert (v['width'],v['height']) in ((1920,1080),(1280,720)), 'Expected native HD/FHD resolution'
+          assert v['avg_frame_rate']=='30/1', 'Must retain original 30 fps'
+          print('Draft transcript verified. Editorial & rights approvals remain pending.')
+          PY
+
+      - name: Publish only after validation succeeds
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          # Save just our generated entry before merging other concurrent ALI movie publishes.
+          python3 - <<'PY'
+          import json,pathlib
+          slug='spiderman-brand-new-day-mj-says-i-dont-love-you'
+          d=json.loads(pathlib.Path('ali-movies.json').read_text(encoding='utf-8'))
+          item=next(x for x in d['movies'] if x['id']==slug)
+          pathlib.Path('/tmp/ali-spiderman-mj-entry.json').write_text(json.dumps(item,ensure_ascii=False),encoding='utf-8')
+          PY
+          for attempt in 1 2 3; do
+            git fetch origin main
+            git reset --mixed origin/main
+            python3 - <<'PY'
+          import json,pathlib,subprocess
+          slug='spiderman-brand-new-day-mj-says-i-dont-love-you'
+          catalog=json.loads(subprocess.check_output(['git','show','origin/main:ali-movies.json']))
+          movie=json.loads(pathlib.Path('/tmp/ali-spiderman-mj-entry.json').read_text(encoding='utf-8'))
+          movies=catalog['movies']
+          pos=next((i for i,x in enumerate(movies) if x['id']==slug),None)
+          if pos is None:movies.append(movie)
+          else:movies[pos]=movie
+          catalog['version']=int(catalog.get('version',1))+1
+          pathlib.Path('ali-movies.json').write_text(json.dumps(catalog,ensure_ascii=False,indent=2)+'\\n',encoding='utf-8')
+          PY
+            git add ali-movies.json \\
+              media/spiderman-brand-new-day-mj-says-i-dont-love-you/video.mp4 \\
+              media/spiderman-brand-new-day-mj-says-i-dont-love-you/poster.jpg \\
+              captions/spiderman-brand-new-day-mj-says-i-dont-love-you.json
+            if git diff --cached --quiet; then
+              echo 'No changes to publish'
+              exit 0
+            fi
+            git commit -m 'Publish Spider-Man MJ scene ALI bilingual HTML5 synchronized preview'
+            if git push origin HEAD:main; then
+              echo 'Published ALI movie to main'
+              exit 0
+            fi
+            echo 'Concurrent publication detected; retrying against updated main'
+          done
+          echo 'Failed to push after concurrent updates' >&2
+          exit 1
