@@ -1,0 +1,62 @@
+/* ALI-CINEMA-QUIZ-01 · orange/white responsive movie comprehension quiz */
+#aliVideoPlayer .ali-movie-quiz-shell{
+ position:relative;z-index:2;max-width:960px;margin:24px auto 12px;
+ padding:0 2px;
+}
+#aliVideoPlayer .ali-quiz-card{
+ background:#fff;border:1px solid #f1d8c6;border-radius:21px;
+ box-shadow:0 16px 36px rgba(137,72,30,.13);
+ padding:clamp(18px,3vw,28px);color:#302630;
+}
+#aliVideoPlayer .ali-quiz-top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+#aliVideoPlayer .ali-quiz-kicker{
+ font-size:11px;letter-spacing:.11em;font-weight:900;color:#ec671f;
+}
+#aliVideoPlayer .ali-quiz-count{font-size:12px;font-weight:800;color:#7e6c66}
+#aliVideoPlayer .ali-quiz-heading{font-size:clamp(18px,2.6vw,24px);margin:12px 0 17px;line-height:1.4}
+#aliVideoPlayer .ali-quiz-track{background:#f9e8dd;height:7px;border-radius:8px;overflow:hidden}
+#aliVideoPlayer .ali-quiz-fill{height:100%;background:#ff681e;border-radius:8px;transition:width .2s ease}
+#aliVideoPlayer .ali-quiz-type{font-size:12px;font-weight:800;color:#b85d29;margin:21px 0 9px}
+#aliVideoPlayer .ali-quiz-question{font-size:clamp(15px,2vw,18px);line-height:1.6;margin:0 0 20px}
+#aliVideoPlayer .ali-quiz-options{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+#aliVideoPlayer .ali-quiz-option{
+ display:block;text-align:left;min-height:58px;padding:13px 15px;font-size:13px;line-height:1.55;
+ background:#fff9f5;color:#382b2b;border:1px solid #ead6ca;border-radius:12px;
+ transition:background .13s,border-color .13s;
+}
+#aliVideoPlayer .ali-quiz-option:hover:not(:disabled),
+#aliVideoPlayer .ali-quiz-option:focus-visible{
+ background:#fff1e5;border-color:#ff681e;outline:2px solid transparent;
+}
+#aliVideoPlayer .ali-quiz-option.is-correct{background:#effaf0;border-color:#5cae6d;color:#256535;font-weight:800}
+#aliVideoPlayer .ali-quiz-option.is-incorrect{background:#fff0ee;border-color:#dc8279;color:#a43b34}
+#aliVideoPlayer .ali-quiz-option:disabled{cursor:default;opacity:1}
+#aliVideoPlayer .ali-quiz-feedback{
+ display:none;margin:18px 0 0;padding:15px 16px;border-radius:12px;
+ background:#fff4eb;color:#644433;border-left:3px solid #ff681e;
+}
+#aliVideoPlayer .ali-quiz-feedback.is-visible{display:block}
+#aliVideoPlayer .ali-quiz-feedback strong{color:#ab511b;font-size:14px}
+#aliVideoPlayer .ali-quiz-feedback p{margin:6px 0 0;font-size:13px;line-height:1.65}
+#aliVideoPlayer .ali-quiz-action{
+ display:inline-flex;justify-content:center;align-items:center;
+ background:#ff681e;color:white;border:1px solid #ff681e;font-weight:850;
+ padding:12px 19px;margin-top:18px;border-radius:11px;min-height:45px;font-size:13px;
+}
+#aliVideoPlayer .ali-quiz-action:hover{background:#e45a16}
+#aliVideoPlayer .ali-quiz-action[hidden]{display:none}
+#aliVideoPlayer .ali-quiz-score{
+ color:#ee681e;font-size:clamp(34px,5vw,48px);font-weight:900;letter-spacing:-.04em;
+}
+#aliVideoPlayer .ali-quiz-result>p{font-size:14px;line-height:1.7;color:#78665e}
+#aliVideoPlayer .ali-quiz-loading{background:white;border:1px dashed #e6b897;padding:22px;border-radius:14px;font-size:13px;color:#865534}
+#aliVideoPlayer .ali-quiz-auto-note{margin:18px 0 0;color:#9a7d6c;font-size:11px;line-height:1.6}
+@media(max-width:680px){
+ #aliVideoPlayer .ali-quiz-options{grid-template-columns:1fr}
+ #aliVideoPlayer .ali-quiz-option{min-height:50px}
+ #aliVideoPlayer .ali-quiz-card{border-radius:15px}
+ #aliVideoPlayer .ali-quiz-action{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ #aliVideoPlayer .ali-quiz-fill,#aliVideoPlayer .ali-quiz-option{transition:none}
+}
