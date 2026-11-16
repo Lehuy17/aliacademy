@@ -266,23 +266,25 @@ async function openMovie(movie){
  $('aliVideoPlayer').classList.remove('hidden');
  setAmbientPoster(movie);
  $('aliVideoPlayer').scrollIntoView({behavior:'smooth'});
+ let loadedCues=[];
  cues=[];
  clock.textContent='00:00 / '+(movie.duration||'--:--');
  status.textContent='Đang tải nội dung…';
  try{
   if(Array.isArray(movie.captionsInline)){
-   cues=movie.captionsInline.filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((x,y)=>x.start-y.start);
+   loadedCues=movie.captionsInline.filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((x,y)=>x.start-y.start);
   }else if(movie.captions){
    const url=new URL(movie.captions,location.href);
    if(url.origin!==location.origin)throw Error('Chỉ tải phụ đề từ website ALI');
    const response=await fetch(url.href);
    if(!response.ok)throw Error('No captions');
    const json=await response.json();
-   cues=(Array.isArray(json.cues)?json.cues:[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((a,b)=>a.start-b.start);
+   loadedCues=(Array.isArray(json.cues)?json.cues:[]).filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((a,b)=>a.start-b.start);
   }
- }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');cues=[];}
+ }catch(e){console.info('Bộ phụ đề chưa sẵn sàng cho phim này');loadedCues=[];}
  // Ignore a stale caption fetch after a learner switches to another movie.
  if(selected!==selectionTicket)return;
+ cues=loadedCues;
  active=-1;autoScroll=true;showCues();
  if(movie.source?.type==='drive')fallback();else openSync();
 }
