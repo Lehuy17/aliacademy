@@ -114,7 +114,7 @@ def main():
     catalog = json.loads(CATALOG.read_text(encoding="utf-8"))
     movie = {
         "id": SLUG,
-        "title": ""She Is Our Caesar" Explaining the Coup Strategy Involving the Queen | The Crown (Olivia Colman)",
+        "title": "\"She Is Our Caesar\" Explaining the Coup Strategy Involving the Queen | The Crown (Olivia Colman)",
         "category": "PHIM SONG NGỮ · THE CROWN",
         "description": "Trích đoạn giải thích chiến lược đảo chính liên quan đến Nữ hoàng trong The Crown · 04:50 · bản phát 1080p/30fps; phụ đề Anh–Việt tự động đang chờ rà soát.",
         "duration": "04:50",
