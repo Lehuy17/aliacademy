@@ -5,28 +5,28 @@
   "source": "Speech recognition from the user-supplied clip with Whisper base.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
   "cues": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 6.48,
       "en": "I checked with the Cabinet Secretary, and it turns out that in the seven years I have been Prime Minister,",
-      "vi": "Tôi đã kiểm tra với Bộ trưởng Nội các, và hóa ra trong 7 năm tôi là Thủ tướng,"
+      "vi": "Tôi đã hỏi Thư ký Nội các và được biết rằng trong bảy năm tôi làm Thủ tướng,"
     },
     {
       "start": 6.48,
       "end": 14.88,
       "en": "we have had 164 audiences, always the model of cordiality, productivity, and mutual respect.",
-      "vi": "Chúng ta đã có 154 khán giả, luôn luôn là mô hình về sự thân thiện, năng suất và sự tôn trọng lẫn nhau."
+      "vi": "chúng ta đã có 164 buổi tiếp kiến, đều diễn ra trong không khí hòa nhã, hiệu quả và tôn trọng lẫn nhau."
     },
     {
       "start": 15.36,
       "end": 21.68,
       "en": "So it is perhaps not unreasonable to expect an isolated hiccup.",
-      "vi": "Vì thế, có lẽ mong đợi một nấc cục lẻ loi không phải là điều vô lý."
+      "vi": "Vì vậy, có lẽ cũng không quá vô lý khi nghĩ rằng đôi lúc có thể xảy ra một trục trặc nhỏ."
     },
     {
       "start": 21.68,
       "end": 22.48,
       "en": "What hiccup?",
-      "vi": "nấc cục nào?"
+      "vi": "Trục trặc gì cơ?"
     },
     {
       "start": 22.48,
@@ -35,16 +35,16 @@
       "vi": "Tôi có ấn tượng là Nữ Hoàng không bao giờ bày tỏ quan điểm chính trị của bà trước công chúng."
     },
     {
-      "start": 30.0,
+      "start": 30,
       "end": 31.8,
       "en": "I don't.",
-      "vi": "Tôi không biết."
+      "vi": "Tôi không làm vậy."
     },
     {
       "start": 31.8,
       "end": 36.96,
       "en": "But there was an unbreakable code of silence between sovereign and first minister.",
-      "vi": "Nhưng có một sự im lặng không thể phá vỡ giữa chủ quyền và mục sư đầu tiên."
+      "vi": "Nhưng giữa quân vương và thủ tướng luôn có một quy tắc giữ kín tuyệt đối."
     },
     {
       "start": 36.96,
@@ -92,7 +92,7 @@
       "start": 56.24,
       "end": 64.74,
       "en": "him that the sources were unimpeachable, close to the Queen, unprecedentedly close.",
-      "vi": "Anh ta cho rằng nguồn tin đó là không thể thuyết phục được, gần gũi với Nữ hoàng, gần như chưa từng thấy."
+      "vi": "Ông ấy được bảo rằng những nguồn tin ấy hoàn toàn đáng tin cậy, rất thân cận với Nữ hoàng, thân cận đến mức chưa từng có."
     },
     {
       "start": 67.92,
@@ -128,13 +128,13 @@
       "start": 99.8,
       "end": 101.8,
       "en": "Oh, and who is the senior?",
-      "vi": "Oh, và ai là học sinh năm cuối?"
+      "vi": "Ồ, thế ai lớn tuổi hơn?"
     },
     {
       "start": 101.8,
       "end": 105.08,
       "en": "I am.",
-      "vi": "Đúng vậy."
+      "vi": "Là tôi."
     },
     {
       "start": 105.08,
@@ -170,13 +170,13 @@
       "start": 124.8,
       "end": 129.04,
       "en": "And that my government has done irretrievable damage",
-      "vi": "Và chính phủ của tôi đã gây ra những thiệt hại không thể tránh khỏi."
+      "vi": "Và rằng chính phủ của tôi đã gây ra những tổn hại không thể cứu vãn"
     },
     {
       "start": 129.04,
       "end": 138.42,
       "en": "to the country's social fabric.",
-      "vi": "để xây dựng xã hội của đất nước."
+      "vi": "cho kết cấu xã hội của đất nước."
     },
     {
       "start": 138.42,
@@ -236,7 +236,7 @@
       "start": 172.5,
       "end": 177.54,
       "en": "with a father who could not bequeath me a title or a commonwealth,",
-      "vi": "Với một người cha không thể để lại cho tôi một tước hiệu hay một mối quan hệ bình thường,"
+      "vi": "với một người cha không thể để lại cho tôi tước vị hay tài sản,"
     },
     {
       "start": 177.54,
@@ -260,7 +260,7 @@
       "start": 190.18,
       "end": 198.38,
       "en": "My goal is to change this country from being dependent to self-reliant,",
-      "vi": "Mục tiêu của tôi là thay đổi đất nước này từ việc phụ thuộc vào sự tự chủ,"
+      "vi": "Mục tiêu của tôi là đưa đất nước này từ chỗ phụ thuộc sang tự lực,"
     },
     {
       "start": 198.38,
@@ -278,7 +278,7 @@
       "start": 204.38,
       "end": 207.38,
       "en": "Britons are learning to look after number one,",
-      "vi": "Người Anh đang học cách chăm sóc người thứ nhất,"
+      "vi": "Người Anh đang học cách ưu tiên bản thân,"
     },
     {
       "start": 207.38,
@@ -380,7 +380,7 @@
       "start": 266.22,
       "end": 270.18,
       "en": "Well, they need only read the Sunday times.",
-      "vi": "Họ chỉ cần đọc lần chủ nhật thôi."
+      "vi": "Vậy thì họ chỉ cần đọc tờ Sunday Times."
     },
     {
       "start": 270.18,
@@ -398,7 +398,7 @@
       "start": 284.03,
       "end": 288.51,
       "en": "How it flies.",
-      "vi": "Nó bay như thế nào."
+      "vi": "Thời gian trôi nhanh thật."
     },
     {
       "start": 288.51,
