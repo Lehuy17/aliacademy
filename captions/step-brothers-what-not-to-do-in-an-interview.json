@@ -8,19 +8,19 @@
       "start": 0.3,
       "end": 3.3,
       "en": "Mr. Huff, Mr. Geener is ready for your interview.",
-      "vi": "Ông Huff, ông Geener đã sẵn sàng cho cuộc phỏng vấn của ông."
+      "vi": "Ông Huff, ông Geener đã sẵn sàng phỏng vấn anh."
     },
     {
       "start": 3.3,
       "end": 5.3,
       "en": "Actually, we'll be interviewing as a team.",
-      "vi": "Thật ra, chúng tôi sẽ phỏng vấn như một đội."
+      "vi": "Thực ra, hai chúng tôi sẽ cùng tham gia phỏng vấn."
     },
     {
       "start": 5.3,
       "end": 7.3,
       "en": "We're here to fuck shit up.",
-      "vi": "Chúng ta đến đây để phá hoại mọi thứ."
+      "vi": "Bọn tôi đến đây để quậy tung mọi thứ."
     },
     {
       "start": 12.3,
@@ -32,13 +32,13 @@
       "start": 22.08,
       "end": 26.94,
       "en": "Well, Brennan, you certainly have had a lot of jobs.",
-      "vi": "Brennan, anh chắc chắn đã có rất nhiều việc làm."
+      "vi": "Brennan, anh quả là đã trải qua rất nhiều công việc."
     },
     {
       "start": 26.94,
       "end": 29.94,
       "en": "I'm a bit of a spark plug and a human resources lady.",
-      "vi": "Tôi là một người có nguồn điện và là một nhân viên nhân sự."
+      "vi": "Tôi khá năng nổ, thưa cô nhân sự."
     },
     {
       "start": 29.94,
@@ -68,25 +68,25 @@
       "start": 37.78,
       "end": 40.52,
       "en": "Were you saying pan or pam?",
-      "vi": "Anh vừa nói \"cái chảo\" hay \"pam\"?"
+      "vi": "Anh nói 'Pan' hay 'Pam' vậy?"
     },
     {
       "start": 40.52,
       "end": 42.44,
       "en": "I'm saying pam.",
-      "vi": "Tôi đang nói là cha."
+      "vi": "Tôi nói là 'Pam'."
     },
     {
       "start": 42.44,
       "end": 45.24,
       "en": "I'm sorry, who is this gentleman sitting behind you?",
-      "vi": "Xin lỗi, quý ông ngồi sau lưng anh là ai?"
+      "vi": "Xin lỗi, người đàn ông ngồi phía sau anh là ai vậy?"
     },
     {
       "start": 45.24,
       "end": 46.72,
       "en": "Hello, Ms. Lady.",
-      "vi": "Xin chào, cô Lady."
+      "vi": "Chào cô."
     },
     {
       "start": 46.72,
@@ -98,19 +98,19 @@
       "start": 47.56,
       "end": 48.52,
       "en": "I'm Brennan's step-brother,",
-      "vi": "Tôi là anh cùng cha khác mẹ với Brennan,"
+      "vi": "Tôi là anh em kế của Brennan,"
     },
     {
       "start": 48.52,
       "end": 52.28,
       "en": "and I think I might be able to help with the pan-pam dilemma.",
-      "vi": "Và tôi nghĩ tôi có thể giúp giải quyết vấn đề nan giải này."
+      "vi": "và tôi nghĩ mình có thể giúp giải quyết chuyện nhầm lẫn giữa 'Pan' và 'Pam'."
     },
     {
       "start": 52.28,
       "end": 53.12,
       "en": "Yeah, that'd be great.",
-      "vi": "Yeah, thật tuyệt."
+      "vi": "Ừ, vậy thì tốt quá."
     },
     {
       "start": 53.12,
@@ -170,7 +170,7 @@
       "start": 60.98,
       "end": 61.82,
       "en": "It's like calm.",
-      "vi": "Cứ như bình tĩnh vậy."
+      "vi": "Nghe giống từ 'calm' ấy."
     },
     {
       "start": 61.82,
@@ -182,7 +182,7 @@
       "start": 62.66,
       "end": 63.78,
       "en": "Except P-A-N-M.",
-      "vi": "Ngoại trừ P-A-N-M."
+      "vi": "Trừ khi là P-A-N-M."
     },
     {
       "start": 63.78,
@@ -218,13 +218,13 @@
       "start": 68.26,
       "end": 70.9,
       "en": "What do you say we interview you?",
-      "vi": "Anh nghĩ sao nếu chúng tôi phỏng vấn anh?"
+      "vi": "Hay để bọn tôi phỏng vấn ông nhé?"
     },
     {
       "start": 70.9,
       "end": 73.9,
       "en": "All right, yes, that's a sometimes useful exercise.",
-      "vi": "Được rồi, vâng, đôi khi đó là một bài tập hữu ích."
+      "vi": "Được thôi. Ừ, đôi khi làm thế cũng có ích."
     },
     {
       "start": 73.9,
@@ -236,37 +236,37 @@
       "start": 75.62,
       "end": 76.46,
       "en": "Go ahead.",
-      "vi": "Làm đi."
+      "vi": "Mời anh tiếp tục."
     },
     {
       "start": 76.46,
       "end": 80.74,
       "en": "How much money do you make a year before taxes?",
-      "vi": "Anh kiếm được bao nhiêu tiền một năm trước thuế?"
+      "vi": "Ông kiếm được bao nhiêu tiền mỗi năm, trước thuế?"
     },
     {
       "start": 80.74,
       "end": 82.9,
       "en": "Yeah, I'm actually not comfortable answering that.",
-      "vi": "Tôi thực sự không thoải mái khi trả lời câu đó."
+      "vi": "Tôi thực sự không tiện trả lời câu hỏi đó."
     },
     {
       "start": 82.9,
       "end": 83.9,
       "en": "Come on!",
-      "vi": "Nhanh lên!"
+      "vi": "Thôi nào!"
     },
     {
       "start": 83.9,
       "end": 85.82,
       "en": "We're doing the interview now, not you.",
-      "vi": "Chúng tôi đang phỏng vấn, không phải anh."
+      "vi": "Giờ bọn tôi là người phỏng vấn, không phải ông."
     },
     {
       "start": 85.82,
       "end": 87.42,
       "en": "Okay, here's a shout out of a cannon.",
-      "vi": "Được rồi, đây là tiếng hét của một khẩu đại bác."
+      "vi": "Được rồi, câu hỏi bất ngờ đây."
     },
     {
       "start": 87.42,
@@ -278,55 +278,55 @@
       "start": 89.66,
       "end": 92.34,
       "en": "You gotta fuck one, marry one, kill one, go!",
-      "vi": "Anh phải làm tình với một người, cưới một người, giết một người, đi!"
+      "vi": "Ông phải chọn: ngủ với một người, cưới một người, giết một người. Nào!"
     },
     {
       "start": 92.34,
       "end": 93.94,
       "en": "I think we're done here, thank you.",
-      "vi": "Tôi nghĩ chúng ta xong ở đây rồi, cảm ơn."
+      "vi": "Tôi nghĩ đến đây là đủ rồi. Cảm ơn."
     },
     {
       "start": 93.94,
       "end": 96.86,
       "en": "Mr. Huff, under your references,",
-      "vi": "Ông Huff, theo lời giới thiệu của ông,"
+      "vi": "Ông Huff, trong mục người tham chiếu của anh,"
     },
     {
       "start": 96.86,
       "end": 99.02,
       "en": "you listed Dale Dobek, which I know is this gentleman,",
-      "vi": "Anh đã liệt kê Dale Dobek, mà tôi biết là quý ông này,"
+      "vi": "anh có ghi tên Dale Dobek, tôi biết chính là quý ông này,"
     },
     {
       "start": 99.02,
       "end": 102.42,
       "en": "but you also listed Jesus Christ, our Lord and Savior.",
-      "vi": "nhưng anh_em cũng đã kể Ðức_Chúa_Jêsus_Christ là Chúa và Cứu_Chúa chúng_ta ."
+      "vi": "nhưng anh cũng ghi cả Chúa Jesus Christ, Đấng Cứu Thế của chúng ta."
     },
     {
       "start": 102.42,
       "end": 105.1,
       "en": "Yeah, we are looking for people we can contact.",
-      "vi": "Chúng tôi đang tìm người có thể liên lạc."
+      "vi": "Chúng tôi cần những người tham chiếu có thể liên hệ được."
     },
     {
       "start": 105.1,
       "end": 107.94,
       "en": "We wanna tell you the stuff we're not good at.",
-      "vi": "Chúng tôi muốn nói với anh những thứ chúng tôi không giỏi."
+      "vi": "Bọn tôi muốn nói trước những việc bọn tôi không giỏi."
     },
     {
       "start": 107.94,
       "end": 108.82,
       "en": "Our weaknesses.",
-      "vi": "Điểm yếu của chúng ta."
+      "vi": "Những điểm yếu của bọn tôi."
     },
     {
       "start": 108.82,
       "end": 110.62,
       "en": "So we're clear up front.",
-      "vi": "Vậy là chúng ta đã dọn sạch phía trước."
+      "vi": "Để mọi chuyện rõ ràng ngay từ đầu."
     },
     {
       "start": 110.62,
@@ -338,7 +338,7 @@
       "start": 111.7,
       "end": 114.7,
       "en": "We're not generally comfortable in an office setting,",
-      "vi": "Chúng tôi thường không thoải mái trong một bối cảnh văn phòng,"
+      "vi": "Nói thật, bọn tôi thường không thoải mái khi làm việc trong văn phòng,"
     },
     {
       "start": 114.7,
@@ -350,79 +350,79 @@
       "start": 115.7,
       "end": 116.86,
       "en": "I get cooped up.",
-      "vi": "Tôi bị nhốt."
+      "vi": "Tôi cảm thấy bị gò bó."
     },
     {
       "start": 116.86,
       "end": 120.06,
       "en": "I won't go into an office that's ever been used before.",
-      "vi": "Tôi sẽ không vào một văn phòng từng được sử dụng trước đây."
+      "vi": "Tôi không chịu vào những văn phòng đã có người dùng trước đó."
     },
     {
       "start": 120.06,
       "end": 122.9,
       "en": "I am no good before 11 a.m.",
-      "vi": "Tôi không giỏi trước 11 giờ sáng."
+      "vi": "Trước 11 giờ sáng tôi chẳng làm việc ra hồn."
     },
     {
       "start": 122.9,
       "end": 124.56,
       "en": "I also get headaches from computers,",
-      "vi": "Tôi cũng bị đau đầu vì máy tính."
+      "vi": "Máy tính cũng khiến tôi đau đầu,"
     },
     {
       "start": 124.56,
       "end": 126.46,
       "en": "so I can't be around them for too long.",
-      "vi": "Nên tôi không thể ở gần họ quá lâu."
+      "vi": "nên tôi không thể ở gần chúng quá lâu."
     },
     {
       "start": 126.46,
       "end": 128.06,
       "en": "I take stuff.",
-      "vi": "Tôi lấy đồ."
+      "vi": "Tôi còn hay lấy đồ của người khác."
     },
     {
       "start": 128.06,
       "end": 129.62,
       "en": "I need to have someone go up and down with me",
-      "vi": "Tôi cần có ai đó đi lên xuống với tôi"
+      "vi": "Tôi cần có người đi cùng"
     },
     {
       "start": 129.62,
       "end": 130.46,
       "en": "in the elevator.",
-      "vi": "Trong thang máy."
+      "vi": "khi lên xuống thang máy."
     },
     {
       "start": 130.46,
       "end": 133.5,
       "en": "I have a weakness for sweets.",
-      "vi": "Tôi có điểm yếu của kẹo."
+      "vi": "Tôi rất mê đồ ngọt."
     },
     {
       "start": 133.5,
       "end": 134.46,
       "en": "Other weaknesses?",
-      "vi": "Những yếu điểm khác?"
+      "vi": "Còn điểm yếu nào khác không?"
     },
     {
       "start": 134.46,
       "end": 136.86,
       "en": "We're slow learners, and we're not particularly",
-      "vi": "Chúng tôi là những người học chậm, và chúng tôi không phải là đặc biệt"
+      "vi": "Bọn tôi tiếp thu khá chậm và cũng không thực sự..."
     },
     {
       "start": 136.86,
       "end": 138.14,
       "en": "good listeners.",
-      "vi": "thính giả tốt."
+      "vi": "biết lắng nghe."
     },
     {
       "start": 138.14,
       "end": 140.14,
       "en": "That'll be a huge problem.",
-      "vi": "Đó sẽ là một vấn đề lớn."
+      "vi": "Đó sẽ là vấn đề rất lớn."
     },
     {
       "start": 140.14,
@@ -434,13 +434,13 @@
       "start": 142.02,
       "end": 143.98,
       "en": "Okay, first of all, I needed someone to learn this.",
-      "vi": "Được rồi, đầu tiên, tôi cần ai đó học điều này."
+      "vi": "Được rồi, trước tiên, tôi cần người có thể học việc này."
     },
     {
       "start": 143.98,
       "end": 144.82,
       "en": "Wait, shut your mouth.",
-      "vi": "Chờ đã, im đi."
+      "vi": "Khoan, im miệng đi."
     },
     {
       "start": 144.82,
@@ -458,13 +458,13 @@
       "start": 146.5,
       "end": 147.34,
       "en": "I think we've had enough here.",
-      "vi": "Tôi nghĩ ở đây đủ rồi."
+      "vi": "Tôi nghĩ đến đây là quá đủ rồi."
     },
     {
       "start": 147.34,
       "end": 148.18,
       "en": "Shut for one second.",
-      "vi": "Im lặng một chút."
+      "vi": "Im một giây thôi."
     },
     {
       "start": 148.18,
@@ -476,7 +476,7 @@
       "start": 149.26,
       "end": 150.1,
       "en": "I needed someone to learn this.",
-      "vi": "Tôi cần ai đó để học điều này."
+      "vi": "Tôi cần người học được việc này."
     },
     {
       "start": 150.1,
@@ -500,25 +500,25 @@
       "start": 152.62,
       "end": 153.82,
       "en": "You're just coming off stupid.",
-      "vi": "Anh chỉ đang trở nên ngu ngốc thôi."
+      "vi": "Anh đang khiến mình trông như một gã ngốc đấy."
     },
     {
       "start": 153.82,
       "end": 155.24,
       "en": "I'm coming off as stupid.",
-      "vi": "Tôi sẽ trở nên ngu ngốc."
+      "vi": "Tôi trông như một gã ngốc á?"
     },
     {
       "start": 155.24,
       "end": 157.14,
       "en": "You're wearing tuxedos to a job",
-      "vi": "Anh đang mặc đồ vest để làm việc."
+      "vi": "Hai anh mặc lễ phục đến phỏng vấn một công việc"
     },
     {
       "start": 157.14,
       "end": 159.42,
       "en": "that requires you to clean bathrooms.",
-      "vi": "Điều đó đòi hỏi anh phải lau chùi phòng tắm."
+      "vi": "mà nhiệm vụ là dọn nhà vệ sinh."
     },
     {
       "start": 159.42,
@@ -536,7 +536,7 @@
       "start": 161.42,
       "end": 163.26,
       "en": "Do we get any sort of souvenir?",
-      "vi": "Chúng ta có quà lưu niệm gì không?"
+      "vi": "Chúng tôi có được quà lưu niệm gì không?"
     },
     {
       "start": 163.26,
@@ -548,31 +548,31 @@
       "start": 165.1,
       "end": 166.38,
       "en": "I'm just looking to hire guys",
-      "vi": "Tôi chỉ muốn thuê người"
+      "vi": "Tôi chỉ muốn thuê những người"
     },
     {
       "start": 166.38,
       "end": 168.78,
       "en": "that I don't mind hanging out with for like 12 hours a day.",
-      "vi": "Rằng tôi không ngại đi chơi với khoảng 12 tiếng một ngày."
+      "vi": "mà tôi thấy thoải mái khi ở cạnh suốt chừng 12 tiếng mỗi ngày."
     },
     {
       "start": 168.78,
       "end": 170.62,
       "en": "You guys seem like cool guys.",
-      "vi": "Các cậu có vẻ là những chàng trai tuyệt vời."
+      "vi": "Hai cậu trông cũng khá thú vị."
     },
     {
       "start": 170.62,
       "end": 172.38,
       "en": "You got hair similar to mine.",
-      "vi": "Cô có tóc giống tóc của tôi."
+      "vi": "Tóc của các cậu còn giống tóc tôi."
     },
     {
       "start": 172.38,
       "end": 173.78,
       "en": "You wear tuxedos to the interview.",
-      "vi": "Anh mặc đồ vest đến buổi phỏng vấn."
+      "vi": "Các cậu mặc nguyên lễ phục đến phỏng vấn."
     },
     {
       "start": 173.78,
@@ -584,7 +584,7 @@
       "start": 174.62,
       "end": 175.46,
       "en": "It's ironic.",
-      "vi": "Thật mỉa mai."
+      "vi": "Đúng là tréo ngoe."
     },
     {
       "start": 175.46,
@@ -596,31 +596,31 @@
       "start": 176.28,
       "end": 177.94,
       "en": "You're kind of underplaying the whole formality of it.",
-      "vi": "Anh đang làm sai cả hình thức của nó đấy."
+      "vi": "Các cậu cố tình không quá coi trọng tính trang trọng của buổi phỏng vấn."
     },
     {
       "start": 177.94,
       "end": 179.46,
       "en": "I think that's funny as hell.",
-      "vi": "Tôi nghĩ điều đó thật buồn cười."
+      "vi": "Tôi thấy điều đó buồn cười chết đi được."
     },
     {
       "start": 179.46,
       "end": 180.86,
       "en": "So let's do this.",
-      "vi": "Vì vậy, hãy làm điều này."
+      "vi": "Vậy quyết định thế này nhé."
     },
     {
       "start": 180.86,
       "end": 181.94,
       "en": "You know, you guys are hired.",
-      "vi": "Các anh được thuê."
+      "vi": "Các cậu được nhận."
     },
     {
       "start": 181.94,
       "end": 185.24,
       "en": "You're in, you know, unless you're like the weirdest guys ever and I don't see it.",
-      "vi": "Cậu biết đấy, trừ khi cậu giống như những gã kì lạ nhất và tớ không thấy nó."
+      "vi": "Các cậu vào làm, trừ khi thực ra các cậu là những gã kỳ quặc nhất mà tôi chưa nhận ra."
     },
     {
       "start": 185.24,
@@ -632,7 +632,7 @@
       "start": 204.26,
       "end": 205.76,
       "en": "Was that a fart?",
-      "vi": "Đó có phải là một cái rắm không?"
+      "vi": "Vừa rồi có ai đánh rắm đấy à?"
     },
     {
       "start": 205.76,
@@ -644,25 +644,25 @@
       "start": 207.16,
       "end": 209.26,
       "en": "I can taste it.",
-      "vi": "Tôi có thể nếm nó."
+      "vi": "Tôi còn cảm nhận được cả mùi vị."
     },
     {
       "start": 209.26,
       "end": 210.56,
       "en": "On my tongue.",
-      "vi": "Trên lưỡi tôi."
+      "vi": "Ngay trên đầu lưỡi."
     },
     {
       "start": 210.56,
       "end": 213.26,
       "en": "Okay, I'll be honest with you, I did fart.",
-      "vi": "Được rồi, tôi sẽ thành thật với anh, tôi đã đánh rắm."
+      "vi": "Được rồi, tôi thú nhận: tôi vừa đánh rắm."
     },
     {
       "start": 213.26,
       "end": 216.36,
       "en": "Is that onion? Onion and... Onion and ketchup.",
-      "vi": "Hành tây và... hành tây và sốt cà chua."
+      "vi": "Mùi hành tây à? Hành tây với... hành tây và tương cà."
     },
     {
       "start": 216.36,
@@ -686,61 +686,61 @@
       "start": 220.26,
       "end": 223.86,
       "en": "Okay, now the tuxedos seem kind of fucked up.",
-      "vi": "Được rồi, giờ mấy bộ lễ phục có vẻ hơi lộn xộn."
+      "vi": "Giờ thì mấy bộ lễ phục ấy trông thật kỳ cục."
     },
     {
       "start": 223.86,
       "end": 227.96,
       "en": "God, you're so close.",
-      "vi": "Chúa ơi, gần quá rồi."
+      "vi": "Chúa ơi, suýt nữa thì được rồi."
     },
     {
       "start": 227.96,
       "end": 229.16,
       "en": "So what do we do for jobs?",
-      "vi": "Vậy chúng ta làm gì cho công việc?"
+      "vi": "Vậy rốt cuộc bọn mình sẽ làm nghề gì?"
     },
     {
       "start": 229.16,
       "end": 231.24,
       "en": "I mean, is your dad really going to kick us out?",
-      "vi": "Ý tớ là, bố cậu thực sự sẽ đuổi chúng ta ra khỏi đây sao?"
+      "vi": "Ý tớ là bố cậu thực sự sẽ đuổi bọn mình ra khỏi nhà à?"
     },
     {
       "start": 231.24,
       "end": 235.68,
       "en": "Listen, don't worry about my dad.",
-      "vi": "Nghe này, đừng lo lắng về bố tôi."
+      "vi": "Nghe này, đừng lo chuyện bố tớ."
     },
     {
       "start": 235.68,
       "end": 238.6,
       "en": "Got him sewn up.",
-      "vi": "Làm anh ta khâu vết thương lại."
+      "vi": "Tớ lo liệu ổn thỏa rồi."
     },
     {
       "start": 238.6,
       "end": 242.66,
       "en": "We've got to start thinking bigger, though, Brennan.",
-      "vi": "Chúng ta phải bắt đầu nghĩ xa hơn, Brennan."
+      "vi": "Nhưng Brennan à, chúng ta phải nghĩ lớn hơn."
     },
     {
       "start": 242.66,
       "end": 244.94,
       "en": "Listen, what are you really good at?",
-      "vi": "Nghe này, anh thực sự giỏi việc gì?"
+      "vi": "Nghe này, cậu thực sự giỏi việc gì?"
     },
     {
       "start": 244.94,
       "end": 246.3,
       "en": "Singing.",
-      "vi": "Hát đi."
+      "vi": "Ca hát."
     },
     {
       "start": 246.3,
       "end": 247.66,
       "en": "I'm a world-class singer.",
-      "vi": "Tôi là ca sĩ đẳng cấp thế giới."
+      "vi": "Tớ là ca sĩ đẳng cấp thế giới."
     },
     {
       "start": 247.66,
@@ -752,37 +752,37 @@
       "start": 248.5,
       "end": 250.74,
       "en": "Right there, that's an amazing skill.",
-      "vi": "Ngay đó, đó là một kỹ năng tuyệt vời."
+      "vi": "Đấy! Một tài năng tuyệt vời còn gì."
     },
     {
       "start": 250.74,
       "end": 252.18,
       "en": "Now, what am I good at?",
-      "vi": "Bây giờ, tôi giỏi làm gì?"
+      "vi": "Giờ thì tớ giỏi việc gì nhỉ?"
     },
     {
       "start": 252.18,
       "end": 255.34,
       "en": "I can shred on the drums, and I'm a marketing wiz.",
-      "vi": "Tôi có thể xé vụn trống ra, và tôi là một người tiếp thị Wiz."
+      "vi": "Tớ đánh trống cực đỉnh, lại còn là thiên tài tiếp thị."
     },
     {
       "start": 255.34,
       "end": 258.7,
       "en": "And put all that together, what do you get?",
-      "vi": "Và ghép tất cả lại với nhau, bạn nhận được gì?"
+      "vi": "Gộp tất cả những điều đó lại thì được gì?"
     },
     {
       "start": 258.7,
       "end": 260.06,
       "en": "I don't know, a band?",
-      "vi": "Tôi không biết, một ban nhạc?"
+      "vi": "Tớ không biết... một ban nhạc à?"
     },
     {
       "start": 260.06,
       "end": 262.82,
       "en": "No, that's been done before, even better.",
-      "vi": "Không, chuyện đó đã từng xảy ra rồi, thậm chí còn hay hơn."
+      "vi": "Không, người ta làm thế rồi. Phải hơn thế nữa!"
     },
     {
       "start": 262.82,
@@ -794,13 +794,13 @@
       "start": 266.74,
       "end": 268.08,
       "en": "the biggest and the best.",
-      "vi": "lớn nhất và tốt nhất."
+      "vi": "lớn nhất và giỏi nhất."
     },
     {
       "start": 269.82,
       "end": 273.42,
       "en": "And we're gonna call it Prestige Worldwide.",
-      "vi": "Và chúng ta sẽ gọi nó là Prestige Worldwide."
+      "vi": "Và đặt tên là Prestige Worldwide."
     },
     {
       "start": 273.42,
@@ -812,31 +812,31 @@
       "start": 275.22,
       "end": 279.26,
       "en": "Feel like a lightning bolt hit the tip of my penis.",
-      "vi": "Cảm giác như tia chớp đánh trúng đầu dương vật của tôi."
+      "vi": "Cảm giác như một tia sét vừa đánh trúng đầu 'cậu nhỏ' của tớ."
     },
     {
       "start": 279.26,
       "end": 280.74,
       "en": "Yeah, yeah.",
-      "vi": "Yeah, yeah."
+      "vi": "Ừ, đúng thế!"
     },
     {
       "start": 282.18,
       "end": 284.18,
       "en": "We're brothers, this is why we met.",
-      "vi": "Chúng ta là anh em, đây là lý do chúng ta gặp nhau."
+      "vi": "Chúng ta là anh em, và đó là lý do chúng ta gặp nhau."
     },
     {
       "start": 285.06,
       "end": 287.22,
       "en": "To form this alliance, right?",
-      "vi": "Để hình thành liên minh này, phải không?"
+      "vi": "Để lập nên liên minh này, đúng không?"
     },
     {
       "start": 287.22,
       "end": 290.02,
       "en": "That's why our parents met, so this idea could happen.",
-      "vi": "Đó là lý do bố mẹ chúng tôi gặp nhau, nên ý tưởng này có thể xảy ra."
+      "vi": "Bố mẹ chúng ta gặp nhau chính là để ý tưởng này thành hiện thực."
     },
     {
       "start": 290.02,
@@ -848,7 +848,7 @@
       "start": 291.52,
       "end": 292.52,
       "en": "We get to work.",
-      "vi": "Chúng ta bắt đầu làm việc."
+      "vi": "Bắt tay vào làm thôi."
     },
     {
       "start": 292.52,
@@ -860,7 +860,7 @@
       "start": 293.52,
       "end": 294.52,
       "en": "We hit the beat laboratory right now.",
-      "vi": "Chúng tôi đã tấn công phòng thí nghiệm."
+      "vi": "Giờ đi thẳng đến phòng làm nhạc nào."
     },
     {
       "start": 294.52,
@@ -914,13 +914,13 @@
       "start": 302.52,
       "end": 303.52,
       "en": "Four-thirty-two.",
-      "vi": "Bốn mươi ba."
+      "vi": "Bốn giờ ba mươi hai phút."
     },
     {
       "start": 303.52,
       "end": 308.52,
       "en": "Um, I can't go down Whitworth right now.",
-      "vi": "Tôi không thể xuống Whitworth lúc này."
+      "vi": "Ừm, bây giờ tớ không thể đi qua đường Whitworth."
     },
     {
       "start": 308.52,
@@ -956,25 +956,25 @@
       "start": 316.02,
       "end": 319.02,
       "en": "He gets in my face, and I just don't want to deal with the hassle right now because",
-      "vi": "Anh ta đánh vào mặt tôi, và tôi chỉ không muốn đối phó với rắc rối ngay bây giờ bởi vì"
+      "vi": "Hắn cứ gây sự với tớ, mà bây giờ tớ chẳng muốn chuốc lấy phiền phức, vì..."
     },
     {
       "start": 319.02,
       "end": 320.46,
       "en": "Aren't you too scared?",
-      "vi": "Anh không sợ sao?"
+      "vi": "Chẳng phải cậu đang sợ sao?"
     },
     {
       "start": 320.46,
       "end": 322.58,
       "en": "Can we please go the long way?",
-      "vi": "Chúng ta đi đường dài được không?"
+      "vi": "Mình đi đường vòng được không?"
     },
     {
       "start": 322.58,
       "end": 324.26,
       "en": "Um, down Cutler.",
-      "vi": "Um, xuống đường Cutler."
+      "vi": "Ừm, đi qua đường Cutler."
     },
     {
       "start": 324.26,
@@ -986,13 +986,13 @@
       "start": 325.42,
       "end": 327.18,
       "en": "That's 45 minutes.",
-      "vi": "Đó là 45 phút."
+      "vi": "Đi thế mất 45 phút đấy."
     },
     {
       "start": 327.18,
       "end": 328.46,
       "en": "You're gonna shame me into doing this.",
-      "vi": "Anh sẽ làm tôi xấu hổ đấy."
+      "vi": "Cậu đang làm tớ thấy xấu hổ đến mức phải đi đường đó."
     },
     {
       "start": 328.46,
@@ -1016,7 +1016,7 @@
       "start": 330.96,
       "end": 331.8,
       "en": "You're gonna be sorry.",
-      "vi": "Anh sẽ phải xin lỗi."
+      "vi": "Rồi cậu sẽ hối hận cho xem."
     },
     {
       "start": 331.8,
@@ -1024,5 +1024,27 @@
       "en": "Okay, I'm stupid.",
       "vi": "Được rồi, tôi thật ngu ngốc."
     }
-  ]
+  ],
+  "editorialNotes": {
+    "status": "language-only corrections based on machine transcript; not reviewed against original audio",
+    "version": "2026-11-16",
+    "needsAudioVerificationCueNumbers": [
+      1,
+      6,
+      14,
+      25,
+      28,
+      30,
+      44,
+      72,
+      79,
+      153,
+      157,
+      159,
+      160,
+      165,
+      170
+    ],
+    "contentNotice": "Film clip includes explicit profanity, crude sexual references, and flatulence humor. Review suitability for learners before certified publication."
+  }
 }
