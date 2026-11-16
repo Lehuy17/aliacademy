@@ -1,90 +1,62 @@
-/* ALI-CINEMA-QUIZ-01 — five questions under each movie, independent of playback. */
+/* ALI-CINEMA-QUIZ-02 — multiple non-repeating quiz sets per movie. */
+import {buildBackupSets} from './ali-movie-quiz-pools.js?v=1';
 const host=document.getElementById('aliMovieQuiz');
 const typeLabels={vocabulary:'Từ vựng · Vocabulary',grammar:'Ngữ pháp · Grammar',comprehension:'Nội dung phim · Comprehension'};
 let catalogPromise=null,requestSequence=0;
 const el=(tag,klass,text)=>{const x=document.createElement(tag);if(klass)x.className=klass;if(text!==undefined)x.textContent=text;return x;};
 function loadCatalog(){
- if(!catalogPromise)catalogPromise=fetch('./ali-movie-quizzes.json?v=1',{cache:'no-store'})
+ if(!catalogPromise)catalogPromise=fetch('./ali-movie-quizzes.json?v=2',{cache:'no-store'})
    .then(res=>{if(!res.ok)throw Error('Không tải được dữ liệu câu hỏi');return res.json();})
    .then(data=>data&&typeof data.quizzes==='object'?data.quizzes:{})
    .catch(err=>{console.warn('ALI quiz catalog unavailable',err);return {};});
  return catalogPromise;
-}
-const dictionary=[
- ['help','giúp đỡ'],['trust','tin tưởng'],['secret','bí mật'],['family','gia đình'],
- ['friend','bạn bè'],['dangerous','nguy hiểm'],['problem','vấn đề'],['promise','lời hứa'],
- ['school','trường học'],['work','làm việc'],['sorry','xin lỗi'],['future','tương lai'],
- ['today','hôm nay'],['tomorrow','ngày mai'],['important','quan trọng'],
- ['remember','nhớ'],['forget','quên'],['protect','bảo vệ'],['fight','chiến đấu'],
- ['ready','sẵn sàng'],['alone','một mình'],['together','cùng nhau'],
- ['happy','vui vẻ'],['afraid','sợ hãi'],['believe','tin rằng'],['money','tiền'],
- ['home','nhà'],['change','thay đổi'],['understand','hiểu'],['question','câu hỏi'],
- ['decision','quyết định'],['chance','cơ hội'],['answer','câu trả lời'],
- ['strong','mạnh mẽ'],['leave','rời đi'],['wait','chờ đợi'],['lost','bị mất'],
- ['save','cứu'],['thank','cảm ơn'],['need','cần'],['want','muốn']
-];
-function chooseOptions(correct,others,index){
- const unique=[correct,...others.filter(x=>x!==correct)];
- for(const extra of ['Quên lời thoại','Tìm hiểu','Chờ đợi','Giải thích'])if(unique.length<4&&!unique.includes(extra))unique.push(extra);
- const offset=index%4;
- const choices=unique.slice(0,4);
- return {options:[...choices.slice(offset),...choices.slice(0,offset)],answer:(4-offset)%4};
-}
-function autoQuiz(cues){
- const lines=(Array.isArray(cues)?cues:[])
-  .map(x=>typeof x.en==='string'?x.en.trim():'')
-  .filter(x=>x.length>=8 && x.length<=190);
- if(lines.length<3)return [];
- const full=lines.join(' ').toLowerCase();
- const found=dictionary.filter(([w])=>new RegExp('\\b'+w+'\\b','i').test(full)).slice(0,2);
- const output=[];
- for(let i=0;i<2;i++){
-  if(found[i]){
-   const [word,meaning]=found[i];
-   const distractors=['bảo vệ','gia đình','thay đổi','nguy hiểm','tương lai','nghỉ ngơi','bí mật','thành công'].filter(x=>x!==meaning).slice(i,i+3);
-   const v=chooseOptions(meaning,distractors,i+1);
-   output.push({type:'vocabulary',question:'Từ “'+word+'” xuất hiện trong lời thoại có nghĩa là gì?',...v,explanation:'“'+word+'” có nghĩa là “'+meaning+'”.'});
-  }else{
-   const sentence=lines[i]||lines[0];
-   const tokens=sentence.match(/[A-Za-z]{4,}/g)||[];
-   const word=tokens[Math.floor(tokens.length/2)]||'English';
-   const v=chooseOptions(word,['Garden','Winter','Painting','Laptop'],i+1);
-   output.push({type:'vocabulary',question:'Từ nào xuất hiện trong câu lời thoại: “'+sentence.slice(0,90)+'”?',...v,explanation:'Từ “'+word+'” xuất hiện nguyên văn trong câu được trích.'});
-  }
- }
- const patterns=[/\bI (am)\b/i,/\b(?:he|she|it) (is)\b/i,/\b(?:we|they|you) (are)\b/i,/\bI (was)\b/i,/\b(?:he|she|it) (was)\b/i,/\b(?:we|they|you) (were)\b/i];
- let syntax=null;
- for(const line of lines){for(const re of patterns){const m=re.exec(line);if(m){syntax={line,verb:m[1],index:m.index+m[0].lastIndexOf(m[1])};break;}}if(syntax)break;}
- if(syntax){
-  const blank=syntax.line.slice(0,syntax.index)+'___'+syntax.line.slice(syntax.index+syntax.verb.length);
-  const choices=['am','is','are','was','were'].filter(x=>x!==syntax.verb.toLowerCase()).slice(0,3);
-  const opts=chooseOptions(syntax.verb.toLowerCase(),choices,2);
-  output.push({type:'grammar',question:'Điền từ đúng theo lời thoại: “'+blank.slice(0,110)+'”',...opts,explanation:'Lời thoại gốc sử dụng “'+syntax.verb+'”.'});
- }else{
-  output.push({type:'grammar',question:'Chọn câu tiếng Anh đúng ngữ pháp.',options:['She are ready.','She is ready.','She am ready.','She be ready.'],answer:1,explanation:'Chủ ngữ She đi với is ở hiện tại đơn.'});
- }
- const stable=lines.filter(x=>x.length>=16&&x.length<=100);
- const sampled=[stable[Math.floor(stable.length*.25)]||lines[0],stable[Math.floor(stable.length*.75)]||lines[lines.length-1]];
- sampled.forEach((source,i)=>{
-  const distractors=['We are sailing to the moon.','The train leaves from Paris tomorrow.','The blue elephant is teaching science.','There is a bakery on the mountain.'];
-  const opts=chooseOptions(source,distractors.slice(i,i+3),i+1);
-  output.push({type:'comprehension',question:'Câu nào thực sự được nói trong đoạn phim?',...opts,explanation:'Trong phụ đề của phim có câu: “'+source+'”.'});
- });
- return output;
 }
 function isValid(data){
  return Array.isArray(data)&&data.length===5&&data.every(q=>
   q&&typeLabels[q.type]&&typeof q.question==='string'&&Array.isArray(q.options)&&q.options.length===4&&
   Number.isInteger(q.answer)&&q.answer>=0&&q.answer<4&&typeof q.explanation==='string');
 }
-function render(movie,questions,autoGenerated){
+
+/* Shuffle bag per learner and film: no repeated set until the bag is exhausted,
+   and never the same set on two consecutive starts/resets. */
+const inMemoryHistory=new Map();
+function shuffle(items){
+ const copy=[...items];
+ for(let i=copy.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[copy[i],copy[j]]=[copy[j],copy[i]];}
+ return copy;
+}
+function nextQuizPack(movieId,viewerId,packs){
+ const available=packs.map(p=>p.id);
+ const key='ALI_MOVIE_QUIZ_ROTATION_V2:'+encodeURIComponent(viewerId||'guest')+':'+encodeURIComponent(movieId);
+ let state=inMemoryHistory.get(key);
+ if(!state){try{state=JSON.parse(localStorage.getItem(key)||'null');}catch{state=null;}}
+ state=state&&typeof state==='object'?state:{};
+ const last=available.includes(state.last)?state.last:null;
+ let pending=Array.isArray(state.pending)&&state.signature===available.join('|')
+  ?state.pending.filter(id=>available.includes(id)&&id!==last):[];
+ pending=[...new Set(pending)];
+ if(!pending.length){
+  pending=shuffle(available);
+  if(pending.length>1&&pending[pending.length-1]===last){
+   const swapAt=pending.findIndex(id=>id!==last);
+   [pending[swapAt],pending[pending.length-1]]=[pending[pending.length-1],pending[swapAt]];
+  }
+ }
+ const id=pending.pop();
+ const next={signature:available.join('|'),last:id,pending};
+ inMemoryHistory.set(key,next);
+ try{localStorage.setItem(key,JSON.stringify(next));}catch{}
+ return packs.find(p=>p.id===id)||packs[0];
+}
+
+function render(movie,questions,autoGenerated,onNext,info){
  if(!host)return;
  let idx=0,score=0,chosen=-1;
  function renderQuestion(){
   host.replaceChildren();
   const wrap=el('div','ali-quiz-card');
   const top=el('div','ali-quiz-top');
-  top.append(el('span','ali-quiz-kicker','ALI MOVIE QUIZ'),el('span','ali-quiz-count','Câu '+(idx+1)+' / '+questions.length));
+  top.append(el('span','ali-quiz-kicker','ALI MOVIE QUIZ'),el('span','ali-quiz-count','Bộ đề '+info.ordinal+'/'+info.total+' · Câu '+(idx+1)+' / '+questions.length));
   const bar=el('div','ali-quiz-track');const fill=el('div','ali-quiz-fill');fill.style.width=((idx+1)/questions.length*100)+'%';bar.append(fill);
   wrap.append(top,el('h3','ali-quiz-heading','Luyện tập sau khi xem phim'),bar,
    el('p','ali-quiz-type',typeLabels[questions[idx].type]),
@@ -124,26 +96,50 @@ function render(movie,questions,autoGenerated){
    el('h3','ali-quiz-heading','Kết quả luyện tập'),
    el('div','ali-quiz-score',score+' / '+questions.length),
    el('p','',`Bạn trả lời đúng ${score} câu trên ${questions.length} câu (${Math.round(score/questions.length*100)}%).`));
-  const redo=el('button','ali-quiz-action','↻ Làm lại 5 câu hỏi');
-  redo.type='button';
-  redo.addEventListener('click',()=>{idx=0;score=0;chosen=-1;renderQuestion();});
-  wrap.append(redo);
+  if(info.total>1){
+   wrap.append(el('p','ali-quiz-fresh-note','Mỗi bộ có 5 câu khác nhau. Bộ vừa làm sẽ không xuất hiện ngay lần tiếp theo.'));
+   const redo=el('button','ali-quiz-action','↻ Làm bộ đề khác (5 câu mới)');
+   redo.type='button';
+   redo.addEventListener('click',onNext);
+   wrap.append(redo);
+  }else{
+   wrap.append(el('p','ali-quiz-fresh-note','Video này chưa có đủ bộ đề dự phòng để đổi câu hỏi. ALI sẽ bổ sung khi phụ đề được hoàn thiện.'));
+  }
   if(autoGenerated)wrap.append(el('p','ali-quiz-auto-note','Bài tập được tạo tự động từ phụ đề, chưa được kiểm duyệt bởi giáo viên.'));
   host.append(wrap);
  }
  renderQuestion();
 }
-export async function showMovieQuiz(movie,cues){
+export async function showMovieQuiz(movie,cues,viewerId){
  if(!host||!movie)return;
  const request=++requestSequence;
- host.replaceChildren(el('div','ali-quiz-loading','Đang chuẩn bị 5 câu hỏi luyện tập cho phim…'));
+ host.replaceChildren(el('div','ali-quiz-loading','Đang chuẩn bị nhiều bộ câu hỏi cho phim…'));
  const catalog=await loadCatalog();
  if(request!==requestSequence)return;
- const curated=catalog[movie.id];
- const fallback=autoQuiz(cues);
- if(isValid(curated))render(movie,curated,false);
- else if(isValid(fallback))render(movie,fallback,true);
- else host.replaceChildren(el('div','ali-quiz-loading','Phụ đề chưa đủ để tạo câu hỏi. ALI sẽ bổ sung nội dung sau.'));
+ const packs=[];
+ const raw=catalog[movie.id];
+ // Supports a legacy 5-question set and the future multi-set JSON structure.
+ if(isValid(raw))packs.push({id:'ali-editor-1',questions:raw,generated:false});
+ else if(Array.isArray(raw)){
+  raw.forEach((entry,i)=>{
+   if(isValid(entry))packs.push({id:'ali-editor-'+(i+1),questions:entry,generated:false});
+  });
+ }
+ const backupSets=buildBackupSets(cues,3);
+ backupSets.forEach((set,i)=>{
+  if(isValid(set))packs.push({id:'ali-caption-backup-'+(i+1),questions:set,generated:true});
+ });
+ if(!packs.length){
+  host.replaceChildren(el('div','ali-quiz-loading','Chưa có đủ phụ đề để biên soạn bài tập cho phim này.'));
+  return;
+ }
+ const next=()=>{
+  if(request!==requestSequence)return;
+  const chosen=nextQuizPack(movie.id,viewerId,packs);
+  const ordinal=packs.findIndex(p=>p.id===chosen.id)+1;
+  render(movie,chosen.questions,chosen.generated,next,{ordinal,total:packs.length});
+ };
+ next();
 }
 export function clearMovieQuiz(){
  requestSequence++;
