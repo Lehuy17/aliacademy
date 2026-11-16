@@ -159,20 +159,30 @@ function applyLanguage(){
 }
 function updateScreenCaptions(){
  const el=$('aliScreenCaptions');
- if(!syncReady()||!overlayEnabled||active<0||!cues[active]||!video.readyState){
-  el.classList.add('hidden');return;
- }
- const cue=cues[active];
- // Hide stale captions during long silent gaps, even if a transcript row remains highlighted.
- if(video.currentTime>cue.end+.35||video.currentTime<cue.start){
-  el.classList.add('hidden');return;
+ const compact=window.matchMedia('(max-width:700px)').matches;
+ const ready=syncReady()&&overlayEnabled&&cues.length>0&&video.readyState>=1;
+ movieScreen?.classList.toggle('has-mobile-captions',compact&&ready);
+ if(!ready){el.classList.add('hidden');return;}
+ const cue=active>=0?cues[active]:null;
+ const speaking=cue&&video.currentTime>=cue.start&&video.currentTime<=cue.end+.35;
+ if(!speaking){
+  if(!compact){el.classList.add('hidden');return;}
+  // An always-present caption dock prevents mobile layout jumps in silent scenes.
+  $('aliScreenCaptionEn').textContent=lang==='en'?'Waiting for dialogue…':'Đang chờ lời thoại…';
+  $('aliScreenCaptionVi').textContent='';
+  $('aliScreenCaptionEn').classList.remove('hidden');
+  $('aliScreenCaptionVi').classList.add('hidden');
+  el.classList.add('is-idle');
+  el.classList.remove('hidden');
+  return;
  }
  $('aliScreenCaptionEn').textContent=cue.en;
  $('aliScreenCaptionVi').textContent=cue.vi;
  $('aliScreenCaptionEn').classList.toggle('hidden',lang==='vi');
  $('aliScreenCaptionVi').classList.toggle('hidden',lang==='en');
- el.classList.remove('hidden');
+ el.classList.remove('is-idle','hidden');
 }
+window.addEventListener('resize',updateScreenCaptions);
 function sync(){
  if(!syncReady()){updateScreenCaptions();return;}
  const now=video.currentTime;
