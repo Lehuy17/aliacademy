@@ -517,3 +517,260 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
  #aliVideoPlayer .ali-mobile-caption-toolbar .language button{padding:5px 7px;font-size:9px}
  #aliVideoPlayer .ali-screen-captions{padding:10px 11px 14px}
 }
+
+
+/* ALI Cinema mobile v10 — unified film + synchronized captions */
+@media (max-width:700px) {
+  /* One physical card holds the player, current dialogue and rolling transcript. */
+  #aliVideoPlayer .cinema-glass-wrap {
+    padding:9px;
+    border-radius:20px;
+  }
+  #aliVideoPlayer .cinema-shell {
+    display:flex;
+    flex-direction:column;
+    gap:0;
+    overflow:hidden;
+    border:1px solid rgba(255,255,255,.88);
+    border-radius:18px;
+    background:#fffaf7;
+    box-shadow:0 14px 32px rgba(72,38,24,.13);
+  }
+  #aliVideoPlayer .video-panel,
+  #aliVideoPlayer .transcript-panel {
+    width:100%;
+    min-width:0;
+    margin:0;
+    align-self:stretch;
+  }
+  #aliVideoPlayer .video-panel,
+  #aliVideoPlayer .transcript {
+    overflow:hidden;
+    border:0;
+    border-radius:0;
+    background:transparent;
+    box-shadow:none;
+    -webkit-backdrop-filter:none;
+    backdrop-filter:none;
+  }
+  #aliVideoPlayer .video-panel-label {
+    padding:9px 12px 8px;
+    font-size:10px;
+    letter-spacing:.08em;
+  }
+  #aliVideoPlayer .screen {
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-start;
+    align-items:stretch;
+    width:calc(100% - 18px);
+    height:auto;
+    min-height:0;
+    max-height:none;
+    margin:0 9px;
+    aspect-ratio:auto;
+    border-radius:12px 12px 0 0;
+    background:#131116;
+    box-shadow:none;
+  }
+  #aliVideoPlayer .screen>video,
+  #aliVideoPlayer .screen>iframe {
+    order:0;
+    display:block;
+    flex:0 0 auto;
+    width:100%;
+    height:auto;
+    min-height:0;
+    max-height:none;
+    aspect-ratio:16/9;
+    object-fit:contain;
+    background:#0d0c10;
+  }
+  /* Current English and Vietnamese dialogue stays directly below the picture. */
+  #aliVideoPlayer .ali-screen-captions {
+    order:1;
+    position:relative;
+    inset:auto;
+    z-index:2;
+    display:flex;
+    flex:0 0 auto;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    gap:5px;
+    width:100%;
+    min-height:98px;
+    max-height:none;
+    padding:11px 13px 12px;
+    border-radius:0;
+    background:linear-gradient(180deg,#19151b,#100e14);
+    color:#fff;
+    text-align:center;
+    overflow-wrap:anywhere;
+    box-shadow:inset 0 1px rgba(255,255,255,.09);
+  }
+  #aliVideoPlayer .ali-screen-captions strong {
+    display:block;
+    max-width:100%;
+    font-size:clamp(16px,calc(18px * var(--caption-textscale,1)),25px);
+    font-weight:850;
+    line-height:1.5;
+    letter-spacing:0;
+    text-shadow:0 1px 3px #0008;
+  }
+  #aliVideoPlayer .ali-screen-captions span {
+    display:block;
+    max-width:100%;
+    font-size:clamp(14px,calc(15px * var(--caption-textscale,1)),22px);
+    font-weight:650;
+    line-height:1.5;
+    color:#ffd4b8;
+    text-shadow:0 1px 3px #0008;
+  }
+  #aliVideoPlayer .ali-screen-captions.is-idle strong {
+    font-size:13px;
+    font-weight:600;
+    color:#d1c7cf;
+    text-shadow:none;
+  }
+  /* Put language switch below live captions, not across the moving picture. */
+  #aliVideoPlayer .screen .ali-mobile-caption-toolbar,
+  #aliVideoPlayer .screen.has-mobile-captions .ali-mobile-caption-toolbar {
+    order:2;
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:7px;
+    width:100%;
+    padding:8px 11px;
+    border-top:1px solid rgba(255,255,255,.10);
+    background:#211b22;
+    color:#ffc09e;
+    font-size:10px;
+    font-weight:850;
+    letter-spacing:.035em;
+  }
+  #aliVideoPlayer .ali-mobile-caption-toolbar .language button {
+    min-height:34px;
+    min-width:38px;
+    padding:7px 9px;
+    font-size:11px;
+  }
+  #aliVideoPlayer .ali-screen-cc {
+    top:8px;
+    right:8px;
+    z-index:6;
+  }
+  #aliVideoPlayer .video-controls {
+    min-height:44px;
+    padding:8px 12px 9px;
+    gap:7px;
+    border-bottom:1px solid #f0dfd4;
+    background:#fffaf7;
+    font-size:11px;
+  }
+  #aliVideoPlayer .video-controls #aliVideoMode {
+    min-width:0;
+    flex:1 1 80px;
+  }
+  #aliVideoPlayer .video-controls button {
+    padding:7px 9px;
+    min-height:32px;
+    font-size:10px;
+  }
+  #aliVideoPlayer .cinema-player-tip {display:none}
+  #aliVideoPlayer .transcript {
+    height:clamp(305px,45dvh,410px);
+    min-height:0;
+  }
+  #aliVideoPlayer .transcript-head {
+    display:block;
+    padding:10px 13px 9px;
+    background:#fff8f2;
+    border-bottom:1px solid #f1e4dc;
+  }
+  #aliVideoPlayer .transcript-head .kicker,
+  #aliVideoPlayer .transcript-head .language {display:none}
+  #aliVideoPlayer .transcript-head h3 {
+    margin:0;
+    font-size:13px;
+    font-weight:850;
+    letter-spacing:0;
+    color:#9b4a25;
+  }
+  #aliVideoPlayer .ali-sync-toolbar {
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding:8px 11px;
+    gap:7px;
+    background:#fffaf7;
+  }
+  #aliVideoPlayer .ali-sync-indicator,
+  #aliVideoPlayer .ali-auto-scroll {
+    min-height:33px;
+    padding:7px 10px;
+    font-size:10px;
+  }
+  #aliVideoPlayer .transcript-scroll {
+    flex:1 1 auto;
+    min-height:0;
+    padding:8px 10px 12px;
+    scroll-padding-block:38%;
+    background:#fffaf7;
+  }
+  #aliVideoPlayer .transcript-list {gap:7px}
+  #aliVideoPlayer .ali-cue {
+    grid-template-columns:46px minmax(0,1fr);
+    gap:9px;
+    min-height:64px;
+    padding:11px 11px 11px 10px;
+    border-radius:11px;
+    border:1px solid #f1ded2;
+    background:#fff;
+    line-height:1.55;
+  }
+  #aliVideoPlayer .ali-cue:nth-child(odd) {background:#fffbf8}
+  #aliVideoPlayer .ali-cue.current {
+    background:#fff0e5;
+    border:2px solid #ff681e;
+    box-shadow:inset 3px 0 #ff681e;
+  }
+  #aliVideoPlayer .ali-stamp {
+    font-size:10px;
+    padding-top:4px;
+  }
+  #aliVideoPlayer .ali-cue-text {gap:5px}
+  #aliVideoPlayer .ali-en {
+    font-size:calc(16px * var(--textscale));
+    line-height:1.5;
+  }
+  #aliVideoPlayer .ali-vi {
+    font-size:calc(14px * var(--textscale));
+    line-height:1.6;
+    color:#7f5b4c;
+  }
+  #aliVideoPlayer .ali-cue-play {
+    position:static;
+    grid-column:2;
+    display:none;
+  }
+  #aliVideoPlayer .transcript-foot {
+    padding:8px 11px;
+    gap:6px;
+    background:#fff8f2;
+    font-size:10px;
+  }
+  #aliVideoPlayer .transcript-foot button {
+    min-width:35px;
+    min-height:33px;
+    padding:6px 9px;
+    font-size:12px;
+  }
+}
+@media (max-width:355px) {
+  #aliVideoPlayer .ali-mobile-caption-toolbar .language button {padding:6px 7px}
+  #aliVideoPlayer .ali-screen-captions {padding:10px 9px 11px}
+  #aliVideoPlayer .ali-cue {grid-template-columns:42px minmax(0,1fr);gap:7px}
+}
