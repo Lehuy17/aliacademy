@@ -1,4 +1,5 @@
 import {firebaseConfig} from './firebase-config.js';
+import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=1';
 const $=id=>document.getElementById(id);
 const video=$('aliHtmlVideo');
 const list=$('aliTranscriptList');
@@ -259,7 +260,7 @@ async function openSync(){
 async function openMovie(movie){
  const selected=++selectionTicket;
  // Cancel the previous film immediately, even if its captions are still loading.
- ++loadTicket;clearMedia();
+ ++loadTicket;clearMedia();clearMovieQuiz();
  $('aliDrivePlayer').removeAttribute('src');$('aliDrivePlayer').classList.add('hidden');
  currentMovie=movie;
  $('aliCurrentMovieTitle').textContent=movie.title||'Phim song ngữ ALI';
@@ -286,6 +287,8 @@ async function openMovie(movie){
  if(selected!==selectionTicket)return;
  cues=loadedCues;
  active=-1;autoScroll=true;showCues();
+ // Quiz is independent from playback and must not delay loading the film.
+ showMovieQuiz(movie,cues);
  if(movie.source?.type==='drive')fallback();else openSync();
 }
 function makeMovieCard(movie){
@@ -446,7 +449,7 @@ async function init(){
  }catch(err){message('Không kết nối được Firebase. Hãy thử tải lại trang.');}
 }
 $('closeMovie').addEventListener('click',()=>{
- ++selectionTicket;++loadTicket;clearMedia();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
+ ++selectionTicket;++loadTicket;clearMedia();clearMovieQuiz();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
  if(ambientFilm){ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();}
  ambientHost?.classList.remove('has-ambient-film');
  currentMovie=null;cues=[];active=-1;updateScreenCaptions();updateSyncControls();
