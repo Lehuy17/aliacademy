@@ -1,5 +1,5 @@
 {
-  "version": 33,
+  "version": 34,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -602,6 +602,36 @@
         "profanity": true,
         "sexualReferences": true,
         "teacherReviewRequired": true
+      }
+    },
+    {
+      "id": "better-call-saul-howard-exposes-jimmy-court",
+      "title": "The Moment Howard Attempts to EXPOSE Jimmy in Court | Better Call Saul",
+      "category": "PHIM SONG NGỮ · BETTER CALL SAUL",
+      "description": "Trích đoạn Howard đối chất với Jimmy tại tòa trong Better Call Saul · 04:11 · bản phát HTML5 đồng bộ; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "04:11",
+      "durationSeconds": 251.101,
+      "poster": "./media/better-call-saul-howard-exposes-jimmy-court/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/better-call-saul-howard-exposes-jimmy-court/video.mp4"
+      },
+      "captions": "./captions/better-call-saul-howard-exposes-jimmy-court.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
       }
     }
   ]
