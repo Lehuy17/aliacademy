@@ -1,5 +1,5 @@
 /* ALI-CINEMA-QUIZ-02 — multiple non-repeating quiz sets per movie. */
-import {buildBackupSets} from './ali-movie-quiz-pools.js?v=1';
+import {buildBackupSets} from './ali-movie-quiz-pools.js?v=2';
 const host=document.getElementById('aliMovieQuiz');
 const typeLabels={vocabulary:'Từ vựng · Vocabulary',grammar:'Ngữ pháp · Grammar',comprehension:'Nội dung phim · Comprehension'};
 let catalogPromise=null,requestSequence=0;
