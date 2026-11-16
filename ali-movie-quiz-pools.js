@@ -220,6 +220,23 @@ export function buildBackupSets(cues,count=3){
  const clozes=vocabClozeCandidates(pairs);
  const vocabPool=[...vocab,...clozes.filter(x=>!vocab.some(v=>v.question===x.question))];
  const grammar=pairs.map(grammarCandidate).filter(Boolean);
+ // Prefer grammar items grounded in actual lines over generic textbook fillers.
+ if(grammar.length<count){
+  const prepositions=['to','with','for','from','in','on','at','by'];
+  for(const pair of pairs){
+   if(grammar.length>=count)break;
+   const line=normalized(pair.en);
+   const match=/\b(to|with|for|from|in|on|at|by)\b/i.exec(line);
+   if(!match)continue;
+   const prep=match[1].toLowerCase();
+   const blank=line.slice(0,match.index)+'___'+line.slice(match.index+match[0].length);
+   const question='Chọn giới từ được sử dụng trong câu thoại: “'+blank+'”';
+   if(grammar.some(q=>q.question===question))continue;
+   grammar.push({type:'grammar',question,correct:prep,
+    others:prepositions.filter(x=>x!==prep).slice(0,3),
+    explanation:'Trong lời thoại gốc, từ được dùng là “'+prep+'”: “'+line+'”.'});
+  }
+ }
  if(grammar.length<3){
   const additions=[
    {type:'grammar',question:'Chọn dạng đúng: “She ___ ready.”',correct:'is',others:['am','are','be'],explanation:'He/She/It đi với is ở hiện tại đơn.'},
