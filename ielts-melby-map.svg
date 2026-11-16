@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 836 652" role="img" aria-labelledby="title desc">
+<title id="title">Melby Coal Mine</title><desc id="desc">Map with nine labeled places A to I, main visitor centre, ticket office, car park, engine house, compass and covered walkway.</desc>
+<rect width="836" height="652" fill="#fff"/>
+<g fill="none" stroke="#222" stroke-width="2.5" stroke-linejoin="miter">
+<path d="M17 115 H815 V637 H17 Z"/>
+<path d="M76 143 H140 V208 H76 Z"/>
+<path d="M355 134 H401 V172 H459 V217 H355 Z"/>
+<path d="M76 240 H347 V331 H76 Z M166 240 V331"/>
+<path d="M538 155 H734 V305 H538 Z"/>
+<path d="M76 381 H167 V595 H76 Z"/>
+<path d="M400 288 H464 V366 H555 V431 H400 Z"/>
+<path d="M631 342 H722 V433 H631 Z"/>
+<path d="M299 455 H390 V618 H299 Z"/>
+<path d="M390 490 H570 V582 H390 Z M480 490 V582"/>
+<path d="M607 490 H745 V581 H729 V637 H682 V581 H607 Z"/>
+</g>
+<g fill="none" stroke="#222" stroke-width="1.6" stroke-dasharray="6 5">
+<path d="M167 408 H228 L288 333 M167 426 H228 L314 331 M167 408 H228 L299 455 M167 427 H228 L299 472"/>
+<path d="M516 431 V490 M535 431 V490 M669 433 V490 M687 433 V490 M570 525 H607"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="21" fill="#202020" text-anchor="middle">
+<text x="120" y="278">Engine</text><text x="120" y="301">house</text>
+<text x="434" y="515">Main visitor centre</text>
+<text x="525" y="541">Ticket</text><text x="525" y="563">office</text><text x="679" y="543">Car park</text>
+</g>
+<g fill="#fff" stroke="#222" stroke-width="1.7">
+<circle cx="108" cy="175" r="12"/><circle cx="378" cy="195" r="12"/><circle cx="263" cy="286" r="12"/><circle cx="635" cy="230" r="12"/><circle cx="433" cy="398" r="12"/><circle cx="676" cy="386" r="12"/><circle cx="121" cy="487" r="12"/><circle cx="343" cy="549" r="12"/><circle cx="435" cy="549" r="12"/>
+</g>
+<g font-family="Arial,sans-serif" font-size="20" font-weight="bold" fill="#222" text-anchor="middle" dominant-baseline="central">
+<text x="108" y="175">B</text><text x="378" y="195">D</text><text x="263" y="286">C</text><text x="635" y="230">H</text><text x="433" y="398">E</text><text x="676" y="386">I</text><text x="121" y="487">A</text><text x="343" y="549">F</text><text x="435" y="549">G</text>
+</g>
+<g font-family="Arial,sans-serif" font-size="17" fill="#222" text-anchor="middle">
+<text x="140" y="28">N</text><text x="140" y="97">S</text><text x="103" y="61">W</text><text x="174" y="61">E</text>
+</g>
+<g stroke="#222" stroke-width="2" fill="none"><path d="M140 33 V88 M113 57 H165"/><path d="m140 33 -5 9 m5-9 5 9 M140 88 l-5 -9 m5 9 5-9 M113 57 l9-5 m-9 5 9 5 M165 57 l-9-5 m9 5-9 5"/></g>
+<rect x="283" y="20" width="265" height="62" fill="none" stroke="#222" stroke-width="2.4"/>
+<g stroke="#222" stroke-width="1.6" stroke-dasharray="6 5"><path d="M298 43 H439 M298 62 H439"/></g>
+<g font-family="Arial,sans-serif" font-size="19" fill="#222"><text x="459" y="46">Covered</text><text x="459" y="67">walkway</text></g>
+</svg>
