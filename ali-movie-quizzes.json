@@ -3,68 +3,6 @@
   "format": "ALI-CINEMA-QUIZ-01",
   "questionsPerFilm": 5,
   "quizzes": {
-    "ali-video-01": [
-      {
-        "type": "vocabulary",
-        "question": "Trong câu 'Are you in need of any assistance?', 'assistance' có nghĩa là gì?",
-        "options": [
-          "Sự giúp đỡ",
-          "Lời cảnh báo",
-          "Sự cho phép",
-          "Cuộc họp"
-        ],
-        "answer": 0,
-        "explanation": "Assistance = help, nghĩa là sự hỗ trợ hoặc giúp đỡ."
-      },
-      {
-        "type": "vocabulary",
-        "question": "Cụm 'cross the street' có nghĩa là gì?",
-        "options": [
-          "Đi dọc con phố",
-          "Băng qua đường",
-          "Quay về nhà",
-          "Lái xe đi xa"
-        ],
-        "answer": 1,
-        "explanation": "Cross the street = đi từ bên này sang bên kia đường."
-      },
-      {
-        "type": "grammar",
-        "question": "Điền từ đúng: 'My name ___ Russell.'",
-        "options": [
-          "am",
-          "are",
-          "is",
-          "be"
-        ],
-        "answer": 2,
-        "explanation": "Chủ ngữ 'My name' là số ít, dùng 'is'."
-      },
-      {
-        "type": "comprehension",
-        "question": "Cậu bé tự giới thiệu mình tên là gì?",
-        "options": [
-          "Kevin",
-          "Russell",
-          "Peter",
-          "Max"
-        ],
-        "answer": 1,
-        "explanation": "Cậu bé nói: 'My name is Russell.'"
-      },
-      {
-        "type": "comprehension",
-        "question": "Russell chủ động đề nghị giúp người đàn ông làm gì?",
-        "options": [
-          "Nấu bữa tối",
-          "Sửa xe",
-          "Băng qua đường",
-          "Viết thư"
-        ],
-        "answer": 2,
-        "explanation": "Russell liên tục hỏi liệu ông có cần giúp băng qua đường hay không."
-      }
-    ],
     "spiderman-nwh-2021-doing-this-long-time": [
       {
         "type": "vocabulary",
