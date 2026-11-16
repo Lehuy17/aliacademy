@@ -1,0 +1,1247 @@
+{
+  "version": 1,
+  "format": "ALI-CINEMA-QUIZ-01",
+  "questionsPerFilm": 5,
+  "quizzes": {
+    "ali-video-01": [
+      {
+        "type": "vocabulary",
+        "question": "Trong câu 'Are you in need of any assistance?', 'assistance' có nghĩa là gì?",
+        "options": [
+          "Sự giúp đỡ",
+          "Lời cảnh báo",
+          "Sự cho phép",
+          "Cuộc họp"
+        ],
+        "answer": 0,
+        "explanation": "Assistance = help, nghĩa là sự hỗ trợ hoặc giúp đỡ."
+      },
+      {
+        "type": "vocabulary",
+        "question": "Cụm 'cross the street' có nghĩa là gì?",
+        "options": [
+          "Đi dọc con phố",
+          "Băng qua đường",
+          "Quay về nhà",
+          "Lái xe đi xa"
+        ],
+        "answer": 1,
+        "explanation": "Cross the street = đi từ bên này sang bên kia đường."
+      },
+      {
+        "type": "grammar",
+        "question": "Điền từ đúng: 'My name ___ Russell.'",
+        "options": [
+          "am",
+          "are",
+          "is",
+          "be"
+        ],
+        "answer": 2,
+        "explanation": "Chủ ngữ 'My name' là số ít, dùng 'is'."
+      },
+      {
+        "type": "comprehension",
+        "question": "Cậu bé tự giới thiệu mình tên là gì?",
+        "options": [
+          "Kevin",
+          "Russell",
+          "Peter",
+          "Max"
+        ],
+        "answer": 1,
+        "explanation": "Cậu bé nói: 'My name is Russell.'"
+      },
+      {
+        "type": "comprehension",
+        "question": "Russell chủ động đề nghị giúp người đàn ông làm gì?",
+        "options": [
+          "Nấu bữa tối",
+          "Sửa xe",
+          "Băng qua đường",
+          "Viết thư"
+        ],
+        "answer": 2,
+        "explanation": "Russell liên tục hỏi liệu ông có cần giúp băng qua đường hay không."
+      }
+    ],
+    "spiderman-nwh-2021-doing-this-long-time": [
+      {
+        "type": "vocabulary",
+        "question": "Trong kế hoạch của Peter, 'lure these guys' nghĩa là gì?",
+        "options": [
+          "Chữa trị cho họ",
+          "Dụ họ đến một nơi",
+          "Bắt tay với họ",
+          "Quên họ đi"
+        ],
+        "answer": 1,
+        "explanation": "Lure = dụ, thu hút ai đó đến một địa điểm."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'We're getting sidetracked' có nghĩa là gì?",
+        "options": [
+          "Chúng ta bị lạc đề",
+          "Chúng ta đã thành công",
+          "Chúng ta quá muộn",
+          "Chúng ta đang diễn tập"
+        ],
+        "answer": 0,
+        "explanation": "Get sidetracked = bị phân tán, đi chệch khỏi chủ đề chính."
+      },
+      {
+        "type": "grammar",
+        "question": "Điền dạng quá khứ đúng: 'I accidentally ___ those dangerous people here.'",
+        "options": [
+          "bring",
+          "bringing",
+          "brought",
+          "brings"
+        ],
+        "answer": 2,
+        "explanation": "Brought là quá khứ của bring."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nhóm Spider-Man định làm gì với những người nguy hiểm?",
+        "options": [
+          "Chữa trị rồi đưa họ về thế giới của mình",
+          "Giữ họ ở lại mãi mãi",
+          "Đưa họ lên mặt trăng",
+          "Tự nguyện đầu hàng"
+        ],
+        "answer": 0,
+        "explanation": "Trong đoạn phim, họ bàn cách chữa trị và gửi các đối thủ trở về."
+      },
+      {
+        "type": "comprehension",
+        "question": "Peter chọn địa danh nào để thu hút các đối thủ tới?",
+        "options": [
+          "Tháp Eiffel",
+          "Tượng Nữ thần Tự do",
+          "Cầu London",
+          "Nhà Trắng"
+        ],
+        "answer": 1,
+        "explanation": "Peter nêu địa điểm Statue of Liberty."
+      }
+    ],
+    "kung-fu-panda-po-vs-tai-lung-final-battle": [
+      {
+        "type": "vocabulary",
+        "question": "'Secret ingredient' nghĩa là gì?",
+        "options": [
+          "Bí quyết / nguyên liệu bí mật",
+          "Vũ khí bị mất",
+          "Người canh gác",
+          "Một bài kiểm tra"
+        ],
+        "answer": 0,
+        "explanation": "Ingredient là nguyên liệu; secret ingredient là nguyên liệu hoặc bí quyết bí mật."
+      },
+      {
+        "type": "vocabulary",
+        "question": "Tai Lung nói 'You're bluffing.' Từ 'bluffing' nghĩa là gì?",
+        "options": [
+          "Đang ngủ",
+          "Đang nói dối/đánh lừa",
+          "Đang cảm ơn",
+          "Đang chữa bệnh"
+        ],
+        "answer": 1,
+        "explanation": "Bluff = cố làm người khác tin điều không thật."
+      },
+      {
+        "type": "grammar",
+        "question": "Điền đúng: 'I ___ Tai Lung.'",
+        "options": [
+          "defeat",
+          "defeated",
+          "defeating",
+          "defeats"
+        ],
+        "answer": 1,
+        "explanation": "Po nói về chiến thắng đã xảy ra nên dùng quá khứ đơn defeated."
+      },
+      {
+        "type": "comprehension",
+        "question": "Ai tự giới thiệu là Dragon Warrior?",
+        "options": [
+          "Tai Lung",
+          "Shifu",
+          "Po",
+          "Oogway"
+        ],
+        "answer": 2,
+        "explanation": "Po nói 'I am the Dragon Warrior.'"
+      },
+      {
+        "type": "comprehension",
+        "question": "Cuối phim, Shifu giải thích tình trạng của mình thế nào?",
+        "options": [
+          "Ông đang ngủ",
+          "Ông sắp rời thung lũng",
+          "Ông đang thanh thản, không phải sắp chết",
+          "Ông bị mất trí nhớ"
+        ],
+        "answer": 2,
+        "explanation": "Shifu nói ông không chết, chỉ đang cảm thấy bình yên."
+      }
+    ],
+    "jack-frost-defeats-pitch-black-guardian-oath": [
+      {
+        "type": "vocabulary",
+        "question": "Trong câu 'take the oath', 'oath' là gì?",
+        "options": [
+          "Lời thề",
+          "Món quà",
+          "Tấm bản đồ",
+          "Trận chiến"
+        ],
+        "answer": 0,
+        "explanation": "Take an oath = tuyên thệ, đưa ra lời hứa trang trọng."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Guard them with your life' có nghĩa gần nhất là gì?",
+        "options": [
+          "Đếm số người",
+          "Bảo vệ bằng cả tính mạng",
+          "Giữ bí mật cho mình",
+          "Dẫn họ về nhà"
+        ],
+        "answer": 1,
+        "explanation": "Guard = canh giữ, bảo vệ."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'As long as one child ___, we will be here to fight fear.'",
+        "options": [
+          "believe",
+          "believes",
+          "believed",
+          "believing"
+        ],
+        "answer": 1,
+        "explanation": "One child là chủ ngữ số ít nên hiện tại đơn dùng believes."
+      },
+      {
+        "type": "comprehension",
+        "question": "Sau khi tuyên thệ, Jack Frost trở thành gì?",
+        "options": [
+          "A Guardian",
+          "A King",
+          "A Teacher",
+          "A Pirate"
+        ],
+        "answer": 0,
+        "explanation": "Jack được công nhận là một Guardian (Người Bảo Hộ)."
+      },
+      {
+        "type": "comprehension",
+        "question": "Những Guardian nói họ sẽ tiếp tục chiến đấu chống lại điều gì?",
+        "options": [
+          "Đói nghèo",
+          "Sự sợ hãi",
+          "Cái nóng",
+          "Bệnh tật"
+        ],
+        "answer": 1,
+        "explanation": "Họ nói sẽ ở đó 'to fight fear'."
+      }
+    ],
+    "focker-in-law-did-you-pee-in-my-purse": [
+      {
+        "type": "vocabulary",
+        "question": "'Lavatory' trên máy bay có nghĩa là gì?",
+        "options": [
+          "Phòng vệ sinh",
+          "Buồng lái",
+          "Phòng khách",
+          "Khoang hành lý"
+        ],
+        "answer": 0,
+        "explanation": "Lavatory là nhà vệ sinh, nhất là trên máy bay."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Rifling through my bag' nghĩa là gì?",
+        "options": [
+          "Giặt túi xách",
+          "Lục lọi trong túi",
+          "Mua túi mới",
+          "Khóa túi"
+        ],
+        "answer": 1,
+        "explanation": "Rifle through = lục lọi, tìm kiếm trong đồ đạc."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn động từ đúng: 'Did you ___ in my purse?'",
+        "options": [
+          "peed",
+          "peeing",
+          "pee",
+          "pees"
+        ],
+        "answer": 2,
+        "explanation": "Sau trợ động từ Did dùng động từ nguyên thể không 'to'."
+      },
+      {
+        "type": "comprehension",
+        "question": "Người phụ nữ cáo buộc người đàn ông làm gì?",
+        "options": [
+          "Lục lọi túi xách của cô ấy",
+          "Lấy điện thoại của phi công",
+          "Làm mất vé",
+          "Đổi ghế cho người khác"
+        ],
+        "answer": 0,
+        "explanation": "Cô ấy nói người đàn ông đã lục túi của mình."
+      },
+      {
+        "type": "comprehension",
+        "question": "Olivia được giới thiệu với gia đình như thế nào?",
+        "options": [
+          "Một giáo viên",
+          "Bạn gái của Henry",
+          "Nhân viên sân bay",
+          "Chị gái của Greg"
+        ],
+        "answer": 1,
+        "explanation": "Henry giới thiệu Olivia là bạn gái của mình."
+      }
+    ],
+    "meeting-lavagirl-and-sharkboy": [
+      {
+        "type": "vocabulary",
+        "question": "'Shelter' trong 'find shelter' có nghĩa là gì?",
+        "options": [
+          "Nơi trú ẩn",
+          "Vũ khí",
+          "Phần thưởng",
+          "Tấm vé"
+        ],
+        "answer": 0,
+        "explanation": "Find shelter = tìm chỗ trú ẩn an toàn."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Expelled' trong trường học có nghĩa là gì?",
+        "options": [
+          "Được khen thưởng",
+          "Bị đuổi học",
+          "Được nghỉ giải lao",
+          "Được chuyển lớp"
+        ],
+        "answer": 1,
+        "explanation": "Expel a student = đuổi học một học sinh."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'When cold air ___ with hot air, it can form a tornado.'",
+        "options": [
+          "mix",
+          "mixes",
+          "mixed",
+          "mixing"
+        ],
+        "answer": 1,
+        "explanation": "Chủ ngữ cold air không đếm được, dùng mixes ở hiện tại đơn."
+      },
+      {
+        "type": "comprehension",
+        "question": "Ai bị tố đã lấy cuốn nhật ký của Max?",
+        "options": [
+          "Linus",
+          "Sharkboy",
+          "Mr. Electric",
+          "Lavagirl"
+        ],
+        "answer": 0,
+        "explanation": "Max nói rằng Linus đã lấy nhật ký."
+      },
+      {
+        "type": "comprehension",
+        "question": "Trong đoạn phim, kính bảo hộ màu nào được phát cho các bạn nam?",
+        "options": [
+          "Đỏ",
+          "Vàng",
+          "Xanh dương",
+          "Xanh lá"
+        ],
+        "answer": 2,
+        "explanation": "Lời thoại nói: 'Blue goggles for the boys, pink for the girls.'"
+      }
+    ],
+    "hotel-transylvania-3-dj-battle-kraken": [
+      {
+        "type": "vocabulary",
+        "question": "'Demise' trong 'demise of all monsters' có nghĩa gần nhất là gì?",
+        "options": [
+          "Sự diệt vong",
+          "Cuộc hội ngộ",
+          "Sự ra đời",
+          "Kỳ nghỉ"
+        ],
+        "answer": 0,
+        "explanation": "Demise = cái chết, sự kết thúc hoặc diệt vong."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Legacy' trong 'start a new legacy' nghĩa là gì?",
+        "options": [
+          "Di sản để lại",
+          "Khó khăn nhỏ",
+          "Giọng hát",
+          "Lời cảnh báo"
+        ],
+        "answer": 0,
+        "explanation": "Legacy là di sản, điều được truyền lại cho thế hệ sau."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'We're going to ___ good music to defeat his evil music.'",
+        "options": [
+          "using",
+          "uses",
+          "used",
+          "use"
+        ],
+        "answer": 3,
+        "explanation": "Sau 'be going to' dùng động từ nguyên mẫu."
+      },
+      {
+        "type": "comprehension",
+        "question": "Điều gì đang điều khiển con quái vật khổng lồ?",
+        "options": [
+          "Nhạc của Van Helsing",
+          "Một quyển sách",
+          "Bánh sinh nhật",
+          "Một đoàn tàu"
+        ],
+        "answer": 0,
+        "explanation": "Nhóm nhận ra các giai điệu của Van Helsing đang điều khiển sinh vật."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nhóm nhân vật chống lại âm nhạc xấu bằng cách nào?",
+        "options": [
+          "Bật nhạc tích cực",
+          "Tắt toàn bộ đèn",
+          "Lặn xuống biển",
+          "Bỏ chạy"
+        ],
+        "answer": 0,
+        "explanation": "Họ tổ chức DJ battle và dùng nhạc tích cực để đánh bại nhạc xấu."
+      }
+    ],
+    "bad-boys-best-reggie-scenes": [
+      {
+        "type": "vocabulary",
+        "question": "'Make a hole!' trong cảnh đông người gần nghĩa nhất là gì?",
+        "options": [
+          "Đào một cái hố",
+          "Tránh ra, nhường đường",
+          "Hãy im lặng",
+          "Quay lại ngay"
+        ],
+        "answer": 1,
+        "explanation": "Trong giao tiếp, 'Make a hole!' dùng để yêu cầu đám đông nhường lối."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Respectful' có nghĩa là gì?",
+        "options": [
+          "Tôn trọng, lễ phép",
+          "Bối rối",
+          "Nguy hiểm",
+          "Đắt tiền"
+        ],
+        "answer": 0,
+        "explanation": "Respectful = thể hiện sự kính trọng."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'He ___ to take Megan out.'",
+        "options": [
+          "come",
+          "comes",
+          "came",
+          "coming"
+        ],
+        "answer": 2,
+        "explanation": "Khi kể lại một việc trong quá khứ, dùng came."
+      },
+      {
+        "type": "comprehension",
+        "question": "Khi lần đầu được hỏi tuổi, Reggie trả lời mình bao nhiêu tuổi?",
+        "options": [
+          "15",
+          "18",
+          "21",
+          "30"
+        ],
+        "answer": 0,
+        "explanation": "Trong đoạn giới thiệu ban đầu, Reggie nói mình 15 tuổi."
+      },
+      {
+        "type": "comprehension",
+        "question": "Trong phần cảnh gia đình, em bé được đặt tên theo ai?",
+        "options": [
+          "Billy",
+          "Marcus",
+          "Peter",
+          "Johnny"
+        ],
+        "answer": 1,
+        "explanation": "Nhân vật nói rằng em bé được đặt tên theo Marcus."
+      }
+    ],
+    "the-boys-homelander-exposes-victoria-neuman": [
+      {
+        "type": "vocabulary",
+        "question": "'Representation' trong cuộc trao đổi chính trị gần nghĩa nhất là gì?",
+        "options": [
+          "Sự đại diện",
+          "Sự nghỉ ngơi",
+          "Sự giàu có",
+          "Sự im lặng"
+        ],
+        "answer": 0,
+        "explanation": "Representation = sự đại diện, việc có tiếng nói trong một tổ chức/hệ thống."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Secret' trong 'keep that secret' có nghĩa là gì?",
+        "options": [
+          "Bí mật",
+          "Món nợ",
+          "Hợp đồng",
+          "Sự chiến thắng"
+        ],
+        "answer": 0,
+        "explanation": "A secret = điều được giữ kín."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'Our fates ___ connected now.'",
+        "options": [
+          "is",
+          "are",
+          "was",
+          "be"
+        ],
+        "answer": 1,
+        "explanation": "Fates là danh từ số nhiều nên dùng are."
+      },
+      {
+        "type": "comprehension",
+        "question": "Trong buổi phỏng vấn, Homelander công khai bí mật gì về Victoria?",
+        "options": [
+          "Cô ấy là siêu nhân",
+          "Cô ấy nghỉ việc",
+          "Cô ấy là người dẫn chương trình",
+          "Cô ấy là nhà khoa học"
+        ],
+        "answer": 0,
+        "explanation": "Homelander bất ngờ nói rằng Victoria là một superhero."
+      },
+      {
+        "type": "comprehension",
+        "question": "Sau đó, Ashley được yêu cầu lập danh sách gì?",
+        "options": [
+          "Những người nắm thông tin bất lợi về công ty",
+          "Các bài hát yêu thích",
+          "Nhà hàng nổi tiếng",
+          "Những đội bóng tham dự"
+        ],
+        "answer": 0,
+        "explanation": "Ashley được yêu cầu liệt kê những người có thông tin có thể gây bất lợi."
+      }
+    ],
+    "reacher-season-3-gangster-bullies-innocent-maid": [
+      {
+        "type": "vocabulary",
+        "question": "'Compromised' trong 'The location has been compromised' nghĩa là gì?",
+        "options": [
+          "Đã bị lộ/không còn an toàn",
+          "Đã được trang trí",
+          "Đang sửa chữa",
+          "Đã được thuê"
+        ],
+        "answer": 0,
+        "explanation": "A compromised location là nơi đã bị lộ, không còn đảm bảo an toàn."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Snooping around' nghĩa là gì?",
+        "options": [
+          "Lén tìm hiểu, dò xét",
+          "Tập thể dục",
+          "Nấu ăn",
+          "Ngủ quên"
+        ],
+        "answer": 0,
+        "explanation": "Snoop around = rình mò, dò xét thông tin."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'We're going to ___ up to cover more ground.'",
+        "options": [
+          "splits",
+          "split",
+          "splitting",
+          "splitter"
+        ],
+        "answer": 1,
+        "explanation": "Sau 'going to' dùng động từ nguyên mẫu: split up."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nhóm nhân vật quyết định chia ra để làm gì?",
+        "options": [
+          "Kiểm tra các địa chỉ tìm được",
+          "Đi dự tiệc",
+          "Tìm một nhà hàng",
+          "Xem trận bóng"
+        ],
+        "answer": 0,
+        "explanation": "Họ phân công nhau đi kiểm tra các địa điểm từ máy tính."
+      },
+      {
+        "type": "comprehension",
+        "question": "Một nhân vật được giao kiểm tra loại cơ sở nào?",
+        "options": [
+          "Nơi làm thùng chứa hàng",
+          "Rạp chiếu phim",
+          "Trường tiểu học",
+          "Cửa hàng hoa"
+        ],
+        "answer": 0,
+        "explanation": "Họ nói sẽ kiểm tra cơ sở sản xuất storage crates."
+      }
+    ],
+    "spiderman-nwh-peter-meets-other-spidermen": [
+      {
+        "type": "vocabulary",
+        "question": "'Forgive myself' có nghĩa là gì?",
+        "options": [
+          "Tha thứ cho bản thân",
+          "Tìm lại bạn bè",
+          "Bảo vệ bản thân",
+          "Đánh giá chính mình"
+        ],
+        "answer": 0,
+        "explanation": "Forgive = tha thứ; forgive myself = tự tha thứ."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Responsibility' có nghĩa là gì?",
+        "options": [
+          "Trách nhiệm",
+          "Đặc quyền",
+          "Sức mạnh cơ bắp",
+          "Cơ hội"
+        ],
+        "answer": 0,
+        "explanation": "Responsibility = trách nhiệm, bổn phận."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'My Uncle Ben ___ killed.'",
+        "options": [
+          "is",
+          "were",
+          "was",
+          "be"
+        ],
+        "answer": 2,
+        "explanation": "Dùng bị động quá khứ đơn: was killed."
+      },
+      {
+        "type": "comprehension",
+        "question": "Một Spider-Man kể rằng anh đã mất người thân yêu nào?",
+        "options": [
+          "Gwen",
+          "Natasha",
+          "Pepper",
+          "Mayday"
+        ],
+        "answer": 0,
+        "explanation": "Anh kể rằng mình đã mất Gwen."
+      },
+      {
+        "type": "comprehension",
+        "question": "Câu nói nào được nhắc để khuyên Peter?",
+        "options": [
+          "Great power comes with great responsibility.",
+          "Time is money.",
+          "Practice makes perfect.",
+          "Actions speak louder than words."
+        ],
+        "answer": 0,
+        "explanation": "Lời khuyên nhấn mạnh sức mạnh luôn đi đôi với trách nhiệm."
+      }
+    ],
+    "baki-hanma-rumina-meets-baki": [
+      {
+        "type": "vocabulary",
+        "question": "'Hold back' trong một trận đấu có nghĩa là gì?",
+        "options": [
+          "Kiềm sức, không tung hết khả năng",
+          "Đứng ra phía sau",
+          "Chạy bộ",
+          "Đầu hàng ngay"
+        ],
+        "answer": 0,
+        "explanation": "Hold back có thể nghĩa là giữ sức/kiềm lại."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Shallow' trong 'It's shallow' mô tả điều gì?",
+        "options": [
+          "Nông, không sâu",
+          "Rất sâu",
+          "Rất lạnh",
+          "Rất rộng"
+        ],
+        "answer": 0,
+        "explanation": "Shallow = nông, trái nghĩa với deep."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'He's a lot smaller than I ___ he'd be.'",
+        "options": [
+          "imagine",
+          "imagined",
+          "imagining",
+          "imagines"
+        ],
+        "answer": 1,
+        "explanation": "Dùng imagined khi kể lại suy nghĩ trước đó."
+      },
+      {
+        "type": "comprehension",
+        "question": "Rumina ngạc nhiên điều gì khi nhìn thấy Baki?",
+        "options": [
+          "Baki thấp bé hơn cậu tưởng",
+          "Baki không biết bơi",
+          "Baki là giáo viên",
+          "Baki đang ngủ"
+        ],
+        "answer": 0,
+        "explanation": "Rumina cho rằng người mạnh nhất trông nhỏ con hơn mình tưởng."
+      },
+      {
+        "type": "comprehension",
+        "question": "Cuối cuộc gặp, Baki nói mối quan hệ giữa hai người sẽ thế nào?",
+        "options": [
+          "Họ là bạn",
+          "Họ không gặp lại",
+          "Họ là thầy trò",
+          "Họ là anh em ruột"
+        ],
+        "answer": 0,
+        "explanation": "Lời thoại nói: 'From now on, we're friends.'"
+      }
+    ],
+    "ghost-rider-carter-slade-last-ride": [
+      {
+        "type": "vocabulary",
+        "question": "'Spare your girl's life' có nghĩa là gì?",
+        "options": [
+          "Tha mạng cho cô gái",
+          "Đưa cô gái đi học",
+          "Mời cô gái ăn tối",
+          "Khen cô gái"
+        ],
+        "answer": 0,
+        "explanation": "Spare someone's life = tha mạng cho ai."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Contract' có nghĩa là gì?",
+        "options": [
+          "Bản hợp đồng",
+          "Chiếc xe",
+          "Lá thư cảm ơn",
+          "Địa chỉ"
+        ],
+        "answer": 0,
+        "explanation": "Contract = hợp đồng hoặc giao kèo."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'You ___ to trust me.'",
+        "options": [
+          "have",
+          "has",
+          "having",
+          "hadn't"
+        ],
+        "answer": 0,
+        "explanation": "Cấu trúc 'have to + verb' diễn tả sự cần thiết."
+      },
+      {
+        "type": "comprehension",
+        "question": "Đối thủ yêu cầu Johnny lấy vật gì từ người trông coi?",
+        "options": [
+          "Bản hợp đồng",
+          "Chiếc nhẫn",
+          "Một bức ảnh",
+          "Chìa khóa"
+        ],
+        "answer": 0,
+        "explanation": "Anh ta yêu cầu lấy 'the contract from the caretaker'."
+      },
+      {
+        "type": "comprehension",
+        "question": "Johnny khẳng định điều gì dù linh hồn anh bị ràng buộc?",
+        "options": [
+          "Anh vẫn có tinh thần của mình",
+          "Anh đã từ bỏ tất cả",
+          "Anh không biết lái xe",
+          "Anh không còn bạn bè"
+        ],
+        "answer": 0,
+        "explanation": "Câu thoại: 'He may have my soul, but he doesn't have my spirit.'"
+      }
+    ],
+    "angry-birds-2-zeta-mighty-eagle-wedding": [
+      {
+        "type": "vocabulary",
+        "question": "'Propose a toast' ở đám cưới nghĩa là gì?",
+        "options": [
+          "Nâng ly chúc mừng",
+          "Đề nghị đi về",
+          "Chụp ảnh nhóm",
+          "Mời một món ăn"
+        ],
+        "answer": 0,
+        "explanation": "Propose a toast = mời mọi người nâng ly chúc mừng."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Deserve' trong 'deserve your love' có nghĩa là gì?",
+        "options": [
+          "Xứng đáng nhận được",
+          "Từ chối",
+          "Lãng quên",
+          "Giả vờ"
+        ],
+        "answer": 0,
+        "explanation": "Deserve = xứng đáng."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'We ___ strongest when we all band together.'",
+        "options": [
+          "is",
+          "was",
+          "are",
+          "be"
+        ],
+        "answer": 2,
+        "explanation": "We đi với are ở hiện tại đơn."
+      },
+      {
+        "type": "comprehension",
+        "question": "Red công nhận ai mới là người lên kế hoạch chặn siêu vũ khí?",
+        "options": [
+          "Silver",
+          "Zeta",
+          "Mighty Eagle",
+          "Red"
+        ],
+        "answer": 0,
+        "explanation": "Red nói Silver mới là người nghĩ ra kế hoạch."
+      },
+      {
+        "type": "comprehension",
+        "question": "Thông điệp về làm việc nhóm được nhấn mạnh là gì?",
+        "options": [
+          "Đoàn kết tạo nên sức mạnh",
+          "Chỉ người đứng đầu mới quan trọng",
+          "Không cần đồng đội",
+          "Ai cũng phải làm việc một mình"
+        ],
+        "answer": 0,
+        "explanation": "Đoạn phim có câu 'We are strongest when we all band together.'"
+      }
+    ],
+    "the-crown-she-is-our-caesar": [
+      {
+        "type": "vocabulary",
+        "question": "'Coup d'état' gần nghĩa nhất với cụm nào?",
+        "options": [
+          "Cuộc đảo chính",
+          "Cuộc bầu cử",
+          "Hiệp định thương mại",
+          "Buổi họp báo"
+        ],
+        "answer": 0,
+        "explanation": "Coup d'état là hành động chiếm quyền lực nhà nước bằng biện pháp không theo thủ tục hợp pháp."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Legitimacy' trong đoạn thảo luận chính trị nghĩa là gì?",
+        "options": [
+          "Tính chính danh",
+          "Sự giàu có",
+          "Tốc độ",
+          "Sự im lặng"
+        ],
+        "answer": 0,
+        "explanation": "Legitimacy = tính chính đáng/chính danh của quyền lực."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'What all successful insurgents ___ in common are five key elements.'",
+        "options": [
+          "has",
+          "have",
+          "having",
+          "had been"
+        ],
+        "answer": 1,
+        "explanation": "Chủ ngữ số nhiều 'insurgents' dùng have."
+      },
+      {
+        "type": "comprehension",
+        "question": "Người diễn thuyết nói cuộc đảo chính ở Anh khó thành công vì lý do nào?",
+        "options": [
+          "Hệ thống thể chế và tính chính danh rất vững",
+          "Không có sân bay",
+          "Không có truyền thông",
+          "Không có quân đội"
+        ],
+        "answer": 0,
+        "explanation": "Ông nhấn mạnh sức mạnh của thể chế và hiến pháp."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nhân vật nào được cho là có thể tạo tính chính danh cho kế hoạch?",
+        "options": [
+          "Nữ hoàng",
+          "Thị trưởng London",
+          "Một vận động viên",
+          "Một doanh nhân"
+        ],
+        "answer": 0,
+        "explanation": "Bài phát biểu cho rằng cần sự ủng hộ của the Crown."
+      }
+    ],
+    "the-crown-queen-margaret-heated-conversation": [
+      {
+        "type": "vocabulary",
+        "question": "'Hiccup' trong 'an isolated hiccup' chỉ điều gì?",
+        "options": [
+          "Một trục trặc nhỏ",
+          "Một buổi lễ lớn",
+          "Một hợp đồng mới",
+          "Một chuyến đi"
+        ],
+        "answer": 0,
+        "explanation": "Hiccup có thể chỉ sự cố/trục trặc nhỏ."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Cordiality' trong bối cảnh cuộc gặp chính thức nghĩa là gì?",
+        "options": [
+          "Sự thân thiện, hòa nhã",
+          "Sự tranh cãi dữ dội",
+          "Sự bí mật",
+          "Sự vắng mặt"
+        ],
+        "answer": 0,
+        "explanation": "Cordiality = sự niềm nở, hòa nhã."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'We ___ 164 audiences.'",
+        "options": [
+          "have had",
+          "has had",
+          "having",
+          "had have"
+        ],
+        "answer": 0,
+        "explanation": "Have had là dạng hiện tại hoàn thành với chủ ngữ we."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nữ thủ tướng phàn nàn vì bài viết trên tờ báo nào?",
+        "options": [
+          "Sunday Times",
+          "Daily Mail",
+          "The Guardian",
+          "Financial Times"
+        ],
+        "answer": 0,
+        "explanation": "Cuộc nói chuyện nhiều lần nhắc tới Sunday Times."
+      },
+      {
+        "type": "comprehension",
+        "question": "Nữ hoàng đề cập đến bất đồng liên quan chính sách đối với quốc gia nào?",
+        "options": [
+          "Nam Phi",
+          "Canada",
+          "Ấn Độ",
+          "Nhật Bản"
+        ],
+        "answer": 0,
+        "explanation": "Bà nói tới các biện pháp trừng phạt đối với South Africa."
+      }
+    ],
+    "a-few-good-men-objection-overruled": [
+      {
+        "type": "vocabulary",
+        "question": "'Speculating' trong tranh luận tại tòa gần nghĩa nhất là gì?",
+        "options": [
+          "Suy đoán chưa có đủ căn cứ",
+          "Ký tên xác nhận",
+          "Nhắc lại lời khai",
+          "Kiểm tra nhiệt độ"
+        ],
+        "answer": 0,
+        "explanation": "Speculate = suy đoán khi chưa có đủ bằng chứng."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Inconclusive' mô tả bằng chứng như thế nào?",
+        "options": [
+          "Chưa đủ để kết luận",
+          "Hoàn toàn rõ ràng",
+          "Bị đánh cắp",
+          "Không tồn tại"
+        ],
+        "answer": 0,
+        "explanation": "Inconclusive = chưa cho phép rút ra kết luận chắc chắn."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'The witness ___ speculating.'",
+        "options": [
+          "are",
+          "is",
+          "am",
+          "be"
+        ],
+        "answer": 1,
+        "explanation": "The witness là chủ ngữ số ít, dùng is."
+      },
+      {
+        "type": "comprehension",
+        "question": "Người được luật sư hỏi về tình trạng y tế của Santiago là ai?",
+        "options": [
+          "Dr. Stone",
+          "Billy Beane",
+          "Jack Frost",
+          "Mr. Electric"
+        ],
+        "answer": 0,
+        "explanation": "Dr. Stone là nhân chứng chuyên môn y khoa."
+      },
+      {
+        "type": "comprehension",
+        "question": "Luật sư đặt nghi vấn nào bên cạnh giả thuyết trúng độc?",
+        "options": [
+          "Santiago có thể có bệnh tim",
+          "Santiago bị lạc đường",
+          "Santiago không ngủ",
+          "Santiago bị mất tiền"
+        ],
+        "answer": 0,
+        "explanation": "Phần đối chất đề cập khả năng mắc bệnh mạch vành."
+      }
+    ],
+    "the-emoji-movie-smiler-delete-everybody": [
+      {
+        "type": "vocabulary",
+        "question": "'Malfunction' có nghĩa là gì?",
+        "options": [
+          "Sự trục trặc, lỗi hoạt động",
+          "Sự đoàn kết",
+          "Một cuộc vui",
+          "Một lời hứa"
+        ],
+        "answer": 0,
+        "explanation": "Malfunction = sự cố khiến thiết bị/hệ thống hoạt động sai."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Bypass' trong 'bypass ... and get a text through' nghĩa là gì?",
+        "options": [
+          "Vượt qua, đi vòng qua một rào cản",
+          "Hủy toàn bộ tin nhắn",
+          "Ngủ quên",
+          "Chụp một tấm ảnh"
+        ],
+        "answer": 0,
+        "explanation": "Bypass = vượt qua hoặc đi vòng qua một bước/ngăn chặn."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'He ___ deleting the phone!'",
+        "options": [
+          "am",
+          "are",
+          "is",
+          "be"
+        ],
+        "answer": 2,
+        "explanation": "He đi với is ở hiện tại tiếp diễn."
+      },
+      {
+        "type": "comprehension",
+        "question": "Các emoji muốn giúp Alex kết nối với ai để cứu điện thoại?",
+        "options": [
+          "Addy",
+          "Olivia",
+          "Gwen",
+          "Silver"
+        ],
+        "answer": 0,
+        "explanation": "Họ tin nếu Alex kết nối với Addy, cậu sẽ không xóa điện thoại."
+      },
+      {
+        "type": "comprehension",
+        "question": "Gene khác biệt như thế nào?",
+        "options": [
+          "Có thể bộc lộ nhiều cảm xúc",
+          "Chỉ thể hiện sự giận dữ",
+          "Không thể gửi tin nhắn",
+          "Luôn bị mất kết nối"
+        ],
+        "answer": 0,
+        "explanation": "Gene có thể thể hiện nhiều cảm xúc trong một emoji."
+      }
+    ],
+    "moneyball-billy-boston-red-sox-offer": [
+      {
+        "type": "vocabulary",
+        "question": "'Disregard' trong lời thoại nghĩa là gì?",
+        "options": [
+          "Phớt lờ, không để ý",
+          "Chấp nhận ngay",
+          "Ghi chép lại",
+          "Mở rộng"
+        ],
+        "answer": 0,
+        "explanation": "Disregard = không quan tâm/không xét đến điều gì."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'General manager' của đội bóng là ai?",
+        "options": [
+          "Người quản lý điều hành đội",
+          "Trọng tài trên sân",
+          "Người bán vé",
+          "Bình luận viên"
+        ],
+        "answer": 0,
+        "explanation": "General manager là người quản lý điều hành, trong thể thao có thể phụ trách chiến lược nhân sự đội."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'You ___ more games without them than you did with them.'",
+        "options": [
+          "win",
+          "wins",
+          "won",
+          "winning"
+        ],
+        "answer": 2,
+        "explanation": "Đây là việc đã xảy ra, dùng quá khứ đơn won."
+      },
+      {
+        "type": "comprehension",
+        "question": "Đội Boston Red Sox đề nghị Billy làm vị trí gì?",
+        "options": [
+          "General manager",
+          "Cầu thủ ném bóng",
+          "Trọng tài",
+          "Phóng viên"
+        ],
+        "answer": 0,
+        "explanation": "Billy được đề nghị trở thành general manager."
+      },
+      {
+        "type": "comprehension",
+        "question": "Vì sao Billy ngần ngại quyết định chỉ dựa vào tiền?",
+        "options": [
+          "Anh từng làm điều đó và không muốn lặp lại",
+          "Anh không biết mức lương",
+          "Anh muốn nghỉ hưu ngay",
+          "Anh không thích bóng chày"
+        ],
+        "answer": 0,
+        "explanation": "Billy nói anh từng có một quyết định dựa trên tiền và thề không làm vậy nữa."
+      }
+    ],
+    "spiderman-brand-new-day-mj-says-i-dont-love-you": [
+      {
+        "type": "vocabulary",
+        "question": "'Custody' trong câu 'She's in custody' nghĩa là gì?",
+        "options": [
+          "Đang bị giam/giữ",
+          "Đang ở nhà",
+          "Đang du lịch",
+          "Đang mua sắm"
+        ],
+        "answer": 0,
+        "explanation": "In custody = đang bị lực lượng chức năng tạm giữ/giam giữ."
+      },
+      {
+        "type": "vocabulary",
+        "question": "'Protect' trong 'I was trying to protect you' có nghĩa là gì?",
+        "options": [
+          "Bảo vệ",
+          "Đánh lừa",
+          "Tranh luận",
+          "Theo dõi"
+        ],
+        "answer": 0,
+        "explanation": "Protect = bảo vệ ai khỏi nguy hiểm."
+      },
+      {
+        "type": "grammar",
+        "question": "Chọn đúng: 'Why ___ you tell me then?'",
+        "options": [
+          "don't",
+          "didn't",
+          "doesn't",
+          "weren't"
+        ],
+        "answer": 1,
+        "explanation": "Câu hỏi về việc đã không nói trong quá khứ dùng didn't."
+      },
+      {
+        "type": "comprehension",
+        "question": "MJ yêu cầu Peter làm gì trước khi nói chuyện?",
+        "options": [
+          "Tháo mặt nạ",
+          "Đưa điện thoại",
+          "Mở cửa sổ",
+          "Gọi một người bạn"
+        ],
+        "answer": 0,
+        "explanation": "MJ muốn nói chuyện với Peter Parker mà không có mặt nạ."
+      },
+      {
+        "type": "comprehension",
+        "question": "MJ nói điều gì về ký ức liên quan Peter?",
+        "options": [
+          "Cô không còn những ký ức đó",
+          "Cô nhớ tất cả mọi việc",
+          "Cô đã viết nhật ký",
+          "Cô chưa từng đi học"
+        ],
+        "answer": 0,
+        "explanation": "MJ nói cô không có những ký ức Peter nhắc tới."
+      }
+    ]
+  }
+}
