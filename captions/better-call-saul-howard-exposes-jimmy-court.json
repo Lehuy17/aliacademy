@@ -5,142 +5,142 @@
   "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
   "cues": [
     {
-      "start": 0.0,
-      "end": 7.0,
+      "start": 0,
+      "end": 7,
       "en": "If everyone's ready to begin testimony, Mr. Ali, call your witness.",
-      "vi": "Nếu mọi người đã sẵn sàng để bắt đầu làm chứng, anh Ali, hãy gọi nhân chứng của anh."
+      "vi": "Nếu mọi người đã sẵn sàng bắt đầu phần lời khai, ông Ali, xin mời gọi nhân chứng."
     },
     {
-      "start": 7.0,
-      "end": 9.0,
+      "start": 7,
+      "end": 9,
       "en": "Bang, bang, bang.",
-      "vi": "Bang, bang, bang."
+      "vi": "Rầm, rầm, rầm."
     },
     {
-      "start": 9.0,
-      "end": 13.0,
+      "start": 9,
+      "end": 13,
       "en": "Then he kicked down the door. Jimmy was very agitated. He was shouting.",
-      "vi": "Jimmy rất kích động và la hét."
+      "vi": "Rồi anh ta đá tung cửa. Jimmy rất kích động và liên tục la hét."
     },
     {
-      "start": 13.0,
-      "end": 16.0,
+      "start": 13,
+      "end": 16,
       "en": "He demanded Charles turn over the evidence he'd been collecting.",
-      "vi": "Anh ta yêu cầu Charles chuyển bằng chứng anh ta đang thu thập."
+      "vi": "Anh ta đòi Charles giao nộp những bằng chứng ông ấy đang thu thập."
     },
     {
-      "start": 16.0,
-      "end": 20.0,
+      "start": 16,
+      "end": 20,
       "en": "Objection. We haven't established the tape is evidence of anything.",
-      "vi": "Phản đối, chúng tôi chưa xác minh đoạn băng là bằng chứng của bất cứ điều gì."
+      "vi": "Phản đối! Chúng ta chưa xác định được cuộn băng đó là bằng chứng của điều gì."
     },
     {
-      "start": 20.0,
-      "end": 22.0,
+      "start": 20,
+      "end": 22,
       "en": "The defense has only acknowledged it as a piece of property.",
-      "vi": "Bên biện hộ chỉ thừa nhận nó là một mảnh đất."
+      "vi": "Phía bào chữa chỉ thừa nhận cuộn băng là một tài sản."
     },
     {
-      "start": 22.0,
-      "end": 24.0,
+      "start": 22,
+      "end": 24,
       "en": "Allow me to rephrase.",
-      "vi": "Cho phép tôi nói lại."
+      "vi": "Để tôi diễn đạt lại."
     },
     {
-      "start": 24.0,
-      "end": 28.0,
+      "start": 24,
+      "end": 28,
       "en": "Jimmy demanded an audio cassette in Charles' possession,",
-      "vi": "Jimmy yêu cầu một băng ghi âm trong tay Charles,"
+      "vi": "Jimmy đòi lấy cuộn băng cassette Charles đang giữ,"
     },
     {
-      "start": 28.0,
-      "end": 32.0,
+      "start": 28,
+      "end": 32,
       "en": "which Jimmy proceeded with the help of an iron fireplace implement",
-      "vi": "Mà Jimmy đã tiến hành với sự giúp đỡ của một công cụ lò sưởi bằng sắt"
+      "vi": "rồi dùng một dụng cụ bằng sắt ở lò sưởi"
     },
     {
-      "start": 32.0,
-      "end": 34.0,
+      "start": 32,
+      "end": 34,
       "en": "to pry from Charles' desk.",
-      "vi": "để tò mò từ bàn làm việc của Charles."
+      "vi": "để cạy nó ra khỏi bàn làm việc của Charles."
     },
     {
-      "start": 34.0,
-      "end": 38.0,
+      "start": 34,
+      "end": 38,
       "en": "He then broke the cassette into pieces and went on to confront his brother.",
-      "vi": "Rồi ông đập cuốn băng thành từng mảnh và tiếp tục đối chất với em trai mình."
+      "vi": "Sau đó anh ta đập nát cuộn băng rồi đối đầu với anh trai mình."
     },
     {
-      "start": 38.0,
-      "end": 42.0,
+      "start": 38,
+      "end": 42,
       "en": "What happened after the defendant smashed this tape?",
-      "vi": "Chuyện gì xảy ra sau khi bị cáo đập vỡ cuộn băng này?"
+      "vi": "Chuyện gì xảy ra sau khi bị cáo đập nát cuộn băng?"
     },
     {
-      "start": 42.0,
-      "end": 43.0,
+      "start": 42,
+      "end": 43,
       "en": "Mr. Brightbill and I...",
       "vi": "Ông Brightbill và tôi..."
     },
     {
-      "start": 43.0,
-      "end": 46.0,
+      "start": 43,
+      "end": 46,
       "en": "That's the private investigator that Charles hired?",
-      "vi": "Đó là điều tra viên riêng mà Charles thuê?"
+      "vi": "Đó là thám tử tư do Charles thuê?"
     },
     {
-      "start": 46.0,
-      "end": 47.0,
+      "start": 46,
+      "end": 47,
       "en": "That's correct.",
       "vi": "Đúng vậy."
     },
     {
-      "start": 47.0,
-      "end": 51.0,
+      "start": 47,
+      "end": 51,
       "en": "He and I were concerned that Jimmy might strike his brother.",
-      "vi": "Anh ấy và tôi lo ngại Jimmy có thể đánh em trai mình."
+      "vi": "Chúng tôi lo Jimmy có thể đánh anh trai mình."
     },
     {
-      "start": 51.0,
-      "end": 53.0,
+      "start": 51,
+      "end": 53,
       "en": "So that's when we stepped in.",
-      "vi": "Vì vậy, đó là khi chúng tôi bước vào."
+      "vi": "Vì thế chúng tôi đã can thiệp."
     },
     {
-      "start": 53.0,
-      "end": 54.0,
+      "start": 53,
+      "end": 54,
       "en": "Thank you, Mr. Hamlin.",
-      "vi": "Cảm ơn anh Hamlin."
+      "vi": "Cảm ơn, ông Hamlin."
     },
     {
-      "start": 54.0,
-      "end": 55.0,
+      "start": 54,
+      "end": 55,
       "en": "Certainly.",
-      "vi": "Chắc chắn rồi."
+      "vi": "Tất nhiên."
     },
     {
-      "start": 55.0,
-      "end": 56.0,
-      "en": "I think further at this time.",
-      "vi": "Tôi nghĩ xa hơn vào lúc này."
+      "start": 55,
+      "end": 56,
+      "en": "Nothing further at this time.",
+      "vi": "Tôi không có câu hỏi nào thêm vào lúc này."
     },
     {
-      "start": 56.0,
-      "end": 57.0,
-      "en": "Mr. Wexler.",
-      "vi": "Anh Wexler."
+      "start": 56,
+      "end": 57,
+      "en": "Ms. Wexler.",
+      "vi": "Mời cô Wexler."
     },
     {
-      "start": 57.0,
+      "start": 57,
       "end": 60.92,
       "en": "Thank you, Mr. Chairman.",
-      "vi": "Cảm ơn, ngài Chủ tịch."
+      "vi": "Cảm ơn ngài chủ tọa."
     },
     {
       "start": 60.92,
       "end": 69.42,
       "en": "You testified you've known my client for some time.",
-      "vi": "Anh đã khai là anh biết thân chủ của tôi một thời gian rồi."
+      "vi": "Ông vừa khai rằng ông đã biết thân chủ tôi từ lâu."
     },
     {
       "start": 72.54,
@@ -152,97 +152,97 @@
       "start": 74.54,
       "end": 76.54,
       "en": "Nearly ten years.",
-      "vi": "Gần 10 năm."
+      "vi": "Gần mười năm."
     },
     {
       "start": 76.54,
       "end": 78.54,
       "en": "How did you come to know him?",
-      "vi": "Làm sao cô biết anh ta?"
+      "vi": "Ông quen anh ấy như thế nào?"
     },
     {
       "start": 78.54,
       "end": 81.54,
       "en": "His brother asked to hire him in the mail room at our firm.",
-      "vi": "Em trai anh ta yêu cầu thuê anh ta trong phòng thư tín tại công ty chúng tôi."
+      "vi": "Anh trai anh ấy đề nghị nhận anh ấy làm việc ở phòng thư tín của hãng luật chúng tôi."
     },
     {
       "start": 81.54,
       "end": 82.54,
       "en": "And you did?",
-      "vi": "Và anh đã làm thế?"
+      "vi": "Và ông đã đồng ý?"
     },
     {
       "start": 82.54,
       "end": 84.54,
       "en": "Yes.",
-      "vi": "Phải."
+      "vi": "Đúng."
     },
     {
       "start": 84.54,
       "end": 86.54,
       "en": "What was your opinion of him then?",
-      "vi": "Vậy quan điểm của anh về anh ta là gì?"
+      "vi": "Lúc ấy ông đánh giá anh ấy ra sao?"
     },
     {
       "start": 86.54,
       "end": 92.96,
       "en": "I thought he had a lot of get up and go.",
-      "vi": "Tôi nghĩ anh ta có rất nhiều thức dậy và đi."
+      "vi": "Tôi thấy anh ấy rất năng nổ."
     },
     {
       "start": 92.96,
       "end": 93.96,
       "en": "He was a hard worker.",
-      "vi": "Anh ấy là một công nhân chăm chỉ."
+      "vi": "Anh ấy làm việc chăm chỉ."
     },
     {
       "start": 93.96,
       "end": 94.96,
       "en": "He was a hard worker.",
-      "vi": "Anh ấy là một công nhân chăm chỉ."
+      "vi": "Anh ấy rất chăm chỉ."
     },
     {
       "start": 94.96,
       "end": 96.96,
       "en": "You had a nickname for him, didn't you?",
-      "vi": "Cô có biệt danh cho anh ta, phải không?"
+      "vi": "Ông từng đặt biệt danh cho anh ấy, đúng không?"
     },
     {
       "start": 96.96,
       "end": 99.4,
-      "en": "Charlie Hussle.",
-      "vi": "Charlie Husle."
+      "en": "Charlie Hustle.",
+      "vi": "Charlie Hustle."
     },
     {
       "start": 99.4,
       "end": 101.4,
-      "en": "Charlie Hussle?",
-      "vi": "Charlie Husle?"
+      "en": "Charlie Hustle?",
+      "vi": "Charlie Hustle?"
     },
     {
       "start": 101.4,
       "end": 104.4,
       "en": "How'd you feel when you found out he'd become a lawyer?",
-      "vi": "Anh cảm thấy thế nào khi biết anh ta sẽ trở thành luật sư?"
+      "vi": "Ông cảm thấy thế nào khi biết anh ấy trở thành luật sư?"
     },
     {
       "start": 104.4,
       "end": 105.4,
       "en": "Surprised.",
-      "vi": "Ngạc nhiên chưa."
+      "vi": "Rất bất ngờ."
     },
     {
       "start": 105.4,
       "end": 107.4,
       "en": "He'd put himself through law school",
-      "vi": "Anh ấy tự học ở trường luật."
+      "vi": "Anh ấy vừa làm vừa tự trang trải học phí trường luật"
     },
     {
       "start": 107.4,
       "end": 110.4,
       "en": "and taken the bar exam without telling any of the partners.",
-      "vi": "và làm bài thi ở quán bar mà không nói với bất cứ ai."
+      "vi": "và thi lấy chứng chỉ hành nghề mà không báo cho các cộng sự nào."
     },
     {
       "start": 110.4,
@@ -254,82 +254,82 @@
       "start": 111.4,
       "end": 113.4,
       "en": "He bootstrapped his way into a law degree",
-      "vi": "Anh ta đã đẩy mình vào một mức độ luật pháp."
+      "vi": "Anh ấy tự lực học để lấy bằng luật"
     },
     {
       "start": 113.4,
       "end": 115.4,
       "en": "while working in your mail room.",
-      "vi": "trong khi làm việc trong phòng thư tín."
+      "vi": "trong khi vẫn làm việc ở phòng thư tín của ông."
     },
     {
       "start": 115.4,
       "end": 117.4,
       "en": "Did you consider taking him on as an associate?",
-      "vi": "Anh có nghĩ đến việc đưa anh ta lên làm cộng sự không?"
+      "vi": "Ông có từng cân nhắc tuyển anh ấy làm luật sư cộng sự không?"
     },
     {
       "start": 117.4,
       "end": 119.4,
       "en": "We did.",
-      "vi": "Đúng vậy."
+      "vi": "Có."
     },
     {
       "start": 119.4,
       "end": 121.4,
       "en": "Briefly.",
-      "vi": "Một cách ngắn gọn."
+      "vi": "Nhưng chỉ trong thời gian ngắn."
     },
     {
       "start": 121.4,
       "end": 123.4,
       "en": "Sounds like you didn't hire him. Why not?",
-      "vi": "Có vẻ như anh không thuê anh ta."
+      "vi": "Vậy cuối cùng ông đã không tuyển anh ấy. Tại sao?"
     },
     {
       "start": 123.4,
       "end": 124.9,
       "en": "With that kind of grit?",
-      "vi": "Với sự can đảm đó?"
+      "vi": "Dù anh ấy nỗ lực đến vậy?"
     },
     {
       "start": 124.9,
       "end": 127.2,
       "en": "The partners decided it would be best to avoid",
-      "vi": "Các đối tác quyết định tốt nhất là tránh"
+      "vi": "Các cộng sự quyết định tốt nhất là tránh"
     },
     {
       "start": 127.2,
       "end": 129.7,
       "en": "the appearance of nepotism.",
-      "vi": "sự xuất hiện của chủ nghĩa gia đình trị."
+      "vi": "để người khác nghĩ rằng hãng luật ưu ái người nhà."
     },
     {
       "start": 129.7,
       "end": 133.5,
       "en": "We felt hiring Jimmy might damage morale.",
-      "vi": "Chúng tôi cảm thấy thuê Jimmy có thể làm tổn hại tinh thần."
+      "vi": "Chúng tôi e rằng tuyển Jimmy sẽ ảnh hưởng đến tinh thần nhân viên."
     },
     {
       "start": 133.5,
       "end": 135.5,
       "en": "Nepotism?",
-      "vi": "Chủ nghĩa thiên vị?"
+      "vi": "Ưu ái người nhà?"
     },
     {
       "start": 135.5,
       "end": 138.5,
       "en": "Your firm is Hamlin, Hamlin, and McGill, right?",
-      "vi": "Công ty của anh là Hamlin, Hamlin, và McGill, phải không?"
+      "vi": "Hãng luật của ông là Hamlin, Hamlin & McGill, đúng không?"
     },
     {
       "start": 138.5,
-      "end": 140.0,
+      "end": 140,
       "en": "Who's the other Hamlin?",
-      "vi": "Ai là Hamlin kia?"
+      "vi": "Người mang họ Hamlin còn lại là ai?"
     },
     {
-      "start": 140.0,
+      "start": 140,
       "end": 144.16,
       "en": "My father.",
       "vi": "Cha tôi."
@@ -338,7 +338,7 @@
       "start": 144.16,
       "end": 152.64,
       "en": "Which partner was the most concerned with nepotism?",
-      "vi": "Ai là đối tác quan tâm nhất với chủ nghĩa thiên vị?"
+      "vi": "Trong các cộng sự, ai lo ngại nhất về việc ưu ái người nhà?"
     },
     {
       "start": 152.64,
@@ -350,43 +350,43 @@
       "start": 154.64,
       "end": 156.64,
       "en": "So Jimmy's own brother blocked him.",
-      "vi": "Vậy là anh trai của Jimmy đã chặn anh ta lại."
+      "vi": "Vậy chính anh trai của Jimmy đã ngăn anh ấy được tuyển."
     },
     {
       "start": 156.64,
       "end": 158.14,
       "en": "Objection.",
-      "vi": "Phản đối."
+      "vi": "Phản đối!"
     },
     {
       "start": 158.14,
       "end": 160.14,
       "en": "How are the hiring practices of Hamlin, Hamlin, McGill",
-      "vi": "Việc tuyển dụng Hamlin, Hamlin, McGill thế nào rồi?"
+      "vi": "Các thông lệ tuyển dụng của Hamlin, Hamlin & McGill có liên quan gì..."
     },
     {
       "start": 160.14,
       "end": 164.14,
       "en": "It's relevant to understand the relationship between these brothers.",
-      "vi": "Nó liên quan đến việc hiểu mối quan hệ giữa các anh em."
+      "vi": "Điều đó giúp làm rõ mối quan hệ giữa hai anh em."
     },
     {
       "start": 164.14,
       "end": 168.42,
       "en": "We'll, uh, give you some leeway, Miss Wexler,",
-      "vi": "Chúng tôi sẽ, uh, cho cô chút đường đi, cô Wexler,"
+      "vi": "Chúng tôi sẽ cho cô chút linh động, cô Wexler,"
     },
     {
       "start": 168.42,
       "end": 170.42,
       "en": "but don't stray too far.",
-      "vi": "nhưng đừng đi lạc quá xa."
+      "vi": "nhưng đừng đi quá xa."
     },
     {
       "start": 170.42,
       "end": 172.42,
       "en": "Charles McGill is not the subject of this hearing.",
-      "vi": "Charles McGill không phải là chủ đề của phiên điều trần này."
+      "vi": "Charles McGill không phải đối tượng của phiên điều trần này."
     },
     {
       "start": 172.42,
@@ -398,79 +398,79 @@
       "start": 174.42,
       "end": 178.42,
       "en": "Did Jimmy know his brother was the one that prevented you from hiring him?",
-      "vi": "Jimmy có biết anh trai anh ta là người ngăn cản anh thuê anh ta không?"
+      "vi": "Jimmy có biết chính anh trai mình là người ngăn ông tuyển anh ấy không?"
     },
     {
       "start": 178.42,
       "end": 181.42,
       "en": "No. He did not.",
-      "vi": "Không, ông ấy không làm thế."
+      "vi": "Không. Anh ấy không biết."
     },
     {
       "start": 181.42,
       "end": 184.42,
-      "en": "Eventually, he was hired by the firm of Davis and Maine.",
-      "vi": "Cuối cùng, ông được công ty Davis và Maine thuê."
+      "en": "Eventually, he was hired by the firm of Davis and Main.",
+      "vi": "Cuối cùng, anh ấy được hãng luật Davis & Main tuyển dụng."
     },
     {
       "start": 184.42,
       "end": 187.42,
       "en": "I'd be happy to say more about that, if you'd like.",
-      "vi": "Tôi rất vui được nói thêm về điều đó, nếu anh muốn."
+      "vi": "Nếu cô muốn, tôi sẵn lòng nói thêm về chuyện đó."
     },
     {
       "start": 187.42,
       "end": 190.42,
       "en": "No. Thank you.",
-      "vi": "Không, cảm ơn."
+      "vi": "Không cần. Cảm ơn."
     },
     {
       "start": 190.42,
       "end": 194.1,
       "en": "Um, when Charles' condition appeared,",
-      "vi": "Um, khi tình trạng của Charles xuất hiện,"
+      "vi": "Ừm, khi tình trạng sức khỏe của Charles bắt đầu xuất hiện,"
     },
     {
       "start": 194.1,
       "end": 195.9,
       "en": "Jimmy took care of it, didn't he?",
-      "vi": "Jimmy đã lo chuyện đó, phải không?"
+      "vi": "Jimmy đã chăm sóc ông ấy, đúng không?"
     },
     {
       "start": 195.9,
       "end": 197.78,
       "en": "I believe so.",
-      "vi": "Tôi tin là vậy."
+      "vi": "Theo tôi biết là vậy."
     },
     {
       "start": 197.78,
       "end": 200.22,
       "en": "Jimmy was struggling to build his solo law practice,",
-      "vi": "Jimmy đã phải vật lộn để xây dựng luật lệ đơn độc của mình,"
+      "vi": "Jimmy khi ấy đang chật vật xây dựng văn phòng luật riêng,"
     },
     {
       "start": 200.22,
       "end": 202.66,
       "en": "and yet every single day, without fail,",
-      "vi": "và mỗi ngày, không thất bại,"
+      "vi": "nhưng ngày nào cũng vậy, không bỏ sót một ngày,"
     },
     {
       "start": 202.66,
       "end": 205.82,
       "en": "he brought his brother food, supplies,",
-      "vi": "Hắn mang thức ăn, thức ăn cho anh hắn,"
+      "vi": "anh ấy mang thức ăn và đồ dùng thiết yếu đến cho anh trai,"
     },
     {
       "start": 205.82,
       "end": 206.9,
       "en": "even his favorite newspapers.",
-      "vi": "Thậm chí cả những tờ báo yêu thích của ông ấy."
+      "vi": "thậm chí cả những tờ báo ông ấy thích nhất."
     },
     {
       "start": 206.9,
       "end": 208.22,
       "en": "Isn't that right?",
-      "vi": "Phải vậy không?"
+      "vi": "Đúng thế chứ?"
     },
     {
       "start": 208.22,
@@ -482,79 +482,79 @@
       "start": 210.5,
       "end": 211.58,
       "en": "Could you speak to the terms",
-      "vi": "Anh có thể nói với các điều khoản không?"
+      "vi": "Ông có thể nói về các điều khoản"
     },
     {
       "start": 211.58,
       "end": 213.14,
       "en": "of Charles' leave of absence?",
-      "vi": "Sự vắng mặt của Charles?"
+      "vi": "liên quan đến kỳ nghỉ phép của Charles không?"
     },
     {
       "start": 214.3,
       "end": 215.74,
       "en": "You know I can't.",
-      "vi": "Anh biết là tôi không thể mà."
+      "vi": "Cô biết tôi không thể mà."
     },
     {
       "start": 215.74,
       "end": 217.82,
       "en": "It was an FMLA leave.",
-      "vi": "Đó là lệnh nghỉ phép của FMLA."
+      "vi": "Đó là kỳ nghỉ theo Đạo luật Nghỉ phép Gia đình và Y tế (FMLA)."
     },
     {
       "start": 217.82,
       "end": 219.7,
       "en": "Anything more is confidential.",
-      "vi": "Bất cứ thứ gì khác đều là bí mật."
+      "vi": "Những chi tiết khác đều thuộc diện bảo mật."
     },
     {
       "start": 219.7,
       "end": 221.66,
       "en": "But you can confirm it was due to mental illness, correct?",
-      "vi": "Nhưng anh có thể xác nhận đó là do bệnh tâm thần, đúng không?"
+      "vi": "Nhưng ông có thể xác nhận kỳ nghỉ đó là vì bệnh tâm thần, đúng không?"
     },
     {
       "start": 221.66,
       "end": 225.26,
       "en": "Objection. Charles McGill's mental health isn't at issue.",
-      "vi": "Phản đối, sức khỏe tâm thần của Charles McGill không có vấn đề gì."
+      "vi": "Phản đối! Sức khỏe tâm thần của Charles McGill không phải vấn đề đang được xem xét."
     },
     {
       "start": 225.26,
       "end": 228.06,
       "en": "This is a smear job on the state board's upcoming witness.",
-      "vi": "Đây là một công việc bôi nhọ trong hội đồng chứng kiến sắp tới."
+      "vi": "Đây chỉ là nỗ lực bôi nhọ nhân chứng sắp ra trước hội đồng của bang."
     },
     {
       "start": 228.06,
       "end": 229.14,
       "en": "Nothing more.",
-      "vi": "Không hơn."
+      "vi": "Không hơn không kém."
     },
     {
       "start": 229.14,
       "end": 231.22,
-      "en": "This is not a competency hearing, Ms. Wexner.",
-      "vi": "Đây không phải là một phiên điều trần cạnh tranh, cô Wexner."
+      "en": "This is not a competency hearing, Ms. Wexler.",
+      "vi": "Đây không phải phiên điều trần đánh giá năng lực, cô Wexler."
     },
     {
       "start": 231.22,
       "end": 233.58,
       "en": "Mr. Hamlin is not a psychiatric professional.",
-      "vi": "Anh Hamlin không phải chuyên gia tâm thần."
+      "vi": "Ông Hamlin không phải chuyên gia tâm thần."
     },
     {
       "start": 233.58,
       "end": 235.22,
       "en": "Do you have any questions that would be more germane",
-      "vi": "Anh có thắc mắc gì về chuyện đó không?"
+      "vi": "Cô còn câu hỏi nào liên quan trực tiếp hơn"
     },
     {
       "start": 235.22,
       "end": 236.5,
       "en": "to his experience?",
-      "vi": "với kinh nghiệm của anh ta?"
+      "vi": "đến những điều ông ấy biết không?"
     },
     {
       "start": 237.9,
@@ -566,13 +566,45 @@
       "start": 239.92,
       "end": 241.02,
       "en": "I have nothing further.",
-      "vi": "Tôi không còn gì nữa."
+      "vi": "Tôi không hỏi gì thêm."
     },
     {
       "start": 242.18,
       "end": 243.7,
       "en": "The witness is excused.",
-      "vi": "Nhân chứng xin phép."
+      "vi": "Nhân chứng có thể rời bục."
     }
-  ]
+  ],
+  "editorialNotes": {
+    "status": "AI-assisted terminology and translation edits from machine transcript; NOT yet reviewed against original audio",
+    "needsSourceAudioCheck": [
+      1,
+      3,
+      9,
+      10,
+      11,
+      20,
+      21,
+      27,
+      35,
+      36,
+      39,
+      40,
+      60,
+      62,
+      68,
+      83,
+      87,
+      89
+    ],
+    "correctedEnglishCueNumbers": [
+      20,
+      21,
+      35,
+      36,
+      68,
+      89
+    ],
+    "reminder": "Editorial team must verify transcript, translations and timecodes against actual MP4 before setting reviewed or rightsConfirmed"
+  }
 }
