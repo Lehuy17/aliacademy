@@ -8,7 +8,7 @@
  *
  * The bound Google Sheets format is:
  * A Email; B Họ tên; C Lớp học; D Vai trò; E Yêu cầu;
- * F Trạng thái; G UID; H Lỗi; I Cập nhật; J Email kích hoạt.
+ * F Trạng thái; G UID; H Lỗi; I Cập nhật; J Giao tài khoản; K Mật khẩu đăng nhập.
  */
 const ALI_SPARK={
   projectId:"ali-english",
@@ -20,16 +20,16 @@ const ALI_SPARK={
 function onOpen(){
   SpreadsheetApp.getUi().createMenu("ALI Academy · Spark")
     .addItem("1. Kiểm tra danh sách", "aliSparkCheck")
-    .addItem("2. Tạo 2 tài khoản + nhận mật khẩu tạm", "aliSparkPilot")
-    .addItem("3. Tạo tối đa 20 tài khoản + nhận mật khẩu tạm", "aliSparkCreateNext")
+    .addItem("2. Tạo 2 tài khoản + mật khẩu chính thức", "aliSparkPilot")
+    .addItem("3. Tạo tối đa 20 tài khoản + mật khẩu", "aliSparkCreateNext")
     .addSeparator()
-    .addItem("4. Cấp lại mật khẩu tạm (chọn dòng học viên)", "aliSparkResetSelected")
+    .addItem("4. Đổi mật khẩu khi học viên quên", "aliSparkResetSelected")
     .addToUi();
 }
 function aliSparkSheet_(){
   const sheet=SpreadsheetApp.getActiveSpreadsheet().getSheetByName(ALI_SPARK.tab);
   if(!sheet)throw Error('Không tìm thấy tab "Học viên". Hãy tạo hoặc đổi tên tab.');
-  const heads=["Email","Họ tên","Lớp học","Vai trò","Yêu cầu","Trạng thái","UID","Lỗi","Cập nhật","Email kích hoạt"];
+  const heads=["Email","Họ tên","Lớp học","Vai trò","Yêu cầu","Trạng thái","UID","Lỗi","Cập nhật","Giao tài khoản","Mật khẩu đăng nhập"];
   if(sheet.getLastRow()===0){
     sheet.getRange(1,1,1,heads.length).setValues([heads]);
     sheet.setFrozenRows(1);
@@ -39,7 +39,7 @@ function aliSparkSheet_(){
 function aliSparkRows_(sheet){
   const last=sheet.getLastRow();
   if(last<2)return {pending:[],invalid:[],skipped:0};
-  const matrix=sheet.getRange(2,1,last-1,10).getDisplayValues();
+  const matrix=sheet.getRange(2,1,last-1,11).getDisplayValues();
   const filled=matrix.map((values,i)=>({values,row:i+2})).filter(x=>x.values.slice(0,5).some(v=>String(v).trim()));
   if(filled.length>ALI_SPARK.maxRows)throw Error("Tối đa 100 dòng học viên mỗi đợt. Bảng hiện có "+filled.length+" dòng dữ liệu.");
   const seen=new Set(),pending=[],invalid=[];
@@ -51,6 +51,7 @@ function aliSparkRows_(sheet){
     const school=String(v[2]||"").trim();
     const role=String(v[3]||"").trim().toLowerCase();
     const action=String(v[4]||"").trim().toUpperCase();
+    const chosenPassword=String(v[10]||"");
     const state=String(v[5]||"").trim().toUpperCase();
     if(action==="BO_QUA"||["DA_TAO","DA_TON_TAI","CAN_KIEM_TRA_THU_CONG"].includes(state)){skipped++;return;}
     const problems=[];
@@ -59,6 +60,7 @@ function aliSparkRows_(sheet){
     if(school.length>100)problems.push("Tên lớp quá dài");
     if(role&&role!=="student"&&role!=="hoc vien"&&role!=="học viên")problems.push('Vai trò chỉ được là "student"');
     if(action&&action!=="CHO_TAO")problems.push('Yêu cầu chỉ được là "CHO_TAO" hoặc "BO_QUA"');
+    if(chosenPassword){try{aliSparkValidatePassword_(chosenPassword);}catch(e){problems.push("Mật khẩu cột K không đạt yêu cầu");}}
     if(seen.has(email))problems.push("Email trùng trong bảng");
     seen.add(email);
     if(problems.length)invalid.push({row:x.row,message:problems.join("; ")});
@@ -77,10 +79,9 @@ function aliSparkCheck(){
     SpreadsheetApp.getUi().ButtonSet.OK);
 }
 
-/* Passwords appear ONLY in the ALI_Admin_Passwords modal. Never in Sheet cells,
- * email, PropertiesService, logs, or Drive. Close the dialog => cannot retrieve.
- * To replace a lost temporary password, use "Cấp lại mật khẩu".
- * Use only with a trusted admin-owned spreadsheet. Firebase IAM authorizes actions.
+/* Column K intentionally holds readable ALI-issued login passwords.
+ * Protect this Sheet, its version history and all copies from unauthorized access.
+ * Passwords remain valid until explicitly changed; editing K alone does not sync Firebase.
  */
 function aliSparkPilot(){aliSparkOpenCredentialDialog_("create2");}
 function aliSparkCreateNext(){aliSparkOpenCredentialDialog_("create20");}
@@ -90,7 +91,7 @@ function aliSparkOpenCredentialDialog_(mode){
   if(!["create2","create20","reset"].includes(mode))throw Error("Chế độ không hợp lệ");
   const t=HtmlService.createTemplateFromFile("ALI_Admin_Passwords");
   t.mode=mode;
-  const label=mode==="reset"?"ALI · Cấp lại mật khẩu tạm":"ALI · Tạo tài khoản và bàn giao mật khẩu";
+  const label=mode==="reset"?"ALI · Đổi mật khẩu học viên":"ALI · Tạo tài khoản có mật khẩu chính thức";
   SpreadsheetApp.getUi().showModalDialog(t.evaluate().setWidth(950).setHeight(620),label);
 }
 function aliSparkRequest_(url,method,token,body){
@@ -116,6 +117,19 @@ function aliSparkAuthUrl_(suffix){
 function aliSparkFirestoreUrl_(uid){
   return "https://firestore.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
     "/databases/(default)/documents/users/"+encodeURIComponent(uid);
+}
+function aliSparkValidatePassword_(password){
+  const p=String(password||"");
+  if(p.length<12||p.length>72||!/[A-Z]/.test(p)||!/[a-z]/.test(p)||!/[0-9]/.test(p)||!/[^A-Za-z0-9]/.test(p)||/[\r\n]/.test(p))
+    throw Error("Mật khẩu cần 12–72 ký tự, chữ hoa, chữ thường, số và ký tự đặc biệt.");
+  return p;
+}
+function aliSparkSavedPassword_(sheet,row){
+  return String(sheet.getRange(row,11).getDisplayValue()||"");
+}
+function aliSparkStorePassword_(sheet,row,password){
+  sheet.getRange(row,11).setNumberFormat("@");
+  sheet.getRange(row,11).setValue(password);
 }
 function aliSparkPassword_(){
   // Two independent UUIDs. Generated on the server; never persist the password.
@@ -144,7 +158,7 @@ function aliSparkSelectedStudent_(sheet){
   const row=range.getRow();
   if(row<2||row>sheet.getLastRow()||range.getNumRows()!==1)
     throw Error("Chỉ chọn một ô trên đúng một dòng học viên.");
-  const v=sheet.getRange(row,1,1,10).getDisplayValues()[0];
+  const v=sheet.getRange(row,1,1,11).getDisplayValues()[0];
   const email=String(v[0]||"").trim().toLowerCase();
   const name=String(v[1]||"").trim();
   const role=String(v[3]||"").trim().toLowerCase();
@@ -199,7 +213,7 @@ function aliSparkRequireStudent_(user,email,uid,token){
   if(val("role")!=="student"||val("status")!=="active"||val("email").toLowerCase()!==email)
     throw Error("Hồ sơ Firestore không phải học viên đang hoạt động hoặc email không khớp.");
 }
-function aliSparkPasswordExecute(mode,expected){
+function aliSparkPasswordExecute(mode,expected,chosenNewPassword){
   if(!["create2","create20","reset"].includes(mode)||!Array.isArray(expected)||expected.length<1)
     throw Error("Yêu cầu không hợp lệ.");
   const lock=LockService.getDocumentLock()||LockService.getScriptLock();
@@ -221,13 +235,15 @@ function aliSparkPasswordExecute(mode,expected){
         const user=aliSparkGetUser_(row.email,token),uid=String(user.localId||"");
         if(row.uid&&row.uid!==uid)throw Error("UID trong Sheet khác Firebase. Không đặt lại mật khẩu.");
         aliSparkRequireStudent_(user,row.email,uid,token);
-        const password=aliSparkPassword_();
+        const password=aliSparkValidatePassword_(chosenNewPassword||aliSparkPassword_());
         aliSparkRequest_(aliSparkAuthUrl_(":update"),"post",token,{localId:uid,password});
+        try{aliSparkStorePassword_(sheet,row.row,password);}
+        catch(e){result.message="Firebase đã đổi mật khẩu, nhưng chưa lưu được ở K; hãy sao chép mật khẩu trong cửa sổ. ";}
         result.password=password;
         result.status="DA_CAP_LAI";
         try{
           aliSparkWriteResult_(sheet,row.row,row.status,uid,"","CAP_LAI_TAY");
-        }catch(e){result.message="Mật khẩu đã đổi trên Firebase nhưng không thể cập nhật trạng thái Sheet.";}
+        }catch(e){result.message+="Không thể cập nhật trạng thái Sheet.";}
       }catch(e){result.status="LOI";result.message=aliSparkSafeError_(e);}
       results.push(result);
     }else{
@@ -235,7 +251,7 @@ function aliSparkPasswordExecute(mode,expected){
         const result={row:row.row,email:row.email,name:row.name,status:"",password:"",message:""};
         let uid="";
         try{
-          const password=aliSparkPassword_();
+          const password=aliSparkValidatePassword_(aliSparkSavedPassword_(sheet,row.row)||aliSparkPassword_());
           let user=null;
           try{
             user=aliSparkRequest_(aliSparkAuthUrl_(""),"post",token,{
@@ -271,7 +287,8 @@ function aliSparkPasswordExecute(mode,expected){
             if(!result.status){
               result.status="DA_TAO";
               result.password=password;
-              result.message="Mật khẩu tạm chỉ hiển thị tại cửa sổ này, không được ghi vào Sheet.";
+              result.message="Mật khẩu chính thức; chỉ đổi khi có yêu cầu. "; 
+              try{aliSparkStorePassword_(sheet,row.row,password);result.message+="Đã lưu ở cột K.";}catch(e){result.message+="Không lưu được cột K; hãy sao chép trong cửa sổ.";}
               try{aliSparkWriteResult_(sheet,row.row,result.status,uid,"","CAP_TAY");}
               catch(e){result.message+=" Không cập nhật được cột trạng thái; kiểm tra UID trong Firebase.";}
             }
