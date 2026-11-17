@@ -176,3 +176,56 @@ exports.teacherPublishMovie=onCall(config,async request=>{
  await batch.commit();
  return {id,title,captionCount:cues.length,duration:label,status:"published"};
 });
+
+
+/**
+ * Admin-only import. Maximum 100 students per invocation.
+ * No passwords or service credentials are persisted in Firestore or logs.
+ * Existing emails are never overwritten; each row reports its result.
+ */
+exports.adminImportStudents = onCall({...config,timeoutSeconds:300},async request=>{
+ const staff=verifyStaff(request);await checkStaffActive(staff.uid);
+ if(staff.role!=="admin")throw new HttpsError("permission-denied","Chỉ Admin ALI được nhập tài khoản hàng loạt.");
+ const rows=request.data?.students;
+ if(!Array.isArray(rows)||rows.length<1||rows.length>100)
+  invalid("Mỗi lần nhập cần từ 1 đến 100 học viên.");
+ const checked=[],seen=new Set();
+ for(let i=0;i<rows.length;i++){
+  const item=rows[i]||{};
+  const name=String(item.name||"").trim();
+  const email=String(item.email||"").trim().toLowerCase();
+  const code=String(item.studentCode||"").trim();
+  const className=String(item.className||"").trim();
+  if(!isText(name,100)||!mailPattern.test(email)||email.length>180||
+     code.length>40||className.length>100||
+     !/^[\p{L}\p{N} _.-]*$/u.test(code))
+   invalid("Dòng "+(i+2)+": Họ tên/email/mã học viên/lớp không hợp lệ.");
+  if(seen.has(email))invalid("Email bị trùng trong tệp: "+email);
+  seen.add(email);
+  checked.push({name,email,studentCode:code,className});
+ }
+ const results=[];
+ for(let i=0;i<checked.length;i++){
+  const item=checked[i];let user=null;
+  try{
+   const password=randomBytes(18).toString("base64url")+"!";
+   user=await getAuth().createUser({email:item.email,password,displayName:item.name,emailVerified:false,disabled:false});
+   await getFirestore().doc("users/"+user.uid).create({
+    name:item.name,email:item.email,studentCode:item.studentCode,
+    className:item.className,role:"student",status:"active",
+    createdBy:staff.uid,createdAt:FieldValue.serverTimestamp()
+   });
+   results.push({row:i+2,name:item.name,email:item.email,studentCode:item.studentCode,
+    className:item.className,status:"created",temporaryPassword:password});
+  }catch(e){
+   if(user){try{await getAuth().deleteUser(user.uid);}catch(_){/* No password logging */}}
+   const duplicate=e.code==="auth/email-already-exists";
+   results.push({row:i+2,name:item.name,email:item.email,studentCode:item.studentCode,
+    className:item.className,status:duplicate?"existing":"failed",
+    message:duplicate?"Email đã tồn tại": "Không thể tạo tài khoản; kiểm tra cấu hình Firebase."});
+  }
+ }
+ return {results,created:results.filter(x=>x.status==="created").length,
+  existing:results.filter(x=>x.status==="existing").length,
+  failed:results.filter(x=>x.status==="failed").length};
+});
