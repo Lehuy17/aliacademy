@@ -1,37 +1,43 @@
-# ALI English — 5–10 tài khoản trên Firebase Spark (không cần Blaze)
+# ALI Academy — 100 học viên từ Excel trên Firebase Spark
 
-## Cách dùng đơn giản: Google Sheets → CSV → Firebase
+Công cụ này chạy trên máy quản trị Windows bằng Firebase Admin SDK, KHÔNG sử dụng Firebase Cloud Functions, không cần nâng cấp lên Blaze. Không chạy trực tiếp trên website GitHub Pages.
 
-Dùng **máy tính Windows có Node.js 22+**. Không cần triển khai Cloud Functions, không cần thay gói Spark.
+## Cài đặt một lần
 
-### Một lần đầu
+1. Cài Node.js 22 trở lên từ https://nodejs.org/ (sau đó khởi động lại Terminal nếu cần).
+2. Tải bộ công cụ trong thư mục firebase-bulk/spark-local của repository Lehuy17/aliacademy về máy. Giữ nguyên các tệp trong cùng một thư mục.
+3. Truy cập Firebase Console cho dự án ali-english: https://console.firebase.google.com/project/ali-english/settings/serviceaccounts/adminsdk . Trong Project settings / Service accounts, chọn Generate new private key, tải JSON xuống máy quản trị đã bảo mật.
+4. Đổi tên JSON thành firebase-service-account.json và đặt trong cùng thư mục với create-students.cjs. Không gửi khóa cho ChatGPT, không đưa lên website, email hay GitHub. Nếu chính sách tổ chức chặn tạo khóa thì liên hệ quản trị viên Google Cloud.
+5. Nháy đúp nhap-hoc-vien.bat. Chương trình tự cài các thư viện bằng npm khi dùng lần đầu, và tạo file mẫu ALI_Mau_100_Hoc_Vien.xlsx. Máy cần kết nối Internet.
 
-1. Mở [Google Sheets ALI](https://docs.google.com/spreadsheets/d/1XBb9DVDc2tjb9f1wgjIk08wRrrZcWWK84r_PWH6FZgI/edit). Ở tab **Học viên**, nhập 5–10 email, tùy chọn Họ tên và Lớp.
-2. Mở [Firebase Console → Project settings → Service accounts](https://console.firebase.google.com/project/ali-english/settings/serviceaccounts/adminsdk). Trên máy quản trị riêng, tạo và tải **private key JSON** của đúng dự án `ali-english`.
-3. Giải nén ZIP của repository. Trong thư mục `firebase-bulk/spark-local` đặt file JSON đó tên `firebase-service-account.json`. **Không gửi file JSON cho ChatGPT, không tải lên Google Sheets/GitHub, không chép vào hosting công khai.**
-4. Cài [Node.js 22+](https://nodejs.org/). Mở CMD trong đúng thư mục `spark-local`, chạy:
-   ```bat
-   npm install
-   ```
+## Nhập Excel mỗi lần
 
-### Mỗi lần tạo 5–10 tài khoản
+1. Mở ALI_Mau_100_Hoc_Vien.xlsx. Điền từ hàng 2 đến 101 trên sheet Hoc vien. Cột Họ tên và Email là bắt buộc; Mã học viên, Lớp học là tùy chọn. Cột Yêu cầu: trống/CHO_TAO để tạo, BO_QUA để bỏ qua.
+2. Lưu, đóng Excel. Nháy đúp nhap-hoc-vien.bat. Dán đường dẫn file Excel hoặc kéo thả file vào cửa sổ.
+3. Công cụ kiểm tra danh sách, email sai, mã học viên trùng, giới hạn 100 dòng. Giai đoạn này KHÔNG tạo tài khoản.
+4. Kiểm tra đúng danh sách, nhấn Y để tạo thật hoặc N để hủy.
+5. Mở thư mục private-output trên máy:
+   - bao-cao-....csv: kết quả từng học viên.
+   - mat-khau-tam-....csv: mật khẩu ngẫu nhiên chỉ cho tài khoản MỚI.
+6. Gửi riêng tài khoản và mật khẩu cho từng học viên, yêu cầu đổi mật khẩu ngay sau lần đăng nhập đầu.
 
-1. Ở Google Sheets, chọn tab **Học viên**, vào **File → Download → Comma Separated Values (.csv)**, đổi tên thành `students.csv` và lưu tại `spark-local`.
-2. Mở CMD ngay trong thư mục đó, chạy **chỉ kiểm tra**:
-   ```bat
-   node create-students.cjs students.csv
-   ```
-3. Nếu đúng danh sách 5–10 email, chạy:
-   ```bat
-   node create-students.cjs students.csv --apply
-   ```
-4. Script kiểm tra email, tạo Firebase Authentication rồi bổ sung/đối chiếu hồ sơ Firestore `users/{uid}`. Script không đổi trạng thái khóa hoặc quyền admin hiện có. File báo cáo `results-...csv` nằm trên máy của bạn.
-5. Học viên mở [đăng nhập ALI](https://lehuy17.github.io/aliacademy/login.html), nhập email, nhấn **Quên mật khẩu?**, đặt mật khẩu theo email từ Firebase, sau đó đăng nhập.
+## Sử dụng dòng lệnh nếu muốn
 
-## Lưu ý
-- Script chỉ chạy khi quản trị viên chủ động thêm `--apply`. Chưa có tài khoản nào được tạo chỉ vì nhập email vào Sheet.
-- Không có nút tự đồng bộ trực tiếp từ Sheets ở chế độ Spark này: bạn cần tải CSV và chạy lệnh tại máy quản trị.
-- Đừng cho nhân viên không được ủy quyền dùng khóa JSON. Nếu nghi lộ, thu hồi/rotate khóa ngay tại Google Cloud.
-- Chạy thử 1–2 email thuộc quyền quản lý của ALI trước khi tạo đủ 10.
-- Mỗi lần tối đa 10 dòng dữ liệu trong CSV để giảm nguy cơ thao tác nhầm.
-- Bạn có thể xóa file `students.csv` và `results-...csv` khỏi máy khi không còn cần, theo quy định bảo vệ dữ liệu học viên.
+Trong thư mục công cụ, chạy các lệnh sau:
+
+    npm install
+    node create-students.cjs --template
+    node create-students.cjs "C:\DuLieu\hoc-vien.xlsx"
+    node create-students.cjs "C:\DuLieu\hoc-vien.xlsx" --apply
+
+Không có --apply nghĩa là chỉ kiểm tra, không gọi Firebase. File .xls cũ phải chuyển sang .xlsx hoặc .csv.
+
+## Lưu ý quan trọng
+
+- Hãy thử 2 email do ALI kiểm soát trước khi tạo đủ 100.
+- Script cố ý BỎ QUA email đã có, không đổi vai trò, mật khẩu hoặc trạng thái tài khoản cũ. Quyền tạo Admin/Teacher không có trong Excel.
+- Nếu Firebase Authentication áp dụng giới hạn tạo mới 100 tài khoản/giờ/IP, một lượt nhập đủ 100 có thể chạm giới hạn, đặc biệt nếu cùng IP đã tạo tài khoản trước đó. Không lặp yêu cầu khi đang bị hạn mức.
+- Nếu gặp lỗi sau khi tạo tài khoản, script cố gắng xóa tài khoản vừa tạo; dòng CAN_KIEM_TRA_THU_CONG phải được kiểm tra bằng tay.
+- Khóa JSON và các file chứa mật khẩu đều là bí mật. Thư mục được .gitignore, nhưng vẫn cần máy quản trị có khóa màn hình và bảo vệ dữ liệu, tuyệt đối không tải file này lên website hoặc Drive chia sẻ công khai.
+- Nếu học viên quên mật khẩu, có thể dùng nút Quên mật khẩu? ở https://lehuy17.github.io/aliacademy/login.html khi Firebase Email/Password và email khôi phục đã cấu hình.
+- Nút nhập Excel trên teacher.html là phương án Cloud Functions/Blaze khác. Đối với Spark, dùng công cụ LOCAL trong thư mục này.

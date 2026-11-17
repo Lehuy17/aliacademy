@@ -1,5 +1,9 @@
 node_modules/
 *.csv
+*.xlsx
+*.xls
+private-output/
 firebase-service-account.json
 *-service-account.json
+*service*key*.json
 *.log

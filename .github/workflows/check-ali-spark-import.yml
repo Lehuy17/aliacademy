@@ -1,0 +1,31 @@
+name: ALI Spark Excel Import Check
+on:
+  push:
+    paths:
+      - 'firebase-bulk/spark-local/**'
+      - '.github/workflows/check-ali-spark-import.yml'
+  pull_request:
+    paths:
+      - 'firebase-bulk/spark-local/**'
+      - '.github/workflows/check-ali-spark-import.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            firebase-bulk/spark-local/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Install importer dependencies
+        run: npm install --prefix firebase-bulk/spark-local --no-audit --no-fund
+      - name: Validate Excel importer without Firebase credentials
+        run: npm test --prefix firebase-bulk/spark-local
