@@ -3,6 +3,29 @@
 (function(){
 'use strict';
 const path=location.pathname.split('/').pop();
+const css=document.createElement('style');css.textContent=`
+.ali-feedback-details{margin-top:25px;font-family:inherit;text-align:left;color:#29252c}
+.ali-feedback-placement,.ali-feedback-review{background:#fffaf7;border:1px solid #f1d9c8;border-radius:17px;padding:20px;margin:18px 0;box-shadow:0 5px 20px #9d521012}
+.ali-feedback-placement h3{margin:0 0 12px;color:#c64c0b;font-size:19px}
+.ali-feedback-placement p,.ali-feedback-review p{line-height:1.8}
+.ali-feedback-table{width:100%;border-collapse:collapse;margin:15px 0;font-size:13px}
+.ali-feedback-table td{border-bottom:1px solid #f2ded0;padding:12px 9px;text-align:left;vertical-align:top}
+.ali-feedback-table tr:nth-child(odd){background:#fff5ed}
+.ali-feedback-table td:first-child{font-weight:750}
+.ali-feedback-muted{font-size:12px;color:#816d64;line-height:1.7}
+.ali-feedback-review summary{font-weight:800;color:#af430e;font-size:17px;cursor:pointer;line-height:1.5}
+.ali-feedback-filter{display:flex;gap:8px;flex-wrap:wrap;margin:17px 0}
+.ali-feedback-filter .ali-feedback-filter-btn{border:1px solid #f0c8ae!important;border-radius:999px!important;background:#fff!important;color:#a54918!important;font-size:12px!important;font-weight:750!important;padding:9px 14px!important;box-shadow:none!important}
+.ali-feedback-filter .ali-feedback-filter-btn[aria-pressed=true]{background:#ff681e!important;color:white!important;border-color:#ff681e!important}
+.ali-feedback-items{display:grid;gap:10px;max-height:650px;overflow-y:auto}
+.ali-feedback-item{border-radius:12px;padding:13px 15px;background:#fff;border:1px solid #edd9cc;border-left:4px solid #e38f4f}
+.ali-feedback-item.ali-feedback-correct{border-left-color:#289b70}
+.ali-feedback-item strong{font-size:13px}
+.ali-feedback-item p{font-size:12px;margin:7px 0 0}
+.ali-feedback-item .ali-feedback-explain{color:#715c51}
+@media(max-width:600px){.ali-feedback-placement,.ali-feedback-review{padding:13px}.ali-feedback-table{font-size:11px}.ali-feedback-table td{padding:10px 6px}.ali-feedback-items{max-height:none}}
+`;document.head.append(css);
+
 const keysToeic='B C D C B C A B A D A D B A C B A C D B C B C D D B D A C D'.split(' ');
 const toeicExplain=[
 'at the end of the block: giới từ at chỉ vị trí.','well là trạng từ bổ nghĩa cho performs.','plan to + V nguyên mẫu.','his associate: danh từ số ít chỉ một cộng sự.','between A and B: giữa hai đối tượng.','local là tính từ bổ nghĩa cho housing market.','has gone: hiện tại hoàn thành, người đó đang đi vắng.','by 5 p.m.: chậm nhất trước hạn chót.','their: tính từ sở hữu cho IXC chips số nhiều.','more experienced: tính từ chỉ kinh nghiệm, so sánh hơn.','due to + cụm danh từ chỉ nguyên nhân.','be released to the press: cấu trúc bị động.','unless = trừ khi.','need to be reminded: bị động sau need to.','get somebody to do something.','rather than: thay vì.','apologize: xin lỗi về sai sót.','If you encounter…: mệnh đề điều kiện.','have received: hiện tại hoàn thành.','set up an interview: sắp xếp cuộc phỏng vấn.','employees make: chủ ngữ số nhiều đi với make.','15% discount on rental car: chi tiết trong quảng cáo.','Package 2 có show; tuổi 70 thuộc Adults 65+, giá $120.','Memo thông báo chính sách nghỉ phép mới.','As of January 1st có nghĩa bắt đầu từ năm mới.','HR Director máy lẻ 254 hoặc trợ lý 256; 526 là đáp án nhiễu.','premier publisher of travel and tourism books.','founded six years ago tương đương started six years ago.','seminar về MarkTrends; cần dùng tốt phần mềm.','listed among Thailand’s ten most successful businesses.'
