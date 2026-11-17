@@ -229,3 +229,102 @@ exports.adminImportStudents = onCall({...config,timeoutSeconds:300},async reques
   existing:results.filter(x=>x.status==="existing").length,
   failed:results.filter(x=>x.status==="failed").length};
 });
+
+
+/* Placement attempts: trusted marking, verified student identity, staff-only review. */
+const placementB1="B B B B C B B C A B A B B C A".split(" ");
+const placementToeic="B C D C B C A B A D A D B A C B A C D B C B C D D B D A C D".split(" ");
+const placementIeltsReading="mining|education|notes|journals|Venice|canteen|friends|TRUE|NOT GIVEN|FALSE|NOT GIVEN|TRUE|TRUE".split("|");
+const placementIeltsListening=[
+ ["13 january","13th january","the 13th january","the 13th of january","13.01","13.1","13th of january"],
+ ["48","forty eight"],["pizza"],["india"],["mirror"],
+ ["6 april","6th april","the 6th april","the 6th of april","06.04","6.4","6th of april"],
+ ["natural"],["67.50","sixty seven fifty"],["shirt"],["hammer"]
+];
+function normPlacement(x){return String(x||"").trim().toLowerCase().replace(/[\u2010-\u2015-]/g," ").replace(/[^a-z0-9. ]+/g,"").replace(/\s+/g," ");}
+function markPlacement(test,a){
+ const records=[];
+ function push(part,number,value,expected,correct,explanation){
+  records.push({part,number,answer:value||"",expected,correct:!!correct,
+   explanation:explanation||"Đối chiếu đáp án được xác minh trong tài liệu ALI."});
+ }
+ if(test==="b1"){
+  for(let i=0;i<15;i++)push("Grammar & Vocabulary",i+1,a[i],placementB1[i],
+   a[i]===placementB1[i],"Ôn lại cấu trúc ngữ pháp và so sánh câu trả lời với đáp án đúng.");
+  return {total:records.filter(r=>r.correct).length,max:15,
+   breakdown:[{name:"Grammar",score:records.filter(r=>r.correct).length,max:15},{name:"Reading",score:null,max:10},{name:"Writing",score:null,max:15},{name:"Listening",score:null,max:10}],records,
+   placement:"Chưa thể xếp lớp B1 /60 khi thiếu điểm Reading, Writing và Listening."};
+ }
+ if(test==="toeic"){
+  for(let i=0;i<30;i++){const n=i+26;push(n<=40?"Part 5":n<=46?"Part 6":"Part 7",n,a[i+25],placementToeic[i],a[i+25]===placementToeic[i],
+   n<=40?"Đối chiếu cấu trúc, từ loại, giới từ hoặc cụm từ trong câu.":"Đối chiếu chi tiết và diễn đạt tương đương trong văn bản.");}
+  const score=records.filter(r=>r.correct).length;
+  return {total:score,max:30,
+   breakdown:[{name:"Reading",score,max:30},{name:"Listening",score:null,max:25}],
+   records,placement:"Chưa xếp TOEIC 400/550: cần Listening /25 để tính tổng /55; ngữ pháp nền câu 26–31 là điều kiện phụ ở mốc 19–21."};
+ }
+ for(let i=0;i<20;i++){
+  const value=a[i];let expected,pass;
+  if(i<10){expected=placementIeltsListening[i][0];pass=placementIeltsListening[i].some(x=>normPlacement(x)===normPlacement(value));}
+  else if(i<14){const pair=i<12?["B","E"]:["C","D"],start=i<12?10:12,partner=a[i===start?start+1:start];
+   expected=pair.join(" & ");pass=pair.includes(value)&&(i===start||value!==partner);}
+  else{expected=["F","B","D","A","H","E"][i-14];pass=value===expected;}
+  push("Listening",i+1,value,expected,pass,"Xác định thông tin nghe, từ khóa hoặc vị trí trên bản đồ.");
+ }
+ for(let i=0;i<13;i++){const expected=placementIeltsReading[i];push("Reading",i+1,a[i+20],expected,
+   normPlacement(a[i+20])===normPlacement(expected),"Kiểm tra bằng chứng và cách diễn đạt tương đương trong bài Davies Sisters.");}
+ const l=records.slice(0,20).filter(r=>r.correct).length,read=records.slice(20).filter(r=>r.correct).length;
+ const tiers=[["Foundation / Pre-IELTS",0,5,0,3],["IELTS Ignite",6,9,4,6],["IELTS Elevate",10,13,7,9],
+  ["IELTS Breakthrough",14,16,10,11],["IELTS Mastery",17,18,12,12]];
+ const match=tiers.find(t=>l>=t[1]&&l<=t[2]&&read>=t[3]&&read<=t[4]);
+ return {total:l+read,max:33,breakdown:[{name:"Listening",score:l,max:20},{name:"Reading",score:read,max:13},{name:"Writing",score:null,max:100}],
+  records,placement:match?"Tạm khớp ngưỡng "+match[0]+" ở Listening/Reading; chờ Writing giáo viên chấm.":"Listening và Reading chưa cùng một mức xếp lớp; chờ Writing và giáo viên đánh giá."};
+}
+exports.submitPlacementAttempt=onCall({...config,timeoutSeconds:60},async request=>{
+ if(!request.auth?.uid)throw new HttpsError("unauthenticated","Học viên cần đăng nhập tài khoản ALI trước khi nộp bài.");
+ const uid=request.auth.uid,d=request.data||{},test=String(d.test||"");
+ if(!["b1","toeic","ielts"].includes(test))invalid("Loại bài kiểm tra không hợp lệ.");
+ const profile=await getFirestore().doc("users/"+uid).get();
+ if(!profile.exists||profile.data().role!=="student"||profile.data().status!=="active")
+  throw new HttpsError("permission-denied","Chỉ tài khoản học viên ALI đang hoạt động được gửi kết quả.");
+ const n=test==="b1"?15:test==="toeic"?55:33;
+ if(!Array.isArray(d.answers)||d.answers.length!==n||
+    d.answers.some(x=>typeof x!=="string"||x.length>150))invalid("Dữ liệu trả lời không hợp lệ.");
+ const writing=String(d.writing||"");
+ if(writing.length>8000)invalid("Bài viết vượt giới hạn cho phép.");
+ const extra=d.profile||{};
+ const phone=String(extra.phone||"").slice(0,24),school=String(extra.school||"").slice(0,120),
+       goal=String(extra.goal||"").slice(0,60);
+ const marked=markPlacement(test,d.answers);
+ const result={
+  studentUid:uid,studentName:profile.data().name||request.auth.token.name||"Học viên",
+  email:profile.data().email||request.auth.token.email||"",test,
+  phone,school,goal,total:marked.total,max:marked.max,breakdown:marked.breakdown,
+  placement:marked.placement,records:marked.records,answers:d.answers,writing,
+  status:"pending_teacher_review",submittedAt:FieldValue.serverTimestamp()
+ };
+ const ref=await getFirestore().collection("placementAttempts").add(result);
+ return {attemptId:ref.id,total:marked.total,max:marked.max,breakdown:marked.breakdown,
+  message:"Đã lưu kết quả để giáo viên ALI kiểm tra."};
+});
+exports.adminCreateTeacher=onCall({...config,timeoutSeconds:60},async request=>{
+ const staff=verifyStaff(request);await checkStaffActive(staff.uid);
+ if(staff.role!=="admin")throw new HttpsError("permission-denied","Chỉ Admin được tạo tài khoản giáo viên.");
+ const name=String(request.data?.name||"").trim(),email=String(request.data?.email||"").trim().toLowerCase();
+ if(!isText(name,100)||!mailPattern.test(email)||email.length>180)invalid("Họ tên hoặc email không hợp lệ.");
+ const password=randomBytes(18).toString("base64url")+"!";
+ let user;
+ try{
+  user=await getAuth().createUser({email,password,displayName:name,emailVerified:false,disabled:false});
+  await getAuth().setCustomUserClaims(user.uid,{role:"teacher"});
+  await getFirestore().doc("users/"+user.uid).create({
+    name,email,role:"teacher",status:"active",createdBy:staff.uid,createdAt:FieldValue.serverTimestamp()
+  });
+  return {uid:user.uid,name,email,temporaryPassword:password};
+ }catch(e){
+  if(user){try{await getAuth().deleteUser(user.uid);}catch(_){}}
+  if(e.code==="auth/email-already-exists")throw new HttpsError("already-exists","Email đã có tài khoản.");
+  if(e instanceof HttpsError)throw e;
+  throw new HttpsError("internal","Không thể tạo giáo viên. Kiểm tra quyền của Admin và Firebase Functions.");
+ }
+});
