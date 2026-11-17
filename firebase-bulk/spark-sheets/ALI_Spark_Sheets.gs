@@ -156,8 +156,13 @@ function aliSparkSelectedStudent_(sheet){
   if(selected.getSheetId()!==sheet.getSheetId()||!range)
     throw Error('Vui lòng chọn một ô trên dòng học viên trong tab "Học viên".');
   const row=range.getRow();
-  if(row<2||row>sheet.getLastRow()||range.getNumRows()!==1)
+  if(range.getNumRows()!==1)
     throw Error("Chỉ chọn một ô trên đúng một dòng học viên.");
+  return aliSparkStudentFromRow_(sheet,row);
+}
+function aliSparkStudentFromRow_(sheet,row){
+  if(!Number.isInteger(row)||row<2||row>sheet.getLastRow())
+    throw Error("Dòng học viên không hợp lệ. Đóng cửa sổ và chọn lại.");
   const v=sheet.getRange(row,1,1,11).getDisplayValues()[0];
   const email=String(v[0]||"").trim().toLowerCase();
   const name=String(v[1]||"").trim();
@@ -219,14 +224,26 @@ function aliSparkPasswordExecute(mode,expected,chosenNewPassword){
   const lock=LockService.getDocumentLock()||LockService.getScriptLock();
   if(!lock.tryLock(5000))throw Error("Một quản trị viên khác đang thao tác. Hãy thử lại.");
   try{
-    // Prevent changing target rows between preview and confirmation.
-    const fresh=aliSparkPasswordPreview(mode);
-    const selected=fresh.rows.map(x=>({row:x.row,email:x.email}));
-    if(JSON.stringify(selected)!==JSON.stringify(expected)||
-       (mode==="reset"&&selected.length!==1))
-      throw Error("Danh sách hoặc dòng đã chọn thay đổi. Đóng cửa sổ và kiểm tra lại.");
-    const token=ScriptApp.getOAuthToken();
+    // Compare identity fields directly, not JSON object property order.
+    // Modal selection may change while dialog has focus: re-read the previewed row.
     const sheet=aliSparkSheet_();
+    let fresh;
+    if(mode==="reset"){
+      if(expected.length!==1||!expected[0]||!Number.isInteger(Number(expected[0].row)))
+        throw Error("Không xác định được một dòng học viên. Hãy đóng và chọn lại.");
+      fresh={mode,rows:[aliSparkStudentFromRow_(sheet,Number(expected[0].row))]};
+    }else{
+      fresh=aliSparkPasswordPreview(mode);
+    }
+    const selected=fresh.rows.map(x=>({row:x.row,email:x.email}));
+    const identical=selected.length===expected.length&&selected.every((item,i)=>{
+      const other=expected[i]||{};
+      return Number(other.row)===item.row&&
+        String(other.email||"").trim().toLowerCase()===item.email;
+    });
+    if(!identical)
+      throw Error("Email hoặc dòng học viên đã thay đổi từ khi mở cửa sổ. Đóng và mở lại để kiểm tra.");
+    const token=ScriptApp.getOAuthToken();
     const results=[];
     if(mode==="reset"){
       const row=fresh.rows[0];
