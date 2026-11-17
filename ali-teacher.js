@@ -30,6 +30,8 @@ function showPane(name){
  }
  $("teacherPaneStudents").hidden=name!=="students";
  $("teacherPaneMovies").hidden=name!=="movies";
+ $("teacherPaneResults").hidden=name!=="results";
+ if(name==="results")document.dispatchEvent(new CustomEvent("ali:teacher-results-open"));
 }
 function make(tag,content,className){
  const e=document.createElement(tag);if(content!==undefined)e.textContent=String(content);
@@ -318,6 +320,7 @@ async function init(){
     $("teacherRole").textContent=role==="admin"?"ADMIN":"TEACHER";
     $("teacherLogout").hidden=false;
     $("teacherWorkspace").hidden=false;
+    document.dispatchEvent(new CustomEvent("ali:teacher-authorized",{detail:{role}}));
     notify("Đã xác minh quyền "+role.toUpperCase()+". Bạn có thể tạo học viên và tự xuất bản phim, không cần Admin duyệt.","success");
     await Promise.all([loadStudents(),loadTeacherMovies()]);
    }catch(e){$("teacherWorkspace").hidden=true;notify(friendlyError(e)+" Đăng nhập lại sau khi Admin cấp quyền.","error");}
