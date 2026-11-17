@@ -29,29 +29,36 @@ Nếu thấy `Specified permissions are not sufficient to call Ui.showModalDialo
 
 | Cột | Nội dung |
 |---|---|
-| A | Email |
+| A | Email đăng nhập |
 | B | Họ tên |
 | C | Lớp học |
 | D | Vai trò: `student` |
 | E | Yêu cầu: `CHO_TAO` hoặc `BO_QUA` |
-| F | Trạng thái: cập nhật tự động |
-| G | UID |
-| H | Lỗi |
-| I | Cập nhật |
-| J | Email kích hoạt: DA_GUI hoặc CHUA_GUI |
+| F | Trạng thái (tự động) |
+| G | Firebase UID |
+| H | Lỗi / ghi chú |
+| I | Cập nhật lúc |
+| J | Giao tài khoản (`CAP_TAY` hoặc `CAP_LAI_TAY`) |
+| K | Mật khẩu đăng nhập chính thức của ALI (rõ, chỉ quản trị) |
 
-Không lưu mật khẩu trong Google Sheet. Chức năng tạo mới và cấp lại mật khẩu hiển thị mật khẩu tạm trong một cửa sổ riêng **một lần duy nhất**; không lưu vào ô, lịch sử Google Sheets, log, hoặc gửi tự động. Chỉ quản trị viên được IAM cấp quyền mới thao tác được. Bạn có thể chuẩn bị **100 học viên**, nhưng mỗi lần chọn menu sẽ tạo **tối đa 20 tài khoản** (5 lần cho 100 người), để dễ phát hiện lỗi và phù hợp giới hạn Apps Script.
+**QUAN TRỌNG VỀ BẢO MẬT:** Theo yêu cầu quản trị ALI, cột K là bản sao mật khẩu đăng nhập dạng văn bản rõ. Bất cứ người nào có quyền xem tệp (hoặc bản sao/lịch sử phiên bản) đều có thể biết mật khẩu. Chỉ quản trị viên tin cậy mới được quyền truy cập bảng; không chia sẻ Sheet cho học viên, không để bản sao ở nơi công khai, không dùng mật khẩu này cho tài khoản cá nhân của học viên. Ẩn hoặc bảo vệ cột không thể bảo đảm bí mật với người đã có quyền xem toàn bộ tệp. An toàn hơn là dùng một trình quản lý mật khẩu riêng của tổ chức.
+
+**Tạo tài khoản mới:** Admin có thể điền một mật khẩu mạnh vào K trước khi tạo (12–72 ký tự, chữ hoa, chữ thường, số, ký tự đặc biệt), hoặc để K trống để Apps Script tự tạo và lưu K sau khi tạo tài khoản thành công. Firebase nhận mật khẩu đó và giữ nguyên cho đến khi có lần đổi mật khẩu sau.
+
+**Đổi mật khẩu khi học viên quên:** Chọn đúng một dòng có tài khoản và mở menu **4. Đổi mật khẩu khi học viên quên**. Nhập mật khẩu mới hoặc để trống cho mã tự tạo; Apps Script kiểm tra Firebase + Firestore role=student, sau đó cập nhật Firebase và cột K. Học viên có thể tiếp tục đăng nhập bằng email + mật khẩu mới.
+
+**Không tự đổi:** Cột K chỉ là bản sao mật khẩu do ALI cấp, không đồng bộ hai chiều. Sửa trực tiếp K ở tài khoản đã có sẽ **không** đổi mật khẩu Firebase. Học viên dùng nút Quên mật khẩu trên website cũng có thể tự thay đổi mật khẩu và khiến K không còn đúng. Firebase **không cho đọc lại** mật khẩu của người dùng.
+
+**Mật khẩu của tài khoản cũ:** Những tài khoản tạo trước khi có cột K không thể khôi phục mật khẩu đã có. Nếu cần quản lý từ Sheet, Admin phải chủ động thực hiện đúng một lần chức năng đổi mật khẩu cho từng tài khoản đó.
 
 ## Cách dùng
 
-- Chạy **Kiểm tra danh sách**, sửa mọi dòng có lỗi ở cột H.
-- Chọn menu **2. Tạo 2 tài khoản + nhận mật khẩu tạm** hoặc **3. Tạo tối đa 20 tài khoản + nhận mật khẩu tạm**. Hộp thoại hiển thị từng email và mật khẩu **chỉ cho tài khoản vừa được tạo mới**, không làm đổi mật khẩu của tài khoản đã tồn tại. Sao chép mật khẩu trước khi đóng và bàn giao riêng cho từng học viên.
-- Để **cấp lại mật khẩu** cho học viên có sẵn: chọn một ô trên đúng dòng học viên có `DA_TAO` hoặc `DA_TON_TAI` trong tab `Học viên`, chọn menu **4. Cấp lại mật khẩu tạm (chọn dòng học viên)**, kiểm tra email → xác nhận. Công cụ đối chiếu email/UID Firebase với hồ sơ Firestore `role=student`, `status=active`, không hỗ trợ tài khoản giáo viên/Admin. Việc cấp lại lập tức thay thế mật khẩu cũ.
-- Chỉ nhập **2 email bạn kiểm soát**, chạy **Tạo 2 tài khoản thử**.
-- Kiểm tra Firebase Console → Authentication → Users và Firestore → `users/{uid}`.
-- Kiểm tra email kích hoạt. Nếu email không gửi được, học viên có thể bấm **Quên mật khẩu?** tại trang đăng nhập ALI khi email recovery đã cấu hình.
-- Sau khi thử nghiệm thành công, nhập các email còn lại rồi chọn **Tạo tối đa 20 tài khoản tiếp theo** nhiều lần.
-- Email đã có `DA_TAO` và `DA_TON_TAI` không xử lý lại. Không tạo/quản lý quyền Teacher hoặc Admin bằng bảng này.
+1. Chỉ nhập **2 email thử nghiệm do Admin kiểm soát** để thử quy trình.
+2. Tải lại Sheet, chọn **ALI Academy · Spark → 1. Kiểm tra danh sách**; sửa lỗi trước khi tạo.
+3. Chọn **2. Tạo 2 tài khoản + mật khẩu chính thức**, đối chiếu email và xác nhận. Kiểm tra `DA_TAO`, UID và mật khẩu cột K. Nếu email đã tồn tại, công cụ **không tự đổi mật khẩu cũ**.
+4. Mở Firebase Console → Authentication → Users, Firestore → `users/{uid}`, sau đó thử đăng nhập website.
+5. Sau khi thử nghiệm, có thể tạo tối đa 20 học viên mỗi lần để quản lý tổng cộng 100 học viên.
+6. Đối với học viên quên mật khẩu, chọn dòng, mở mục 4 rồi mới xác nhận thay đổi. Không dùng lại mật khẩu đã biết hoặc lưu password bên ngoài bảng quản trị.
 
 ## Khắc phục lỗi
 
