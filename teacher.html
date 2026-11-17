@@ -31,6 +31,23 @@
   <section id="teacherPaneStudents" class="teacher-section" role="tabpanel">
    <div class="section-head"><div><span class="teacher-eyebrow">STUDENT MANAGEMENT</span><h2>Danh sách học viên</h2><p>Tạo tài khoản riêng cho từng học viên, quản lý trạng thái và theo dõi danh sách.</p></div>
     <button type="button" class="teacher-outline" id="teacherRefreshStudents">↻ Tải lại danh sách</button></div>
+
+   <div class="teacher-panel ali-bulk-panel" id="aliBulkPanel" hidden>
+    <div class="teacher-panel-heading"><span class="teacher-icon">⇧</span><div><h3>Nhập Excel tạo tài khoản hàng loạt</h3><p>Chỉ Admin · Mỗi lượt tối đa 100 học viên · Hỗ trợ .xlsx, .xls, .csv</p></div></div>
+    <p>File cần cột <strong>Họ tên</strong> và <strong>Email</strong>. Có thể thêm <strong>Mã học viên</strong>, <strong>Lớp học</strong>.</p>
+    <div class="ali-bulk-actions">
+     <button type="button" class="teacher-outline" id="aliBulkTemplate">↓ Tải file mẫu CSV</button>
+     <label class="ali-bulk-file-label" for="aliBulkFile">Chọn tệp Excel/CSV</label>
+     <input type="file" id="aliBulkFile" accept=".xlsx,.xls,.csv" aria-label="Danh sách học viên Excel">
+    </div>
+    <div id="aliBulkSummary" role="status" aria-live="polite">Chưa chọn danh sách.</div>
+    <div class="teacher-table-wrap" id="aliBulkPreview" hidden><table class="teacher-table"><thead><tr><th>Dòng</th><th>Họ tên</th><th>Email</th><th>Mã HV</th><th>Lớp</th><th>Kiểm tra</th></tr></thead><tbody id="aliBulkRows"></tbody></table></div>
+    <div class="ali-bulk-actions">
+     <button type="button" id="aliBulkSubmit" class="teacher-primary" disabled>Tạo tài khoản từ Excel</button>
+     <button type="button" id="aliBulkDownload" class="teacher-outline" hidden>↓ Tải kết quả và mật khẩu (CSV)</button>
+    </div>
+    <p class="teacher-panel-tip">Mật khẩu riêng được tạo ngẫu nhiên, chỉ trả về sau khi tạo thành công. Hãy tải kết quả một lần, lưu an toàn và gửi riêng từng học viên. Không tải file chứa mật khẩu lên GitHub hay chia sẻ công khai.</p>
+   </div>
    <div class="teacher-layout">
     <form class="teacher-panel teacher-create-form" id="teacherCreateStudent">
      <div class="teacher-panel-heading"><span class="teacher-icon">+</span><div><h3>Tạo học viên mới</h3><p>Hệ thống cấp tài khoản và mật khẩu ban đầu.</p></div></div>
@@ -97,4 +114,4 @@
    </div>
   </section>
  </section>
-</main><script type="module" src="./ali-teacher.js?v=2"></script></body></html>
+</main><script type="module" src="./ali-teacher.js?v=2"></script><script type="module" src="./ali-bulk-import.js?v=1"></script></body></html>
