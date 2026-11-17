@@ -12,6 +12,7 @@ assert(/aliSparkPasswordExecute/.test(js));
 assert(html.includes("google.script.run"));
 assert(html.includes("google.script.host.close()"));
 assert(manifest.oauthScopes.includes("https://www.googleapis.com/auth/cloud-platform"));
+assert(manifest.oauthScopes.includes("https://www.googleapis.com/auth/script.container.ui"));
 const rows=[
   ["Email","Họ tên","Lớp học","Vai trò","Yêu cầu","Trạng thái","UID","Lỗi","Cập nhật","Email kích hoạt"],
   ["student01@example.com","Nguyễn Văn A","TOEIC","student","CHO_TAO","","","","",""],
