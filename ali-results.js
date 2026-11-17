@@ -35,7 +35,7 @@ function render(targetId,data){
  const actions=el('div','ali-result-actions');
  const back=el('a','ali-result-btn ali-result-secondary','← Chọn bài test khác');back.href='./tests.html?step=choose';actions.append(back);
  const retry=el('button','ali-result-btn ali-result-primary','Làm lại bài');retry.type='button';retry.addEventListener('click',()=>location.reload());actions.append(retry);
- target.append(actions);target.scrollIntoView({behavior:'smooth',block:'start'});
+ target.append(actions);document.dispatchEvent(new CustomEvent('ali:placement-graded',{detail:{total,max,breakdown:parts}}));target.scrollIntoView({behavior:'smooth',block:'start'});
 }
 global.ALIResults={render};
 })(window);
