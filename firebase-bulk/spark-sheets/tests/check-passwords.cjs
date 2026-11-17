@@ -116,12 +116,24 @@ env.SpreadsheetApp.getActiveSpreadsheet=()=>({
 });
 preview=env.aliSparkPasswordPreview("reset");
 assert.equal(preview.rows[0].email,"student01@example.com");
-out=env.aliSparkPasswordExecute("reset",preview.rows.map(x=>({row:x.row,email:x.email})));
+// Regression: a modal might change active selection; original preview row still
+// must be honored, and JSON property order must not affect identity checking.
+selectedRow=3;
+out=env.aliSparkPasswordExecute("reset",preview.rows.map(x=>({email:x.email,row:x.row})));
+selectedRow=2;
 assert.equal(out.results[0].status,"DA_CAP_LAI");
 assert.notEqual(out.results[0].password,oldPass);
 assert.equal(accounts.get("student01@example.com").password,out.results[0].password);
 assert.equal(rows[1][9],"CAP_LAI_TAY");
 assert.equal(rows[1][10],out.results[0].password);
+// Guard: an email edited in the Sheet between preview and execute must fail.
+preview=env.aliSparkPasswordPreview("reset");
+const originalEmail=rows[1][0];
+rows[1][0]="changed.student@example.com";
+const changeCalls=requests.filter(x=>x.url.endsWith("/accounts:update")).length;
+assert.throws(()=>env.aliSparkPasswordExecute("reset",preview.rows.map(x=>({row:x.row,email:x.email}))),/Email hoặc dòng học viên đã thay đổi/);
+assert.equal(requests.filter(x=>x.url.endsWith("/accounts:update")).length,changeCalls);
+rows[1][0]=originalEmail;
 // A privileged profile cannot have its password reset through a student row.
 const uid=accounts.get("student01@example.com").localId;
 documents.get(uid).fields.role.stringValue="admin";
