@@ -1,0 +1,72 @@
+<!doctype html>
+<html lang="vi">
+<head>
+ <meta charset="utf-8">
+ <meta name="viewport" content="width=device-width,initial-scale=1">
+ <meta name="description" content="Chính sách bảo mật của ALI Academy: dữ liệu học viên, bài đánh giá, Firebase Authentication và Google Sheets dành cho quản trị viên.">
+ <meta name="theme-color" content="#ff681e">
+ <title>Chính sách bảo mật | ALI Academy</title>
+ <link rel="stylesheet" href="./ali-logo.css?v=1">
+ <style>
+ :root{--orange:#f2641a;--ink:#24222b;--muted:#665e5c;--line:#eee0d5;--paper:#fffdfb}
+ *{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;color:var(--ink);background:linear-gradient(160deg,#fff4e9,#fffdfb 35%);font-family:system-ui,-apple-system,"Segoe UI",Arial,sans-serif;line-height:1.8}
+ a{color:#ab4615}a:focus-visible{outline:3px solid #ff8e45;outline-offset:3px}
+ header{border-bottom:1px solid var(--line);background:white}header>div,main,footer>div{max-width:960px;margin:auto;padding-left:22px;padding-right:22px}
+ header>div{min-height:76px;display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+ .brand{display:flex;align-items:center;gap:12px;color:#e75b17;text-decoration:none;font-size:20px;font-weight:900}.ali-shared-logo{width:48px;height:48px;flex:none}
+ .home{font-size:14px;font-weight:700;text-decoration:none}
+ main{padding-top:48px;padding-bottom:72px}
+ .eyebrow{color:#d05f28;font-weight:800;font-size:11px;letter-spacing:.12em;text-transform:uppercase}
+ h1{font-size:clamp(28px,4vw,46px);line-height:1.2;margin:10px 0 12px}
+ .lead{font-size:16px;color:#5a5151;max-width:790px}
+ article{margin-top:34px;background:var(--paper);border:1px solid var(--line);border-radius:20px;padding:24px clamp(20px,4vw,44px);box-shadow:0 12px 35px #b7631e0d}
+ h2{font-size:21px;line-height:1.45;margin-top:30px;margin-bottom:8px;color:#9e4419}
+ h2:first-child{margin-top:2px}p,li{font-size:15px}
+ ul{padding-left:22px}li{margin:7px 0}
+ .date{color:var(--muted);font-size:13px}footer{background:#26242c;color:#f6ebe4;padding:24px 0}footer>div{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}footer a{color:#ffc391}
+ @media(max-width:600px){main{padding-top:32px;padding-bottom:38px}}
+ </style>
+</head>
+<body>
+<header><div>
+ <a class="brand" href="./index.html"><span class="ali-shared-logo" role="img" aria-label="Logo ALI Academy"></span><span>ALI ACADEMY</span></a>
+ <a class="home" href="./index.html">Về trang chủ</a>
+</div></header>
+<main>
+ <span class="eyebrow">ALI ENGLISH · YOUR ENGLISH, YOUR FUTURE</span>
+ <h1>Chính sách bảo mật</h1>
+ <p class="date">Cập nhật ngày 17/11/2026</p>
+ <p class="lead">ALI Academy tôn trọng quyền riêng tư của học viên và người sử dụng hệ thống. Trang này giải thích các loại dữ liệu được xử lý trong quá trình đăng nhập, tham gia học tập, làm bài kiểm tra và quản lý học viên.</p>
+ <article>
+  <h2>1. Đơn vị vận hành và phạm vi</h2>
+  <p>Website ALI Academy tại <a href="https://lehuy17.github.io/aliacademy/">https://lehuy17.github.io/aliacademy/</a> cung cấp tài nguyên học tiếng Anh, bài đánh giá trình độ, thư viện phim song ngữ và công cụ quản lý học viên. Chính sách này áp dụng cho website và các quy trình quản trị liên quan sử dụng Google Sheets, Google Apps Script và Firebase.</p>
+  <h2>2. Dữ liệu được xử lý</h2>
+  <ul>
+   <li><strong>Hồ sơ học viên:</strong> họ tên, địa chỉ email, mã học viên (nếu có), lớp học hoặc chương trình học và trạng thái tài khoản.</li>
+   <li><strong>Đăng nhập:</strong> định danh tài khoản, thông tin xác thực do Firebase Authentication quản lý; mật khẩu không được lưu ở mã nguồn website hoặc bảng Google Sheets.</li>
+   <li><strong>Đăng ký và đánh giá:</strong> thông tin do người học tự cung cấp trong biểu mẫu (có thể bao gồm số điện thoại, trường/lớp, mục tiêu học tập), câu trả lời, điểm số và kết quả xếp lớp.</li>
+   <li><strong>Kỹ năng nói:</strong> bản ghi âm chỉ được gửi lên hệ thống khi người học thực hiện thao tác và xác nhận đồng ý tại tính năng tương ứng.</li>
+   <li><strong>Quản trị:</strong> email, quyền truy cập của người được ủy quyền; kết quả tạo tài khoản và nhật ký lỗi liên quan đến hoạt động quản lý.</li>
+  </ul>
+  <h2>3. Mục đích sử dụng</h2>
+  <p>Thông tin được sử dụng để tạo và quản lý tài khoản học viên; xác thực quyền truy cập; tổ chức các lớp học; lưu, đánh giá hoặc trao đổi kết quả học tập; hỗ trợ học viên; cải thiện chất lượng hoạt động của nền tảng và bảo đảm an toàn hệ thống.</p>
+  <h2>4. Quyền truy cập dữ liệu Google trong công cụ quản trị</h2>
+  <p>Với công cụ nhập học viên từ Google Sheets, chỉ tài khoản Google của người quản trị được cấp phép mới thực hiện thao tác. Google Apps Script có thể yêu cầu quyền đọc/chỉnh sửa bảng tính hiện tại, gửi yêu cầu đến dịch vụ Google và gọi các API quản lý Firebase trong phạm vi quyền mà người quản trị đã được cấp. Quyền truy cập này dùng để thực hiện tác vụ quản trị học viên, không nhằm đọc email Gmail hoặc nội dung Drive cá nhân.</p>
+  <p>Thông tin truy cập Google được Google cấp và quản lý thông qua OAuth. Dữ liệu từ Google API không được dùng để quảng cáo hoặc bán cho bên thứ ba. Người quản trị có thể xem và thu hồi quyền ứng dụng đã cấp trong tài khoản Google của mình.</p>
+  <h2>5. Nơi lưu trữ và nhà cung cấp dịch vụ</h2>
+  <p>Tùy tính năng được sử dụng, dữ liệu có thể được xử lý bởi Firebase Authentication, Cloud Firestore, Google Sheets, Google Drive/Apps Script hoặc hạ tầng lưu trữ phục vụ bài kiểm tra và ghi âm. Website tĩnh được xuất bản trên GitHub Pages. Các dịch vụ này có thể xử lý dữ liệu theo điều khoản và chính sách riêng của nhà cung cấp.</p>
+  <p>ALI giới hạn quyền truy cập hồ sơ và kết quả học tập cho các cá nhân có trách nhiệm được ủy quyền, dựa trên vai trò và cấu hình quyền của hệ thống.</p>
+  <h2>6. Chia sẻ và bảo mật</h2>
+  <p>ALI sử dụng dữ liệu phục vụ việc vận hành và hỗ trợ học tập. Dữ liệu có thể được chuyển cho nhà cung cấp dịch vụ kỹ thuật cần thiết để cung cấp tính năng tương ứng, hoặc được cung cấp theo yêu cầu pháp luật có hiệu lực. Không nên gửi mật khẩu, đường dẫn đặt lại mật khẩu hoặc khóa dịch vụ qua kênh công khai.</p>
+  <h2>7. Thời hạn lưu trữ</h2>
+  <p>Dữ liệu được lưu trong khoảng thời gian cần thiết để quản lý quan hệ học tập, xử lý kết quả, phục vụ hỗ trợ hoặc đáp ứng nghĩa vụ áp dụng. Việc xóa có thể phụ thuộc vào loại dữ liệu và quy trình sao lưu của nhà cung cấp. Người dùng có thể yêu cầu ALI giải thích thêm về thời hạn áp dụng cho dữ liệu của mình.</p>
+  <h2>8. Quyền của người sử dụng</h2>
+  <p>Học viên hoặc người đại diện hợp pháp có thể liên hệ ALI để đề nghị xem, cập nhật, sửa hoặc xóa dữ liệu cá nhân; hỏi về việc sử dụng dữ liệu; hoặc rút lại sự đồng ý đối với xử lý dựa trên đồng ý, trong phạm vi pháp luật và nghĩa vụ lưu trữ hiện hành cho phép.</p>
+  <h2>9. Liên hệ</h2>
+  <p>Vui lòng liên hệ bộ phận quản trị ALI Academy qua kênh chăm sóc học viên chính thức được thông báo khi đăng ký hoặc qua <a href="./index.html">website ALI Academy</a> để gửi yêu cầu liên quan đến dữ liệu cá nhân. Khi gửi yêu cầu, có thể cần xác minh thông tin nhằm bảo vệ dữ liệu của học viên.</p>
+  <h2>10. Cập nhật</h2>
+  <p>Nội dung chính sách có thể thay đổi khi tính năng, đơn vị cung cấp dịch vụ hoặc quy định áp dụng thay đổi. Phiên bản được công bố tại URL này là phiên bản để người dùng tra cứu.</p>
+ </article>
+</main>
+<footer><div><span>© ALI Academy · Your English, Your Future</span><span><a href="./index.html">Trang chủ</a> · <a href="./privacy.html" aria-current="page">Chính sách bảo mật</a></span></div></footer>
+</body></html>
