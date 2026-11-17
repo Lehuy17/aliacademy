@@ -2,11 +2,6 @@ name: Deploy ALI Admin Bulk Import (Firebase)
 
 on:
   workflow_dispatch:
-  push:
-    branches: [main]
-    paths:
-      - 'functions/index.js'
-      - '.github/workflows/deploy-ali-bulk-import.yml'
 
 permissions:
   contents: read
