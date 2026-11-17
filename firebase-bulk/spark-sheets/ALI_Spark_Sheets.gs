@@ -173,7 +173,8 @@ function aliSparkRun_(limit){
               throw rollbackError;
             }
           }
-          invited=aliSparkInvite_(row.email);
+          try{invited=aliSparkInvite_(row.email);}
+          catch(inviteError){invited="CHUA_GUI";}
           status="DA_TAO";created++;
         }
       }catch(e){
