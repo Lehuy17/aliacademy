@@ -20,8 +20,10 @@ const ALI_SPARK={
 function onOpen(){
   SpreadsheetApp.getUi().createMenu("ALI Academy · Spark")
     .addItem("1. Kiểm tra danh sách", "aliSparkCheck")
-    .addItem("2. Tạo 2 tài khoản thử", "aliSparkPilot")
-    .addItem("3. Tạo tối đa 20 tài khoản tiếp theo", "aliSparkCreateNext")
+    .addItem("2. Tạo 2 tài khoản + nhận mật khẩu tạm", "aliSparkPilot")
+    .addItem("3. Tạo tối đa 20 tài khoản + nhận mật khẩu tạm", "aliSparkCreateNext")
+    .addSeparator()
+    .addItem("4. Cấp lại mật khẩu tạm (chọn dòng học viên)", "aliSparkResetSelected")
     .addToUi();
 }
 function aliSparkSheet_(){
@@ -74,30 +76,53 @@ function aliSparkCheck(){
     (data.invalid.length?"\nHãy xem cột H ở các dòng lỗi.":"\nCó thể chạy thử 2 tài khoản."),
     SpreadsheetApp.getUi().ButtonSet.OK);
 }
-function aliSparkPilot(){aliSparkRun_(2);}
-function aliSparkCreateNext(){aliSparkRun_(ALI_SPARK.perRun);}
+
+/* Passwords appear ONLY in the ALI_Admin_Passwords modal. Never in Sheet cells,
+ * email, PropertiesService, logs, or Drive. Close the dialog => cannot retrieve.
+ * To replace a lost temporary password, use "Cấp lại mật khẩu".
+ * Use only with a trusted admin-owned spreadsheet. Firebase IAM authorizes actions.
+ */
+function aliSparkPilot(){aliSparkOpenCredentialDialog_("create2");}
+function aliSparkCreateNext(){aliSparkOpenCredentialDialog_("create20");}
+function aliSparkResetSelected(){aliSparkOpenCredentialDialog_("reset");}
+
+function aliSparkOpenCredentialDialog_(mode){
+  if(!["create2","create20","reset"].includes(mode))throw Error("Chế độ không hợp lệ");
+  const t=HtmlService.createTemplateFromFile("ALI_Admin_Passwords");
+  t.mode=mode;
+  const label=mode==="reset"?"ALI · Cấp lại mật khẩu tạm":"ALI · Tạo tài khoản và bàn giao mật khẩu";
+  SpreadsheetApp.getUi().showModalDialog(t.evaluate().setWidth(950).setHeight(620),label);
+}
 function aliSparkRequest_(url,method,token,body){
-  const options={
-    method:method,
-    headers:{"Authorization":"Bearer "+token},
-    contentType:"application/json",
-    muteHttpExceptions:true
-  };
+  const options={method,headers:{"Authorization":"Bearer "+token},
+    contentType:"application/json",muteHttpExceptions:true};
   if(body!==undefined)options.payload=JSON.stringify(body);
   const response=UrlFetchApp.fetch(url,options);
-  const code=response.getResponseCode();
+  const status=response.getResponseCode();
   let json={};
   try{json=JSON.parse(response.getContentText());}catch(e){}
-  if(code<200||code>=300){
-    const detail=json.error&&json.error.message?String(json.error.message):"HTTP "+code;
-    const error=new Error("HTTP "+code+": "+detail.substring(0,180));
-    error.status=code;
+  if(status<200||status>=300){
+    const detail=json.error&&json.error.message?String(json.error.message):"API_ERROR";
+    const error=new Error("HTTP "+status+": "+detail.substring(0,160));
+    error.httpStatus=status;
     error.apiCode=detail;
     throw error;
   }
   return json;
 }
-function aliSparkProfile_(row,uid,token){
+function aliSparkAuthUrl_(suffix){
+  return "https://identitytoolkit.googleapis.com/v1/projects/"+ALI_SPARK.projectId+"/accounts"+suffix;
+}
+function aliSparkFirestoreUrl_(uid){
+  return "https://firestore.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
+    "/databases/(default)/documents/users/"+encodeURIComponent(uid);
+}
+function aliSparkPassword_(){
+  // Two independent UUIDs. Generated on the server; never persist the password.
+  return Utilities.getUuid().replace(/-/g,"")+
+    Utilities.getUuid().replace(/-/g,"")+"!Aa9";
+}
+function aliSparkProfileCreate_(row,uid,token){
   const fields={
     email:{stringValue:row.email},
     name:{stringValue:row.name},
@@ -109,89 +134,158 @@ function aliSparkProfile_(row,uid,token){
   };
   const url="https://firestore.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
     "/databases/(default)/documents/users?documentId="+encodeURIComponent(uid);
-  aliSparkRequest_(url,"post",token,{fields});
+  return aliSparkRequest_(url,"post",token,{fields});
 }
-function aliSparkInvite_(email){
-  // Firebase's own email template sends a password-reset link; no passwords in Sheets.
-  const url="https://identitytoolkit.googleapis.com/v1/accounts:sendOobCode?key="+encodeURIComponent(ALI_SPARK.webApiKey);
-  const response=UrlFetchApp.fetch(url,{method:"post",contentType:"application/json",
-    payload:JSON.stringify({requestType:"PASSWORD_RESET",email}),muteHttpExceptions:true});
-  return response.getResponseCode()===200?"DA_GUI":"CHUA_GUI";
+function aliSparkSelectedStudent_(sheet){
+  const active=SpreadsheetApp.getActiveSpreadsheet();
+  const selected=active.getActiveSheet(),range=selected.getActiveRange();
+  if(selected.getSheetId()!==sheet.getSheetId()||!range)
+    throw Error('Vui lòng chọn một ô trên dòng học viên trong tab "Học viên".');
+  const row=range.getRow();
+  if(row<2||row>sheet.getLastRow()||range.getNumRows()!==1)
+    throw Error("Chỉ chọn một ô trên đúng một dòng học viên.");
+  const v=sheet.getRange(row,1,1,10).getDisplayValues()[0];
+  const email=String(v[0]||"").trim().toLowerCase();
+  const name=String(v[1]||"").trim();
+  const role=String(v[3]||"").trim().toLowerCase();
+  const status=String(v[5]||"").trim().toUpperCase();
+  const uid=String(v[6]||"").trim();
+  if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(email))throw Error("Email của dòng đang chọn không hợp lệ.");
+  if(role&&role!=="student"&&role!=="học viên"&&role!=="hoc vien")
+    throw Error("Chỉ hỗ trợ học viên; không được cấp lại mật khẩu giáo viên/Admin.");
+  if(!["DA_TAO","DA_TON_TAI"].includes(status))
+    throw Error("Dòng này chưa có trạng thái DA_TAO/DA_TON_TAI. Hãy kiểm tra và đối chiếu trước.");
+  return {row,email,name,uid,status};
 }
-function aliSparkRun_(limit){
+function aliSparkPasswordPreview(mode){
+  const sheet=aliSparkSheet_();
+  if(mode==="reset"){
+    const student=aliSparkSelectedStudent_(sheet);
+    return {mode,rows:[student],remaining:1};
+  }
+  if(mode!=="create2"&&mode!=="create20")throw Error("Chế độ không hợp lệ.");
+  const parsed=aliSparkRows_(sheet);
+  if(parsed.invalid.length)throw Error("Có "+parsed.invalid.length+" dòng sai dữ liệu. Hãy chạy 'Kiểm tra danh sách' và sửa cột H.");
+  const limit=mode==="create2"?2:ALI_SPARK.perRun;
+  return {mode,rows:parsed.pending.slice(0,limit).map(x=>({
+    row:x.row,email:x.email,name:x.name,school:x.school
+  })),remaining:parsed.pending.length};
+}
+function aliSparkSafeError_(error){
+  return String(error&&error.message||error||"Không xác định").substring(0,160);
+}
+function aliSparkWriteResult_(sheet,row,status,uid,error,delivery){
+  // Never write a password in any Sheet cell.
+  sheet.getRange(row,6,1,5).setValues([[status,uid,error||"",new Date(),delivery||"CHUA_GUI"]]);
+}
+function aliSparkGetUser_(email,token){
+  const data=aliSparkRequest_(aliSparkAuthUrl_(":lookup"),"post",token,{email:[email]});
+  const matching=(data.users||[]).filter(u=>String(u.email||"").toLowerCase()===email);
+  if(matching.length!==1)throw Error("Không tìm thấy đúng một tài khoản Firebase theo email.");
+  return matching[0];
+}
+function aliSparkRequireStudent_(user,email,uid,token){
+  if(!user||String(user.localId||"")!==uid||
+     String(user.email||"").toLowerCase()!==email)throw Error("UID/email Firebase không khớp.");
+  if(user.disabled)throw Error("Tài khoản Firebase đang bị khóa.");
+  if(user.customAttributes){
+    let claims;
+    try{claims=JSON.parse(user.customAttributes);}catch(e){throw Error("Custom Claims không hợp lệ, từ chối để bảo vệ tài khoản.");}
+    if(claims.role&&claims.role!=="student")throw Error("Từ chối: Firebase Custom Claims là giáo viên/Admin.");
+  }
+  // Must verify the REAL Firestore profile, not an editable Sheet role.
+  const doc=aliSparkRequest_(aliSparkFirestoreUrl_(uid),"get",token);
+  const fields=doc.fields||{},val=k=>String(fields[k]&&fields[k].stringValue||"");
+  if(val("role")!=="student"||val("status")!=="active"||val("email").toLowerCase()!==email)
+    throw Error("Hồ sơ Firestore không phải học viên đang hoạt động hoặc email không khớp.");
+}
+function aliSparkPasswordExecute(mode,expected){
+  if(!["create2","create20","reset"].includes(mode)||!Array.isArray(expected)||expected.length<1)
+    throw Error("Yêu cầu không hợp lệ.");
   const lock=LockService.getDocumentLock()||LockService.getScriptLock();
-  if(!lock.tryLock(1500))throw Error("Một quản trị viên đang chạy chức năng nhập. Hãy thử lại.");
+  if(!lock.tryLock(5000))throw Error("Một quản trị viên khác đang thao tác. Hãy thử lại.");
   try{
-    const sheet=aliSparkSheet_(),parsed=aliSparkRows_(sheet);
-    parsed.invalid.forEach(x=>sheet.getRange(x.row,8).setValue(x.message));
-    if(parsed.invalid.length)throw Error("Có "+parsed.invalid.length+" dòng sai dữ liệu. Chạy 'Kiểm tra danh sách' trước.");
-    const batch=parsed.pending.slice(0,limit);
-    if(!batch.length){SpreadsheetApp.getUi().alert("Không còn học viên chờ tạo.");return;}
-    const ui=SpreadsheetApp.getUi();
-    const confirm=ui.alert("Xác nhận tạo tài khoản thực",
-      "Sẽ tạo tối đa "+batch.length+" học viên mới trong dự án Firebase "+ALI_SPARK.projectId+
-      ". Email đã tồn tại sẽ không bị thay đổi.\nTiếp tục?",ui.ButtonSet.YES_NO);
-    if(confirm!==ui.Button.YES)return;
-    // The OAuth token is for the CURRENT Google account, not a shared private key.
-    // Required Apps Script scope: https://www.googleapis.com/auth/cloud-platform
+    // Prevent changing target rows between preview and confirmation.
+    const fresh=aliSparkPasswordPreview(mode);
+    const selected=fresh.rows.map(x=>({row:x.row,email:x.email}));
+    if(JSON.stringify(selected)!==JSON.stringify(expected)||
+       (mode==="reset"&&selected.length!==1))
+      throw Error("Danh sách hoặc dòng đã chọn thay đổi. Đóng cửa sổ và kiểm tra lại.");
     const token=ScriptApp.getOAuthToken();
-    const authUrl="https://identitytoolkit.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
-      "/accounts?key="+encodeURIComponent(ALI_SPARK.webApiKey);
-    const deleteUrl="https://identitytoolkit.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
-      "/accounts:delete?key="+encodeURIComponent(ALI_SPARK.webApiKey);
-    let created=0,exists=0,errors=0;
-    for(const row of batch){
-      let uid="",status="",error="",invited="";
+    const sheet=aliSparkSheet_();
+    const results=[];
+    if(mode==="reset"){
+      const row=fresh.rows[0];
+      const result={row:row.row,email:row.email,name:row.name,status:"",password:"",message:""};
       try{
-        // UUID-based, nonreused initial password; it is never returned to or stored in the Sheet.
-        const password=Utilities.getUuid().replace(/-/g,"")+Utilities.getUuid().replace(/-/g,"")+"!aA1";
-        let user=null;
+        const user=aliSparkGetUser_(row.email,token),uid=String(user.localId||"");
+        if(row.uid&&row.uid!==uid)throw Error("UID trong Sheet khác Firebase. Không đặt lại mật khẩu.");
+        aliSparkRequireStudent_(user,row.email,uid,token);
+        const password=aliSparkPassword_();
+        aliSparkRequest_(aliSparkAuthUrl_(":update"),"post",token,{localId:uid,password});
+        result.password=password;
+        result.status="DA_CAP_LAI";
         try{
-          user=aliSparkRequest_(authUrl,"post",token,{
-            email:row.email,displayName:row.name,password,emailVerified:false,disabled:false
-          });
-        }catch(e){
-          const msg=String(e.apiCode||e.message);
-          if(/EMAIL_EXISTS|EMAIL_ALREADY_EXISTS|email.already.exists/i.test(msg)){
-            status="DA_TON_TAI";exists++;
-          }else throw e;
-        }
-        if(user){
-          uid=String(user.localId||"");
-          if(!uid)throw Error("Firebase không trả về UID, phải kiểm tra thủ công.");
+          aliSparkWriteResult_(sheet,row.row,row.status,uid,"","CAP_LAI_TAY");
+        }catch(e){result.message="Mật khẩu đã đổi trên Firebase nhưng không thể cập nhật trạng thái Sheet.";}
+      }catch(e){result.status="LOI";result.message=aliSparkSafeError_(e);}
+      results.push(result);
+    }else{
+      for(const row of fresh.rows){
+        const result={row:row.row,email:row.email,name:row.name,status:"",password:"",message:""};
+        let uid="";
+        try{
+          const password=aliSparkPassword_();
+          let user=null;
           try{
-            aliSparkProfile_(row,uid,token);
-          }catch(profileError){
-            // Prevent orphan accounts if possible. Do not modify old users.
+            user=aliSparkRequest_(aliSparkAuthUrl_(""),"post",token,{
+              email:row.email,displayName:row.name,password,emailVerified:false,disabled:false
+            });
+          }catch(e){
+            if(/EMAIL_EXISTS|EMAIL_ALREADY_EXISTS|email.already.exists/i.test(String(e.apiCode||e.message))){
+              result.status="DA_TON_TAI";
+              result.message="Đã có tài khoản. Không thay đổi mật khẩu cũ; chọn dòng rồi sử dụng mục cấp lại nếu cần.";
+              try{aliSparkWriteResult_(sheet,row.row,result.status,"","","CHUA_GUI");}catch(e){}
+            }else throw e;
+          }
+          if(user){
+            uid=String(user.localId||"");
+            if(!uid)throw Error("Firebase không trả UID; cần kiểm tra thủ công.");
             try{
-              aliSparkRequest_(deleteUrl,"post",token,{localId:uid});
-              uid="";
-              throw Error("Đã hoàn tác tạo tài khoản vì Firestore lỗi: "+profileError.message);
-            }catch(rollbackError){
-              if(uid)throw Error("CAN_KIEM_TRA_THU_CONG: Firestore lỗi; UID="+uid+
-                "; kiểm tra Auth và Firestore trước khi chạy lại. "+profileError.message);
-              throw rollbackError;
+              aliSparkProfileCreate_(row,uid,token);
+            }catch(profileError){
+              let deleted=false;
+              try{
+                aliSparkRequest_(aliSparkAuthUrl_(":delete"),"post",token,{localId:uid});
+                deleted=true;
+              }catch(e){}
+              if(!deleted){
+                result.status="CAN_KIEM_TRA_THU_CONG";
+                result.message="Firestore lỗi và không thể hoàn tác Auth. Kiểm tra UID "+uid+" trong Firebase.";
+                try{aliSparkWriteResult_(sheet,row.row,result.status,uid,result.message,"CHUA_GUI");}catch(e){}
+              }else{
+                uid="";
+                throw Error("Đã hoàn tác tài khoản mới do lỗi Firestore: "+aliSparkSafeError_(profileError));
+              }
+            }
+            if(!result.status){
+              result.status="DA_TAO";
+              result.password=password;
+              result.message="Mật khẩu tạm chỉ hiển thị tại cửa sổ này, không được ghi vào Sheet.";
+              try{aliSparkWriteResult_(sheet,row.row,result.status,uid,"","CAP_TAY");}
+              catch(e){result.message+=" Không cập nhật được cột trạng thái; kiểm tra UID trong Firebase.";}
             }
           }
-          try{invited=aliSparkInvite_(row.email);}
-          catch(inviteError){invited="CHUA_GUI";}
-          status="DA_TAO";created++;
+        }catch(e){
+          if(!result.status)result.status="LOI";
+          result.message=result.message||aliSparkSafeError_(e);
+          try{aliSparkWriteResult_(sheet,row.row,result.status,uid,result.message,"CHUA_GUI");}catch(e){}
         }
-      }catch(e){
-        status=/CAN_KIEM_TRA_THU_CONG/.test(String(e.message))?"CAN_KIEM_TRA_THU_CONG":"LOI";
-        error=String(e.message||e).substring(0,210);
-        errors++;
+        results.push(result);
+        Utilities.sleep(350);
       }
-      sheet.getRange(row.row,6,1,5).setValues([[status,uid,error,new Date(),invited||"CHUA_GUI"]]);
-      SpreadsheetApp.flush();
-      if(status==="LOI"&&/HTTP 403|PERMISSION_DENIED|insufficient|not enabled|API_KEY_INVALID/i.test(error)){
-        ui.alert("Dừng vì thiếu quyền Firebase/Google Cloud.\n"+error);break;
-      }
-      Utilities.sleep(350);
     }
-    ui.alert("Đợt xử lý hoàn thành",
-      "Đã tạo: "+created+"\nĐã tồn tại (bỏ qua): "+exists+
-      "\nLỗi: "+errors+"\nKiểm tra cột F–J và Firebase Console.",
-      ui.ButtonSet.OK);
+    SpreadsheetApp.flush();
+    return {mode,results};
   }finally{lock.releaseLock();}
 }
