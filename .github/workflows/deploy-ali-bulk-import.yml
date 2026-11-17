@@ -13,15 +13,31 @@ permissions:
 
 concurrency:
   group: ali-firebase-functions-deploy
-  cancel-in-progress: false
+  cancel-in-progress: true
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
     timeout-minutes: 20
     steps:
-      - name: Checkout source
+      - name: Checkout source (only backend and validation files)
         uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            firebase.json
+            functions/
+            teacher.html
+            ali-teacher.js
+            ali-teacher.css
+            ali-bulk-import.js
+            ali-cinema-player.js
+            ali-members.js
+            movies.html
+            scripts/check-ali-teacher.cjs
+            firestore-rules-teacher.txt
+            storage-rules-teacher.txt
       - name: Setup Node.js 22
         uses: actions/setup-node@v4
         with:
