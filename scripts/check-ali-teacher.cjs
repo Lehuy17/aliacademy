@@ -45,3 +45,14 @@ assert.match(storage,/request\.auth\.token\.role == 'teacher'/);
 assert.doesNotMatch(script,/AIzaSy[A-Za-z0-9_-]{25,}/,"No hard-coded Firebase keys in teacher JS");
 assert.doesNotMatch(server,/private_key|serviceAccountKey\.json/,"Do not bundle service keys");
 console.log("PASS ALI Teacher Dashboard: HTML bindings, JS syntax, roles, upload workflow, cinema integration, rules and no private credentials");
+
+// Admin-only Excel onboarding contract
+const bulk=load("ali-bulk-import.js");
+assert.match(teacher,/id="aliBulkPanel"/);
+assert.match(teacher,/ali-bulk-import\\.js/);
+assert.match(bulk,/adminImportStudents/);
+assert.match(bulk,/aliBulkFile/);
+assert.match(server,/exports\\.adminImportStudents/);
+assert.match(server,/staff\\.role!=="admin"/);
+new vm.Script(stripImport(bulk),{filename:"ali-bulk-import.js"});
+console.log("PASS ALI Admin Bulk Import static checks");
