@@ -15,7 +15,7 @@ assert.equal(new Set(movieIds).size,movieIds.length,"Duplicate IDs in teacher HT
 const referenced=[...script.matchAll(/\$\("([^"]+)"\)/g)].map(m=>m[1]);
 const missing=[...new Set(referenced)].filter(id=>!movieIds.includes(id));
 assert.deepEqual(missing,[],"Teacher JS refers to missing IDs");
-const stripImport=code=>code.replace(/^import\s+\{[^\n]+\}\s+from\s+['"][^'"]+['"];?\s*/,"");
+const stripImport=code=>code.replace(/^import[ \t]+[^\r\n]*;[ \t]*(?:\r?\n|$)/gm,"");
 new vm.Script(stripImport(script),{filename:"ali-teacher.js"});
 new vm.Script(stripImport(cinema),{filename:"ali-cinema-player.js"});
 new vm.Script(stripImport(login),{filename:"ali-members.js"});
