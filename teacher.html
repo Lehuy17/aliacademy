@@ -25,6 +25,7 @@
   </div>
   <div class="teacher-tabs" role="tablist" aria-label="Chọn chức năng">
    <button class="teacher-tab is-selected" type="button" data-teacher-tab="students" role="tab" aria-selected="true">◉ Quản lý học viên</button>
+   <button class="teacher-tab" type="button" data-teacher-tab="results" role="tab" aria-selected="false">☷ Kết quả bài test</button>
    <button class="teacher-tab" type="button" data-teacher-tab="movies" role="tab" aria-selected="false">▣ Đăng phim song ngữ</button>
   </div>
 
@@ -48,6 +49,17 @@
     </div>
     <p class="teacher-panel-tip">Mật khẩu riêng được tạo ngẫu nhiên, chỉ trả về sau khi tạo thành công. Hãy tải kết quả một lần, lưu an toàn và gửi riêng từng học viên. Không tải file chứa mật khẩu lên GitHub hay chia sẻ công khai.</p>
    </div>
+   <div id="aliAdminTeacherCreation" class="teacher-panel" hidden style="margin:20px 0;border:1px solid #ffcca8">
+ <h3>Quản lý · Tạo tài khoản giáo viên ALI</h3>
+ <p>Chỉ Admin cấp mới được tạo giáo viên. Hệ thống phát sinh mật khẩu riêng và gán quyền <strong>teacher</strong> ở Firebase Authentication.</p>
+ <form id="aliCreateTeacherForm" style="display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:12px">
+  <label>Họ và tên giáo viên<input id="aliNewTeacherName" maxlength="100" required placeholder="Nguyễn Thị A"></label>
+  <label>Email đăng nhập<input id="aliNewTeacherEmail" type="email" maxlength="180" required placeholder="giaovien@..."></label>
+  <button type="submit" id="aliNewTeacherBtn" class="teacher-primary">+ Tạo tài khoản giáo viên</button>
+ </form>
+ <div id="aliNewTeacherResult" role="status" aria-live="polite" style="white-space:pre-wrap;margin-top:12px"></div>
+ <p class="teacher-panel-tip">Mật khẩu tạm thời chỉ hiển thị sau khi tạo thành công, không đưa vào GitHub hoặc nhóm chat công khai.</p>
+</div>
    <div class="teacher-layout">
     <form class="teacher-panel teacher-create-form" id="teacherCreateStudent">
      <div class="teacher-panel-heading"><span class="teacher-icon">+</span><div><h3>Tạo học viên mới</h3><p>Hệ thống cấp tài khoản và mật khẩu ban đầu.</p></div></div>
@@ -69,6 +81,28 @@
     </div>
    </div>
   </section>
+
+<section id="teacherPaneResults" class="teacher-section" role="tabpanel" hidden>
+ <div class="section-head"><div><span class="teacher-eyebrow">PLACEMENT ASSESSMENTS · CHỈ GIÁO VIÊN</span>
+  <h2>Kết quả bài kiểm tra học viên</h2>
+  <p>Tra cứu từng học viên, xem lịch sử nộp bài, điểm từng kỹ năng và chi tiết câu đúng/sai. Kết quả chưa đủ dữ liệu được đánh dấu chờ giáo viên.</p></div>
+  <button id="teacherRefreshResults" type="button" class="teacher-outline">↻ Tải kết quả</button>
+ </div>
+ <div class="teacher-panel" style="margin-bottom:18px">
+  <div class="teacher-list-top" style="gap:12px;flex-wrap:wrap">
+   <label for="teacherResultsSearch">Tìm theo tên, email hoặc mã bài nộp</label>
+   <input id="teacherResultsSearch" type="search" placeholder="Nhập tên học viên / email..." style="min-width:210px;flex:1">
+   <select id="teacherResultsType" aria-label="Lọc bài thi" style="padding:10px;border:1px solid #edd6c8;border-radius:10px">
+    <option value="">Tất cả bài thi</option><option value="b1">B1</option>
+    <option value="toeic">TOEIC</option><option value="ielts">IELTS</option>
+   </select>
+  </div>
+  <p id="teacherResultsStatus" role="status" aria-live="polite">Chỉ giáo viên hoặc Admin đã được xác thực mới có quyền truy cập.</p>
+  <div class="teacher-table-wrap"><table class="teacher-table"><thead><tr><th>Học viên</th><th>Bài test</th><th>Ngày nộp</th><th>Điểm chấm</th><th>Hành động</th></tr></thead>
+   <tbody id="teacherResultsRows"></tbody></table></div>
+ </div>
+ <div id="teacherResultDetail" class="teacher-panel" hidden></div>
+</section>
 
   <section id="teacherPaneMovies" class="teacher-section" role="tabpanel" hidden>
    <div class="section-head"><div><span class="teacher-eyebrow">BILINGUAL CINEMA · TEACHER PUBLISHING</span><h2>Đăng phim song ngữ</h2><p>Giáo viên được <strong>xuất bản trực tiếp, không cần Admin duyệt</strong>. Hệ thống vẫn kiểm tra MP4, tiếng, phụ đề và quyền sử dụng.</p></div>
@@ -114,4 +148,4 @@
    </div>
   </section>
  </section>
-</main><script type="module" src="./ali-teacher.js?v=2"></script><script type="module" src="./ali-bulk-import.js?v=1"></script></body></html>
+</main><script type="module" src="./ali-teacher.js?v=2"></script><script type="module" src="./ali-bulk-import.js?v=1"></script><script type="module" src="./ali-teacher-results.js?v=1"></script></body></html>
