@@ -104,7 +104,7 @@ function aliSparkProfile_(row,uid,token){
     school:{stringValue:row.school||"ALI English"},
     role:{stringValue:"student"},
     status:{stringValue:"active"},
-    createdBy:{stringValue:Session.getEffectiveUser().getEmail()||"ali-spark-sheets"},
+    createdBy:{stringValue:"ali-spark-sheets"},
     createdAt:{timestampValue:new Date().toISOString()}
   };
   const url="https://firestore.googleapis.com/v1/projects/"+ALI_SPARK.projectId+
