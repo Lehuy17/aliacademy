@@ -1,0 +1,29 @@
+name: ALI Spark Google Sheets Password Check
+on:
+  push:
+    paths:
+      - 'firebase-bulk/spark-sheets/**'
+      - '.github/workflows/check-ali-spark-sheets.yml'
+  pull_request:
+    paths:
+      - 'firebase-bulk/spark-sheets/**'
+      - '.github/workflows/check-ali-spark-sheets.yml'
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          filter: blob:none
+          sparse-checkout-cone-mode: false
+          sparse-checkout: |
+            firebase-bulk/spark-sheets/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Test Apps Script in mocked Firebase environment
+        run: node firebase-bulk/spark-sheets/tests/check-passwords.cjs
