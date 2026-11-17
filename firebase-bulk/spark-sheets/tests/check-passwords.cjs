@@ -14,9 +14,9 @@ assert(html.includes("google.script.host.close()"));
 assert(manifest.oauthScopes.includes("https://www.googleapis.com/auth/cloud-platform"));
 assert(manifest.oauthScopes.includes("https://www.googleapis.com/auth/script.container.ui"));
 const rows=[
-  ["Email","Họ tên","Lớp học","Vai trò","Yêu cầu","Trạng thái","UID","Lỗi","Cập nhật","Email kích hoạt"],
-  ["student01@example.com","Nguyễn Văn A","TOEIC","student","CHO_TAO","","","","",""],
-  ["student02@example.com","Trần Thị B","IELTS","student","CHO_TAO","","","","",""]
+  ["Email","Họ tên","Lớp học","Vai trò","Yêu cầu","Trạng thái","UID","Lỗi","Cập nhật","Giao tài khoản","Mật khẩu đăng nhập"],
+  ["student01@example.com","Nguyễn Văn A","TOEIC","student","CHO_TAO","","","","","",""],
+  ["student02@example.com","Trần Thị B","IELTS","student","CHO_TAO","","","","","",""]
 ];
 const accounts=new Map(),documents=new Map(),requests=[];
 let selectedRow=2,serial=0,uuid=0;
@@ -25,6 +25,9 @@ const sheet={
  getLastRow:()=>rows.length,
  getRange:(r,c,n=1,m=1)=>({
   getDisplayValues:()=>Array.from({length:n},(_,j)=>rows[r-1+j].slice(c-1,c-1+m).map(x=>String(x??""))),
+  getDisplayValue:()=>String(rows[r-1][c-1]??""),
+  setNumberFormat:()=>{},
+  setValue:value=>{rows[r-1][c-1]=value;},
   setValues:values=>{for(let i=0;i<values.length;i++)for(let j=0;j<values[i].length;j++)rows[r-1+i][c-1+j]=values[i][j];}
  })
 };
@@ -93,7 +96,7 @@ for(let i=0;i<2;i++){
  assert.equal(accounts.get(email).password,entry.password);
  assert.equal(rows[i+1][5],"DA_TAO");
  assert.equal(rows[i+1][9],"CAP_TAY");
- assert(!JSON.stringify(rows).includes(entry.password),"Do not write password in Sheets");
+ assert.equal(rows[i+1][10],entry.password,"Permanent password should be stored in column K");
  assert.equal(documents.get(accounts.get(email).localId).fields.role.stringValue,"student");
 }
 // A duplicate entry must never reset password implicitly.
@@ -118,7 +121,7 @@ assert.equal(out.results[0].status,"DA_CAP_LAI");
 assert.notEqual(out.results[0].password,oldPass);
 assert.equal(accounts.get("student01@example.com").password,out.results[0].password);
 assert.equal(rows[1][9],"CAP_LAI_TAY");
-assert(!JSON.stringify(rows).includes(out.results[0].password));
+assert.equal(rows[1][10],out.results[0].password);
 // A privileged profile cannot have its password reset through a student row.
 const uid=accounts.get("student01@example.com").localId;
 documents.get(uid).fields.role.stringValue="admin";
@@ -129,4 +132,4 @@ assert.equal(out.results[0].status,"LOI");
 assert.equal(out.results[0].password,"");
 assert.equal(requests.filter(x=>x.url.endsWith("/accounts:update")).length,updatesBefore);
 assert(!js.includes("PropertiesService.getScriptProperties().setProperty"));
-console.log("PASS: new accounts, one-time password display, duplicate safeguard, reset, admin protection");
+console.log("PASS: persistent passwords, creation, duplicate safeguard, explicit reset, admin protection");
