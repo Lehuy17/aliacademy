@@ -1,0 +1,39 @@
+name: Deploy ALI Placement Backend (Firebase)
+
+on:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          sparse-checkout: |
+            firebase.json
+            functions/
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+      - name: Verify restricted deploy service account is configured
+        env:
+          CREDENTIALS: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALI_ENGLISH }}
+        run: |
+          if [ -z "$CREDENTIALS" ]; then
+            echo "::error::Missing FIREBASE_SERVICE_ACCOUNT_ALI_ENGLISH"
+            exit 1
+          fi
+      - uses: google-github-actions/auth@v2
+        with:
+          credentials_json: ${{ secrets.FIREBASE_SERVICE_ACCOUNT_ALI_ENGLISH }}
+      - name: Validate functions and install dependencies
+        run: |
+          node --check functions/index.js
+          npm install --prefix functions --no-audit --no-fund
+          npm install --global firebase-tools
+      - name: Deploy placement submission and admin teacher creation
+        run: firebase deploy --only functions:submitPlacementAttempt,functions:adminCreateTeacher --project ali-english --non-interactive
