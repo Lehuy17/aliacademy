@@ -26,8 +26,8 @@ assert.match(teacher,/id="teacherCreateStudent"/);
 assert.match(script,/httpsCallable\(functions,"teacherPublishMovie"\)/);
 assert.match(script,/httpsCallable\(functions,"teacherCreateStudent"\)/);
 assert.match(script,/httpsCallable\(functions,"teacherSetStudentStatus"\)/);
-assert.match(script,/teacher_movies\\//);
-assert.match(script,/uploadFile\\(dir\\+"video\\.mp4"/);
+assert.ok(script.includes("teacher_movies/"),"Teacher movie upload path");
+assert.ok(script.includes('uploadFile(dir+"video.mp4"'),"Video upload call");
 assert.match(script,/parseBilingualSubtitles/);
 assert.match(script,/probeMovie/);
 assert.match(server,/verifyStaff\(request\)/);
@@ -49,10 +49,10 @@ console.log("PASS ALI Teacher Dashboard: HTML bindings, JS syntax, roles, upload
 // Admin-only Excel onboarding contract
 const bulk=load("ali-bulk-import.js");
 assert.match(teacher,/id="aliBulkPanel"/);
-assert.match(teacher,/ali-bulk-import\\.js/);
+assert.ok(teacher.includes("ali-bulk-import.js"),"Bulk import script linked");
 assert.match(bulk,/adminImportStudents/);
 assert.match(bulk,/aliBulkFile/);
-assert.match(server,/exports\\.adminImportStudents/);
-assert.match(server,/staff\\.role!=="admin"/);
+assert.ok(server.includes("exports.adminImportStudents"),"Admin import Cloud Function exported");
+assert.ok(server.includes('staff.role!=="admin"'),"Admin-only authorization");
 new vm.Script(stripImport(bulk),{filename:"ali-bulk-import.js"});
 console.log("PASS ALI Admin Bulk Import static checks");
