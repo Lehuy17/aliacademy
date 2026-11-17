@@ -31,7 +31,12 @@ service cloud.firestore {
    );
    allow list, create, update, delete: if false;
   }
-  // MERGE YOUR EXISTING COLLECTION RULES FOR TESTS/RESULTS HERE.
+  // Placement tests saved only by trusted Cloud Functions. Students cannot read or alter teacher records.
+  match /placementAttempts/{attemptId} {
+   allow get, list: if staff();
+   allow create, update, delete: if false;
+  }
+  // MERGE other existing application collection rules before publishing.
   match /{document=**} { allow read, write: if false; }
  }
 }
