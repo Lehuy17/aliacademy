@@ -3,9 +3,9 @@ const $=id=>document.getElementById(id);
 const SDK="https://www.gstatic.com/firebasejs/13.2.0/";
 let records=[],results=null,run=false,functions=null;
 const safe=s=>String(s??"").trim();
-const emailOK=s=>/^[^@\\s]+@[^@\\s]+\\.[^@\\s]+$/.test(s);
-function csvCell(v){const s=String(v??"");return /[",\\r\\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
-function download(name,table){const csv="\\uFEFF"+table.map(row=>row.map(csvCell).join(",")).join("\\r\\n");
+const emailOK=s=>/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(s);
+function csvCell(v){const s=String(v??"");return /[",\r\n]/.test(s)?'"'+s.replace(/"/g,'""')+'"':s;}
+function download(name,table){const csv="\uFEFF"+table.map(row=>row.map(csvCell).join(",")).join("\r\n");
  const link=document.createElement("a"),url=URL.createObjectURL(new Blob([csv],{type:"text/csv;charset=utf-8"}));
  link.href=url;link.download=name;link.click();setTimeout(()=>URL.revokeObjectURL(url),1500);
 }
@@ -26,7 +26,7 @@ function paint(){
  message(records.length+" dòng · "+valid+" hợp lệ · "+(records.length-valid)+" cần sửa"+(records.length>100?" · Vượt giới hạn 100 dòng":""));
 }
 function normalize(row){
- const byKey={};Object.keys(row).forEach(k=>byKey[safe(k).normalize("NFD").replace(/[\\u0300-\\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"")]=safe(row[k]));
+ const byKey={};Object.keys(row).forEach(k=>byKey[safe(k).normalize("NFD").replace(/[\u0300-\u036f]/g,"").toLowerCase().replace(/[^a-z0-9]/g,"")]=safe(row[k]));
  return {name:byKey.hoten||byKey.name||byKey.fullname||"",
   email:(byKey.email||byKey.emailhocvien||"").toLowerCase(),
   studentCode:byKey.mahocvien||byKey.studentcode||"",
