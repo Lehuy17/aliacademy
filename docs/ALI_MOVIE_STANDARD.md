@@ -203,9 +203,17 @@ Khi nâng cấp mục cũ, phải chuyển về MP4 đồng bộ, dùng caption 
 
 ## 11. Ngoại lệ xem trước công khai được yêu cầu rõ ràng (không phải nghiệm thu)
 
-Khi người quản trị ALI **yêu cầu đăng trước** dù phụ đề mới là bản AI, có thể sử dụng trạng thái kỹ thuật `qa.stage: public_preview_pending_editorial_review` kết hợp `qa.videoTechnicalChecked: true` **chỉ sau khi MP4, poster, phụ đề và đồng bộ thời gian đã qua kiểm tra tự động**. Đây **không phải trạng thái đạt chuẩn đầy đủ** và phải được phân biệt rõ ở mô tả phim.
+Khi người quản trị ALI **yêu cầu đăng trước** dù phụ đề mới là bản AI, có thể sử dụng trạng thái kỹ thuật `qa.stage: public_preview_pending_editorial_review` kết hợp `qa.videoTechnicalChecked: true` **chỉ sau khi MP4, poster, phụ đề và đồng bộ thời gian đã qua kiểm tra tự động**. Đây **không phải trạng thái đạt chuẩn đầy đủ**. Trạng thái kiểm duyệt phải được ghi chính xác trong `subtitleStatus`, `qa.stage` và các cờ `qa.*`, **không chèn thông tin QA/codec/thời lượng vào đoạn tóm tắt trên thẻ phim**. Quản trị viên/giáo viên xem trạng thái này trong dữ liệu QA hoặc công cụ quản trị phù hợp.
 
 - Bộ kiểm tra vẫn bắt buộc H.264/AAC, ảnh thật đúng ID phim, metadata, đủ hai ngôn ngữ và mốc thời gian hợp lệ; kiểm duyệt nội dung, quyền sử dụng và thử nghiệm thiết bị được ghi **cảnh báo**, không được tự động tích đã duyệt.
 - Chỉ sử dụng khi **người quản trị yêu cầu xuất bản rõ ràng**, không tự ý áp dụng làm mặc định cho phim mới.
 - Giáo viên/biên tập viên phải rà soát bản tiếng Anh, tiếng Việt và timecode, quyền sử dụng, giao diện desktop/mobile trước khi đổi `qa` sang trạng thái nghiệm thu, điền ngày `approvedAt`.
 - **Ví dụ ngoại lệ theo yêu cầu đăng trực tiếp 10/11/2026:** Kung Fu Panda – Po vs. Tai Lung. Đây là bản xem thử công khai, chưa chứng nhận đạt quy chuẩn ALI-CINEMA-STD-01.
+
+## 12. Quy tắc mô tả ngắn trên thẻ phim (áp dụng từ 19/11/2026)
+
+- `ali-movies.json → movies[].description` **chỉ chứa 1 câu tóm tắt diễn biến hoặc tình huống đặc trưng của chính đoạn video**, bằng tiếng Việt tự nhiên, tối đa khoảng 150 ký tự; tránh nhận xét chung chung kiểu “trích đoạn phim” và tránh tiết lộ nội dung không được xác nhận bởi video.
+- **Không đưa vào thẻ mô tả:** thời lượng, 720p/1080p, fps, mã codec, phụ đề Anh–Việt, trạng thái ASR/dịch tự động/đang rà soát, tên workflow, lời quảng cáo chức năng xem phim.
+- **Không xóa metadata thật:** thời lượng hiển thị riêng tại nhãn thời lượng trên poster, nguồn video giữ ở `source`, phụ đề ở `captions`, và mức kiểm duyệt ở `subtitleStatus` cùng `qa` để theo dõi độc lập.
+- Khi thêm video mới, người biên tập cần đọc/nghe nội dung, viết tóm tắt ngắn **trước khi công bố**, không sao chép nguyên mô tả kỹ thuật được sinh bởi script xử lý MP4. Những tập có nội dung nhạy cảm vẫn phải giữ cảnh báo phù hợp tại khu vực dành cho giáo viên/quản trị.
+
