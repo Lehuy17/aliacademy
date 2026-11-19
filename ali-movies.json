@@ -1,5 +1,5 @@
 {
-  "version": 35,
+  "version": 36,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -647,6 +647,36 @@
         "url": "./media/the-pursuit-of-happyness-the-time-machine-2006/video.mp4"
       },
       "captions": "./captions/the-pursuit-of-happyness-the-time-machine-2006.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "barbie-car-chase-scene-2023",
+      "title": "Barbie Car Chase Scene (2023)",
+      "category": "PHIM SONG NGỮ · BARBIE",
+      "description": "Trích đoạn rượt đuổi bằng ô tô trong phim Barbie (2023) · 03:51 · bản phát HTML5 đồng bộ; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "03:51",
+      "durationSeconds": 231.48,
+      "poster": "./media/barbie-car-chase-scene-2023/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/barbie-car-chase-scene-2023/video.mp4"
+      },
+      "captions": "./captions/barbie-car-chase-scene-2023.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
