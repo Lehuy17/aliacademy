@@ -8,43 +8,43 @@
       "start": 0.94,
       "end": 3.94,
       "en": "Right here. Wait a minute. Where do you want to go?",
-      "vi": "Ngay đây, chờ một chút, anh muốn đi đâu?"
+      "vi": "Ngay đây. Khoan đã. Con muốn đi đâu?"
     },
     {
       "start": 3.94,
       "end": 5.94,
       "en": "Almost, someplace from before.",
-      "vi": "Gần như, một nơi nào đó từ trước."
+      "vi": "Ừm... một nơi nào đó trong quá khứ."
     },
     {
       "start": 6.94,
       "end": 7.94,
       "en": "You gotta close your eyes.",
-      "vi": "Anh phải nhắm mắt lại."
+      "vi": "Con phải nhắm mắt lại."
     },
     {
       "start": 7.94,
       "end": 9.94,
       "en": "You close your eyes. I want to see.",
-      "vi": "Anh nhắm mắt lại, tôi muốn thấy."
+      "vi": "Bố nhắm mắt đi. Con muốn nhìn."
     },
     {
       "start": 11.94,
       "end": 12.94,
       "en": "Alright, come on. Go push it.",
-      "vi": "Được rồi, đẩy đi."
+      "vi": "Được rồi, nào. Đẩy nó đi."
     },
     {
       "start": 12.94,
       "end": 17.84,
       "en": "What? Open, open, open.",
-      "vi": "Mở ra, mở ra, mở ra."
+      "vi": "Gì cơ? Mở ra, mở ra, mở ra!"
     },
     {
       "start": 30.55,
       "end": 34.05,
       "en": "What is it?",
-      "vi": "Cái gì vậy?"
+      "vi": "Đó là gì vậy?"
     },
     {
       "start": 36.97,
@@ -56,19 +56,19 @@
       "start": 39.22,
       "end": 41.22,
       "en": "You don't see all these dinosaurs?",
-      "vi": "Anh không thấy những con khủng long này sao?"
+      "vi": "Con không thấy bao nhiêu khủng long ở đây sao?"
     },
     {
       "start": 41.22,
       "end": 43.88,
       "en": "Look at all these dinosaurs.",
-      "vi": "Hãy nhìn những con khủng long này."
+      "vi": "Nhìn xem, nhiều khủng long quá!"
     },
     {
       "start": 44.88,
       "end": 48.38,
       "en": "Wait, watch out!",
-      "vi": "Chờ đã, coi chừng!"
+      "vi": "Khoan! Coi chừng!"
     },
     {
       "start": 52.57,
@@ -80,37 +80,49 @@
       "start": 53.57,
       "end": 55.57,
       "en": "Don't step in the fire. We're cavemen.",
-      "vi": "Đừng bước vào đám cháy, chúng tôi là người thượng cổ."
+      "vi": "Đừng giẫm vào đống lửa. Chúng ta là người tiền sử mà."
     },
     {
       "start": 55.57,
       "end": 59.57,
       "en": "But we need this fire because there's no electricity and it's cold out here, okay?",
-      "vi": "Nhưng chúng ta cần ngọn lửa này bởi vì không có điện và ngoài này lạnh lắm, được chứ?"
+      "vi": "Nhưng chúng ta cần ngọn lửa này vì ở đây không có điện, ngoài trời lại lạnh, hiểu không?"
     },
     {
       "start": 59.57,
       "end": 60.57,
       "en": "Watch out! Watch out!",
-      "vi": "Coi chừng!"
+      "vi": "Coi chừng! Coi chừng!"
     },
     {
       "start": 60.57,
       "end": 69.04,
       "en": "Whoa, oh my goodness, a T-Rex, that's a T, get your stuff, get your stuff, get it, we gotta find someplace safe.",
-      "vi": "Whoa, oh my God, T-Rex, đó là T, lấy đồ của cậu đi, lấy nó đi, chúng ta phải tìm nơi nào đó an toàn."
+      "vi": "Ôi trời! Một con T-Rex! Mau lấy đồ đi, nhanh lên! Chúng ta phải tìm một chỗ an toàn!"
     },
     {
       "start": 69.04,
       "end": 70.04,
       "en": "What?",
-      "vi": "Cái gì?"
+      "vi": "Gì cơ?"
     },
     {
       "start": 70.04,
       "end": 78.34,
       "en": "Mom, here's a cave, come on, go, go.",
-      "vi": "Mẹ, đây là một hang động, đi nào."
+      "vi": "Có một cái hang ở đây! Đi nào, nhanh lên!"
     }
-  ]
+  ],
+  "editorialNotes": {
+    "status": "AI-assisted Vietnamese dialogue polish; not source-audio-verified, not editorially approved",
+    "attentionCues": [
+      2,
+      4,
+      6,
+      16,
+      18
+    ],
+    "note": "Whisper machine transcript has ambiguous English phrases at 2/4/6/16/18; cue 18 sounds like 'Mom' despite father-child context. Check the source soundtrack, last ~60 seconds after 01:10, and exact cue timing before marking reviewed.",
+    "rightsConfirmed": false
+  }
 }
