@@ -1,0 +1,116 @@
+{
+  "movieId": "the-pursuit-of-happyness-the-time-machine-2006",
+  "duration": 131.286,
+  "status": "machine_transcript_bilingual_unreviewed",
+  "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
+  "cues": [
+    {
+      "start": 0.94,
+      "end": 3.94,
+      "en": "Right here. Wait a minute. Where do you want to go?",
+      "vi": "Ngay đây, chờ một chút, anh muốn đi đâu?"
+    },
+    {
+      "start": 3.94,
+      "end": 5.94,
+      "en": "Almost, someplace from before.",
+      "vi": "Gần như, một nơi nào đó từ trước."
+    },
+    {
+      "start": 6.94,
+      "end": 7.94,
+      "en": "You gotta close your eyes.",
+      "vi": "Anh phải nhắm mắt lại."
+    },
+    {
+      "start": 7.94,
+      "end": 9.94,
+      "en": "You close your eyes. I want to see.",
+      "vi": "Anh nhắm mắt lại, tôi muốn thấy."
+    },
+    {
+      "start": 11.94,
+      "end": 12.94,
+      "en": "Alright, come on. Go push it.",
+      "vi": "Được rồi, đẩy đi."
+    },
+    {
+      "start": 12.94,
+      "end": 17.84,
+      "en": "What? Open, open, open.",
+      "vi": "Mở ra, mở ra, mở ra."
+    },
+    {
+      "start": 30.55,
+      "end": 34.05,
+      "en": "What is it?",
+      "vi": "Cái gì vậy?"
+    },
+    {
+      "start": 36.97,
+      "end": 39.22,
+      "en": "Where?",
+      "vi": "Ở đâu?"
+    },
+    {
+      "start": 39.22,
+      "end": 41.22,
+      "en": "You don't see all these dinosaurs?",
+      "vi": "Anh không thấy những con khủng long này sao?"
+    },
+    {
+      "start": 41.22,
+      "end": 43.88,
+      "en": "Look at all these dinosaurs.",
+      "vi": "Hãy nhìn những con khủng long này."
+    },
+    {
+      "start": 44.88,
+      "end": 48.38,
+      "en": "Wait, watch out!",
+      "vi": "Chờ đã, coi chừng!"
+    },
+    {
+      "start": 52.57,
+      "end": 53.57,
+      "en": "What is it?",
+      "vi": "Cái gì vậy?"
+    },
+    {
+      "start": 53.57,
+      "end": 55.57,
+      "en": "Don't step in the fire. We're cavemen.",
+      "vi": "Đừng bước vào đám cháy, chúng tôi là người thượng cổ."
+    },
+    {
+      "start": 55.57,
+      "end": 59.57,
+      "en": "But we need this fire because there's no electricity and it's cold out here, okay?",
+      "vi": "Nhưng chúng ta cần ngọn lửa này bởi vì không có điện và ngoài này lạnh lắm, được chứ?"
+    },
+    {
+      "start": 59.57,
+      "end": 60.57,
+      "en": "Watch out! Watch out!",
+      "vi": "Coi chừng!"
+    },
+    {
+      "start": 60.57,
+      "end": 69.04,
+      "en": "Whoa, oh my goodness, a T-Rex, that's a T, get your stuff, get your stuff, get it, we gotta find someplace safe.",
+      "vi": "Whoa, oh my God, T-Rex, đó là T, lấy đồ của cậu đi, lấy nó đi, chúng ta phải tìm nơi nào đó an toàn."
+    },
+    {
+      "start": 69.04,
+      "end": 70.04,
+      "en": "What?",
+      "vi": "Cái gì?"
+    },
+    {
+      "start": 70.04,
+      "end": 78.34,
+      "en": "Mom, here's a cave, come on, go, go.",
+      "vi": "Mẹ, đây là một hang động, đi nào."
+    }
+  ]
+}

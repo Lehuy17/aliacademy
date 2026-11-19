@@ -1,5 +1,5 @@
 {
-  "version": 34,
+  "version": 35,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -617,6 +617,36 @@
         "url": "./media/better-call-saul-howard-exposes-jimmy-court/video.mp4"
       },
       "captions": "./captions/better-call-saul-howard-exposes-jimmy-court.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "the-pursuit-of-happyness-the-time-machine-2006",
+      "title": "The Pursuit of Happyness - The Time Machine (2006)",
+      "category": "PHIM SONG NGỮ · THE PURSUIT OF HAPPYNESS",
+      "description": "Trích đoạn The Time Machine từ phim The Pursuit of Happyness (2006) · 02:11 · bản phát HTML5 đồng bộ; phụ đề Anh–Việt tự động đang chờ giáo viên rà soát.",
+      "duration": "02:11",
+      "durationSeconds": 131.286,
+      "poster": "./media/the-pursuit-of-happyness-the-time-machine-2006/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/the-pursuit-of-happyness-the-time-machine-2006/video.mp4"
+      },
+      "captions": "./captions/the-pursuit-of-happyness-the-time-machine-2006.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
