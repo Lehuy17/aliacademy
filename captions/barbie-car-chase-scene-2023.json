@@ -5,130 +5,152 @@
   "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
   "cues": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 8.5,
       "en": "I found those Barbies we used to play with, so I started playing with them, and making drawings like we used to do, remember?",
-      "vi": "Tôi tìm thấy những búp bê Barbie chúng tôi từng chơi cùng, nên tôi bắt đầu chơi với chúng, và vẽ những bức tranh như chúng tôi vẫn thường vẽ, nhớ không?"
+      "vi": "Tôi tìm lại được những búp bê Barbie mà chúng ta từng chơi cùng. Tôi bắt đầu chơi với chúng và vẽ tranh như hồi trước. Nhớ không?"
     },
     {
       "start": 71.83,
       "end": 73.83,
       "en": "Because I thought it would be joyful, was it?",
-      "vi": "Bởi vì tôi nghĩ nó sẽ rất vui, phải không?"
+      "vi": "Vì tôi nghĩ chuyện đó sẽ mang lại niềm vui. Thế có vui không?"
     },
     {
       "start": 73.83,
       "end": 82.83,
       "en": "No, it wasn't. I got sad and weird, and then the drawings got sad and weird, and maybe because I couldn't be like you, I ended up making you like me?",
-      "vi": "Không, không phải đâu. và có lẽ vì em không thể giống anh, nên cuối cùng em lại biến anh thành người như em?"
+      "vi": "Không. Tôi lại thấy buồn bã và kỳ lạ. Rồi cả những bức vẽ cũng trở nên buồn bã, kỳ quặc. Có lẽ vì tôi không thể giống cô nên cuối cùng tôi lại khiến cô giống mình?"
     },
     {
       "start": 82.83,
       "end": 87.83,
       "en": "Did any of these drawings by chance have thoughts of death and cellulite?",
-      "vi": "Có bức nào trong số những bức vẽ này tự nhiên có ý nghĩ về cái chết và chất ức chế không?"
+      "vi": "Có bức vẽ nào tình cờ chứa những suy nghĩ về cái chết và làn da sần vỏ cam không?"
     },
     {
       "start": 87.83,
       "end": 93.67,
       "en": "Yes, your repressible thoughts of death Barbie. Oh my god. Hands out your light.",
-      "vi": "Phải, suy nghĩ về cái chết, Barbie, chúa ơi, đưa tay ra ánh sáng."
+      "vi": "Đúng vậy, những suy nghĩ bị dồn nén về cái chết, Barbie. Ôi trời! Đưa tay ra ánh sáng."
     },
     {
       "start": 97.07,
       "end": 99.07,
       "en": "I came for you.",
-      "vi": "Tôi đến vì anh."
+      "vi": "Tôi đến tìm cô."
     },
     {
       "start": 99.51,
       "end": 101.51,
       "en": "Those were your memories.",
-      "vi": "Đó là ký ức của anh."
+      "vi": "Đó là những ký ức của cô."
     },
     {
       "start": 133.26,
       "end": 141.02,
       "en": "Shining? No, no, it's nothing like that. Are you shining with a real Barbie? No, I mean maybe like a little? Yes.",
-      "vi": "Không, không, không phải thế đâu."
+      "vi": "Tỏa sáng sao? Không, không phải như vậy. Cô đang tỏa sáng cùng một Barbie thật sao? Không, ý tôi là... có lẽ một chút thôi? Đúng vậy."
     },
     {
       "start": 141.02,
       "end": 145.58,
       "en": "I don't even know where to start with this wishing of Barbie to life crap. Oh Sasha, listen",
-      "vi": "Tôi thậm chí còn không biết phải bắt đầu từ đâu với cái ước nguyện búp bê Barbie chết tiệt này."
+      "vi": "Tôi chẳng biết phải bắt đầu từ đâu với chuyện ước cho Barbie sống dậy này nữa. Sasha, nghe mẹ nói..."
     },
     {
       "start": 145.58,
       "end": 150.86,
       "en": "I'm just a boring mom with a boring job and a daughter who hates me. Can you blame me for wanting to have a little fun?",
-      "vi": "Tôi chỉ là một bà mẹ nhàm chán với một công việc nhàm chán và một đứa con gái ghét tôi."
+      "vi": "Mẹ chỉ là một bà mẹ tẻ nhạt, với công việc tẻ nhạt và đứa con gái ghét mình. Con có thể trách mẹ vì muốn tìm chút niềm vui sao?"
     },
     {
       "start": 152.54,
       "end": 161.46,
       "en": "I gotta lose these chuckleheads. I think I owe you ladies an apology",
-      "vi": "Tôi nghĩ tôi nợ các quý cô một lời xin lỗi."
+      "vi": "Tôi phải cắt đuôi mấy gã ngốc này. Tôi nghĩ mình nợ các cô một lời xin lỗi."
     },
     {
       "start": 161.54,
       "end": 167.14,
       "en": "I thought that barbie had made the real world better, but the real world is forever and irrevocably messed up",
-      "vi": "Tôi nghĩ rằng barbie đã làm cho thế giới thực tốt đẹp hơn, nhưng thế giới thực là mãi mãi và không thể thay đổi được."
+      "vi": "Tôi cứ tưởng Barbie đã giúp thế giới thực tốt đẹp hơn, nhưng thế giới thực vẫn mãi hỗn loạn và không thể sửa chữa triệt để."
     },
     {
       "start": 167.3,
       "end": 170.1,
       "en": "Well, the real world is not perfect, but you inspired me",
-      "vi": "Thế giới thực không hoàn hảo, nhưng em đã truyền cảm hứng cho anh."
+      "vi": "Đúng là thế giới thực không hoàn hảo, nhưng cô đã truyền cảm hứng cho tôi."
     },
     {
       "start": 170.98,
       "end": 174.46,
       "en": "Hey love women. I want to help women",
-      "vi": "Này, yêu phụ nữ, tôi muốn giúp phụ nữ."
+      "vi": "Tôi yêu phụ nữ. Tôi muốn giúp đỡ phụ nữ."
     },
     {
       "start": 174.62,
       "end": 177.58,
       "en": "Oh, come on, but everybody hates women women hate women and men hate women",
-      "vi": "Oh, thôi nào, nhưng ai cũng ghét phụ nữ và đàn ông ghét phụ nữ"
+      "vi": "Thôi nào! Nhưng ai cũng ghét phụ nữ. Phụ nữ ghét phụ nữ, đàn ông cũng ghét phụ nữ."
     },
     {
       "start": 177.58,
       "end": 181.98,
       "en": "It's the one thing we can all agree on. Is that true? It's complicated. Hate is a strong word. Wake up mom",
-      "vi": "Đó là điều duy nhất chúng ta có thể đồng ý."
+      "vi": "Đó là điều duy nhất tất cả chúng ta đều đồng ý. Thật vậy sao? Chuyện phức tạp lắm. 'Ghét' là từ quá nặng. Tỉnh lại đi, mẹ!"
     },
     {
       "start": 182.78,
       "end": 185.78,
       "en": "I am quite awake, Sasha!",
-      "vi": "Tôi hoàn toàn tỉnh táo, Sasha!"
+      "vi": "Mẹ hoàn toàn tỉnh táo, Sasha!"
     },
     {
       "start": 185.78,
       "end": 193.22,
       "en": "Like this. There was this guy.",
-      "vi": "Như thế này, có một gã."
+      "vi": "Ví dụ nhé, có một người đàn ông..."
     },
     {
       "start": 193.22,
       "end": 194.22,
       "en": "Is it Dad?",
-      "vi": "Có phải là bố không?"
+      "vi": "Có phải bố không?"
     },
     {
       "start": 194.22,
       "end": 196.22,
       "en": "Yeah, yeah, it was Dad.",
-      "vi": "Phải, phải, đó là bố."
+      "vi": "Ừ, đúng, chính là bố."
     },
     {
       "start": 196.22,
       "end": 204.72,
       "en": "Wait, I have an idea. Can you get us to Venice Beach?",
-      "vi": "Chờ đã, tôi có ý này, anh có thể đưa chúng tôi đến bãi biển Venice không?"
+      "vi": "Khoan, tôi nghĩ ra cách rồi! Cô đưa chúng ta đến bãi biển Venice được không?"
     }
-  ]
+  ],
+  "editorialNotes": {
+    "status": "AI-assisted Vietnamese text polishing; transcript/translation/timecodes not verified against video audio",
+    "needsSourceAudioCheckCueNumbers": [
+      1,
+      2,
+      3,
+      5,
+      8,
+      9,
+      12,
+      14,
+      16,
+      21
+    ],
+    "observations": [
+      "Several cues combine multiple speakers and require editorial segmentation.",
+      "Machine transcript at cue 5 ('Hands out your light') is ambiguous.",
+      "Machine transcript at cues 8 and 14 may have inaccurate wording.",
+      "Long intervals without transcript cues require checking against the soundtrack."
+    ],
+    "rightsConfirmed": false
+  }
 }
