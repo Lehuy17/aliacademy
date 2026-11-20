@@ -31,7 +31,7 @@ function setAmbientPoster(movie){
   // This is a real blurred movie background, not a thumbnail animation.
   if(movie?.source?.type==='drive'&&typeof movie?.ambientVideo==='string'&&movie.ambientVideo){
    try{
-    const src=new URL(movie.ambientVideo,location.href);
+    const src=new URL(movie.ambientVideo,document.baseURI);
     if(src.origin===location.origin){
      ambientFilm.src=src.href;
      ambientFilm.load();
@@ -248,7 +248,7 @@ async function openSync(){
    url=await window.AliVideoMedia.open();
    mediaUrl=url;
   }else if(source.type==='url'){
-   const resolved=new URL(source.url,location.href);
+   const resolved=new URL(source.url,document.baseURI);
    if(resolved.origin!==location.origin&&!currentMovie?.firebaseManaged)throw Error('Nguồn video không được hệ thống ALI xác minh');
    url=resolved.href;
   }else{
@@ -286,7 +286,7 @@ async function openMovie(movie){
   if(Array.isArray(movie.captionsInline)){
    loadedCues=movie.captionsInline.filter(x=>Number.isFinite(x.start)&&Number.isFinite(x.end)&&x.end>x.start&&typeof x.en==='string'&&typeof x.vi==='string').sort((x,y)=>x.start-y.start);
   }else if(movie.captions){
-   const url=new URL(movie.captions,location.href);
+   const url=new URL(movie.captions,document.baseURI);
    if(url.origin!==location.origin)throw Error('Chỉ tải phụ đề từ website ALI');
    const response=await fetch(url.href);
    if(!response.ok)throw Error('No captions');
