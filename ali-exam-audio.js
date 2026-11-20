@@ -3,7 +3,7 @@
  'use strict';
  const settings={
   toeic:[
-   {name:'TOEIC Listening Test · Questions 1–25',src:'/media/ali-tests/toeic-listening-test.mp3'}
+   {name:'TOEIC Listening Test · Questions 1–25',parts:Array.from({length:11},(_,i)=>'/media/ali-tests/toeic-listening-'+String(i+1).padStart(2,'0')+'.bin')}
   ],
   b1:[
    {name:'Bài nghe 1 · Chọn đáp án (câu 1–7)',src:'https://englishpracticetest.net/wp-content/uploads/2022/11/b1-test-1-1.mp3'},
@@ -29,7 +29,7 @@
   const buttons=el('div','ali-audio-controls ali-audio-part-tabs');
   const audio=el('audio','ali-audio-player');audio.controls=true;audio.preload='metadata';audio.setAttribute('aria-label','Audio bài kiểm tra Listening');
   audio.controlsList='nodownload';
-  let current=0,attempted=false;
+  let current=0,attempted=false,loadId=0,ready=false,pendingPlay=false,localUrl=null;
   const partButtons=playlist.map((item,i)=>{
    const button=el('button','',String(i+1).padStart(2,'0')+' · '+item.name.split(' · ')[0]);
    button.type='button';button.setAttribute('aria-pressed',String(i===0));
@@ -46,17 +46,48 @@
   const error=el('div','ali-audio-error');error.setAttribute('role','status');box.append(error);
   const stopOthers=()=>document.querySelectorAll('.ali-audio-player').forEach(a=>{if(a!==audio)a.pause()});
   function tryPlay(){
+   if(!ready){pendingPlay=true;state.textContent='Đang chuẩn bị bài nghe…';return;}
+   pendingPlay=false;
    stopOthers();
    state.textContent='Đang yêu cầu phát…';
    const result=audio.play();
    if(result && typeof result.then==='function')result.then(()=>{state.textContent='Đang phát';error.textContent='';}).catch(()=>{state.textContent='Nhấn phát để nghe';});
   }
-  function switchPart(i,shouldPlay){
-   current=i;audio.pause();audio.src=playlist[i].src;audio.load();
+  async function switchPart(i,shouldPlay){
+   const run=++loadId;current=i;ready=false;pendingPlay=!!shouldPlay;
+   audio.pause();audio.removeAttribute('src');audio.load();
    heading.textContent=playlist[i].name;
    partButtons.forEach((btn,index)=>btn.setAttribute('aria-pressed',String(index===i)));
    state.textContent='Sẵn sàng';error.textContent='';
-   if(shouldPlay)tryPlay();
+   if(!playlist[i].parts){
+    audio.src=playlist[i].src;audio.load();ready=true;
+    if(shouldPlay)tryPlay();
+    return;
+   }
+   // TOEIC is stored as same-origin binary segments to avoid Google Drive's
+   // third-party audio restrictions. Reassemble in memory as ONE HTML5 player.
+   state.textContent='Đang tải bài nghe…';
+   play.disabled=true;replay.disabled=true;
+   try{
+    const buffers=await Promise.all(playlist[i].parts.map(async src=>{
+     const response=await fetch(src,{cache:'force-cache'});
+     if(!response.ok)throw Error('Audio segment HTTP '+response.status);
+     return response.arrayBuffer();
+    }));
+    if(run!==loadId)return;
+    const bytes=buffers.reduce((sum,b)=>sum+b.byteLength,0);
+    if(bytes!==15322611)throw Error('Sai dung lượng file nghe: '+bytes);
+    if(localUrl)URL.revokeObjectURL(localUrl);
+    localUrl=URL.createObjectURL(new Blob(buffers,{type:'audio/mpeg'}));
+    audio.src=localUrl;audio.load();
+    ready=true;play.disabled=false;replay.disabled=false;state.textContent='Sẵn sàng';
+    if(pendingPlay)tryPlay();
+   }catch(err){
+    if(run!==loadId)return;
+    ready=false;play.disabled=true;replay.disabled=true;
+    state.textContent='Chưa tải được audio';
+    error.textContent='Không tải được file nghe trên website ALI. Hãy tải lại trang hoặc thử lại khi kết nối ổn định.';
+   }
   }
   play.addEventListener('click',()=>{if(audio.paused)tryPlay();else audio.pause()});
   replay.addEventListener('click',()=>{audio.currentTime=0;tryPlay()});
@@ -72,7 +103,7 @@
   });
   observer.observe(target,{attributes:true,attributeFilter:['hidden','class']});
   if(!target.hidden && target.classList.contains('ali-part-active')){attempted=true;tryPlay();}
-  window.addEventListener('pagehide',()=>audio.pause());
+  window.addEventListener('pagehide',()=>{audio.pause();if(localUrl)URL.revokeObjectURL(localUrl);});
  }
  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init);else init();
 })();
