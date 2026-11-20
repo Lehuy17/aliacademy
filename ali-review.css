@@ -1,0 +1,29 @@
+/* ALI Academy Placement answer review — responsive, accessible, printer-friendly */
+.ali-review-panel{max-width:100%;margin:24px 0 8px;border:1px solid #f0dacb;border-radius:20px;background:#fff;padding:22px;color:#29232d;text-align:left;box-shadow:0 12px 34px #9a4b1810;font-family:'Be Vietnam Pro',system-ui,sans-serif}
+.ali-review-level{border-left:4px solid #ff681e;background:#fff7f1;padding:15px 18px;border-radius:12px;margin-bottom:20px}
+.ali-review-kicker{font-size:11px;color:#ba4d13;letter-spacing:.05em;font-weight:850}
+.ali-review-level h3{font-size:21px;color:#29232d;line-height:1.4;margin:8px 0!important;font-weight:850}
+.ali-review-level p{color:#665b58;line-height:1.75;font-size:13px;margin:0}
+.ali-review-head h3{font-size:19px!important;margin:0 0 4px!important;font-weight:850;color:#302830}
+.ali-review-head p{margin:0;color:#786b68;font-size:12px}
+.ali-review-focus{font-size:12px;color:#80512c;background:#fff7ee;border-radius:11px;padding:12px 14px;margin:14px 0}
+.ali-review-filters{display:flex;gap:10px;align-items:center;justify-content:space-between;flex-wrap:wrap;margin:17px 0}
+.ali-review-select{font:inherit;font-size:12px;min-height:38px;max-width:280px;background:white;border:1px solid #edcbb8;border-radius:9px;padding:7px 12px;color:#302830}
+.ali-review-buttons{display:flex;flex-wrap:wrap;gap:7px}
+.ali-review-buttons button.ali-review-filter{font:inherit!important;font-size:12px!important;font-weight:750!important;border:1px solid #eac7b5!important;border-radius:999px!important;background:#fff!important;color:#a94f1d!important;padding:9px 13px!important;min-height:38px!important;box-shadow:none!important;width:auto!important;cursor:pointer}
+.ali-review-buttons button.ali-review-filter[aria-pressed=true]{background:#ff681e!important;color:#fff!important;border-color:#ff681e!important}
+.ali-review-list{display:grid;gap:10px}
+.ali-review-item{background:#fff;border:1px solid #ebded4;border-left:4px solid #ed8b49;padding:14px 17px;border-radius:11px;min-width:0}
+.ali-review-item.ali-review-correct{border-left-color:#218a65}
+.ali-review-item-head{display:flex;align-items:center;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:13px}
+.ali-review-item-head strong{font-weight:850}
+.ali-review-status{font-size:11px;font-weight:850;color:#ad511b}
+.ali-review-correct .ali-review-status{color:#14805d}
+.ali-review-question{font-size:13px;color:#302b34;line-height:1.7;font-weight:600;margin:9px 0!important;white-space:pre-wrap;overflow-wrap:anywhere}
+.ali-review-info,.ali-review-topic{font-size:12px;line-height:1.7;margin:4px 0!important;color:#645959;overflow-wrap:anywhere}
+.ali-review-info strong,.ali-review-topic strong{color:#383038}
+.ali-review-explanation{font-size:12px;color:#75523c;line-height:1.8;margin:9px 0 0!important}
+.ali-review-disclaimer{font-size:12px;line-height:1.8;color:#856f69;margin:18px 0 0}
+.ali-review-empty{color:#836e67;font-size:13px}
+@media(max-width:650px){.ali-review-panel{padding:13px;border-radius:13px;margin:17px 0}.ali-review-level{padding:12px}.ali-review-level h3{font-size:17px}.ali-review-item{padding:12px}.ali-review-select{width:100%;max-width:none}.ali-review-buttons{width:100%}.ali-review-buttons button.ali-review-filter{flex:1;font-size:11px!important;padding:9px 8px!important}}
+@media print{.ali-review-filters{display:none}.ali-review-panel{box-shadow:none;break-inside:auto}.ali-review-item{break-inside:avoid}}
