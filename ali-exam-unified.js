@@ -1,7 +1,7 @@
 /* Shared exam shell for B1, TOEIC, IELTS, Speaking. Preserve original questions and graders. */
 (() => {
  'use strict';
- const name = location.pathname.split('/').pop().replace(/\.html$/,'');
+ const name = location.pathname.replace(/\/+$/, '').split('/').pop().replace(/\.html$/,'');
  const config = {
   b1:{title:'B1 Placement',minutes:30,sections:['Grammar & Vocabulary','Reading','Writing','Listening'],scores:['Tự chấm /15','Giáo viên chấm','Giáo viên chấm','Chưa tự chấm'],kind:'practice'},
   toeic:{title:'TOEIC Placement Test',minutes:45,sections:['Listening','Reading','Writing tự chọn'],scores:['Chưa có đáp án /25','Tự chấm /30','Giáo viên chấm riêng /10'],kind:'practice'},
@@ -17,7 +17,7 @@
   const main=document.querySelector('main.ali-exam-page');
   if(!main)return;
   const user=profile();
-  if(!user || !user.name?.trim() || user.consent!==true){location.replace('./tests.html');return}
+  if(!user || !user.name?.trim() || user.consent!==true){location.replace('/tests/');return}
   document.body.classList.add('ali-shell-ready');
   const heading=main.querySelector(':scope > h1');
   const intro=main.querySelector(':scope > p');

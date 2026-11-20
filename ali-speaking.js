@@ -2,7 +2,7 @@
 "use strict";
 const $=id=>document.getElementById(id);
 const reg=(()=>{try{return JSON.parse(sessionStorage.getItem('ALI_TEST_REGISTRATION')||'null')}catch{return null}})();
-if(!reg || !reg.name?.trim() || reg.consent!==true){location.replace('./tests.html');return;}
+if(!reg || !reg.name?.trim() || reg.consent!==true){location.replace('/tests/');return;}
 const cfg=window.ALI_SPEAKING_CONFIG||{};
 const titles=['Introduction & Everyday Life (A1–A2)','Individual Long Turn (A2–B1)','Opinion & Discussion (B1–B2)','Situational Task'];
 const content=[

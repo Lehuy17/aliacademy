@@ -11,7 +11,7 @@
    {name:'Part 2 · Coastal Walk và Coal Mine (câu 11–20)',src:'https://ieltstrainingonline.com/wp-content/uploads/2026/07/cam21-test2-part2.MP3'}
   ]
  };
- const page=location.pathname.split('/').pop().replace('.html','');
+ const page=location.pathname.replace(/\/+$/, '').split('/').pop().replace('.html','');
  const playlist=settings[page];if(!playlist)return;
  const el=(tag,cls,content)=>{const n=document.createElement(tag);if(cls)n.className=cls;if(content)n.textContent=content;return n};
  function init(){

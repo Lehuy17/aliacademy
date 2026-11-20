@@ -441,12 +441,12 @@ async function init(){
   auth=authSdk.getAuth(appInstance);
   firebaseMovieContext={app:appInstance,db:dbSdk.getFirestore(appInstance),dbSdk};
   authSdk.onAuthStateChanged(auth,async user=>{
-   if(!user){location.replace('./login.html?next=movies');return;}
+   if(!user){location.replace('/login/?next=movies');return;}
    try{
     const db=dbSdk.getFirestore();
     let doc=await dbSdk.getDoc(dbSdk.doc(db,'users',user.uid));
     if(!doc.exists())doc=await dbSdk.getDoc(dbSdk.doc(db,'user',user.uid));
-    if(!doc.exists()||doc.data().status!=='active'){await authSdk.signOut(auth);location.replace('./login.html?blocked=1');return;}
+    if(!doc.exists()||doc.data().status!=='active'){await authSdk.signOut(auth);location.replace('/login/?blocked=1');return;}
     $('memberName').textContent=doc.data().name||user.email||'Học viên';
     const claim=await user.getIdTokenResult();
     if(['teacher','admin'].includes(claim.claims.role)){
@@ -456,7 +456,7 @@ async function init(){
     loadLibrary();
    }catch(err){message('Không thể xác minh tài khoản học viên.');}
   });
-  $('logout').addEventListener('click',async()=>{clearMedia();await authSdk.signOut(auth);location.assign('./login.html');});
+  $('logout').addEventListener('click',async()=>{clearMedia();await authSdk.signOut(auth);location.assign('/login/');});
  }catch(err){message('Không kết nối được Firebase. Hãy thử tải lại trang.');}
 }
 $('closeMovie').addEventListener('click',()=>{

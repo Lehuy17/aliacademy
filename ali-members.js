@@ -20,7 +20,7 @@ function friendlyError(error) {
     'auth/user-disabled': 'Tài khoản đã bị vô hiệu hóa. Vui lòng liên hệ ALI English.',
     'auth/too-many-requests': 'Quá nhiều lần thử. Vui lòng thử lại sau.',
     'auth/operation-not-allowed': 'Chưa bật Email/Password trong Firebase Authentication.',
-    'auth/unauthorized-domain': 'Miền website chưa được cấp quyền. Thêm lehuy17.github.io vào Authorized domains.',
+    'auth/unauthorized-domain': 'Miền website chưa được cấp quyền. Thêm anhnguali.com vào Authorized domains.',
     'auth/invalid-api-key': 'Firebase API key không hợp lệ. Kiểm tra firebase-config.js.',
     'permission-denied': 'Firestore từ chối lưu hoặc đọc hồ sơ. Kiểm tra Firestore Rules.',
     'auth/network-request-failed': 'Không kết nối được Firebase. Hãy kiểm tra mạng hoặc trình chặn quảng cáo.'
@@ -94,7 +94,7 @@ async function init() {
         }
         const token=await user.getIdTokenResult();
         const staff=['teacher','admin'].includes(token.claims.role);
-        window.location.assign(staff?'./teacher.html':'./movies.html');
+        window.location.assign(staff?'/teacher/':'/movies/');
       } catch (error) {
         console.error('ALI login error:', error);
         show(friendlyError(error));
@@ -116,12 +116,12 @@ async function init() {
 
   if (page === 'movies') {
     authSdk.onAuthStateChanged(auth, async user => {
-      if (!user) { window.location.replace('./login.html?next=movies'); return; }
+      if (!user) { window.location.replace('/login/?next=movies'); return; }
       try {
         const p = await getProfile(user);
         if (!p || p.status !== 'active') {
           await authSdk.signOut(auth);
-          window.location.replace('./login.html?blocked=1');
+          window.location.replace('/login/?blocked=1');
           return;
         }
         $('memberName').textContent = p.name || user.email || 'Học viên';
@@ -138,7 +138,7 @@ async function init() {
     });
     $('logout').addEventListener('click', async () => {
       await authSdk.signOut(auth);
-      window.location.assign('./login.html');
+      window.location.assign('/login/');
     });
     document.querySelectorAll('[data-lesson]').forEach(button => button.addEventListener('click', () => {
       $('lessonTitle').textContent = button.dataset.lesson;

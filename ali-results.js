@@ -33,11 +33,11 @@ function render(targetId,data){
  }target.append(breakdown);
  if(data.note)target.append(el('div','ali-result-note',data.note));
  const actions=el('div','ali-result-actions');
- const back=el('a','ali-result-btn ali-result-secondary','← Chọn bài test khác');back.href='./tests.html?step=choose';actions.append(back);
+ const back=el('a','ali-result-btn ali-result-secondary','← Chọn bài test khác');back.href='/tests/?step=choose';actions.append(back);
  const retry=el('button','ali-result-btn ali-result-primary','Làm lại bài');retry.type='button';retry.addEventListener('click',()=>location.reload());actions.append(retry);
  target.append(actions);
  // Guest mode: preserve a minimal score receipt locally; no Firebase login or server sync.
- const receipt={test:(location.pathname.split('/').pop()||'').replace('.html',''),
+ const receipt={test:(location.pathname.replace(/\/+$/, '').split('/').pop()||'').replace('.html',''),
    date:new Date().toISOString(),total,max,
    breakdown:parts.map(p=>({name:p.label,score:p.score,max:p.max}))};
  try{

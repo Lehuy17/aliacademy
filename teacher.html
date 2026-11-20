@@ -1,10 +1,16 @@
+---
+permalink: /teacher/
+redirect_from:
+  - /teacher.html
+---
+{% raw %}
 <!doctype html>
-<html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<html lang="vi"><head><base href="/"><link rel="canonical" href="https://anhnguali.com/teacher/"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <meta name="robots" content="noindex,nofollow"><title>Teacher Dashboard | ALI English</title>
 <link rel="stylesheet" href="./ali-logo.css?v=1"><link rel="stylesheet" href="./ali-teacher.css?v=1"></head>
 <body><header class="ali-teacher-nav">
- <a class="teacher-brand" href="./index.html"><span class="ali-shared-logo" role="img" aria-label="ALI Academy"></span><span><strong>ALI ENGLISH</strong><small>TEACHER WORKSPACE</small></span></a>
- <nav aria-label="Điều hướng"><a href="./index.html">Trang chủ</a><a href="./movies.html">Thư viện phim</a><button id="teacherLogout" type="button" class="nav-logout" hidden>Đăng xuất</button></nav>
+ <a class="teacher-brand" href="/"><span class="ali-shared-logo" role="img" aria-label="ALI Academy"></span><span><strong>ALI ENGLISH</strong><small>TEACHER WORKSPACE</small></span></a>
+ <nav aria-label="Điều hướng"><a href="/">Trang chủ</a><a href="/movies/">Thư viện phim</a><button id="teacherLogout" type="button" class="nav-logout" hidden>Đăng xuất</button></nav>
 </header>
 <main class="dashboard-wrap">
  <section class="teacher-hero">
@@ -106,7 +112,7 @@
 
   <section id="teacherPaneMovies" class="teacher-section" role="tabpanel" hidden>
    <div class="section-head"><div><span class="teacher-eyebrow">BILINGUAL CINEMA · TEACHER PUBLISHING</span><h2>Đăng phim song ngữ</h2><p>Giáo viên được <strong>xuất bản trực tiếp, không cần Admin duyệt</strong>. Hệ thống vẫn kiểm tra MP4, tiếng, phụ đề và quyền sử dụng.</p></div>
-    <a href="./movies.html" class="teacher-outline">Xem thư viện ↗</a></div>
+    <a href="/movies/" class="teacher-outline">Xem thư viện ↗</a></div>
    <div class="teacher-layout teacher-upload-layout">
     <form id="teacherMovieForm" class="teacher-panel teacher-movie-form">
       <div class="teacher-panel-heading"><span class="teacher-icon">▶</span><div><h3>Thêm video mới</h3><p>Định dạng đúng quy chuẩn ALI-CINEMA-STD-01.</p></div></div>
@@ -149,3 +155,4 @@
   </section>
  </section>
 </main><script type="module" src="./ali-teacher.js?v=2"></script><script type="module" src="./ali-bulk-import.js?v=1"></script><script type="module" src="./ali-teacher-results.js?v=1"></script></body></html>
+{% endraw %}

@@ -292,7 +292,7 @@ async function loadTeacherMovies(){
   for(const movie of items){
    const card=make("div",undefined,"teacher-published-item");
    card.append(make("strong",movie.title),make("small",(movie.duration||"")+" · "+(movie.captionCount||0)+" câu · "+(movie.status==="published"?"Đã xuất bản":"Bản nháp")));
-   const link=make("a","Xem trên thư viện ALI ↗");link.href="./movies.html";card.append(link);host.append(card);
+   const link=make("a","Xem trên thư viện ALI ↗");link.href="/movies/";card.append(link);host.append(card);
   }
   updateStats();
  }catch(e){$("teacherMovieRows").textContent="Chưa đọc được danh sách phim: "+friendlyError(e);}
@@ -328,7 +328,7 @@ async function init(){
  }catch(e){notify("Chưa kết nối được Firebase: "+friendlyError(e),"error");}
 }
 document.querySelectorAll("[data-teacher-tab]").forEach(b=>b.addEventListener("click",()=>showPane(b.dataset.teacherTab)));
-$("teacherLogout").addEventListener("click",async()=>{if(auth)await sdk.auth.signOut(auth);location.href="./login.html";});
+$("teacherLogout").addEventListener("click",async()=>{if(auth)await sdk.auth.signOut(auth);location.href="/login/";});
 $("teacherRefreshStudents").addEventListener("click",loadStudents);
 $("teacherStudentSearch").addEventListener("input",renderStudents);
 $("teacherCreateStudent").addEventListener("submit",createStudent);

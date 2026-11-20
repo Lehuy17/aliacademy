@@ -1,0 +1,5 @@
+# ALI English GitHub Pages: root-domain clean URLs and backward-compatible redirects.
+url: "https://anhnguali.com"
+baseurl: ""
+plugins:
+  - jekyll-redirect-from

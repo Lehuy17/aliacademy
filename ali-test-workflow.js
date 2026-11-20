@@ -2,7 +2,7 @@
 (() => {
   'use strict';
   const key = 'ALI_TEST_REGISTRATION';
-  const page = location.pathname.split('/').pop().replace('.html','');
+  const page = location.pathname.replace(/\/+$/, '').split('/').pop().replace('.html','');
   const names = {b1:'B1 Placement',toeic:'TOEIC Practice',ielts:'IELTS Practice',speaking:'Speaking A1–B2'};
   const name = names[page];
   if (!name) return;
@@ -15,7 +15,7 @@
     const profile = registration();
     // Direct links may be shared: redirect to the central registration/selection flow.
     if (!profile || typeof profile.name !== 'string' || !profile.name.trim() || profile.consent !== true) {
-      location.replace('./tests.html');
+      location.replace('/tests/');
       return;
     }
     const firstSection = main.querySelector('section');
@@ -99,7 +99,7 @@
     footer.className='ali-flow-footer';
     footer.setAttribute('aria-label','Điều hướng bài kiểm tra');
     const back=document.createElement('a');
-    back.href='./tests.html?step=choose';
+    back.href='/tests/?step=choose';
     back.textContent='← Danh sách bài test';
     const top=document.createElement('button');
     top.type='button';top.textContent='↑ Lên đầu trang';top.className='ali-flow-top-button';
