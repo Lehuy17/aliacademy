@@ -29,3 +29,15 @@
 .ali-toeic-table th{background:#fff0e5;color:#9b4214}
 .ali-toeic-result-detail{margin-top:20px}.ali-toeic-status{color:#89736b;font-size:12px;margin:12px 0}
 @media(max-width:660px){.ali-toeic-question{padding:12px}.ali-toeic-passage{padding:13px}.ali-toeic-option{padding:10px}.ali-toeic-photo img{min-height:120px}}
+
+/* Supplied ALI TOEIC Listening 25-question MP3 — responsive sticky player. */
+.ali-toeic-audio-section{position:sticky;top:8px;z-index:8;background:linear-gradient(135deg,#fff7f1 0%,#fff 100%);border:1px solid #ffcfaf;border-radius:16px;padding:16px 18px;margin:4px 0 22px;box-shadow:0 12px 35px rgba(85,38,16,.12)}
+.ali-toeic-audio-top{display:flex;justify-content:space-between;gap:8px;align-items:center;flex-wrap:wrap}
+.ali-toeic-audio-tag{font-size:11px;font-weight:800;letter-spacing:.055em;color:#c04c15}
+.ali-toeic-audio-duration{font-size:11px;color:#6e5960;font-weight:650}
+.ali-toeic-audio-section h3{font-size:18px!important;margin:9px 0 6px!important;color:#28232a!important}
+.ali-toeic-audio-section p{font-size:12px;line-height:1.7;margin:4px 0 10px;color:#66585b}
+.ali-toeic-audio-embed{display:block;border:0;background:#fff;width:100%;height:115px;border-radius:12px}
+.ali-toeic-audio-section .ali-toeic-audio-fallback{margin:9px 0 0}
+.ali-toeic-audio-fallback a{font-weight:800;color:#ba4f19;text-decoration:underline;text-underline-offset:2px}
+@media(max-width:700px){.ali-toeic-audio-section{top:0;padding:10px 12px;margin-bottom:18px}.ali-toeic-audio-section h3{font-size:15px!important}.ali-toeic-audio-embed{height:90px}.ali-toeic-audio-section p{font-size:11px}}
