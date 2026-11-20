@@ -32,6 +32,7 @@ function render(targetId,data){
   row.append(name,track,number);breakdown.append(row);
  }target.append(breakdown);
  if(data.note)target.append(el('div','ali-result-note',data.note));
+ if(global.ALIReview&&(data.level||Array.isArray(data.review)))global.ALIReview.render(target,{level:data.level,items:data.review,note:data.reviewNote});
  const actions=el('div','ali-result-actions');
  const back=el('a','ali-result-btn ali-result-secondary','← Chọn bài test khác');back.href='/tests/?step=choose';actions.append(back);
  const retry=el('button','ali-result-btn ali-result-primary','Làm lại bài');retry.type='button';retry.addEventListener('click',()=>location.reload());actions.append(retry);
@@ -59,7 +60,10 @@ function render(targetId,data){
      'Ngày: '+new Date(receipt.date).toLocaleString('vi-VN'),
      'Điểm phần tự chấm: '+fmt(receipt.total)+'/'+fmt(receipt.max),
      ...receipt.breakdown.map(p=>p.name+': '+(typeof p.score==='number'?fmt(p.score)+'/'+fmt(p.max):'Chưa chấm')),
-     'Kết quả lưu cá nhân, không thay thế phiếu xác nhận của giáo viên.'];
+     'Mức tham khảo: '+(data.level?.title||'Chưa có đủ kỹ năng'),
+     '--- CHỮA BÀI CHI TIẾT ---',
+     ...(Array.isArray(data.review)?data.review.map(x=>'['+(x.correct?'ĐÚNG':'SAI / BỎ TRỐNG')+'] '+(x.section||'')+' câu '+x.number+' | Bạn chọn: '+(x.answer||'Không trả lời')+' | Đáp án: '+(x.expected||'Chưa xác minh')+' | Chủ điểm: '+(x.topic||'')+' | '+(x.explanation||'')):[]),
+     'Kết quả chỉ mang tính tham khảo; các kỹ năng chưa chấm cần giáo viên xác nhận.'];
    const blob=new Blob([lines.join('\n')],{type:'text/plain;charset=utf-8'});
    const url=URL.createObjectURL(blob),a=el('a');a.href=url;a.download='ALI-ket-qua-'+receipt.test+'-'+receipt.date.slice(0,10)+'.txt';
    document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
