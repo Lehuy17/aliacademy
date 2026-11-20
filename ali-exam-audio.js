@@ -2,6 +2,9 @@
 (() => {
  'use strict';
  const settings={
+  toeic:[
+   {name:'TOEIC Listening Test · Questions 1–25',src:'/media/ali-tests/toeic-listening-test.mp3'}
+  ],
   b1:[
    {name:'Bài nghe 1 · Chọn đáp án (câu 1–7)',src:'https://englishpracticetest.net/wp-content/uploads/2022/11/b1-test-1-1.mp3'},
    {name:'Bài nghe 2 · Saturday course (câu 14–19)',src:'https://englishpracticetest.net/wp-content/uploads/2022/11/b1-test-1-3.mp3'}
@@ -32,12 +35,13 @@
    button.type='button';button.setAttribute('aria-pressed',String(i===0));
    button.addEventListener('click',()=>switchPart(i,true));buttons.append(button);return button;
   });
-  box.append(buttons,audio);
+  if(playlist.length>1)box.append(buttons);
+  box.append(audio);
   const controls=el('div','ali-audio-controls');
   const play=el('button','ali-audio-primary','▶ Phát bài nghe');
   const replay=el('button','','↺ Nghe lại');
   play.type=replay.type='button';controls.append(play,replay);box.append(controls);
-  const help=el('p','ali-audio-helper','Bài nghe sẽ được đề nghị phát khi bạn mở phần Listening. Nếu trình duyệt chặn tự phát, nhấn “Phát bài nghe”. Không hiển thị trang nguồn hoặc đáp án.');
+  const help=el('p','ali-audio-helper','Nếu trình duyệt chặn phát tự động, nhấn “Phát bài nghe”. Bạn có thể cuộn xuống chọn đáp án trong lúc nghe.');
   box.append(help);
   const error=el('div','ali-audio-error');error.setAttribute('role','status');box.append(error);
   const stopOthers=()=>document.querySelectorAll('.ali-audio-player').forEach(a=>{if(a!==audio)a.pause()});
