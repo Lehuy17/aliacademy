@@ -72,12 +72,82 @@
    }
    for(let i=14;i<20;i++)if($('listen'+i).value===answerMap[i-14])ls++;
    for(let i=0;i<13;i++)if(normal($('read'+i).value)===normal(answersR[i]))rs++;
+   const review=[];
+   const listeningPrompts=[
+    'Vietnamese food · Course date','Bread making · Course fee','Bread making · Another type of bread',
+    'Face massage · Country of training','Face massage · Thing to bring',
+    'Candle making · Course date','Candle making · Ingredients','Silk painting · Course fee',
+    'Silk painting · Thing to bring','DIY for beginners · Tool name'
+   ];
+   const listeningHints=[
+    'Nghe ngày tháng; có thể viết 13 January hoặc các dạng ngày được KEY chấp nhận.',
+    'Nghe số và ghi đúng chi phí £48; kiểm tra con số, không tự thêm tiền tệ.',
+    'Nghe danh từ chỉ món ăn “pizza”; tuân thủ yêu cầu ONE WORD.',
+    'Tên quốc gia cần được nghe và viết đúng chính tả: India.',
+    'Từ vựng đồ vật: mirror (gương).',
+    'Nghe ngày tháng 6 April; các cách viết ngày trong KEY đều được chấp nhận.',
+    'Natural là tính từ đứng trước ingredients, diễn tả nguyên liệu tự nhiên.',
+    'Chú ý cách đọc số thập phân 67.50 và yêu cầu số tiền.',
+    'Shirt là danh từ chỉ áo; đoạn nghe nói mang theo tạp dề hoặc áo cũ.',
+    'Hammer là danh từ công cụ; học cùng drill, saw và hammer.'
+   ];
+   for(let i=0;i<10;i++){
+    const value=$('listen'+i).value.trim();
+    const ok=value&&answersL[i].some(v=>normal(v)===normal(value));
+    const answer=i===0?'13 January':i===5?'6 April':answersL[i].find(x=>!x.includes('('))||answersL[i][0];
+    review.push({section:'IELTS Listening · Part 1',number:i+1,question:listeningPrompts[i],answer:value,
+     expected:answer,correct:!!ok,topic:i===0||i===5?'Ngày tháng và chính tả':i===1||i===7?'Nghe số và giá tiền':'Nghe từ khóa',explanation:listeningHints[i]});
+   }
+   for(const [start,accepted,label] of [[10,['B','E'],'Marsden Coastal Walk'],[12,['C','D'],'Melby Heritage Walk']]){
+    const seen=new Set();
+    for(let i=start;i<start+2;i++){
+     const value=$('listen'+i).value;
+     const correct=!!value&&accepted.includes(value)&&!seen.has(value);
+     if(correct)seen.add(value);
+     review.push({section:'IELTS Listening · Part 2',number:i+1,question:label+' · Chọn HAI phương án (không lặp)',
+      answer:value,expected:accepted.join(' và ')+' (không xét thứ tự)',correct,
+      topic:'Multiple choice · Choose TWO',explanation:'Hai lựa chọn hợp lệ theo KEY là '+accepted.join(' và ')+'. Mỗi đáp án chỉ tính một lần; chọn lặp không được cộng điểm.'});
+    }
+   }
+   const mapFeatures=['Exhibition','Baths','Tools','Vehicles','Ponies','Education centre'];
+   for(let i=14;i<20;i++){
+    const value=$('listen'+i).value,correct=value===answerMap[i-14];
+    review.push({section:'IELTS Listening · Map',number:i+1,question:'Melby Coal Mine · '+mapFeatures[i-14],
+     answer:value,expected:answerMap[i-14],correct,topic:'Map labelling',
+     explanation:'Xác định vị trí '+mapFeatures[i-14]+' trên sơ đồ Melby Coal Mine và đối chiếu chữ cái '+answerMap[i-14]+' từ KEY.'});
+   }
+   const readingNotes=['Ngành nghề tạo nên tài sản gia đình','Học vấn và định hướng văn hóa','Ghi chú khi đi tham quan bảo tàng',
+    'Nhật ký thể hiện sở thích hội họa','Tranh Monet mô tả thành phố',
+    'Thông tin từ bài đọc về hoạt động và địa điểm','Thông tin về những người bạn của hai chị em'];
+   for(let i=0;i<13;i++){
+    const value=$('read'+i).value.trim(),expected=answersR[i];
+    const correct=!!value&&normal(value)===normal(expected);
+    const statement=i>=7?source.statements[i-7]:'The Davies Sisters · '+readingNotes[i];
+    review.push({section:i<7?'IELTS Reading · Note Completion':'IELTS Reading · TRUE/FALSE/NOT GIVEN',
+     number:i+1,question:statement,answer:value,expected,correct,
+     topic:i<7?'One word only · Tìm từ trong bài':'TRUE / FALSE / NOT GIVEN',
+     explanation:i<7?'Đáp án theo KEY là “'+expected+'”. Đọc lại đoạn văn The Davies Sisters, định vị từ khóa được diễn đạt lại và lấy đúng MỘT từ trong bài.':
+      expected==='NOT GIVEN'?'NOT GIVEN: bài đọc không xác nhận hoặc phủ nhận đủ thông tin trong phát biểu. Không suy luận từ kiến thức ngoài bài.':
+      expected==='TRUE'?'TRUE: phát biểu phù hợp với thông tin được nêu trong bài đọc; hãy tìm câu chứa bằng chứng tương đương.':
+      'FALSE: phát biểu mâu thuẫn với thông tin được nêu trong bài đọc; tìm câu bác bỏ thay vì đoán.'});
+   }
+   const ranges=[['Foundation / Pre-IELTS',0,5,0,3],['IELTS Ignite',6,9,4,6],['IELTS Elevate',10,13,7,9],['IELTS Breakthrough',14,16,10,11],['IELTS Mastery',17,18,12,12]];
+   const listenTier=ranges.find(t=>ls>=t[1]&&ls<=t[2]);
+   const readTier=ranges.find(t=>rs>=t[3]&&rs<=t[4]);
+   const sameTier=ranges.find(t=>ls>=t[1]&&ls<=t[2]&&rs>=t[3]&&rs<=t[4]);
+   const level=sameTier?{
+    title:sameTier[0]+' · Listening/Reading (tạm tính)',
+    detail:'Listening '+ls+'/20 và Reading '+rs+'/13 cùng thuộc mức '+sameTier[0]+' trong bảng xếp lớp nội bộ ALI. Writing /100 chưa được chấm, nên đây chưa phải lớp được xác nhận.'}
+    :{title:'Cần đánh giá thêm để xếp lớp IELTS',
+      detail:'Listening '+ls+'/20 '+(listenTier?'(tham chiếu '+listenTier[0]+')':'(ngoài ngưỡng bảng ALI)')+
+      '; Reading '+rs+'/13 '+(readTier?'(tham chiếu '+readTier[0]+')':'(ngoài ngưỡng bảng ALI)')+
+      '. Hai kỹ năng chưa đồng nhất một hàng, hoặc có điểm vượt bảng; cần giáo viên chấm Writing và xét tổng thể.'};
    if(window.ALIResults?.render){
-    window.ALIResults.render('aliUnifiedResult',{total:ls+rs,max:33,eyebrow:'ALI IELTS PLACEMENT · KẾT QUẢ',heading:'Đã hoàn thành Listening & Reading',ringLabel:'CÂU ĐÚNG',title:'Kết quả phần tự chấm',description:'Hệ thống đã chấm Listening và Reading theo file KEY của ALI. Writing chờ giáo viên chấm theo 4 tiêu chí, tối đa 100 điểm.',breakdown:[{label:'Listening',score:ls,max:20},{label:'Reading',score:rs,max:13},{label:'Writing (giáo viên)',score:null,max:100}],note:'Điểm '+(ls+rs)+'/33 là điểm kiểm tra xếp lớp nội bộ, KHÔNG phải IELTS band score. Chưa thể xếp lớp chính thức khi thiếu điểm Writing và đánh giá giáo viên.'});
+    window.ALIResults.render('aliUnifiedResult',{total:ls+rs,max:33,eyebrow:'ALI IELTS PLACEMENT · KẾT QUẢ',heading:'Đã hoàn thành Listening & Reading',ringLabel:'CÂU ĐÚNG',title:'Kết quả phần tự chấm',description:'Hệ thống đã chấm Listening và Reading theo file KEY của ALI. Writing chờ giáo viên chấm theo 4 tiêu chí, tối đa 100 điểm.',breakdown:[{label:'Listening',score:ls,max:20},{label:'Reading',score:rs,max:13},{label:'Writing (giáo viên)',score:null,max:100}],note:'Điểm '+(ls+rs)+'/33 là điểm kiểm tra xếp lớp nội bộ, KHÔNG phải IELTS band score. Chưa thể xếp lớp chính thức khi thiếu điểm Writing và đánh giá giáo viên.',level,review,reviewNote:'Bảng nội bộ ALI chỉ liệt kê đến Listening 18/20, Reading 12/13 và Writing 89/100. Mức tham khảo không phải IELTS band hoặc chứng chỉ IELTS. Phần Writing cần giáo viên chấm.'});
    }else{
     $('aliUnifiedResult').hidden=false;$('aliUnifiedResult').textContent='Listening: '+ls+'/20 · Reading: '+rs+'/13 · Writing: chờ giáo viên chấm.';
    }
    const wrap=$('aliUnifiedResult');
-   const guidance=document.createElement('p');guidance.className='ali-ielts-guidance';guidance.textContent='Giáo viên ALI sẽ xem phần chữa bài chi tiết và quy đổi xếp lớp trong Teacher Dashboard sau khi nhận đủ điểm kỹ năng.';wrap.querySelectorAll('.ali-ielts-guidance').forEach(n=>n.remove());wrap.append(guidance);
+   const guidance=document.createElement('p');guidance.className='ali-ielts-guidance';guidance.textContent='Chi tiết Listening/Reading và mức tham khảo ở trên đã đối chiếu KEY nội bộ. Writing vẫn cần giáo viên chấm để xếp lớp chính thức.';wrap.querySelectorAll('.ali-ielts-guidance').forEach(n=>n.remove());wrap.append(guidance);
  });
 })({"passage":["Between 1908 and 1924, Gwendoline and Margaret Davies amassed one of the largest collections of late-nineteenth and early-twentieth-century French paintings in Britain","Gwendoline (1882-1951) and Margaret (1884-1963) Davies were the granddaughters of David Davies, a Welshman who amassed a fortune in the shipping and mining industries. In 1907, when Gwendoline came into her inheritance (Margaret would follow in 1909), the sisters were said to be the wealthiest unmarried women in Britain. Their religious upbringing in rural Wales gave them a deep sense of social responsibility and they chose to use their inheritance for cultural and philanthropic* purposes.","While there was no real family history of art collecting, the sisters' education was rigorously geared toward such pursuits. Their London school focused on cultural rather than academic study, and they travelled extensively with their governess, Jane Blaker, visiting art galleries and making extensive notes on the collections there.","The sisters began to make regular art purchases from 1908, which roughly coincided with the dates of their inheritance. They took advice from various people, including the art dealer Hugh Blaker (the brother of Jane Blaker) and David Croal Thompson, who was also an art dealer. While it was long assumed that these men were largely responsible for the nature of the sisters' collection, it has recently been accepted that Gwendoline and Margaret retained a far more active role in the process.","The sisters' journals reveal their preference for Old Master** paintings. Yet they initially made very few attempts to secure any such works. While the sisters were wealthy in relative terms, their income was nothing compared to the fortunes of American art collectors of this period, such as J. Pierpont Morgan. Quite simply, high quality Old Master works were, if not beyond their means, then beyond what they were willing to pay for them. Instead, their early purchases were of the fashionable, safe variety, and included, for example, paintings by the French artist Jean-Baptiste-Camille Corot.","However, it was only a few years before their collecting took a new direction and they turned to the work of the French Impressionists***. We know that Hugh Blaker, as a champion of contemporary French art had a hand in the decision, and we know also that they would have seen examples on their various trips to Paris. Whatever the precise reason for this change, their first purchases of Impressionist art, made in October 1912, were scenes of Venice by the French artist Claude Monet. Over the next 12 years, the sisters amassed the bulk of their Impressionist collection, including six further works by Monet, two more by Manet, and three by Renoir, including his well-known painting La Parisienne.","The First World War (1914-1918) played a part in the development of the sisters' collection. Their initial response to the war effort was to finance the safe passage of artists from occupied Belgium to Wales, as a humanitarian act, but also with the hope of establishing a vibrant artists' community in the area. Later in the conflict, both sisters decided to volunteer at a canteen for troops at Troyes, in northern France; Gwendoline in 1916, followed by Margaret in 1917.","It was tedious and distressing work, which would have a permanent effect on Gwendoline's health. Yet on one of numerous trips to nearby Paris, she visited the Bernheim-Jeune Gallery. Here she acquired two works by Cézanne – Provençal Landscape and The François Zola Dam. The paintings were shipped directly to Bath, England, where they became the first works by Cézanne to go on display in a public gallery in Britain.","Commentators have often described the sisters as unlikely pioneer collectors. Much is made of their isolation in rural Wales and the fact that they didn't make friends with artists or gallery owners. Yet they didn't feel obliged to follow fashionable tastes and were free to pursue their own preferences. Although they relied on a trusted circle of advisers, they made frequent trips to London and Paris, and also regularly had paintings sent to their home for consideration.","By the early 1920s, Gwendoline felt increasingly uncomfortable buying art works when faced with the poverty and social upheaval created by the First World War. Her philanthropic pursuits then became focused almost exclusively on social causes and the development of the sisters' home at Gregynog Hall into a conference center and venue for the Gregynog Festival of Music and Poetry. Gwendoline made her final art purchase in March 1926. Margaret also stopped collecting around this time, but started again in the 1930s acquiring, on a relatively small scale, work by contemporary British artists.","The sisters collected French Impressionist paintings at a time when such art was routinely ignored by individuals and institutions alike. The Gwendoline and Margaret Davies collection, donated in 1951 and 1963 respectively to the National Museum Wales, contains major examples of work by leading French Impressionists. In collecting paintings that they loved, the sisters created a lasting and meaningful cultural legacy for the people of Wales and beyond.","* philanthropic: seeking to promote the welfare of others, often by charitable funding","** Old Master: a highly respected artist of great skill who worked in Europe before about 1800","*** Impressionist: an artist with a style of painting that developed in France in the late 1800s by Renoir, including his well-known painting La Parisienne"],"notes":["Family and early life","•   their grandfather's wealth came from 1.................. and transportation businesses","•   their upbringing gave them a sense of social responsibility","•   their 2.................. was designed to give them an interest in activities such as collecting art","•   their governess took them on trips to art galleries","•   they took lengthy 3.................. about the things they saw in art galleries","The sisters as art collectors","•   their 4.................. showed they liked Old Master paintings, but they were expensive to buy","•   their early purchases were safe, popular paintings","•   the first Impressionist paintings they bought showed places in 5.................. .","Impact of First World War","•   they helped bring artists from Belgium to Wales","•   they worked in a 6.................. for soldiers in France","Opinions about the sisters as art collectors","•   were not considered typical collectors - they lived in isolation in the countryside and did not have any 7.................. who were artists"],"statements":["The Davies sisters' childhood influenced the way they decided to use their wealth.","The Jean-Baptiste-Camille Corot paintings in the Davies sisters' collection were purchased from a gallery in France.","Hugh Blaker opposed the Davies sisters' decision to buy art by French Impressionists.","The exhibition of Cezanne paintings at the Bath gallery was very popular with the public.","The impact of the First World War encouraged Gwendoline to reconsider her interest in collecting art.","The Davies sisters bought French Impressionist art during a period when very few people were doing so."],"writing":["People living in large cites today face many problems in their everyday life. What are these problems? Should governments encourage people to move to smaller regional towns?","Give reasons for your answer and include any relevant examples from your own knowledge or experience.","Write at least 100 words."],"marsden":["A   Stop for lunch in an ancient town.","B   Don't miss the ruins of a certain building.","C   Catch a boat to the start of this walk.","D   Be careful of the steep and rocky paths.","E   Don't worry about getting lost."],"melby":["A   This walk is mostly downhill.","B   The paths can get busy during the day.","C   This is a circular walk.","D   A tower stands on the site of an older structure.","E   There are far-reaching views the whole way."]});
