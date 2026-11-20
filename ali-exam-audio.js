@@ -94,7 +94,7 @@
   audio.addEventListener('play',()=>{state.textContent='Đang phát';play.textContent='Ⅱ Tạm dừng'});
   audio.addEventListener('pause',()=>{state.textContent=audio.ended?'Đã hoàn thành':'Đang tạm dừng';play.textContent='▶ Phát bài nghe'});
   audio.addEventListener('ended',()=>{if(current+1<playlist.length)switchPart(current+1,true);else state.textContent='Đã hoàn thành bài nghe'});
-  audio.addEventListener('error',()=>{state.textContent='Không tải được audio';error.textContent='Nguồn âm thanh chưa phát được trên trình duyệt này. Vui lòng thông báo quản lý ALI để kiểm tra nguồn audio.'});
+  audio.addEventListener('error',()=>{if(!ready)return;state.textContent='Không tải được audio';error.textContent='Nguồn âm thanh chưa phát được trên trình duyệt này. Vui lòng thông báo quản lý ALI để kiểm tra nguồn audio.'});
   target.insertBefore(box,target.querySelector('h2')?.nextSibling||target.firstChild);
   switchPart(0,false);
   const observer=new MutationObserver(()=>{
