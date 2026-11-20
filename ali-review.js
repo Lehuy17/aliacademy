@@ -25,7 +25,7 @@
    const weak=[...new Set(rows.filter(r=>!r.correct).map(r=>clean(r.topic)).filter(Boolean))].slice(0,6);
    if(weak.length)box.append(mk('p','ali-review-focus','Chủ điểm nên ôn tập: '+weak.join(' · ')+'.'));
    const filters=mk('div','ali-review-filters');
-   let mode='wrong',section='all';
+   let mode='all',section='all';
    const cardList=mk('div','ali-review-list');
    const sections=[...new Set(rows.map(r=>clean(r.section)||'Khác'))];
    const select=mk('select','ali-review-select');select.setAttribute('aria-label','Chọn kỹ năng cần chữa');
