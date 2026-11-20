@@ -16,7 +16,14 @@
  const part=(heading,text,body)=>'<div class="ali-toeic-block"><h3>'+heading+'</h3><p class="ali-toeic-instruction">'+escapeHTML(text)+'</p>'+body+'</div>';
  const figure=n=>'<figure class="ali-toeic-photo"><img src="./toeic-placement-q'+n+'.jpg?v=1" loading="lazy" alt="'+escapeHTML(['A family walking in shallow beach water','People relaxing on a green park lawn','Three adults at a table raising glasses','A mechanic working beneath a car'][n-1])+'"><figcaption>Question '+n+' · Photograph from ALI source document</figcaption></figure>'+question(n);
  $('toeicListen').innerHTML=
-   '<p class="ali-toeic-notice"><strong>Audio chưa được cung cấp:</strong> Tài liệu Word chỉ có đề và hình, không có file audio TOEIC Test 1 hoặc đáp án nghe. Hãy làm phần này khi giáo viên ALI phát đúng audio gốc; website chưa thể tự chấm Listening.</p>'+
+   '<div class="ali-toeic-audio-section" aria-label="Trình nghe TOEIC Listening Test">'+
+    '<div class="ali-toeic-audio-top"><span class="ali-toeic-audio-tag">ALI ACADEMY · TOEIC LISTENING</span><span class="ali-toeic-audio-duration">15:58 · 25 câu · tốc độ thu 0.75×</span></div>'+
+    '<h3>Nghe bài TOEIC Listening Test</h3>'+
+    '<p>Nhấn nút phát trên trình nghe để làm câu 1–25. Bạn có thể cuộn xuống chọn đáp án trong khi audio tiếp tục phát. Bài nghe lấy từ file MP3 bạn đã cung cấp.</p>'+
+    '<iframe class="ali-toeic-audio-embed" title="TOEIC Listening Test - audio 25 câu" loading="eager" allow="autoplay" src="https://drive.google.com/file/d/13Jf5qy_bPg55PNXfzqUdqsam41bWg4lX/preview"></iframe>'+
+    '<p class="ali-toeic-audio-fallback">Nếu trình nghe không tải, hãy <a href="https://drive.google.com/file/d/13Jf5qy_bPg55PNXfzqUdqsam41bWg4lX/view" target="_blank" rel="noopener noreferrer">mở file nghe trên Google Drive</a>. Quản trị viên cần bật quyền “Bất kỳ ai có đường liên kết · Người xem” cho file này để học viên truy cập không cần đăng nhập.</p>'+
+    '</div>'+
+    '<p class="ali-toeic-notice"><strong>Lưu ý khi chấm:</strong> Đã bổ sung file nghe 25 câu. Hệ thống vẫn chưa có đáp án Listening được xác minh khớp với file audio này, vì vậy chỉ chấm tự động phần Reading; giáo viên cần đối chiếu Listening trước khi xếp lớp.</p>'+
    part('Part 1 · Photographs (1–4)',source.photoDirections,('<div class="ali-toeic-example"><h4>Example</h4><figure class="ali-toeic-photo"><img src="./toeic-placement-example.jpg?v=1" loading="lazy" alt="Firefighters with rescue vehicle beside a railway track"></figure><p>'+escapeHTML(source.example.options).replace(/\n/g,'<br>')+'</p><p>'+escapeHTML(source.example.conclusion)+'</p></div>')+Array.from({length:4},(_,i)=>figure(i+1)).join(''))+
    part('Part 2 · Question–Response (5–13)',source.otherDirections.part2,qRange(5,13))+
    part('Part 3 · Conversations (14–19)',source.otherDirections.part3,'<h4>Questions 14–16 · Conversation 1</h4>'+qRange(14,16)+'<h4>Questions 17–19 · Conversation 2</h4>'+qRange(17,19))+
