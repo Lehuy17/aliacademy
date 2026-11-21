@@ -2,6 +2,16 @@ import {firebaseConfig} from './firebase-config.js';
 import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=3';
 const $=id=>document.getElementById(id);
 const video=$('aliHtmlVideo');
+// ALI Cinema mobile standard: inline playback before assigning any media.
+video.playsInline=true;
+video.setAttribute('playsinline','');
+video.setAttribute('webkit-playsinline','');
+video.setAttribute('controlsList','nofullscreen noremoteplayback');
+video.disablePictureInPicture=true;
+video.disableRemotePlayback=true;
+const driveFrame=$('aliDrivePlayer');
+driveFrame.removeAttribute('allowfullscreen');
+driveFrame.setAttribute('allow','autoplay; fullscreen \'none\'');
 const list=$('aliTranscriptList');
 const scroller=$('aliTranscriptScroll');
 const status=$('aliVideoMode');
@@ -227,17 +237,19 @@ function fallback(){
   status.textContent='Không có nguồn phát dự phòng cho video này.';return;
  }
  video.classList.add('hidden');$('aliDrivePlayer').classList.remove('hidden');
+ movieScreen?.classList.add('is-drive-embed');
  $('aliDrivePlayer').src='https://drive.google.com/file/d/'+encodeURIComponent(driveId)+'/preview';
  $('fallbackBtn').classList.add('hidden');
  // Never display an outbound original-source link in the student player.
- $('syncBtn').classList.add('hidden');$('syncBtn').textContent='Phát đồng bộ';
+ $('syncBtn').classList.toggle('hidden',currentMovie?.source?.type==='drive');$('syncBtn').textContent='Phát đồng bộ';
  clock.textContent='00:00 / '+(currentMovie?.duration||'--:--');
- status.textContent='Đang phát phim';updateSyncControls();
+ status.textContent='Nguồn dự phòng: phụ đề không đồng bộ tự động.';updateSyncControls();
 }
 async function openSync(){
  const ticket=++loadTicket;
  $('aliDrivePlayer').removeAttribute('src');$('aliDrivePlayer').classList.add('hidden');video.classList.remove('hidden');
- clearMedia();$('fallbackBtn').classList.remove('hidden');$('syncBtn').classList.add('hidden');
+ clearMedia();$('fallbackBtn').classList.toggle('hidden',!currentMovie?.driveId);$('syncBtn').classList.add('hidden');
+ movieScreen?.classList.remove('is-drive-embed');
  status.textContent='Đang tải video cho phụ đề đồng bộ…';
  try{
   if(!currentMovie)throw Error('No movie selected');
@@ -259,14 +271,24 @@ async function openSync(){
   if(currentMovie.previewSrc)video.poster=currentMovie.previewSrc;
   video.load();
   await new Promise((resolve,reject)=>{
-   const timer=setTimeout(()=>{reject(Error('Video metadata timed out'));},12000);
-   video.addEventListener('loadedmetadata',()=>{clearTimeout(timer);resolve();},{once:true});
-   video.addEventListener('error',()=>{clearTimeout(timer);reject(Error('Cannot play video'));},{once:true});
+   const cleanup=()=>{clearTimeout(timer);video.removeEventListener('loadedmetadata',loaded);video.removeEventListener('error',failed);};
+   const loaded=()=>{cleanup();resolve();};
+   const failed=()=>{cleanup();reject(Error('Cannot play video'));};
+   const timer=setTimeout(()=>{cleanup();reject(Error('Video metadata timed out'));},45000);
+   video.addEventListener('loadedmetadata',loaded);
+   video.addEventListener('error',failed);
+   if(video.readyState>=1)loaded();
   });
   if(ticket!==loadTicket)return;
   status.textContent='Đã sẵn sàng';updateSyncControls();
   active=-1;sync();
- }catch(e){if(ticket===loadTicket){console.warn('Video playback unavailable',e);fallback();}}
+ }catch(e){if(ticket===loadTicket){
+  console.warn('Video playback unavailable',e);
+  status.textContent='Video tải chậm hoặc chưa phát được. Hãy thử lại chế độ đồng bộ.';
+  $('syncBtn').classList.remove('hidden');$('syncBtn').textContent='Thử lại';
+  $('fallbackBtn').classList.toggle('hidden',!currentMovie?.driveId);
+  updateSyncControls();
+ }}
 }
 async function openMovie(movie){
  const selected=++selectionTicket;
@@ -465,7 +487,9 @@ $('closeMovie').addEventListener('click',()=>{
  ambientHost?.classList.remove('has-ambient-film');
  currentMovie=null;cues=[];active=-1;updateScreenCaptions();updateSyncControls();
 });
-$('fallbackBtn').addEventListener('click',fallback);
+$('fallbackBtn').addEventListener('click',()=>{
+ if(window.confirm('Nguồn dự phòng có thể không đồng bộ phụ đề. Bạn có muốn tiếp tục?'))fallback();
+});
 $('syncBtn').addEventListener('click',()=>{
  if(currentMovie?.source?.type==='drive')return;
  openSync();
