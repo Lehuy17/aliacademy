@@ -774,3 +774,10 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
   #aliVideoPlayer .ali-screen-captions {padding:10px 9px 11px}
   #aliVideoPlayer .ali-cue {grid-template-columns:42px minmax(0,1fr);gap:7px}
 }
+
+/* ALI Cinema v11: keep the learning surface inline on mobile WebKit. */
+#aliHtmlVideo::-webkit-media-controls-fullscreen-button{display:none!important}
+#aliHtmlVideo::-webkit-media-controls-picture-in-picture-button{display:none!important}
+@media(max-width:850px){
+ #aliVideoPlayer .screen>video,#aliVideoPlayer .screen>iframe{max-width:100%;object-fit:contain}
+}
