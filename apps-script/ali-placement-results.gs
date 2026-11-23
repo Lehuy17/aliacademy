@@ -1,0 +1,143 @@
+/**
+ * ALI Academy · Placement results receiver (B1 / IELTS / TOEIC).
+ *
+ * Deploy as a NEW Apps Script Web App (execute as spreadsheet owner; Anyone access).
+ * Do not replace the existing A1-A2 receiver or Speaking audio receiver.
+ * Spreadsheet: 18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0
+ * The web application accepts enrollment records, not authentication secrets.
+ *
+ * Security: size/range checks, anti-formula-injection, idempotency and write lock.
+ * Browser scoring is provisional and is NOT a certified IELTS/TOEIC result.
+ * For production, consider App Check, rate limiting and an authenticated backend.
+ */
+const ALI_PLACEMENT_SHEET_ID='18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0';
+const ALI_PLACEMENT_TABS={ielts:'IELTS Results',toeic:'TOEIC Results',b1:'B1 Results'};
+const ALI_PLACEMENT_COLS={ielts:18,toeic:18,b1:18};
+const ALI_PLACEMENT_VERSION=1;
+function aliPlacementSafe_(v,max){
+  let s=String(v===undefined||v===null?'':v).slice(0,max||500);
+  // Avoid a spreadsheet treating user text as a formula. SetValues also needs this.
+  return /^[=+@\-]/.test(s)?("'"+s):s;
+}
+function aliPlacementNumber_(v,max){
+  return typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=max?v:'';
+}
+function aliPlacementEmpty_(n){return Array.from({length:n},()=> '');}
+function aliPlacementGetSheet_(type){
+  const book=SpreadsheetApp.openById(ALI_PLACEMENT_SHEET_ID);
+  const tab=book.getSheetByName(ALI_PLACEMENT_TABS[type]);
+  if(!tab)throw new Error('Missing destination sheet: '+type);
+  return tab;
+}
+function aliPlacementRow_(p){
+  const student=p.student||{};
+  const scores=p.scores||{};
+  const type=p.test;
+  const now=Utilities.formatDate(new Date(),'Asia/Ho_Chi_Minh','dd/MM/yyyy HH:mm:ss');
+  const id=aliPlacementSafe_(p.submissionId,100);
+  const row=aliPlacementEmpty_(ALI_PLACEMENT_COLS[type]);
+  row[0]=id; row[1]=now;
+  row[2]=aliPlacementSafe_(student.name,120);
+  row[3]=aliPlacementSafe_(student.phone,35);
+  row[4]=aliPlacementSafe_(student.school,200);
+  row[5]=aliPlacementSafe_(student.goal,120);
+  const answers=JSON.stringify(p.answers||{});
+  if(answers.length>30000)throw new Error('Answers too long');
+  const started=aliPlacementSafe_(p.startedAt,80);
+  if(type==='ielts'){
+    row[6]=aliPlacementNumber_(scores.listening,20);
+    row[7]=aliPlacementNumber_(scores.reading,13);
+    row[11]='WAITING_WRITING_TEACHER';
+    row[12]=aliPlacementSafe_(p.writing,12000);
+    row[13]=aliPlacementSafe_(answers,30000);
+    row[14]=started;
+    row[17]='ALI website · client self-score';
+  }else if(type==='toeic'){
+    // Listening key/audio not available yet, never record a fabricated listening score.
+    row[7]=aliPlacementNumber_(scores.reading,30);
+    row[8]=aliPlacementNumber_(scores.foundation,6);
+    row[11]='WAITING_LISTENING_KEY';
+    row[13]=aliPlacementSafe_(p.writing,12000);
+    row[14]=aliPlacementSafe_(answers,30000);
+    row[15]=started;
+    row[17]='ALI website · client self-score';
+  }else if(type==='b1'){
+    row[6]=aliPlacementNumber_(scores.grammar,15);
+    row[12]='WAITING_TEACHER';
+    row[13]=aliPlacementSafe_(p.writing,12000);
+    row[14]=aliPlacementSafe_(answers,30000);
+    row[15]=started;
+    row[17]='ALI website · client self-score';
+  }
+  return row;
+}
+function aliPlacementNextRow_(sheet){
+  const end=Math.max(2,sheet.getLastRow());
+  const ids=sheet.getRange(2,1,Math.max(1,end-1),1).getValues();
+  for(let i=ids.length-1;i>=0;i--)if(String(ids[i][0]).trim())return i+3;
+  return 2;
+}
+function aliPlacementStore_(p){
+  if(!p||p.type!=='ali_placement_submission'||!ALI_PLACEMENT_TABS[p.test])throw new Error('Unsupported type');
+  if(p.schemaVersion!==ALI_PLACEMENT_VERSION||p.consent!==true)throw new Error('Missing consent or schema');
+  if(!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))throw new Error('Invalid submission ID');
+  if(!p.student||String(p.student.name||'').trim().length<2)throw new Error('Missing student name');
+  const sh=aliPlacementGetSheet_(p.test);
+  const lock=LockService.getScriptLock();
+  lock.waitLock(20000);
+  try{
+    // Idempotent receipt: one submission ID should generate only one row.
+    const search=sh.getRange(2,1,Math.max(1,sh.getLastRow()-1),1)
+                   .createTextFinder(String(p.submissionId)).matchEntireCell(true).findNext();
+    if(search)return {ok:true,saved:true,duplicate:true,row:search.getRow(),submissionId:p.submissionId,test:p.test};
+    const row=aliPlacementRow_(p), dest=aliPlacementNextRow_(sh);
+    if(dest>sh.getMaxRows())sh.insertRowsAfter(sh.getMaxRows(),500);
+    // Skip formula-driven columns: IELTS J/K, TOEIC J/K, B1 K/L.
+    // Writing only selected segments prevents overwriting array-formula spill.
+    const segments=p.test==='ielts'?[[0,9],[11,18]]:
+                   p.test==='toeic'?[[0,9],[11,18]]:[[0,10],[12,18]];
+    for(const segment of segments){
+      const start=segment[0],end=segment[1];
+      sh.getRange(dest,start+1,1,end-start).setValues([row.slice(start,end)]);
+    }
+    SpreadsheetApp.flush();
+    const verify=sh.getRange(dest,1).getDisplayValue();
+    if(verify!==p.submissionId)throw new Error('Row verification failed');
+    return {ok:true,saved:true,duplicate:false,row:dest,submissionId:p.submissionId,test:p.test};
+  }finally{lock.releaseLock();}
+}
+function doPost(e){
+  let nonce='',id='',reply;
+  try{
+    if(!e||!e.parameter||!e.parameter.payload)throw new Error('Missing payload');
+    const raw=String(e.parameter.payload||'');
+    if(raw.length>90000)throw new Error('Payload exceeds limit');
+    const p=JSON.parse(raw);
+    nonce=String(e.parameter.nonce||'');
+    id=String(p.submissionId||'');
+    if(!/^[a-zA-Z0-9_-]{20,90}$/.test(nonce))throw new Error('Invalid request nonce');
+    reply=aliPlacementStore_(p);
+  }catch(err){
+    reply={ok:false,saved:false,submissionId:id,error:String(err.message||err).slice(0,220)};
+  }
+  reply.type='ALI_PLACEMENT_RECEIPT';reply.nonce=nonce;
+  const serialized=JSON.stringify(reply).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
+  return HtmlService.createHtmlOutput(
+    '<!doctype html><html><head><meta charset="utf-8"></head><body>'+
+    '<script>window.parent.postMessage('+serialized+', "*");<\\/script></body></html>');
+}
+function doGet(){
+  return ContentService.createTextOutput(
+    JSON.stringify({service:'ALI placement submissions',status:'ready',version:ALI_PLACEMENT_VERSION}))
+    .setMimeType(ContentService.MimeType.JSON);
+}
+function aliPlacementVerifySetup(){
+  const book=SpreadsheetApp.openById(ALI_PLACEMENT_SHEET_ID);
+  const report=Object.keys(ALI_PLACEMENT_TABS).map(k=>{
+    const sh=book.getSheetByName(ALI_PLACEMENT_TABS[k]);
+    if(!sh)throw new Error('Missing '+k+' sheet');
+    return {exam:k,sheet:sh.getName(),columns:sh.getLastColumn()};
+  });
+  Logger.log(JSON.stringify(report));
+  return report;
+}
