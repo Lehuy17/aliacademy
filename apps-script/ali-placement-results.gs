@@ -124,7 +124,7 @@ function doPost(e){
   const serialized=JSON.stringify(reply).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
   return HtmlService.createHtmlOutput(
     '<!doctype html><html><head><meta charset="utf-8"></head><body>'+
-    '<script>window.parent.postMessage('+serialized+', "*");<\\/script></body></html>');
+    '<script>window.parent.postMessage('+serialized+', "*");</script></body></html>');
 }
 function doGet(){
   return ContentService.createTextOutput(
