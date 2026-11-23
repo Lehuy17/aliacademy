@@ -12,8 +12,8 @@
 - `Results`: A1–A2 **giữ nguyên**, dùng backend đang triển khai, không ghi dữ liệu các bài test khác vào tab này.
 - `IELTS Results`: Listening /20, Reading /13, Writing giáo viên /100; J là điểm khách quan /33; K xếp lớp khi đủ ba kỹ năng. Dải điểm từ tài liệu ALI: Foundation/Pre-IELTS, Ignite, Elevate, Breakthrough, Mastery. Điểm 90–100 Writing hoặc các kỹ năng không đồng dải sẽ chuyển **giáo viên xét**.
 - `TOEIC Results`: Listening giáo viên /25, Reading /30, Grammar nền /6; J tổng /55; K xếp TOEIC 400/550 theo thang tài liệu ALI. Không tự gán điểm Listening vì chưa có đáp án xác minh. Chưa cho xếp lớp khi thiếu Listening.
-- `B1 Results`: Grammar /15; Reading, Writing, Listening giáo viên chấm để ra tổng /60, L xếp sơ bộ: 0–29 A2, 30–41 A2+, 42–51 B1, 52–60 B1 vững.
-- `Speaking Results`: Giáo viên chấm /25, H xếp Foundation/A1/A2/B1/B2/B2 nâng cao. Tab này là sổ quản trị; hệ thống Speaking recording hiện sử dụng backend riêng và **chưa tự đồng bộ vào tab mới**.
+- `B1 Results`: tài liệu ghi tổng /60 nhưng các phần liệt kê Grammar /15 + Reading /10 + Writing /15 + Listening /10 = **50 điểm**. Cột K chỉ cộng các phần /50 và cột L báo **giáo viên xác minh thang điểm**; tuyệt đối không xếp B1 từ dải /60 khi chưa giải quyết mâu thuẫn tài liệu.
+- `Speaking Results`: giáo viên nhập 5 tiêu chí tại N:R, mỗi tiêu chí /5. G tự cộng /25; H xếp Foundation/A1/A2/B1/B2/B2 nâng cao với điều kiện kiểm soát tiêu chí theo rubric ALI, không chỉ nhìn tổng điểm. Đây là sổ quản trị; hệ thống Speaking recording hiện sử dụng backend riêng và **chưa tự đồng bộ vào tab mới**.
 
 Các cột tổng và lớp dùng công thức ARRAYFORMULA. Trên Sheet locale Việt Nam, phân cách tham số công thức phải dùng dấu **chấm phẩy**.
 
