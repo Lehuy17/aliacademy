@@ -49,7 +49,7 @@ function render(targetId,data){
    const history=Array.isArray(old)?old:[];
    history.unshift(receipt);
    localStorage.setItem(key,JSON.stringify(history.slice(0,30)));
-   target.append(el('p','ali-result-note','Đã lưu bản tóm tắt điểm trên trình duyệt này. Kết quả B1/TOEIC/IELTS chưa tự động gửi về giáo viên hoặc Google Sheets.'));
+   target.append(el('p','ali-result-note','Đã lưu phiếu điểm trong trình duyệt. Trạng thái đồng bộ Google Sheets được hiển thị riêng bên dưới.'));
  }catch(err){target.append(el('p','ali-result-note','Không lưu được vào bộ nhớ trình duyệt. Bạn có thể tải phiếu điểm để giữ lại.'));}
  const download=el('button','ali-result-btn ali-result-secondary','↓ Tải phiếu điểm');
  download.type='button';
@@ -69,6 +69,7 @@ function render(targetId,data){
    document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),2000);
  });
  target.append(download);
+ if(global.ALIPlacementSync && typeof global.ALIPlacementSync.attach==='function')global.ALIPlacementSync.attach(data,target);
  target.scrollIntoView({behavior:'smooth',block:'start'});
 }
 global.ALIResults={render};
