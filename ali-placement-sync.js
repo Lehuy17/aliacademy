@@ -6,6 +6,8 @@
 (function(global){
 'use strict';
 const CONF=global.ALI_PLACEMENT_SYNC_CONFIG||{};
+const DEFAULT_ENDPOINT='https://script.google.com/macros/s/AKfycbwzy_r_rvaj9CEon3UIX0RhA_QbiVOttO50KdMfbAizzdc7v8tN_ZlP09-ReR29tktY/exec';
+const ENDPOINT=String(CONF.endpoint||DEFAULT_ENDPOINT).trim();
 const KEY='ALI_PENDING_PLACEMENT_SUBMISSIONS_V1';
 const TESTS=new Set(['ielts','toeic','b1']);
 const APP_URL=/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
@@ -77,7 +79,7 @@ function buildPayload(type,result){
 function messageText(node,text){node.textContent=text;node.style.fontSize='12px';node.style.lineHeight='1.7';node.style.marginTop='12px';}
 function post(payload){
  return new Promise((resolve,reject)=>{
-  const endpoint=String(CONF.endpoint||'').trim();
+  const endpoint=ENDPOINT;
   if(!APP_URL.test(endpoint))return reject(Error('Chưa kết nối Web App nhận kết quả của ALI.'));
   const nonce=random()+random().slice(0,8);
   const frame=document.createElement('iframe');
@@ -109,39 +111,47 @@ function downloadBackup(payload){
  a.href=url;a.download='ALI-placement-'+payload.test+'-'+payload.submissionId+'.json';document.body.append(a);a.click();a.remove();
  setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
+// Background-only persistence: learners only see their assessment result.
+let sending=false;
+async function drainPending(){
+ if(sending||!APP_URL.test(ENDPOINT)||navigator.onLine===false)return;
+ sending=true;
+ try{
+  const batch=load().filter(p=>p&&TESTS.has(p.test)&&/^ALI-PL-/.test(p.submissionId||''));
+  for(const payload of batch.slice().reverse()){
+   try{
+    const receipt=await post(payload);
+    if(receipt.ok===true&&receipt.saved===true){
+     save(load().filter(p=>p.submissionId!==payload.submissionId));
+     console.info('[ALI placement] Server confirmed',payload.test,payload.submissionId,receipt.row);
+    }
+   }catch(err){
+    console.warn('[ALI placement] Submission not yet confirmed; retaining local copy for retry',String(err?.message||err));
+    break;
+   }
+  }
+ }finally{sending=false}
+}
 function attach(result,target){
  const type=testType();if(!TESTS.has(type))return;
- const box=document.createElement('div');
- box.setAttribute('role','status');box.className='ali-result-note';
- target.append(box);
  const payload=buildPayload(type,result);
- if(!payload){messageText(box,'Thiếu thông tin học viên hoặc quyền đồng ý; chưa thể gửi kết quả. Vui lòng quay lại đăng ký từ danh sách bài test.');return;}
- const existing=load();
- existing.unshift(payload);save(existing);
- const intro=document.createElement('p');intro.textContent='Mã bài làm: '+payload.submissionId;
- box.append(intro);
- const status=document.createElement('p');status.setAttribute('aria-live','polite');box.append(status);
- const actions=document.createElement('div');actions.className='ali-result-actions';box.append(actions);
- const backup=document.createElement('button');backup.type='button';backup.className='ali-result-btn ali-result-secondary';
- backup.textContent='↓ Tải bản sao câu trả lời';backup.onclick=()=>downloadBackup(payload);actions.append(backup);
- const retry=document.createElement('button');retry.type='button';retry.className='ali-result-btn ali-result-secondary';
- retry.textContent='↻ Gửi lại về Google Sheets';actions.append(retry);
- let busy=false;
- async function send(){
-  if(busy)return;busy=true;retry.disabled=true;
-  messageText(status,'Đang chuyển bài đến ALI; chưa được xác nhận lưu.');
-  try{
-   const v=await post(payload);
-   const items=load();save(items.filter(p=>p.submissionId!==payload.submissionId));
-   messageText(status,'✓ Đã xác nhận lưu Google Sheets · '+v.test.toUpperCase()+' · dòng '+v.row+'. Bài viết/kỹ năng chưa chấm vẫn cần giáo viên đánh giá.');
-   retry.hidden=true;
-  }catch(e){
-   messageText(status,'Chưa lưu được vào Google Sheets: '+e.message+' Bài còn trong bộ nhớ thiết bị này. Tải bản sao hoặc gửi lại sau khi ALI kết nối máy chủ.');
-  }finally{busy=false;retry.disabled=false;}
+ if(!payload){
+  console.warn('[ALI placement] No registration/consent, cannot submit result.');
+  return;
  }
- retry.onclick=send;
- if(APP_URL.test(String(CONF.endpoint||'')))send();
- else messageText(status,'Chưa cấu hình kết nối Google Sheets cho bài '+type.toUpperCase()+'. Điểm hiện chỉ được lưu cục bộ, KHÔNG có bản ghi trên Google. Có thể tải bản sao để gửi cho giáo viên.');
+ // Never display the submission ID, Sheets state, or backup/retry buttons to a student.
+ // Save the complete answers before any network request for offline recovery.
+ const pending=load();
+ pending.unshift(payload);
+ const locallySaved=save(pending);
+ if(!locallySaved)console.error('[ALI placement] Local backup failed; verify browser storage permissions.');
+ drainPending();
 }
+global.addEventListener('online',()=>{drainPending();});
+global.addEventListener('pageshow',()=>{drainPending();});
+document.addEventListener('visibilitychange',()=>{if(!document.hidden)drainPending();});
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>drainPending(),{once:true});
+else queueMicrotask(drainPending);
+
 global.ALIPlacementSync={attach};
 })(window);
