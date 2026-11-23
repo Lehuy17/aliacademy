@@ -132,9 +132,29 @@ function aliSparkStorePassword_(sheet,row,password){
   sheet.getRange(row,11).setValue(password);
 }
 function aliSparkPassword_(){
-  // Two independent UUIDs. Generated on the server; never persist the password.
-  return Utilities.getUuid().replace(/-/g,"")+
-    Utilities.getUuid().replace(/-/g,"")+"!Aa9";
+  // 15 chars, format XXXXX-XXXX-XXXX. No confusing O/0/I/1/l.
+  // Every password includes uppercase, lowercase, digit, and "-" special symbol.
+  // SHA-256 expands a random UUID seed into unpredictable character selections.
+  const upper="ABCDEFGHJKLMNPQRSTUVWXYZ";
+  const lower="abcdefghjkmnpqrstuvwxyz";
+  const digits="23456789";
+  const all=upper+lower+digits;
+  const seed=Utilities.getUuid()+"-"+Utilities.getUuid()+"-"+Utilities.getUuid();
+  const bytes=Utilities.computeDigest(Utilities.DigestAlgorithm.SHA_256,seed);
+  const u=i=>bytes[i]&255;
+  const chars=[
+    upper[u(0)%upper.length],
+    lower[u(1)%lower.length],
+    digits[u(2)%digits.length]
+  ];
+  for(let i=3;i<13;i++)chars.push(all[u(i)%all.length]);
+  // Shuffle the 13 characters so password character classes have no fixed positions.
+  for(let i=chars.length-1,j=13;i>0;i--,j++){
+    const k=u(j)%(i+1);
+    const tmp=chars[i];chars[i]=chars[k];chars[k]=tmp;
+  }
+  const password=chars.slice(0,5).join("")+"-"+chars.slice(5,9).join("")+"-"+chars.slice(9).join("");
+  return aliSparkValidatePassword_(password);
 }
 function aliSparkProfileCreate_(row,uid,token){
   const fields={
