@@ -49,7 +49,7 @@ function render(targetId,data){
    const history=Array.isArray(old)?old:[];
    history.unshift(receipt);
    localStorage.setItem(key,JSON.stringify(history.slice(0,30)));
-   target.append(el('p','ali-result-note','Đã lưu phiếu điểm trong trình duyệt. Trạng thái đồng bộ Google Sheets được hiển thị riêng bên dưới.'));
+   // No learner-facing server/storage status; backend submission is automatic.
  }catch(err){target.append(el('p','ali-result-note','Không lưu được vào bộ nhớ trình duyệt. Bạn có thể tải phiếu điểm để giữ lại.'));}
  const download=el('button','ali-result-btn ali-result-secondary','↓ Tải phiếu điểm');
  download.type='button';
