@@ -1,0 +1,1 @@
+// Enter the URL of the deployed apps-script/ali-placement-results.gs Web App.\n// Leave empty until deployment is tested; do not reuse the legacy A1-A2 endpoint.\nwindow.ALI_PLACEMENT_SYNC_CONFIG={endpoint:''};\n
