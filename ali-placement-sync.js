@@ -22,7 +22,19 @@ function random(){
  throw Error('Secure browser random not available');
 }
 function reg(){try{return JSON.parse(sessionStorage.getItem('ALI_TEST_REGISTRATION')||'null')}catch{return null}}
-function testType(){const file=location.pathname.replace(/\/+$/,'').split('/').pop();return file.replace(/\.html$/,'').toLowerCase();}
+function testType(){
+ const file=location.pathname.split('/').filter(Boolean).pop()?.replace(/\.html$/,'').toLowerCase()||'';
+ const expected=String(document.documentElement.getAttribute('data-ali-exam')||'').trim().toLowerCase();
+ return TESTS.has(expected)&&expected===file?expected:'';
+}
+function validatedPayload(p){
+ if(!p||!TESTS.has(p.test)||!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))return false;
+ const a=p.answers||{},keys=Object.keys(a);
+ if(p.test==='ielts')return Object.prototype.hasOwnProperty.call(a,'listen0')&&Object.prototype.hasOwnProperty.call(a,'read0')&&!keys.some(k=>/^toeic[0-9]+$/.test(k));
+ if(p.test==='toeic')return Object.prototype.hasOwnProperty.call(a,'toeic1')&&Object.prototype.hasOwnProperty.call(a,'toeic55')&&!keys.some(k=>/^(listen|read)[0-9]+$/.test(k));
+ if(p.test==='b1')return Object.prototype.hasOwnProperty.call(a,'q0')&&Object.prototype.hasOwnProperty.call(a,'q14');
+ return false;
+}
 function getAnswers(type){
  const out={};
  if(type==='ielts'){
@@ -97,7 +109,7 @@ function post(payload){
    if(event.origin!=='null'&&!/^https:\/\/(script\.google\.com|[a-z0-9.-]*googleusercontent\.com)$/.test(event.origin))return;
    const v=event.data;
    if(!v||v.type!=='ALI_PLACEMENT_RECEIPT'||v.nonce!==nonce||v.submissionId!==payload.submissionId)return;
-   if(v.ok===true&&v.saved===true&&Number.isInteger(v.row)&&v.row>=2)finish(true,v);
+   if(v.ok===true&&v.saved===true&&v.test===payload.test&&Number.isInteger(v.row)&&v.row>=2)finish(true,v);
    else finish(false,Error(v.error||'Máy chủ không xác nhận việc lưu.'));
   }
   const timer=setTimeout(()=>finish(false,Error('Không nhận được xác nhận trong 25 giây. Bài vẫn được lưu trong trình duyệt để gửi lại.')),25000);
@@ -117,17 +129,20 @@ async function drainPending(){
  if(sending||!APP_URL.test(ENDPOINT)||navigator.onLine===false)return;
  sending=true;
  try{
-  const batch=load().filter(p=>p&&TESTS.has(p.test)&&/^ALI-PL-/.test(p.submissionId||''));
-  for(const payload of batch.slice().reverse()){
+  // Submit the newest first; never let a failed IELTS attempt block TOEIC or B1.
+  const batch=load().filter(validatedPayload);
+  for(const payload of batch){
    try{
     const receipt=await post(payload);
-    if(receipt.ok===true&&receipt.saved===true){
+    if(receipt.ok===true&&receipt.saved===true&&receipt.test===payload.test){
      save(load().filter(p=>p.submissionId!==payload.submissionId));
-     console.info('[ALI placement] Server confirmed',payload.test,payload.submissionId,receipt.row);
+     console.info('[ALI placement] Confirmed',payload.test,payload.submissionId,receipt.row);
+    }else{
+     console.warn('[ALI placement] Receipt type mismatch, retained',payload.test);
     }
    }catch(err){
-    console.warn('[ALI placement] Submission not yet confirmed; retaining local copy for retry',String(err?.message||err));
-    break;
+    console.warn('[ALI placement] Pending retry',payload.test,String(err?.message||err));
+    continue;
    }
   }
  }finally{sending=false}
@@ -135,6 +150,7 @@ async function drainPending(){
 function attach(result,target){
  const type=testType();if(!TESTS.has(type))return;
  const payload=buildPayload(type,result);
+ if(payload&&!validatedPayload(payload)){console.error('[ALI placement] Exam type and answers mismatch; submission blocked');return;}
  if(!payload){
   console.warn('[ALI placement] No registration/consent, cannot submit result.');
   return;
