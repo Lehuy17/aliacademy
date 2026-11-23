@@ -1,0 +1,40 @@
+<!doctype html><html lang="vi"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ALI English · Khôi phục phiếu điểm trên thiết bị</title><link rel="stylesheet" href="./ali-logo.css?v=1">
+<style>
+:root{font-family:"Be Vietnam Pro",system-ui,sans-serif;color:#29232b;background:#fff9f5}
+*{box-sizing:border-box}body{margin:0}header{padding:18px max(18px,calc((100vw - 970px)/2));border-bottom:1px solid #f1dfd4;background:#fff}
+header a{color:#c75218;text-decoration:none;font-weight:800}main{width:min(100% - 30px,960px);margin:42px auto 70px}
+h1{font-size:clamp(24px,4vw,35px)}p{line-height:1.8;color:#70676d}.note{padding:16px;background:#fff0e4;border:1px solid #ffd4b8;border-radius:13px}
+article{border:1px solid #f0e0d7;background:#fff;border-radius:16px;padding:18px 22px;margin:13px 0;box-shadow:0 7px 25px #b9782b0b}
+article h2{margin:0;color:#bd4f14;font-size:18px}small{color:#8d8287}table{border-collapse:collapse;width:100%;margin:10px 0}td{padding:7px 5px;border-bottom:1px solid #f2e6dd}
+button{font:inherit;background:#ff681e;color:white;border:0;border-radius:10px;padding:11px 15px;font-weight:800;cursor:pointer}
+button:focus-visible,a:focus-visible{outline:3px solid #ffb987;outline-offset:2px}
+</style></head><body><header><a href="./tests.html?step=choose">← ALI Academy · Danh sách bài test</a></header>
+<main><h1>Kiểm tra kết quả đã lưu trên thiết bị</h1>
+<p class="note"><strong>Chỉ xem được trên cùng thiết bị, trình duyệt và hồ sơ người dùng đã làm bài.</strong> Dữ liệu dưới đây chỉ được lưu cục bộ khi bài test đã hiển thị kết quả. Không phải bằng chứng Google Sheets đã nhận bài. Việc xóa dữ liệu trình duyệt có thể làm mất phiếu điểm.</p>
+<div id="history" aria-live="polite"></div>
+<p>Để gửi phiếu điểm cho ALI, tải bản sao dưới đây và gửi cho giáo viên. Phiếu điểm có thể thiếu bài viết hoặc câu trả lời chi tiết, tùy phiên bản website khi làm bài.</p>
+</main>
+<script>
+(function(){
+ 'use strict';
+ const root=document.getElementById('history');let history=[];
+ try{const v=JSON.parse(localStorage.getItem('ALI_LOCAL_TEST_RESULTS')||'[]');history=Array.isArray(v)?v:[];}catch{}
+ if(!history.length){const p=document.createElement('p');p.textContent='Không tìm thấy phiếu điểm cục bộ trên trình duyệt này. Hãy thử lại trên đúng thiết bị và trình duyệt mà học viên đã làm bài.';root.append(p);return;}
+ history.filter(x=>x&&typeof x==='object').forEach(item=>{
+  const card=document.createElement('article'),title=document.createElement('h2');
+  title.textContent=(String(item.test||'Bài test')).toUpperCase()+' · '+String(item.studentName||'Học viên');
+  card.append(title);
+  const sub=document.createElement('p');
+  sub.textContent='Thời gian lưu trên thiết bị: '+(item.date?new Date(item.date).toLocaleString('vi-VN',{timeZone:'Asia/Ho_Chi_Minh'}):'Không xác định');
+  card.append(sub);
+  const score=document.createElement('p');score.textContent='Điểm tự chấm: '+String(item.total??'—')+'/'+String(item.max??'—');card.append(score);
+  if(Array.isArray(item.breakdown)){const tbl=document.createElement('table');
+   item.breakdown.forEach(p=>{const tr=document.createElement('tr'),a=document.createElement('td'),b=document.createElement('td');a.textContent=String(p.name||'Kỹ năng');b.textContent=typeof p.score==='number'?p.score+'/'+p.max:'Chưa chấm';tr.append(a,b);tbl.append(tr);});card.append(tbl);}
+  const btn=document.createElement('button');btn.type='button';btn.textContent='Tải phiếu điểm JSON';
+  btn.onclick=()=>{const blob=new Blob([JSON.stringify(item,null,2)],{type:'application/json;charset=utf-8'});
+   const url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='ALI-local-test-'+String(item.test||'result').replace(/[^a-z0-9_-]/gi,'')+'.json';a.click();setTimeout(()=>URL.revokeObjectURL(url),2000);};
+  card.append(btn);root.append(card);
+ });
+})();
+</script></body></html>
