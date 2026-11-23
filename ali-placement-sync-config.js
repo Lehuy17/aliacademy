@@ -1,1 +1,3 @@
-// Enter the URL of the deployed apps-script/ali-placement-results.gs Web App.\n// Leave empty until deployment is tested; do not reuse the legacy A1-A2 endpoint.\nwindow.ALI_PLACEMENT_SYNC_CONFIG={endpoint:''};\n
+// ALI Academy: configure only after deploying apps-script/ali-placement-results.gs
+// Do not reuse the A1-A2 or Speaking audio endpoint.
+window.ALI_PLACEMENT_SYNC_CONFIG = { endpoint: '' };
