@@ -77,11 +77,29 @@ function aliPlacementNextRow_(sheet){
   for(let i=ids.length-1;i>=0;i--)if(String(ids[i][0]).trim())return i+3;
   return 2;
 }
+function aliPlacementValidateExam_(p){
+  const a=p.answers||{},type=p.test;
+  if(typeof a!=='object'||Array.isArray(a))throw new Error('Missing answer map');
+  const keys=Object.keys(a);
+  if(type==='ielts'){
+    if(!Object.prototype.hasOwnProperty.call(a,'listen0')||
+       !Object.prototype.hasOwnProperty.call(a,'read0')||
+       keys.some(k=>/^toeic[0-9]+$/.test(k)))throw new Error('IELTS payload has incorrect question structure');
+  }else if(type==='toeic'){
+    if(!Object.prototype.hasOwnProperty.call(a,'toeic1')||
+       !Object.prototype.hasOwnProperty.call(a,'toeic55')||
+       keys.some(k=>/^(listen|read)[0-9]+$/.test(k)))throw new Error('TOEIC payload has incorrect question structure');
+  }else if(type==='b1'){
+    if(!Object.prototype.hasOwnProperty.call(a,'q0')||
+       !Object.prototype.hasOwnProperty.call(a,'q14'))throw new Error('B1 payload has incorrect question structure');
+  }else throw new Error('Unknown exam');
+}
 function aliPlacementStore_(p){
   if(!p||p.type!=='ali_placement_submission'||!ALI_PLACEMENT_TABS[p.test])throw new Error('Unsupported type');
   if(p.schemaVersion!==ALI_PLACEMENT_VERSION||p.consent!==true)throw new Error('Missing consent or schema');
   if(!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))throw new Error('Invalid submission ID');
   if(!p.student||String(p.student.name||'').trim().length<2)throw new Error('Missing student name');
+  aliPlacementValidateExam_(p);
   const sh=aliPlacementGetSheet_(p.test);
   const lock=LockService.getScriptLock();
   lock.waitLock(20000);
