@@ -165,6 +165,8 @@ function attach(result,target){
 }
 global.addEventListener('online',()=>{drainPending();});
 global.addEventListener('pageshow',()=>{drainPending();});
+// Background recovery while the learner keeps the results page open.
+global.setInterval(()=>{if(!document.hidden)drainPending();},60000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)drainPending();});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>drainPending(),{once:true});
 else queueMicrotask(drainPending);
