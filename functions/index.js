@@ -33,13 +33,22 @@ async function checkStaffActive(uid){
   throw new HttpsError("permission-denied","Hồ sơ giáo viên chưa được kích hoạt.");
 }
 function invalid(message){throw new HttpsError("invalid-argument",message);}
+// 15-character, easy-to-read temporary passwords (5-4-4 groups).
+// 13 independent random characters from a 32-symbol alphabet = 65 bits entropy.
+// Ambiguous I, O, 0, 1 and lowercase letters are intentionally excluded.
+function makeReadablePassword(){
+ const alphabet="ABCDEFGHJKLMNPQRSTUVWXYZ23456789";
+ const bytes=randomBytes(13);
+ const characters=Array.from(bytes,b=>alphabet[b & 31]);
+ return characters.slice(0,5).join("")+"-"+characters.slice(5,9).join("")+"-"+characters.slice(9).join("");
+}
 exports.teacherCreateStudent=onCall({...config,timeoutSeconds:60},async request=>{
  const staff=verifyStaff(request);await checkStaffActive(staff.uid);
  const d=request.data||{};
  const name=String(d.name||"").trim(),email=String(d.email||"").trim().toLowerCase();
  if(!isText(name,100)||!mailPattern.test(email)||email.length>180)
   invalid("Hãy nhập họ tên và email hợp lệ.");
- const password=randomBytes(15).toString("base64url")+"!";
+ const password=makeReadablePassword();
  let user;
  try{
   user=await getAuth().createUser({email,password,displayName:name,emailVerified:false,disabled:false});
@@ -208,7 +217,7 @@ exports.adminImportStudents = onCall({...config,timeoutSeconds:300},async reques
  for(let i=0;i<checked.length;i++){
   const item=checked[i];let user=null;
   try{
-   const password=randomBytes(18).toString("base64url")+"!";
+   const password=makeReadablePassword();
    user=await getAuth().createUser({email:item.email,password,displayName:item.name,emailVerified:false,disabled:false});
    await getFirestore().doc("users/"+user.uid).create({
     name:item.name,email:item.email,studentCode:item.studentCode,
@@ -312,7 +321,7 @@ exports.adminCreateTeacher=onCall({...config,timeoutSeconds:60},async request=>{
  if(staff.role!=="admin")throw new HttpsError("permission-denied","Chỉ Admin được tạo tài khoản giáo viên.");
  const name=String(request.data?.name||"").trim(),email=String(request.data?.email||"").trim().toLowerCase();
  if(!isText(name,100)||!mailPattern.test(email)||email.length>180)invalid("Họ tên hoặc email không hợp lệ.");
- const password=randomBytes(18).toString("base64url")+"!";
+ const password=makeReadablePassword();
  let user;
  try{
   user=await getAuth().createUser({email,password,displayName:name,emailVerified:false,disabled:false});
