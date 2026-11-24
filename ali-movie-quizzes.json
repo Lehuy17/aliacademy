@@ -561,68 +561,6 @@
         "explanation": "Họ nói sẽ kiểm tra cơ sở sản xuất storage crates."
       }
     ],
-    "spiderman-nwh-peter-meets-other-spidermen": [
-      {
-        "type": "vocabulary",
-        "question": "'Forgive myself' có nghĩa là gì?",
-        "options": [
-          "Tha thứ cho bản thân",
-          "Tìm lại bạn bè",
-          "Bảo vệ bản thân",
-          "Đánh giá chính mình"
-        ],
-        "answer": 0,
-        "explanation": "Forgive = tha thứ; forgive myself = tự tha thứ."
-      },
-      {
-        "type": "vocabulary",
-        "question": "'Responsibility' có nghĩa là gì?",
-        "options": [
-          "Trách nhiệm",
-          "Đặc quyền",
-          "Sức mạnh cơ bắp",
-          "Cơ hội"
-        ],
-        "answer": 0,
-        "explanation": "Responsibility = trách nhiệm, bổn phận."
-      },
-      {
-        "type": "grammar",
-        "question": "Chọn đúng: 'My Uncle Ben ___ killed.'",
-        "options": [
-          "is",
-          "were",
-          "was",
-          "be"
-        ],
-        "answer": 2,
-        "explanation": "Dùng bị động quá khứ đơn: was killed."
-      },
-      {
-        "type": "comprehension",
-        "question": "Một Spider-Man kể rằng anh đã mất người thân yêu nào?",
-        "options": [
-          "Gwen",
-          "Natasha",
-          "Pepper",
-          "Mayday"
-        ],
-        "answer": 0,
-        "explanation": "Anh kể rằng mình đã mất Gwen."
-      },
-      {
-        "type": "comprehension",
-        "question": "Câu nói nào được nhắc để khuyên Peter?",
-        "options": [
-          "Great power comes with great responsibility.",
-          "Time is money.",
-          "Practice makes perfect.",
-          "Actions speak louder than words."
-        ],
-        "answer": 0,
-        "explanation": "Lời khuyên nhấn mạnh sức mạnh luôn đi đôi với trách nhiệm."
-      }
-    ],
     "baki-hanma-rumina-meets-baki": [
       {
         "type": "vocabulary",
