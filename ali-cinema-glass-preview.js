@@ -24,8 +24,32 @@ lab.innerHTML='<div class="ali-learning-title"><h3>✦ Luyện nghe & tương t�
  '<section class="ali-lab-pane ali-lab-quiz-host" data-mode="quiz" role="tabpanel" hidden><div id="aliLabQuizMount"></div></section>';
 quizShell.parentNode.insertBefore(lab,quizShell);
 $('aliLabQuizMount').append(quizShell);
+
+// Desktop: original video + transcript columns, practice underneath.
+// Mobile: single video, immediately followed by four tabs; the LIVE
+// transcript is moved into the Phụ đề tab (same DOM nodes, same player logic).
+const shell=player.querySelector('.cinema-shell');
+const videoPanel=shell?.querySelector('.video-panel');
+const transcriptPanel=shell?.querySelector('.transcript-panel');
+const subtitlePane=lab.querySelector('.ali-lab-pane[data-mode="subtitles"]');
+const mobile=window.matchMedia('(max-width:700px)');
+function arrangeResponsiveLayout(){
+ if(!shell||!videoPanel||!transcriptPanel||!subtitlePane)return;
+ if(mobile.matches){
+  videoPanel.after(lab);
+  subtitlePane.append(transcriptPanel);
+  player.classList.add('ali-glass-mobile-layout');
+ }else{
+  videoPanel.after(transcriptPanel);
+  player.append(lab);
+  player.classList.remove('ali-glass-mobile-layout');
+ }
+}
+arrangeResponsiveLayout();
+mobile.addEventListener?.('change',arrangeResponsiveLayout);
+
 const tabs=[...lab.querySelectorAll('[role="tab"]')],panes=[...lab.querySelectorAll('[role="tabpanel"]')];
-const initial=window.matchMedia('(max-width:700px)').matches?'subtitles':'dictation';
+const initial=mobile.matches?'subtitles':'dictation';
 let selectedIndex=-1,missing='',lastListLength=-1;
 const normalize=s=>String(s||'').toLowerCase().normalize('NFKD').replace(/[\u0300-\u036f]/g,'').replace(/[^a-z0-9\s']/g,' ').replace(/\s+/g,' ').trim();
 function allRows(){return [...list.querySelectorAll('.ali-cue[data-index]')]}
@@ -60,6 +84,10 @@ function currentIndex(){return Number(list.querySelector('.ali-cue.current')?.da
 function modeSelect(mode){
  tabs.forEach(b=>{const yes=b.dataset.mode===mode;b.setAttribute('aria-selected',String(yes));b.tabIndex=yes?0:-1;});
  panes.forEach(p=>p.hidden=p.dataset.mode!==mode);
+ // Switches only the learning panel. Do not reset or reload the playing film.
+ if(mobile.matches && mode==='subtitles') {
+  requestAnimationFrame(()=>{const selected=list.querySelector('.ali-cue.current');selected?.scrollIntoView({block:'nearest'});});
+ }
 }
 tabs.forEach((b,i)=>{
  b.addEventListener('click',()=>modeSelect(b.dataset.mode));
