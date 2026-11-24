@@ -444,7 +444,9 @@ async function loadLibrary(){
  const deduplicated=new Map();
  for(const movie of staticMovies)deduplicated.set(movie.id,movie);
  for(const movie of teacherMovies)deduplicated.set(movie.id,movie);
- const movies=[...deduplicated.values()];
+ // Hide titles retired from the ALI public library, including teacher-sourced entries.
+ const retiredMovieIds=new Set(['spiderman-nwh-peter-meets-other-spidermen']);
+ const movies=[...deduplicated.values()].filter(m=>!retiredMovieIds.has(m.id));
  host.replaceChildren();
  $('aliLibraryCount').textContent=movies.length+' video';
  if(!movies.length){
