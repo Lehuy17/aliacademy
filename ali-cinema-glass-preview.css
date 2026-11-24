@@ -227,3 +227,182 @@ body.ali-glass-lab{
  }
  .ali-glass-lab #aliVideoPlayer .ali-lab-pane textarea{min-height:84px!important}
 }
+
+/* GLASS LAB v3 — Mobile visual hierarchy matching the approved app mockup.
+   These rules are intentionally preview-scoped. */
+.ali-glass-mobile-header{display:none}
+@media(max-width:700px){
+ html:has(body.ali-glass-lab){scroll-padding-top:10px}
+ body.ali-glass-lab main{padding-inline:10px!important}
+ body.ali-glass-lab #aliVideoPlayer{
+  padding:0!important;margin:12px -5px 24px!important;
+  border:0!important;border-radius:24px!important;overflow:visible!important;
+  background:transparent!important;box-shadow:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer::before,
+ body.ali-glass-lab #aliVideoPlayer::after{pointer-events:none!important}
+ body.ali-glass-lab #aliVideoPlayer .cinema-glass-wrap{
+  overflow:hidden!important;
+  padding:0!important;border-radius:22px!important;
+  background:linear-gradient(138deg,rgba(255,255,255,.78),rgba(238,220,228,.58))!important;
+  border:1px solid rgba(255,255,255,.91)!important;
+  box-shadow:0 16px 50px rgba(77,48,65,.23),inset 0 1px 1px #fff!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .cinema-head{display:none!important}
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-mobile-header{
+  display:flex!important;align-items:center!important;gap:9px!important;
+  position:relative;z-index:3;min-height:52px!important;
+  padding:9px 12px!important;
+  background:rgba(255,255,255,.38)!important;
+  border-bottom:1px solid rgba(255,255,255,.74)!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-brand{
+  display:flex;align-items:center;gap:7px;color:#a94922;
+  font-size:13px;white-space:nowrap;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-mark{
+  display:grid;place-items:center;flex:none;
+  width:24px;height:24px;border-radius:8px;
+  background:#ff681e;color:white;font-size:10px;
+  box-shadow:0 4px 12px #ec652b55;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-film-label{
+  min-width:0;flex:1;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:#6a5965;font-size:10px;text-align:right;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-mobile-header .cinema-close{
+  order:3;margin-left:auto;flex:none;
+  width:32px;height:32px;min-height:32px!important;
+  font-size:0!important;padding:0!important;border-radius:10px!important;
+  background:rgba(255,255,255,.74)!important;
+  border:1px solid #ffffffed!important;color:#9a4730!important;
+  box-shadow:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-glass-mobile-header .cinema-close::after{
+  content:'✕';font-size:17px;line-height:1;
+ }
+ body.ali-glass-lab #aliVideoPlayer .cinema-shell{
+  border:0!important;border-radius:0!important;
+  background:transparent!important;box-shadow:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .cinema-shell>.video-panel{
+  border-radius:0!important;padding:0!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .video-panel-label{
+  display:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen{
+  width:100%!important;margin:0!important;
+  border-radius:0!important;background:#0d0e14!important;
+  box-shadow:none!important;aspect-ratio:16/9!important;
+  max-height:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen>video,
+ body.ali-glass-lab #aliVideoPlayer .screen>iframe{
+  width:100%!important;height:100%!important;
+  object-fit:cover!important;border-radius:0!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen .ali-screen-cc{
+  top:9px!important;right:9px!important;border-radius:9px!important;
+  background:rgba(15,17,21,.56)!important;
+  backdrop-filter:blur(9px);-webkit-backdrop-filter:blur(9px);
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen .ali-screen-captions:not(.hidden){
+  inset:auto 0 8px!important;padding:15px 12px 5px!important;
+  max-height:49%!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen .ali-screen-captions strong{
+  font-size:clamp(11px,3.2vw,14px)!important;
+  line-height:1.33!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .screen .ali-screen-captions span{
+  font-size:clamp(10px,2.8vw,12px)!important;
+  line-height:1.35!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .video-controls{
+  min-height:35px!important;
+  padding:5px 12px!important;
+  background:rgba(255,255,255,.40)!important;
+  border-bottom:1px solid #ffffffc4!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .video-controls #aliVideoClock{
+  font-size:11px!important;color:#c3511c!important
+ }
+ body.ali-glass-lab #aliVideoPlayer .video-controls #aliVideoMode{
+  color:#8a7377!important;font-size:10px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-learning-lab{
+  border:0!important;border-radius:0!important;padding:7px 9px 11px!important;
+  background:transparent!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-lab-tabs{
+  gap:4px!important;padding:0 0 8px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-lab-tabs button{
+  padding:11px 1px!important;border-radius:9px!important;
+  font-size:clamp(10px,2.7vw,12px)!important;
+  box-shadow:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-lab-tabs button[aria-selected=true]{
+  box-shadow:0 4px 12px #f66d295c!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-lab-pane{
+  min-height:150px!important;padding:8px!important;
+  background:rgba(255,255,255,.28)!important;
+  border:1px solid rgba(255,255,255,.82)!important;
+  border-radius:13px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-lab-pane[data-mode="subtitles"] .transcript{
+  height:clamp(235px,37dvh,320px)!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-head{
+  padding:4px 4px 7px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-head .language{
+  width:100%;display:grid!important;grid-template-columns:repeat(3,1fr);gap:5px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-head .language button{
+  min-height:31px!important;padding:6px 8px!important;
+  border:1px solid #ffffffdf!important;
+  background:rgba(255,255,255,.65)!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-head .language button[aria-pressed=true]{
+  background:#ff681e!important;color:white!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-sync-toolbar{
+  padding:4px!important;margin-bottom:4px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-sync-indicator,
+ body.ali-glass-lab #aliVideoPlayer .ali-auto-scroll{
+  font-size:9px!important;min-height:28px!important;padding:5px 7px!important;
+  border-radius:9px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-scroll{
+  padding:1px 1px 5px!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-list{gap:4px!important}
+ body.ali-glass-lab #aliVideoPlayer .ali-cue{
+  min-height:0!important;
+  grid-template-columns:41px minmax(0,1fr)!important;
+  gap:6px!important;padding:8px 7px!important;
+  margin-bottom:4px!important;border-radius:10px!important;
+  box-shadow:none!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-stamp{font-size:9px!important}
+ body.ali-glass-lab #aliVideoPlayer .ali-en{
+  font-size:calc(12px * var(--textscale,1))!important;
+  line-height:1.36!important;font-weight:750!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .ali-vi{
+  font-size:calc(11px * var(--textscale,1))!important;
+  line-height:1.38!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-foot{
+  padding:5px 3px!important;
+  border-top:1px solid rgba(255,255,255,.7)!important;
+ }
+ body.ali-glass-lab #aliVideoPlayer .transcript-foot>span{font-size:9px!important}
+ body.ali-glass-lab #aliVideoPlayer .transcript-foot button{
+  min-width:29px!important;min-height:29px!important;padding:4px!important;
+ }
+}
