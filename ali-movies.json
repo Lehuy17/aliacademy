@@ -1,5 +1,5 @@
 {
-  "version": 37,
+  "version": 38,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -252,36 +252,6 @@
         "url": "./media/reacher-season-3-gangster-bullies-innocent-maid/video.mp4"
       },
       "captions": "./captions/reacher-season-3-gangster-bullies-innocent-maid.json",
-      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
-      "presentation": {
-        "hideSourceLink": true,
-        "background": "film-blur",
-        "layout": "video-left-captions-right"
-      },
-      "qa": {
-        "stage": "public_preview_pending_editorial_review",
-        "rightsConfirmed": false,
-        "englishReviewed": false,
-        "vietnameseReviewed": false,
-        "timingsReviewed": false,
-        "desktopMobileTested": false,
-        "approvedAt": "",
-        "videoTechnicalChecked": true
-      }
-    },
-    {
-      "id": "spiderman-nwh-peter-meets-other-spidermen",
-      "title": "Spider-Man No Way Home: Peter Meets Other Spider-Man",
-      "category": "PHIM SONG NGỮ · SPIDER-MAN: NO WAY HOME",
-      "description": "Peter gặp những Người Nhện từ các vũ trụ khác và lắng nghe câu chuyện mất mát, trách nhiệm của họ.",
-      "duration": "04:47",
-      "durationSeconds": 286.72,
-      "poster": "./media/spiderman-nwh-peter-meets-other-spidermen/poster.jpg",
-      "source": {
-        "type": "url",
-        "url": "./media/spiderman-nwh-peter-meets-other-spidermen/video.mp4"
-      },
-      "captions": "./captions/spiderman-nwh-peter-meets-other-spidermen.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
