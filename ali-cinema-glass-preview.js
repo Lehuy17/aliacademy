@@ -33,13 +33,29 @@ const videoPanel=shell?.querySelector('.video-panel');
 const transcriptPanel=shell?.querySelector('.transcript-panel');
 const subtitlePane=lab.querySelector('.ali-lab-pane[data-mode="subtitles"]');
 const mobile=window.matchMedia('(max-width:700px)');
+const glassWrap=player.querySelector('.cinema-glass-wrap');
+const cinemaHead=glassWrap?.querySelector('.cinema-head');
+const closeButton=$('closeMovie');
+const compactHeader=document.createElement('div');
+compactHeader.className='ali-glass-mobile-header';
+compactHeader.innerHTML='<span class="ali-glass-brand"><span class="ali-glass-mark" aria-hidden="true">▶</span><strong>ALI English Cinema</strong></span><span class="ali-glass-film-label" id="aliGlassCurrentTitle"></span>';
+glassWrap?.insertBefore(compactHeader,cinemaHead);
+const headerObserver=new MutationObserver(()=>{
+  const title=$('aliCurrentMovieTitle')?.textContent||'';
+  const target=$('aliGlassCurrentTitle');
+  if(target)target.textContent=title;
+});
+if($('aliCurrentMovieTitle'))headerObserver.observe($('aliCurrentMovieTitle'),{childList:true});
+
 function arrangeResponsiveLayout(){
  if(!shell||!videoPanel||!transcriptPanel||!subtitlePane)return;
  if(mobile.matches){
+  if(closeButton)compactHeader.prepend(closeButton);
   videoPanel.after(lab);
   subtitlePane.append(transcriptPanel);
   player.classList.add('ali-glass-mobile-layout');
  }else{
+  if(closeButton)cinemaHead?.append(closeButton);
   videoPanel.after(transcriptPanel);
   player.append(lab);
   player.classList.remove('ali-glass-mobile-layout');
