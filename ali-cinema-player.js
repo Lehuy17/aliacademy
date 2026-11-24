@@ -177,14 +177,12 @@ function updateScreenCaptions(){
  const cue=active>=0?cues[active]:null;
  const speaking=cue&&video.currentTime>=cue.start&&video.currentTime<=cue.end+.35;
  if(!speaking){
-  if(!compact){el.classList.add('hidden');return;}
-  // An always-present caption dock prevents mobile layout jumps in silent scenes.
-  $('aliScreenCaptionEn').textContent=lang==='en'?'Waiting for dialogue…':'Đang chờ lời thoại…';
+  // Silent gap: never show a "waiting for dialogue" subtitle.
+  // Leave the video unobstructed until an actual bilingual cue is active.
+  $('aliScreenCaptionEn').textContent='';
   $('aliScreenCaptionVi').textContent='';
-  $('aliScreenCaptionEn').classList.remove('hidden');
-  $('aliScreenCaptionVi').classList.add('hidden');
-  el.classList.add('is-idle');
-  el.classList.remove('hidden');
+  el.classList.remove('is-idle');
+  el.classList.add('hidden');
   return;
  }
  $('aliScreenCaptionEn').textContent=cue.en;
