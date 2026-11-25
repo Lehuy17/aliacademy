@@ -127,7 +127,7 @@ function updateIphoneControls(){
  const available=useIphoneControls&&!!currentMovie&&currentMovie.source?.type!=='drive'&&!video.classList.contains('hidden');
  iosControls.hidden=!available;
  if(!available)return;
- iosPlay.disabled=video.readyState<1;
+ iosPlay.disabled=!video.hasAttribute('src');
  iosPlay.textContent=video.paused?'▶ Phát':'Ⅱ Tạm dừng';
  iosPlay.setAttribute('aria-label',video.paused?'Phát video':'Tạm dừng video');
  const duration=video.duration;
@@ -141,7 +141,7 @@ function updateIphoneControls(){
 }
 if(useIphoneControls&&iosControls){
  iosPlay.addEventListener('click',()=>{
-  if(video.readyState<1){status.textContent='Đang chuẩn bị video. Vui lòng thử lại.';return;}
+  if(!video.hasAttribute('src')){status.textContent='Đang chuẩn bị video. Vui lòng thử lại.';return;}
   if(video.paused){
    video.play().catch(()=>{status.textContent='Không thể phát video. Hãy thử lại hoặc mở bằng Safari.';updateIphoneControls();});
   }else video.pause();
@@ -317,6 +317,7 @@ async function openSync(){
   }
   if(ticket!==loadTicket){if(mediaUrl===url&&url.startsWith('blob:'))URL.revokeObjectURL(url);return;}
   video.src=url;
+  updateIphoneControls();
   if(currentMovie.previewSrc)video.poster=currentMovie.previewSrc;
   video.load();
   await new Promise((resolve,reject)=>{
