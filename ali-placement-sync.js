@@ -12,10 +12,10 @@ const KEY='ALI_PENDING_PLACEMENT_SUBMISSIONS_V1';
 const TESTS=new Set(['ielts','toeic','b1']);
 const APP_URL=/^https:\/\/script\.google\.com\/macros\/s\/[A-Za-z0-9_-]+\/exec$/;
 function load(){
- try{const value=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(value)?value.slice(0,20):[];}
+ try{const value=JSON.parse(localStorage.getItem(KEY)||'[]');return Array.isArray(value)?value.slice(0,100):[];}
  catch{return [];}
 }
-function save(items){try{localStorage.setItem(KEY,JSON.stringify(items.slice(0,20)));return true}catch{return false}}
+function save(items){try{localStorage.setItem(KEY,JSON.stringify(items.slice(0,100)));return true}catch{return false}}
 function random(){
  if(global.crypto?.randomUUID)return global.crypto.randomUUID().replace(/-/g,'');
  if(global.crypto?.getRandomValues){const b=new Uint8Array(16);global.crypto.getRandomValues(b);return Array.from(b,x=>x.toString(16).padStart(2,'0')).join('');}
@@ -31,7 +31,7 @@ function validatedPayload(p){
  if(!p||!TESTS.has(p.test)||!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))return false;
  const a=p.answers||{},keys=Object.keys(a);
  if(p.test==='ielts')return Object.prototype.hasOwnProperty.call(a,'listen0')&&Object.prototype.hasOwnProperty.call(a,'read0')&&!keys.some(k=>/^toeic[0-9]+$/.test(k));
- if(p.test==='toeic')return Object.prototype.hasOwnProperty.call(a,'toeic1')&&Object.prototype.hasOwnProperty.call(a,'toeic55')&&!keys.some(k=>/^(listen|read)[0-9]+$/.test(k));
+ if(p.test==='toeic')return Array.from({length:55},(_,i)=>'toeic'+(i+1)).every(k=>typeof a[k]==='string'&&/^[A-D]?$/.test(a[k]))&&!keys.some(k=>/^(listen|read)[0-9]+$/.test(k));
  if(p.test==='b1')return Object.prototype.hasOwnProperty.call(a,'q0')&&Object.prototype.hasOwnProperty.call(a,'q14');
  return false;
 }
@@ -125,10 +125,17 @@ function downloadBackup(payload){
  setTimeout(()=>URL.revokeObjectURL(url),2000);
 }
 // Background-only persistence: learners only see their assessment result.
-let sending=false;
+// Retry transient failures while the page stays open rather than waiting a full minute.
+let sending=false,retryTimer=null,retryDelay=8000;
+function scheduleRetry(){
+ if(retryTimer||!load().length)return;
+ retryTimer=global.setTimeout(()=>{retryTimer=null;drainPending();},retryDelay);
+ retryDelay=Math.min(retryDelay*2,60000);
+}
 async function drainPending(){
  if(sending||!APP_URL.test(ENDPOINT)||navigator.onLine===false)return;
  sending=true;
+ let failed=false,confirmed=0;
  try{
   // Submit the newest first; never let a failed IELTS attempt block TOEIC or B1.
   const batch=load().filter(validatedPayload);
@@ -137,16 +144,23 @@ async function drainPending(){
     const receipt=await post(payload);
     if(receipt.ok===true&&receipt.saved===true&&receipt.test===payload.test){
      save(load().filter(p=>p.submissionId!==payload.submissionId));
+     confirmed++;
      console.info('[ALI placement] Confirmed',payload.test,payload.submissionId,receipt.row);
     }else{
+     failed=true;
      console.warn('[ALI placement] Receipt type mismatch, retained',payload.test);
     }
    }catch(err){
+    failed=true;
     console.warn('[ALI placement] Pending retry',payload.test,String(err?.message||err));
     continue;
    }
   }
- }finally{sending=false}
+ }finally{
+  sending=false;
+  if(confirmed)retryDelay=8000;
+  if(failed)scheduleRetry();
+ }
 }
 function attach(result,target){
  const type=testType();if(!TESTS.has(type))return;
@@ -167,7 +181,7 @@ function attach(result,target){
 global.addEventListener('online',()=>{drainPending();});
 global.addEventListener('pageshow',()=>{drainPending();});
 // Background recovery while the learner keeps the results page open.
-global.setInterval(()=>{if(!document.hidden)drainPending();},60000);
+global.setInterval(()=>{if(!document.hidden)drainPending();},30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)drainPending();});
 if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>drainPending(),{once:true});
 else queueMicrotask(drainPending);
