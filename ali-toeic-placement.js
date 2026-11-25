@@ -16,7 +16,7 @@
  const part=(heading,text,body)=>'<div class="ali-toeic-block"><h3>'+heading+'</h3><p class="ali-toeic-instruction">'+escapeHTML(text)+'</p>'+body+'</div>';
  const figure=n=>'<figure class="ali-toeic-photo"><img src="./toeic-placement-q'+n+'.jpg?v=1" loading="lazy" alt="'+escapeHTML(['A family walking in shallow beach water','People relaxing on a green park lawn','Three adults at a table raising glasses','A mechanic working beneath a car'][n-1])+'"><figcaption>Question '+n+' · Photograph from ALI source document</figcaption></figure>'+question(n);
  $('toeicListen').innerHTML=
-   '<p class="ali-toeic-instruction">Nghe file TOEIC Listening Test bên trên, sau đó chọn đáp án cho câu 1–25. Kết quả Listening sẽ được giáo viên đối chiếu khi có đáp án xác minh.</p>'+ 
+   '<p class="ali-toeic-instruction">Nghe file TOEIC Listening Test bên trên, sau đó chọn đáp án cho câu 1–25. Listening được chấm tự động theo đáp án TOEIC Test 1 đã đối chiếu với bộ câu hỏi của ALI.</p>'+ 
    part('Part 1 · Photographs (1–4)',source.photoDirections,('<div class="ali-toeic-example"><h4>Example</h4><figure class="ali-toeic-photo"><img src="./toeic-placement-example.jpg?v=1" loading="lazy" alt="Firefighters with rescue vehicle beside a railway track"></figure><p>'+escapeHTML(source.example.options).replace(/\n/g,'<br>')+'</p><p>'+escapeHTML(source.example.conclusion)+'</p></div>')+Array.from({length:4},(_,i)=>figure(i+1)).join(''))+
    part('Part 2 · Question–Response (5–13)',source.otherDirections.part2,qRange(5,13))+
    part('Part 3 · Conversations (14–19)',source.otherDirections.part3,'<h4>Questions 14–16 · Conversation 1</h4>'+qRange(14,16)+'<h4>Questions 17–19 · Conversation 2</h4>'+qRange(17,19))+
