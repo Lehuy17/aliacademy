@@ -18,6 +18,15 @@ const ALI_PLACEMENT_VERSION=1;
  * original 1–4, 11–19, 41–43, 68–70, 77–79, 95–97.
  * External source key cross-checked against reading answers in ALI materials. */
 const ALI_TOEIC_LISTENING_KEY='CADCCBBACBCACBDBBCADCDCAC';
+
+const ALI_TOEIC_READING_KEY='BCDCBCABADADBACBACDBCBCDDBDACD';
+// Internal ALI placement uses its own 1–55 numbering.
+function aliToeicGradePart_(answers,start,key){
+  return Array.from({length:key.length},(_,i)=>
+    String((answers||{})['toeic'+(start+i)]||'').trim().toUpperCase()===key[i]?1:0
+  ).reduce((sum,mark)=>sum+mark,0);
+}
+
 function aliToeicListeningGrade_(answers){
   const map=answers||{};
   return Array.from({length:25},(_,i)=>String(map['toeic'+(i+1)]||'').trim().toUpperCase()===ALI_TOEIC_LISTENING_KEY[i]?1:0)
@@ -63,10 +72,10 @@ function aliPlacementRow_(p){
     row[17]='ALI website · client self-score';
   }else if(type==='toeic'){
     // Grade Listening on the server from submitted A/B/C/D choices.
-    // Never trust a client-provided score when the original answer key is available.
+    // Recompute all TOEIC scores; do not trust browser-supplied grades.
     row[6]=aliToeicListeningGrade_(p.answers);
-    row[7]=aliPlacementNumber_(scores.reading,30);
-    row[8]=aliPlacementNumber_(scores.foundation,6);
+    row[7]=aliToeicGradePart_(p.answers,26,ALI_TOEIC_READING_KEY);
+    row[8]=aliToeicGradePart_(p.answers,26,ALI_TOEIC_READING_KEY.slice(0,6));
     row[11]='AUTO_GRADED_LR';
     row[13]=aliPlacementSafe_(p.writing,12000);
     row[14]=aliPlacementSafe_(answers,30000);
@@ -100,9 +109,10 @@ function aliPlacementValidateExam_(p){
        !Object.prototype.hasOwnProperty.call(a,'read0')||
        keys.some(k=>/^toeic[0-9]+$/.test(k)))throw new Error('IELTS payload has incorrect question structure');
   }else if(type==='toeic'){
-    if(!Object.prototype.hasOwnProperty.call(a,'toeic1')||
-       !Object.prototype.hasOwnProperty.call(a,'toeic55')||
-       keys.some(k=>/^(listen|read)[0-9]+$/.test(k)))throw new Error('TOEIC payload has incorrect question structure');
+    if(!Array.from({length:55},(_,i)=>'toeic'+(i+1)).every(k=>Object.prototype.hasOwnProperty.call(a,k))||
+       keys.some(k=>/^(listen|read)[0-9]+$/.test(k))||
+       Array.from({length:55},(_,i)=>a['toeic'+(i+1)]).some(v=>typeof v!=='string'||!/^[A-D]?$/.test(v)))
+      throw new Error('TOEIC submission must include 55 A/B/C/D or blank answers');
   }else if(type==='b1'){
     if(!Object.prototype.hasOwnProperty.call(a,'q0')||
        !Object.prototype.hasOwnProperty.call(a,'q14'))throw new Error('B1 payload has incorrect question structure');
