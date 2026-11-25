@@ -14,6 +14,15 @@ const ALI_PLACEMENT_SHEET_ID='18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0';
 const ALI_PLACEMENT_TABS={ielts:'IELTS Results',toeic:'TOEIC Results',b1:'B1 Results'};
 const ALI_PLACEMENT_COLS={ielts:18,toeic:19,b1:18};
 const ALI_PLACEMENT_VERSION=1;
+/* TOEIC Test 1 official test-order mapping into ALI placement 1–25:
+ * original 1–4, 11–19, 41–43, 68–70, 77–79, 95–97.
+ * External source key cross-checked against reading answers in ALI materials. */
+const ALI_TOEIC_LISTENING_KEY='CADCCBBACBCACBDBBCADCDCAC';
+function aliToeicListeningGrade_(answers){
+  const map=answers||{};
+  return Array.from({length:25},(_,i)=>String(map['toeic'+(i+1)]||'').trim().toUpperCase()===ALI_TOEIC_LISTENING_KEY[i]?1:0)
+    .reduce((sum,mark)=>sum+mark,0);
+}
 function aliPlacementSafe_(v,max){
   let s=String(v===undefined||v===null?'':v).slice(0,max||500);
   // Avoid a spreadsheet treating user text as a formula. SetValues also needs this.
@@ -53,16 +62,17 @@ function aliPlacementRow_(p){
     row[14]=started;
     row[17]='ALI website · client self-score';
   }else if(type==='toeic'){
-    // Listening key/audio not available yet, never record a fabricated listening score.
+    // Grade Listening on the server from submitted A/B/C/D choices.
+    // Never trust a client-provided score when the original answer key is available.
+    row[6]=aliToeicListeningGrade_(p.answers);
     row[7]=aliPlacementNumber_(scores.reading,30);
     row[8]=aliPlacementNumber_(scores.foundation,6);
-    row[11]='WAITING_LISTENING_GRADE';
+    row[11]='AUTO_GRADED_LR';
     row[13]=aliPlacementSafe_(p.writing,12000);
     row[14]=aliPlacementSafe_(answers,30000);
     row[15]=started;
     row[17]='ALI website · client self-score';
-    // Number of answered questions is NOT the Listening score.
-    // True Listening points require the original TOEIC key or a teacher review.
+    // Number answered is separate from the number correct.
     row[18]=Array.from({length:25},(_,i)=>p.answers&&p.answers['toeic'+(i+1)])
       .filter(v=>/^[A-D]$/.test(String(v||''))).length;
   }else if(type==='b1'){
