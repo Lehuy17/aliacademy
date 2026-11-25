@@ -96,11 +96,19 @@ function aliPlacementRow_(p){
   }
   return row;
 }
-function aliPlacementNextRow_(sheet){
-  const end=Math.max(2,sheet.getLastRow());
-  const ids=sheet.getRange(2,1,Math.max(1,end-1),1).getValues();
-  for(let i=ids.length-1;i>=0;i--)if(String(ids[i][0]).trim())return i+3;
-  return 2;
+// Single column read for both duplicate detection and next free row.
+// The former implementation scanned column A twice (TextFinder + getValues).
+function aliPlacementLocate_(sheet,submissionId){
+  const last=Math.max(1,sheet.getLastRow());
+  if(last<2)return {duplicate:0,nextRow:2};
+  const ids=sheet.getRange(2,1,last-1,1).getValues();
+  let nextRow=2;
+  for(let i=0;i<ids.length;i++){
+    const existing=String(ids[i][0]||'').trim();
+    if(existing===submissionId)return {duplicate:i+2,nextRow:0};
+    if(existing)nextRow=i+3;
+  }
+  return {duplicate:0,nextRow};
 }
 function aliPlacementValidateExam_(p){
   const a=p.answers||{},type=p.test;
@@ -126,15 +134,15 @@ function aliPlacementStore_(p){
   if(!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))throw new Error('Invalid submission ID');
   if(!p.student||String(p.student.name||'').trim().length<2)throw new Error('Missing student name');
   aliPlacementValidateExam_(p);
-  const sh=aliPlacementGetSheet_(p.test);
+  const row=aliPlacementRow_(p);
   const lock=LockService.getScriptLock();
   lock.waitLock(20000);
   try{
-    // Idempotent receipt: one submission ID should generate only one row.
-    const search=sh.getRange(2,1,Math.max(1,sh.getLastRow()-1),1)
-                   .createTextFinder(String(p.submissionId)).matchEntireCell(true).findNext();
-    if(search)return {ok:true,saved:true,duplicate:true,row:search.getRow(),submissionId:p.submissionId,test:p.test};
-    const row=aliPlacementRow_(p), dest=aliPlacementNextRow_(sh);
+    // One column read under lock: idempotency + next row, without TextFinder.
+    const sh=aliPlacementGetSheet_(p.test);
+    const location=aliPlacementLocate_(sh,String(p.submissionId));
+    if(location.duplicate)return {ok:true,saved:true,duplicate:true,row:location.duplicate,submissionId:p.submissionId,test:p.test};
+    const dest=location.nextRow;
     if(dest>sh.getMaxRows())sh.insertRowsAfter(sh.getMaxRows(),500);
     // Skip formula-driven columns: IELTS J/K, TOEIC J/K, B1 K/L.
     // Writing only selected segments prevents overwriting array-formula spill.
@@ -144,9 +152,10 @@ function aliPlacementStore_(p){
       const start=segment[0],end=segment[1];
       sh.getRange(dest,start+1,1,end-start).setValues([row.slice(start,end)]);
     }
-    SpreadsheetApp.flush();
-    const verify=sh.getRange(dest,1).getDisplayValue();
-    if(verify!==p.submissionId)throw new Error('Row verification failed');
+    // Reading the ID forces pending SpreadsheetApp writes to be applied;
+    // an extra flush() here caused a second synchronization round trip.
+    const verify=sh.getRange(dest,1).getValue();
+    if(String(verify)!==String(p.submissionId))throw new Error('Row verification failed');
     return {ok:true,saved:true,duplicate:false,row:dest,submissionId:p.submissionId,test:p.test};
   }finally{lock.releaseLock();}
 }
