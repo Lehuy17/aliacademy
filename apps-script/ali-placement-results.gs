@@ -12,7 +12,7 @@
  */
 const ALI_PLACEMENT_SHEET_ID='18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0';
 const ALI_PLACEMENT_TABS={ielts:'IELTS Results',toeic:'TOEIC Results',b1:'B1 Results'};
-const ALI_PLACEMENT_COLS={ielts:18,toeic:18,b1:18};
+const ALI_PLACEMENT_COLS={ielts:18,toeic:19,b1:18};
 const ALI_PLACEMENT_VERSION=1;
 function aliPlacementSafe_(v,max){
   let s=String(v===undefined||v===null?'':v).slice(0,max||500);
@@ -56,11 +56,15 @@ function aliPlacementRow_(p){
     // Listening key/audio not available yet, never record a fabricated listening score.
     row[7]=aliPlacementNumber_(scores.reading,30);
     row[8]=aliPlacementNumber_(scores.foundation,6);
-    row[11]='WAITING_LISTENING_KEY';
+    row[11]='WAITING_LISTENING_GRADE';
     row[13]=aliPlacementSafe_(p.writing,12000);
     row[14]=aliPlacementSafe_(answers,30000);
     row[15]=started;
     row[17]='ALI website · client self-score';
+    // Number of answered questions is NOT the Listening score.
+    // True Listening points require the original TOEIC key or a teacher review.
+    row[18]=Array.from({length:25},(_,i)=>p.answers&&p.answers['toeic'+(i+1)])
+      .filter(v=>/^[A-D]$/.test(String(v||''))).length;
   }else if(type==='b1'){
     row[6]=aliPlacementNumber_(scores.grammar,15);
     row[12]='WAITING_TEACHER';
@@ -113,7 +117,7 @@ function aliPlacementStore_(p){
     // Skip formula-driven columns: IELTS J/K, TOEIC J/K, B1 K/L.
     // Writing only selected segments prevents overwriting array-formula spill.
     const segments=p.test==='ielts'?[[0,9],[11,18]]:
-                   p.test==='toeic'?[[0,9],[11,18]]:[[0,10],[12,18]];
+                   p.test==='toeic'?[[0,9],[11,19]]:[[0,10],[12,18]];
     for(const segment of segments){
       const start=segment[0],end=segment[1];
       sh.getRange(dest,start+1,1,end-start).setValues([row.slice(start,end)]);
