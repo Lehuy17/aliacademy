@@ -32,7 +32,7 @@
    '<h4>Letter · Amarin, Ltd. (52–55)</h4><div class="ali-toeic-passage">'+passageText(source.passage.letter7)+'</div>'+qRange(52,55));
  const w=$('toeicWriting');
  w.innerHTML='<p>'+escapeHTML(source.writing.intro)+'</p><label class="ali-toeic-toggle"><input type="checkbox" id="toeicSWToggle"> <strong>Tôi đăng ký bài kiểm tra TOEIC Speaking &amp; Writing</strong></label>'+
-  '<div id="toeicSWFields" hidden><p class="ali-toeic-notice">Phần Writing được giáo viên chấm riêng /10. Speaking cần giáo viên thực hiện trực tiếp 8–10 phút; trang này không tự tổ chức phần Speaking.</p>'+
+  '<div id="toeicSWFields" hidden><p class="ali-toeic-notice">Writing /10 có tùy chọn AI đánh giá sơ bộ khi học viên đồng ý và hệ thống đã kích hoạt. Speaking cần bài ghi âm hoặc đánh giá tương tác riêng; trang TOEIC này không tự tổ chức phần Speaking.</p>'+
   '<h3>W1 · Build a Sentence</h3><p>'+escapeHTML(source.writing.instructionsW1)+'</p>'+
   source.writing.build.map((v,i)=>'<label class="ali-toeic-write"><span>'+escapeHTML(v)+'</span><input type="text" class="ali-toeic-swfield" id="toeicW1'+i+'" placeholder="Write a complete sentence" disabled></label>').join('')+
   '<h3>W2 · Respond to a Written Request</h3><p>'+escapeHTML(source.writing.instructionsW2)+'</p>'+
