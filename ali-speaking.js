@@ -116,10 +116,16 @@ $('aliSpSend').onclick=async()=>{
    $('aliSpUploadStatus').textContent='Đã lưu phần '+(i+1)+' trên hệ thống.';
    updateProgress();
   }
-  $('aliSpUploadStatus').textContent='Đã nhận xác nhận lưu '+receipts.filter(Boolean).length+' file. Giảng viên sẽ nghe và chấm điểm sau.';
+  $('aliSpUploadStatus').textContent='Đã xác nhận lưu '+receipts.filter(Boolean).length+' file ghi âm.';
   $('aliSpAiBtn').disabled=false;
-  $('aliSpAiStatus').textContent='Đã lưu bản ghi. Bạn có thể yêu cầu AI nhận xét tham khảo nếu đồng ý.';
+  $('aliSpAiStatus').textContent=$('aliSpAiConsent').checked?'Đang chuyển tới bước AI chấm điểm tham khảo…':'Đã lưu ghi âm. Chưa gửi AI vì học viên không chọn đồng ý.';
   $('aliSpResult').scrollIntoView({behavior:'smooth'});
+  if($('aliSpAiConsent').checked){
+   // The student has explicitly opted in before upload. Trigger a single AI
+   // assessment without waiting for a teacher or requiring another click.
+   isUploading=false;
+   $('aliSpAiBtn').click();
+  }
  }catch(err){$('aliSpUploadStatus').textContent='Chưa xác minh được việc nộp bài: '+err.message+' Bạn vẫn có thể tải bản ghi về máy. Không xoá bản ghi cho đến khi xác nhận trên Sheet.';}
  finally{isUploading=false;$('aliSpSend').disabled=false;}
 };
@@ -132,7 +138,7 @@ $('aliSpAiBtn').onclick=async()=>{
   $('aliSpAiStatus').textContent='Hệ thống AI chưa được cấu hình. Vui lòng đợi ALI kích hoạt tính năng.';
   return;
  }
- if(!confirm('Bạn đồng ý gửi các bản ghi đã nộp cho dịch vụ AI để nhận xét sơ bộ, chỉ mang tính tham khảo?'))return;
+ // Explicit checkbox consent is required; no repeated confirmation dialog.
  isUploading=true;$('aliSpAiBtn').disabled=true;
  $('aliSpAiStatus').textContent='Đang yêu cầu AI phân tích bản ghi…';
  try{
@@ -149,7 +155,7 @@ $('aliSpAiBtn').onclick=async()=>{
   const warning=document.createElement('p');
   warning.textContent='Đây là ước lượng AI cho 4 tiêu chí. Khả năng tương tác /5 chưa được chấm; kết quả chính xác cần chờ giảng viên đánh giá toàn bộ /25.';
   $('aliSpAiFeedback').replaceChildren(heading,note,warning);
-  $('aliSpAiStatus').textContent='Đã nhận nhận xét AI tham khảo. Vui lòng chờ điểm giảng viên.';
+  $('aliSpAiStatus').textContent='AI đã hoàn thành đánh giá 4 tiêu chí /20. Phần tương tác /5 chưa được chấm từ bài nói một chiều.';
  }catch(e){
   $('aliSpAiStatus').textContent='Chưa nhận được đánh giá AI: '+e.message+'. Kết quả chính thức vẫn do giảng viên chấm.';
  }finally{
