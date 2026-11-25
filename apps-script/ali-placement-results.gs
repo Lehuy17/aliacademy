@@ -16,6 +16,7 @@ const ALI_PLACEMENT_SHEET_ID='18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0';
 const ALI_PLACEMENT_TABS={ielts:'IELTS Results',toeic:'TOEIC Results',b1:'B1 Results'};
 const ALI_PLACEMENT_COLS={ielts:18,toeic:19,b1:18};
 const ALI_PLACEMENT_VERSION=1;
+const ALI_PLACEMENT_BUILD='2026-11-25-fast-v2';
 /* TOEIC Test 1 official test-order mapping into ALI placement 1–25:
  * original 1–4, 11–19, 41–43, 68–70, 77–79, 95–97.
  * External source key cross-checked against reading answers in ALI materials. */
@@ -160,6 +161,7 @@ function aliPlacementStore_(p){
   }finally{lock.releaseLock();}
 }
 function doPost(e){
+  const started=Date.now();
   let nonce='',id='',reply;
   try{
     if(!e||!e.parameter||!e.parameter.payload)throw new Error('Missing payload');
@@ -174,6 +176,8 @@ function doPost(e){
     reply={ok:false,saved:false,submissionId:id,error:String(err.message||err).slice(0,220)};
   }
   reply.type='ALI_PLACEMENT_RECEIPT';reply.nonce=nonce;
+  reply.build=ALI_PLACEMENT_BUILD;
+  reply.serverMs=Date.now()-started;
   const serialized=JSON.stringify(reply).replace(/</g,'\\u003c').replace(/>/g,'\\u003e');
   return HtmlService.createHtmlOutput(
     '<!doctype html><html><head><meta charset="utf-8"></head><body>'+
@@ -182,7 +186,7 @@ function doPost(e){
 }
 function doGet(){
   return ContentService.createTextOutput(
-    JSON.stringify({service:'ALI placement submissions',status:'ready',version:ALI_PLACEMENT_VERSION}))
+    JSON.stringify({service:'ALI placement submissions',status:'ready',version:ALI_PLACEMENT_VERSION,build:ALI_PLACEMENT_BUILD}))
     .setMimeType(ContentService.MimeType.JSON);
 }
 /**
@@ -208,6 +212,29 @@ function aliPlacementSelfTest(){
     throw new Error('Blank answer scoring regression');
   Logger.log('PASS: TOEIC Listening 25/25, Reading 30/30, Foundation 6/6; blank answers 0.');
   return 'PASS — no student records were created or changed';
+}
+/**
+ * Read-only operations check; run after deploying a new Apps Script version.
+ * Does not submit, score, or modify any student's record.
+ */
+function aliPlacementHealthCheck(){
+  const book=SpreadsheetApp.openById(ALI_PLACEMENT_SHEET_ID);
+  const results={build:ALI_PLACEMENT_BUILD,tabs:[]};
+  const definitions=[
+    ['toeic','Listening auto /25','Reading /30',19],
+    ['ielts','Listening /20','Reading /13',18],
+    ['b1','Grammar /15','Reading teacher',18]
+  ];
+  for(const [type,first,second,width] of definitions){
+    const sh=book.getSheetByName(ALI_PLACEMENT_TABS[type]);
+    if(!sh)throw new Error('Missing '+type+' tab');
+    if(sh.getRange(1,7).getDisplayValue()!==first||sh.getRange(1,8).getDisplayValue()!==second)
+      throw new Error('Unexpected '+type+' scoring columns');
+    if(sh.getLastColumn()<width)throw new Error('Missing columns: '+type);
+    results.tabs.push({type,rows:Math.max(0,sh.getLastRow()-1),status:'OK'});
+  }
+  Logger.log(JSON.stringify(results));
+  return results;
 }
 function aliPlacementVerifySetup(){
   const book=SpreadsheetApp.openById(ALI_PLACEMENT_SHEET_ID);
