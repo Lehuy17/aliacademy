@@ -4,7 +4,7 @@
  const name = location.pathname.replace(/\/+$/, '').split('/').pop().replace(/\.html$/,'');
  const config = {
   b1:{title:'B1 Placement',minutes:30,sections:['Grammar & Vocabulary','Reading','Writing','Listening'],scores:['Tự chấm /15','Giáo viên chấm','Giáo viên chấm','Chưa tự chấm'],kind:'practice'},
-  toeic:{title:'TOEIC Placement Test',minutes:45,sections:['Listening','Reading','Writing tự chọn'],scores:['Chưa có đáp án /25','Tự chấm /30','Giáo viên chấm riêng /10'],kind:'practice'},
+  toeic:{title:'TOEIC Placement Test',minutes:45,sections:['Listening','Reading','Writing tự chọn'],scores:['Tự chấm /25','Tự chấm /30','Giáo viên chấm riêng /10'],kind:'practice'},
   ielts:{title:'IELTS Placement Test',minutes:50,sections:['Listening','Reading','Writing'],scores:['Tự chấm /20','Tự chấm /13','Giáo viên chấm /100'],kind:'practice'},
   speaking:{title:'Speaking A1–B2',minutes:18,sections:['Introduction','Long Turn','Discussion','Situational Task','Phiếu chấm giáo viên'],scores:['Giáo viên đánh giá','Giáo viên đánh giá','Giáo viên đánh giá','Giáo viên đánh giá','Rubric /25'],kind:'teacher'}
  }[name];
