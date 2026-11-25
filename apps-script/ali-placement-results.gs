@@ -35,7 +35,7 @@ function aliToeicListeningGrade_(answers){
 function aliPlacementSafe_(v,max){
   let s=String(v===undefined||v===null?'':v).slice(0,max||500);
   // Avoid a spreadsheet treating user text as a formula. SetValues also needs this.
-  return /^[=+@\-]/.test(s)?("'"+s):s;
+  return /^\s*[=+@\-]/.test(s)?("'"+s):s;
 }
 function aliPlacementNumber_(v,max){
   return typeof v==='number'&&Number.isFinite(v)&&v>=0&&v<=max?v:'';
@@ -173,6 +173,30 @@ function doGet(){
   return ContentService.createTextOutput(
     JSON.stringify({service:'ALI placement submissions',status:'ready',version:ALI_PLACEMENT_VERSION}))
     .setMimeType(ContentService.MimeType.JSON);
+}
+/**
+ * Safe smoke test: generates synthetic answers in memory only.
+ * Does not create Sheet rows, change accounts, or send network requests.
+ */
+function aliPlacementSelfTest(){
+  if(ALI_TOEIC_LISTENING_KEY.length!==25||ALI_TOEIC_READING_KEY.length!==30)
+    throw new Error('TOEIC key length mismatch');
+  const perfect={};
+  for(let i=0;i<25;i++)perfect['toeic'+(i+1)]=ALI_TOEIC_LISTENING_KEY[i];
+  for(let i=0;i<30;i++)perfect['toeic'+(i+26)]=ALI_TOEIC_READING_KEY[i];
+  const sample={type:'ali_placement_submission',schemaVersion:1,test:'toeic',consent:true,
+    submissionId:'ALI-PL-TEST123456789',student:{name:'ALI TEST',phone:'',school:'',goal:''},
+    answers:perfect,scores:{listening:0,reading:0,foundation:0},writing:'',startedAt:''};
+  aliPlacementValidateExam_(sample);
+  const row=aliPlacementRow_(sample);
+  if(row.length!==19||row[6]!==25||row[7]!==30||row[8]!==6||row[18]!==25)
+    throw new Error('TOEIC scoring regression: '+JSON.stringify(row.slice(6,9)));
+  for(let i=1;i<=55;i++)sample.answers['toeic'+i]='';
+  const blank=aliPlacementRow_(sample);
+  if(blank[6]!==0||blank[7]!==0||blank[8]!==0||blank[18]!==0)
+    throw new Error('Blank answer scoring regression');
+  Logger.log('PASS: TOEIC Listening 25/25, Reading 30/30, Foundation 6/6; blank answers 0.');
+  return 'PASS — no student records were created or changed';
 }
 function aliPlacementVerifySetup(){
   const book=SpreadsheetApp.openById(ALI_PLACEMENT_SHEET_ID);
