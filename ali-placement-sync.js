@@ -56,7 +56,7 @@ function getWriting(type){
    'W1b: '+(document.getElementById('toeicW11')?.value||''),
    'W2: '+(document.getElementById('toeicW2')?.value||'')].join('\n');
  }
- return Array.from(document.querySelectorAll('#reading textarea,#sentences textarea,#writing textarea'))
+ return Array.from(document.querySelectorAll('#reading textarea,#sentences input,#sentences textarea,#essay,#writing textarea'))
   .map((el,i)=>'Response '+(i+1)+': '+el.value).join('\n');
 }
 function buildPayload(type,result){
@@ -86,8 +86,24 @@ function buildPayload(type,result){
   student:{name:String(student.name||'').slice(0,120),phone:String(student.phone||'').slice(0,35),
    school:String(student.school||'').slice(0,200),goal:String(student.goal||'').slice(0,120)},
   scores,answers:getAnswers(type),writing:getWriting(type).slice(0,12000),
+  aiWritingConsent:document.getElementById('aliWritingAiConsent')?.checked===true,
   startedAt:new Date().toISOString()
  };
+}
+function installWritingAiConsent(){
+ const type=testType();if(!TESTS.has(type))return;
+ if(document.getElementById('aliWritingAiConsent'))return;
+ const target=type==='toeic'?document.getElementById('toeicSWFields'):
+              type==='ielts'?document.getElementById('writing')?.parentElement:
+              document.getElementById('essay')?.parentElement;
+ if(!target)return;
+ const label=document.createElement('label');
+ label.style.cssText='display:flex;align-items:flex-start;gap:9px;padding:12px 14px;margin:12px 0;border:1px solid #f2d4bd;border-radius:12px;background:#fff5eb;line-height:1.6;font-size:13px;color:#4c3628';
+ const checkbox=document.createElement('input');checkbox.type='checkbox';
+ checkbox.id='aliWritingAiConsent';checkbox.style.marginTop='4px';
+ const description=document.createElement('span');
+ description.textContent='Tôi đồng ý gửi bài Writing tới dịch vụ AI để nhận điểm và nhận xét tham khảo. Đây không phải chứng chỉ chính thức. Khi không đồng ý, bài vẫn được lưu và chưa tự chấm Writing.';
+ label.append(checkbox,description);target.append(label);
 }
 function messageText(node,text){node.textContent=text;node.style.fontSize='12px';node.style.lineHeight='1.7';node.style.marginTop='12px';}
 function post(payload){
@@ -183,8 +199,8 @@ global.addEventListener('pageshow',()=>{drainPending();});
 // Background recovery while the learner keeps the results page open.
 global.setInterval(()=>{if(!document.hidden)drainPending();},30000);
 document.addEventListener('visibilitychange',()=>{if(!document.hidden)drainPending();});
-if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>drainPending(),{once:true});
-else queueMicrotask(drainPending);
+if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>{installWritingAiConsent();drainPending();},{once:true});
+else {installWritingAiConsent();queueMicrotask(drainPending);}
 
 global.ALIPlacementSync={attach};
 })(window);
