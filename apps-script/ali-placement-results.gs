@@ -1,8 +1,10 @@
 /**
  * ALI Academy · Placement results receiver (B1 / IELTS / TOEIC).
  *
- * Deploy as a NEW Apps Script Web App (execute as spreadsheet owner; Anyone access).
- * Do not replace the existing A1-A2 receiver or Speaking audio receiver.
+ * Use the existing dedicated ALI Placement Web App and deploy a NEW VERSION
+ * (execute as owner; Anyone access only if needed for public student submissions).
+ * Do not paste this into the student-account provisioning Script, the A1-A2
+ * result receiver, or the Speaking recording receiver.
  * Spreadsheet: 18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0
  * The web application accepts enrollment records, not authentication secrets.
  *
