@@ -12,6 +12,18 @@ video.disableRemotePlayback=true;
 const driveFrame=$('aliDrivePlayer');
 driveFrame.removeAttribute('allowfullscreen');
 driveFrame.setAttribute('allow','autoplay; fullscreen \'none\'');
+// On iPhone, native WebKit controls can still enter fullscreen on pinch/double tap,
+// even when playsinline and controlslist=nofullscreen are set. Use page controls.
+const useIphoneControls=/iPhone|iPod/i.test(navigator.userAgent);
+const iosControls=$('aliIosControls');
+const iosPlay=$('aliIosPlay'),iosSeek=$('aliIosSeek');
+const iosMute=$('aliIosMute'),iosSpeed=$('aliIosSpeed');
+let iosSeeking=false;
+if(useIphoneControls){
+ document.documentElement.classList.add('ali-iphone-inline');
+ video.controls=false;
+ video.removeAttribute('controls');
+}
 const list=$('aliTranscriptList');
 const scroller=$('aliTranscriptScroll');
 const status=$('aliVideoMode');
@@ -110,6 +122,44 @@ function message(s){$('notice').textContent=s;$('notice').classList.remove('hidd
 function syncReady(){
  return !!currentMovie && currentMovie.source?.type!=='drive' && !video.classList.contains('hidden');
 }
+function updateIphoneControls(){
+ if(!iosControls)return;
+ const available=useIphoneControls&&!!currentMovie&&currentMovie.source?.type!=='drive'&&!video.classList.contains('hidden');
+ iosControls.hidden=!available;
+ if(!available)return;
+ iosPlay.disabled=video.readyState<1;
+ iosPlay.textContent=video.paused?'▶ Phát':'Ⅱ Tạm dừng';
+ iosPlay.setAttribute('aria-label',video.paused?'Phát video':'Tạm dừng video');
+ const duration=video.duration;
+ const canSeek=Number.isFinite(duration)&&duration>0;
+ iosSeek.disabled=!canSeek;
+ if(!iosSeeking&&canSeek)iosSeek.value=String(Math.round(Math.min(1,video.currentTime/duration)*1000));
+ iosSeek.setAttribute('aria-valuetext',time(video.currentTime));
+ iosMute.textContent=video.muted?'Bật tiếng':'Tắt tiếng';
+ iosMute.setAttribute('aria-label',video.muted?'Bật tiếng':'Tắt tiếng');
+ iosSpeed.value=String(video.playbackRate);
+}
+if(useIphoneControls&&iosControls){
+ iosPlay.addEventListener('click',()=>{
+  if(video.readyState<1){status.textContent='Đang chuẩn bị video. Vui lòng thử lại.';return;}
+  if(video.paused){
+   video.play().catch(()=>{status.textContent='Không thể phát video. Hãy thử lại hoặc mở bằng Safari.';updateIphoneControls();});
+  }else video.pause();
+  updateIphoneControls();
+ });
+ iosSeek.addEventListener('input',()=>{
+  if(!Number.isFinite(video.duration)||video.duration<=0)return;
+  iosSeeking=true;
+  try{video.currentTime=(Number(iosSeek.value)/1000)*video.duration;}catch(e){}
+  iosSeek.setAttribute('aria-valuetext',time(video.currentTime));
+ });
+ iosSeek.addEventListener('change',()=>{iosSeeking=false;updateIphoneControls();});
+ iosMute.addEventListener('click',()=>{video.muted=!video.muted;updateIphoneControls();});
+ iosSpeed.addEventListener('change',()=>{video.playbackRate=Number(iosSpeed.value)||1;updateIphoneControls();});
+ for(const ev of ['timeupdate','loadedmetadata','play','pause','ended','volumechange','ratechange','emptied']){
+  video.addEventListener(ev,updateIphoneControls);
+ }
+}
 function updateSyncControls(){
  const ready=syncReady();
  const badge=$('aliSyncIndicator');
@@ -128,6 +178,7 @@ function updateSyncControls(){
  cc.setAttribute('aria-pressed',String(overlayEnabled));
  help.textContent=ready?'Nhấn vào câu để nghe lại từ thời điểm đó':'Phụ đề song ngữ Anh–Việt';
  if(note)note.textContent=ready?'Nhấn một câu trong cột phụ đề để nhảy đến đúng thời điểm trong phim.':'Theo dõi lời thoại Anh–Việt trong khi xem phim.';
+ updateIphoneControls();
 }
 function showCues(){
  list.replaceChildren();
