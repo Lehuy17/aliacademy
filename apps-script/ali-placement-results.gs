@@ -14,7 +14,7 @@
  */
 const ALI_PLACEMENT_SHEET_ID='18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0';
 const ALI_PLACEMENT_TABS={ielts:'IELTS Results',toeic:'TOEIC Results',b1:'B1 Results'};
-const ALI_PLACEMENT_COLS={ielts:18,toeic:19,b1:18};
+const ALI_PLACEMENT_COLS={ielts:19,toeic:20,b1:19};
 const ALI_PLACEMENT_VERSION=1;
 const ALI_PLACEMENT_BUILD='2026-11-25-fast-v2';
 /* TOEIC Test 1 official test-order mapping into ALI placement 1–25:
@@ -68,7 +68,7 @@ function aliPlacementRow_(p){
   if(type==='ielts'){
     row[6]=aliPlacementNumber_(scores.listening,20);
     row[7]=aliPlacementNumber_(scores.reading,13);
-    row[11]='WAITING_WRITING_TEACHER';
+    row[11]=p.aiWritingConsent===true&&String(p.writing||'').trim()?'AI_WRITING_PENDING':'WAITING_WRITING_TEACHER';
     row[12]=aliPlacementSafe_(p.writing,12000);
     row[13]=aliPlacementSafe_(answers,30000);
     row[14]=started;
@@ -79,7 +79,7 @@ function aliPlacementRow_(p){
     row[6]=aliToeicListeningGrade_(p.answers);
     row[7]=aliToeicGradePart_(p.answers,26,ALI_TOEIC_READING_KEY);
     row[8]=aliToeicGradePart_(p.answers,26,ALI_TOEIC_READING_KEY.slice(0,6));
-    row[11]='AUTO_GRADED_LR';
+    row[11]=p.aiWritingConsent===true&&String(p.writing||'').trim()?'AUTO_GRADED_LR_AI_PENDING':'AUTO_GRADED_LR';
     row[13]=aliPlacementSafe_(p.writing,12000);
     row[14]=aliPlacementSafe_(answers,30000);
     row[15]=started;
@@ -87,14 +87,16 @@ function aliPlacementRow_(p){
     // Number answered is separate from the number correct.
     row[18]=Array.from({length:25},(_,i)=>p.answers&&p.answers['toeic'+(i+1)])
       .filter(v=>/^[A-D]$/.test(String(v||''))).length;
+    row[19]=p.aiWritingConsent===true?'YES':'NO';
   }else if(type==='b1'){
     row[6]=aliPlacementNumber_(scores.grammar,15);
-    row[12]='WAITING_TEACHER';
+    row[12]=p.aiWritingConsent===true&&String(p.writing||'').trim()?'AI_WRITING_PENDING':'WAITING_TEACHER';
     row[13]=aliPlacementSafe_(p.writing,12000);
     row[14]=aliPlacementSafe_(answers,30000);
     row[15]=started;
     row[17]='ALI website · client self-score';
   }
+  if(type==='ielts'||type==='b1')row[18]=p.aiWritingConsent===true?'YES':'NO';
   return row;
 }
 // Single column read for both duplicate detection and next free row.
@@ -134,6 +136,7 @@ function aliPlacementStore_(p){
   if(p.schemaVersion!==ALI_PLACEMENT_VERSION||p.consent!==true)throw new Error('Missing consent or schema');
   if(!/^ALI-PL-[A-Za-z0-9_-]{8,90}$/.test(String(p.submissionId||'')))throw new Error('Invalid submission ID');
   if(!p.student||String(p.student.name||'').trim().length<2)throw new Error('Missing student name');
+  if(p.aiWritingConsent!==undefined&&typeof p.aiWritingConsent!=='boolean')throw new Error('AI Writing consent must be boolean');
   aliPlacementValidateExam_(p);
   const row=aliPlacementRow_(p);
   const lock=LockService.getScriptLock();
@@ -147,8 +150,8 @@ function aliPlacementStore_(p){
     if(dest>sh.getMaxRows())sh.insertRowsAfter(sh.getMaxRows(),500);
     // Skip formula-driven columns: IELTS J/K, TOEIC J/K, B1 K/L.
     // Writing only selected segments prevents overwriting array-formula spill.
-    const segments=p.test==='ielts'?[[0,9],[11,18]]:
-                   p.test==='toeic'?[[0,9],[11,19]]:[[0,10],[12,18]];
+    const segments=p.test==='ielts'?[[0,9],[11,19]]:
+                   p.test==='toeic'?[[0,9],[11,20]]:[[0,10],[12,19]];
     for(const segment of segments){
       const start=segment[0],end=segment[1];
       sh.getRange(dest,start+1,1,end-start).setValues([row.slice(start,end)]);
@@ -204,7 +207,7 @@ function aliPlacementSelfTest(){
     answers:perfect,scores:{listening:0,reading:0,foundation:0},writing:'',startedAt:''};
   aliPlacementValidateExam_(sample);
   const row=aliPlacementRow_(sample);
-  if(row.length!==19||row[6]!==25||row[7]!==30||row[8]!==6||row[18]!==25)
+  if(row.length!==20||row[6]!==25||row[7]!==30||row[8]!==6||row[18]!==25||row[19]!=='NO')
     throw new Error('TOEIC scoring regression: '+JSON.stringify(row.slice(6,9)));
   for(let i=1;i<=55;i++)sample.answers['toeic'+i]='';
   const blank=aliPlacementRow_(sample);
