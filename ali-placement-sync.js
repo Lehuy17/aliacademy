@@ -69,6 +69,7 @@ function buildPayload(type,result){
    if(/Listening/i.test(part.label))scores.listening=part.score;
    if(/Reading/i.test(part.label))scores.reading=part.score;
   }else if(type==='toeic'){
+   if(/Listening/i.test(part.label))scores.listening=part.score;
    if(/Reading/i.test(part.label))scores.reading=part.score;
   }else if(type==='b1'){
    if(/Grammar/i.test(part.label))scores.grammar=part.score;
