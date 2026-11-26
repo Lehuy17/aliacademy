@@ -8,7 +8,7 @@
   "mimeType": "video/quicktime",
   "bytes": 270260974,
   "sourceUrl": "https://drive.google.com/file/d/1BwTgYitxDnRziOKFmFGZxlBpI6GxykdX/view?usp=share_link",
-  "status": "preparation_blocked_large_source",
+  "status": "media_converted_locally_pending_subtitles_and_upload",
   "plannedOutput": {
     "video": "./media/knives-out-2019-ransoms-out-of-the-will/video.mp4",
     "poster": "./media/knives-out-2019-ransoms-out-of-the-will/poster.jpg",
@@ -28,11 +28,10 @@
     "quiz": "Generate question bank from verified time-aligned subtitle cues; do not invent dialogue"
   },
   "blockingItems": [
-    "Google Drive connector rejects files exceeding 268435456 bytes; source is 270260974 bytes.",
-    "Actual video has not been inspected or converted to MP4.",
-    "Timestamped English and Vietnamese captions have not been produced or verified.",
-    "No original-video poster, technical duration, or dialogue-based quiz has been generated.",
-    "Do not add draft to public ali-movies.json until standard requirements are satisfied."
+    "Converted MP4 and poster exist in current session output, but binary files are not uploaded to GitHub hosting.",
+    "Timestamped EN/VI subtitle cues are not generated: an authorized working speech transcription service is required.",
+    "Clip-specific quiz must be grounded in verified subtitle cues.",
+    "Check usage rights and test desktop/mobile player before adding to public catalog."
   ],
   "qa": {
     "rightsConfirmed": false,
@@ -40,5 +39,31 @@
     "vietnameseReviewed": false,
     "timingsReviewed": false,
     "desktopMobileTested": false
-  }
+  },
+  "technical": {
+    "source": {
+      "durationSeconds": 179.133333,
+      "width": 1920,
+      "height": 1080,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "fps": 30,
+      "bytes": 270260974
+    },
+    "converted": {
+      "durationSeconds": 179.14,
+      "width": 1280,
+      "height": 720,
+      "videoCodec": "h264",
+      "audioCodec": "aac",
+      "bytes": 13043940,
+      "movflags": "faststart",
+      "testedWithFfprobe": true
+    }
+  },
+  "sourceMediaVerified": true,
+  "localArtifacts": [
+    "knives-out-ransom-will-720p.mp4",
+    "poster.jpg"
+  ]
 }
