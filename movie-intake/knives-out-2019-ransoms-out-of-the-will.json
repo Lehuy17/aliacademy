@@ -1,0 +1,44 @@
+{
+  "id": "knives-out-2019-ransoms-out-of-the-will",
+  "title": "Knives Out (2019) – Ransom's Out of the Will",
+  "category": "PHIM SONG NGỮ · KNIVES OUT",
+  "description": "Trong buổi công bố di chúc, Ransom và gia đình Thrombey rơi vào cuộc tranh cãi căng thẳng khi nội dung di chúc gây bất ngờ.",
+  "driveId": "1BwTgYitxDnRziOKFmFGZxlBpI6GxykdX",
+  "driveFileName": "Knives Out (2019) - Ransom's Out of the Will Scene.mov",
+  "mimeType": "video/quicktime",
+  "bytes": 270260974,
+  "sourceUrl": "https://drive.google.com/file/d/1BwTgYitxDnRziOKFmFGZxlBpI6GxykdX/view?usp=share_link",
+  "status": "preparation_blocked_large_source",
+  "plannedOutput": {
+    "video": "./media/knives-out-2019-ransoms-out-of-the-will/video.mp4",
+    "poster": "./media/knives-out-2019-ransoms-out-of-the-will/poster.jpg",
+    "captions": "./captions/knives-out-2019-ransoms-out-of-the-will.json",
+    "bilingualCueRequirements": [
+      "start",
+      "end",
+      "en",
+      "vi"
+    ],
+    "metadata": [
+      "durationSeconds",
+      "duration",
+      "subtitleStatus",
+      "qa"
+    ],
+    "quiz": "Generate question bank from verified time-aligned subtitle cues; do not invent dialogue"
+  },
+  "blockingItems": [
+    "Google Drive connector rejects files exceeding 268435456 bytes; source is 270260974 bytes.",
+    "Actual video has not been inspected or converted to MP4.",
+    "Timestamped English and Vietnamese captions have not been produced or verified.",
+    "No original-video poster, technical duration, or dialogue-based quiz has been generated.",
+    "Do not add draft to public ali-movies.json until standard requirements are satisfied."
+  ],
+  "qa": {
+    "rightsConfirmed": false,
+    "englishReviewed": false,
+    "vietnameseReviewed": false,
+    "timingsReviewed": false,
+    "desktopMobileTested": false
+  }
+}
