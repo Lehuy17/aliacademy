@@ -44,3 +44,24 @@ A1–A2 currently submits to a **separate deployed receiver**. This rollout does
 - Run real-device testing on iPhone Safari and Android Chrome, including poor network and interrupted uploads.
 - Keep one submission ID per test; never change existing formula columns when writing new scores.
 - Before using AI grades for formal placement, calibrate the rubric against representative teacher-rated writing and audio samples.
+
+
+## 5. Writing Review: reread the student's ORIGINAL submission
+
+The existing ALI results spreadsheet now has a **Writing Review** tab:
+https://docs.google.com/spreadsheets/d/18akzuhbaPHxihINySIUrMJlvfzjNx59qW7jRIs_2j-0/edit#gid=69939146
+
+- Original writing is displayed verbatim in column **E**, separate from AI or teacher feedback in **I**.
+- Column **F/G** displays Writing mark and maximum; **H** displays marking status.
+- Column **J** links directly to the original source result row.
+- The review covers A1–A2, IELTS, TOEIC, and B1; entries with no actual writing are skipped.
+- Original A1–A2 essays are extracted from the `Results` tab's **Answers JSON** (column U); AI comments are from column P. Existing A1–A2 records are **not sent back to Gemini** by the review processor.
+- Historical B1 submissions containing only empty `Response N:` fields are excluded; new B1 essays are retained separately in B1 Results, column N.
+- No original result, teacher mark, AI mark, or student record is overwritten by the review sync.
+
+To activate **ongoing** refresh, add a **third file** named `ali-writing-review.gs` to the **existing ALI Placement Results Apps Script project** from:
+https://github.com/Lehuy17/aliacademy/blob/main/apps-script/ali-writing-review.gs
+
+Run `aliWritingReviewSelfTest` first (no writes). Then run `aliSyncWritingReview` once and `aliEnableWritingReviewSync` once to install the 5-minute scheduled refresh. This step is necessary even if the Gemini AI feature is not enabled. It reads the four source result tabs in the same workbook. To stop refresh, run `aliDisableWritingReviewSync`.
+
+The tab's first seven historical Writing records have already been populated **directly** in Google Sheets. Future submissions and updated AI feedback become visible only after the syncing Apps Script code is installed and its trigger enabled. The Sheet inherits the same sharing permissions as the results workbook: **do not publish or share with students**.
