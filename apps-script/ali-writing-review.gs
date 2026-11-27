@@ -32,7 +32,7 @@ function aliWritingReviewEssay_(config,row){
  }
  const text=aliWritingReviewText_(row[config.essay-1]);
  // Older B1 submissions sometimes have 10 empty "Response N:" placeholders.
- if(config.test==='B1'&&!text.replace(/Response \\d+:\\s*/g,'').trim())return '';
+ if(config.test==='B1'&&!text.replace(/Response \d+:\s*/g,'').trim())return '';
  return text;
 }
 function aliWritingReviewSource_(config,status,score){
@@ -110,7 +110,7 @@ function aliWritingReviewSelfTest(){
  if(aliWritingReviewEssay_(ALI_WRITING_REVIEW_SOURCES[0],empty)!=='An original A1-A2 student essay.')
   throw new Error('Original A1-A2 essay extraction failed');
  const b=Array.from({length:19},()=> '');
- b[13]='Response 1: \\nResponse 2: ';
+ b[13]=['Response 1: ','Response 2: '].join(String.fromCharCode(10));
  if(aliWritingReviewEssay_(ALI_WRITING_REVIEW_SOURCES[3],b).trim())
   throw new Error('Empty B1 placeholder must be skipped');
  return 'PASS: original Writing retained; empty B1 placeholders excluded';
