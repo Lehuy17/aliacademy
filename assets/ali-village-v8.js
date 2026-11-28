@@ -76,6 +76,45 @@ const cafeRounds=[
   {text:"Yesterday morning.",ok:false,reply:"You can answer 'for here' or 'to go'.",learn:"For here or to go? = Dùng tại đây hay mang đi?"}
  ]}
 ];
+
+/* Replay variety: three independent NPC storylines, with branching replies. */
+const cafeScenarios=[cafeRounds,
+ [
+  {speaker:"Emma",text:"Are you looking for somewhere in our village?",choices:[
+   {text:"Yes, where is the library?",ok:true,reply:"It's just past the big tree!",learn:"Where is…? = … ở đâu?"},
+   {text:"Could you tell me the way to the station?",ok:true,reply:"Sure! Follow the path to the right.",learn:"Could you tell me the way…? = Bạn có thể chỉ đường…?"},
+   {text:"I am yellow paper.",ok:false,reply:"Try asking me about a place you want to visit.",learn:"Hỏi đường với “Where is…?” hoặc “Could you tell me…?”"}
+  ]},
+  {speaker:"Emma",text:"Would you like me to show you the way?",choices:[
+   {text:"Yes, please. That would be great!",ok:true,reply:"Happy to help. Let's look at the map!",learn:"That would be great! = Thế thì tốt quá!"},
+   {text:"No, thanks. I can find it.",ok:true,reply:"All right! Enjoy exploring!",learn:"I can find it. = Tôi tự tìm được."},
+   {text:"Tomorrow blue quickly.",ok:false,reply:"You can say yes or politely decline.",learn:"No, thanks = Không, cảm ơn."}
+  ]},
+  {speaker:"Emma",text:"Enjoy your adventure!",choices:[
+   {text:"Thank you for your help!",ok:true,reply:"You're welcome. See you!",learn:"Thank you for your help! = Cảm ơn vì đã giúp đỡ."},
+   {text:"See you later!",ok:true,reply:"See you soon, explorer!",learn:"See you later! = Hẹn gặp lại!"},
+   {text:"The car is in pencil.",ok:false,reply:"Try thanking me or saying goodbye.",learn:"You're welcome = Không có gì."}
+  ]}
+ ],
+ [
+  {speaker:"Emma",text:"Hey, explorer! How is your day going?",choices:[
+   {text:"It's going well, thanks!",ok:true,reply:"Glad to hear that!",learn:"It's going well. = Mọi chuyện đang diễn ra tốt đẹp."},
+   {text:"Not bad! How about yours?",ok:true,reply:"Mine is going well, too. Thank you!",learn:"How about yours? = Còn bạn thì sao?"},
+   {text:"I blue a banana.",ok:false,reply:"Try answering how you feel today.",learn:"How is your day going? = Hôm nay bạn thế nào?"}
+  ]},
+  {speaker:"Emma",text:"What do you enjoy doing after class?",choices:[
+   {text:"I like reading books.",ok:true,reply:"That's lovely! I like books too.",learn:"I like reading books. = Tôi thích đọc sách."},
+   {text:"I enjoy watching movies.",ok:true,reply:"Me too! Have you visited ALI Cinema?",learn:"I enjoy… = Tôi thích…"},
+   {text:"I am at three oranges.",ok:false,reply:"Tell me about a hobby you enjoy.",learn:"What do you enjoy doing? = Bạn thích làm gì?"}
+  ]},
+  {speaker:"Emma",text:"Would you like to meet again tomorrow?",choices:[
+   {text:"Yes, I'd love to!",ok:true,reply:"Wonderful. See you tomorrow!",learn:"I'd love to! = Rất sẵn lòng!"},
+   {text:"Sorry, I can't tomorrow.",ok:true,reply:"No problem. See you another time!",learn:"Sorry, I can't… = Xin lỗi, tôi không thể…"},
+   {text:"My school is spaghetti.",ok:false,reply:"You can accept or decline the invitation.",learn:"Would you like to…? = Bạn có muốn…?"}
+  ]}
+ ]
+];
+
 const blank=()=>({completed:[],history:{},learned:[],foundCat:false,gateOpened:false,visited:[]});
 let data=blank(),storageAvailable=true;
 try{const old=JSON.parse(localStorage.getItem(key)||"null");if(old&&typeof old==="object"){
@@ -297,7 +336,7 @@ function bookWord(idx,button){
 function renderCafe(){
  setModal("English Café","Emma · Your conversation partner","☕","CHAPTER 02 · CONFIDENCE");
  if(state.questionDone){panel.innerHTML=successText("✦ Conversation Starter unlocked!","cinema");return;}
- const round=cafeRounds[state.dialogStep];
+ const round=cafeScenarios[(Number(data.history.cafe)||0)%cafeScenarios.length][state.dialogStep];
  if(!round){state.questionDone=true;complete("cafe",state.cafeAnswers);renderCafe();return;}
  panel.innerHTML=scene("👩🏻‍🍳",round.speaker+' says:',"Bạn đang nói chuyện tại quán cà phê. Chọn lời đáp để cuộc trò chuyện tiếp tục.")+
  '<div class="dialog-note"><strong>Emma:</strong> '+round.text+'</div>'+
@@ -307,7 +346,7 @@ function renderCafe(){
  actions([{action:"close",label:"Dừng hội thoại"}]);
 }
 function cafeAnswer(idx,button){
- const option=cafeRounds[state.dialogStep].choices[idx];if(!option)return;
+ const option=cafeScenarios[(Number(data.history.cafe)||0)%cafeScenarios.length][state.dialogStep].choices[idx];if(!option)return;
  if(!option.ok){button.classList.add("wrong");button.disabled=true;feedback('Emma: “'+option.reply+'” '+option.learn,false);return;}
  by(".dialog-options .choice").forEach(b=>b.disabled=true);button.classList.add("correct");
  state.cafeAnswers.push({term:option.text,meaning:option.learn,example:option.reply});
