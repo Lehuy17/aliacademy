@@ -1,0 +1,98 @@
+---
+layout: null
+permalink: /village-demo/
+---
+<!doctype html>
+<html lang="vi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+<meta name="theme-color" content="#fff7ed">
+<meta name="robots" content="noindex,nofollow">
+<meta name="description" content="ALI English Village V8 – bản demo tương tác: khám phá ngôi làng tiếng Anh, mini-game, hội thoại NPC, hộ chiếu và nhật ký học tập.">
+<title>ALI English Village V8 · Interactive Learning Demo</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:wght@400;500;600;700;800&family=Nunito+Sans:wght@400;500;600;700;800;900;1000&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="/assets/ali-village-v8.css?v=1">
+<script defer src="/assets/ali-village-v8.js?v=1"></script>
+</head>
+<body>
+<div class="demo-banner"><b>V8 · DEMO RIÊNG</b><span>ALI Explorer Village — bản thử nghiệm, không thay đổi trang chủ</span><a href="/home-demo/">Xem V7</a><a href="/">Trang chủ ALI</a></div>
+<header class="nav">
+ <a class="logo" href="/village-demo/" aria-label="ALI English Village"><span class="logo-glyph">✦</span><span><strong>ALI <em>ENGLISH</em></strong><small>Your English, Your Future</small></span></a>
+ <nav aria-label="Điều hướng demo"><a href="#world">Làng ALI</a><a href="#features">Khám phá</a><a href="/movies/">Phim song ngữ</a><a href="/tests/">Bài test</a></nav>
+ <button type="button" class="pill pill-outline" id="nav-passport">📔 Passport <span id="nav-stamps">0/3</span></button>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-copy"><span class="eyebrow">ALI EXPLORER · A WORLD OF ENGLISH</span>
+   <h1>MỖI TỪ VỰNG.<br>MỘT <em>CUỘC PHIÊU LƯU.</em></h1>
+   <p>Khám phá một ngôi làng sống động, gặp gỡ những người bạn mới và học tiếng Anh qua những trải nghiệm của chính bạn.</p>
+   <div class="hero-actions"><a class="pill pill-primary" href="#world">Bắt đầu khám phá <span aria-hidden="true">↗</span></a><button type="button" class="pill pill-soft" id="hero-story">Theo hành trình gợi ý ✨</button></div>
+   <div class="hero-tiny"><span>🌱 Không cần đăng nhập</span><span>🎮 5 hoạt động tương tác</span><span>📔 Ghi nhớ tiến trình</span></div>
+  </div>
+  <div class="hero-visual" aria-label="Ảnh trang trí ngôi làng tiếng Anh"><div class="hero-glow"></div><img src="/assets/ali-village-v8-map.svg" alt="Bản đồ một ngôi làng xanh với học viện, cửa hàng và đường mòn" /><span class="hero-ticket">✈ English opens the world</span></div>
+</section>
+<section class="village-section" id="world" aria-labelledby="world-title">
+ <div class="village-heading">
+  <div><span class="eyebrow">01 / YOUR INTERACTIVE ENGLISH VILLAGE</span><h2 id="world-title">BƯỚC VÀO <em>ALI VILLAGE</em></h2><p>Chạm vào một công trình để khám phá. Hoặc đi theo câu chuyện đầu tiên — hành trình ba địa điểm để mở Cánh cổng Thế giới.</p></div>
+  <div class="world-heading-actions"><button class="small-action" type="button" id="story-button">🧭 Nhiệm vụ gợi ý</button><button class="small-action" type="button" id="journal-button">📖 Nhật ký</button></div>
+ </div>
+ <div class="world-frame">
+  <div class="world-toolbar">
+   <div class="world-title"><span>🌿</span><span>ALI EXPLORER VILLAGE <small>Learn • Explore • Grow</small></span></div>
+   <div class="world-stats"><span id="world-progress-label">0/3 nhiệm vụ</span><button type="button" id="world-home" aria-label="Trở về quảng trường">⌂ Quảng trường</button></div>
+  </div>
+  <div class="world-view" id="world-view" role="region" aria-label="Bản đồ ngôi làng ALI, có thể kéo để khám phá" tabindex="0">
+   <div class="world-stage" id="world-stage">
+    <img class="world-map" src="/assets/ali-village-v8-map.svg" alt="Bản đồ minh họa khu làng, cửa hàng và học viện ALI" draggable="false">
+    <svg id="world-character-layer" viewBox="0 0 1400 940" aria-hidden="true">
+     <path id="walk-trace" d="M772 735L772 735" fill="none" stroke="#FF863E" stroke-width="7" stroke-linecap="round" stroke-dasharray="9 15"/>
+     <g id="world-avatar" transform="translate(772 735)">
+      <ellipse cx="0" cy="-5" rx="23" ry="7" fill="#385d4c" opacity=".3"/>
+      <g id="world-avatar-body"><image href="/assets/ali-explorer-character.svg" x="-42" y="-113" width="84" height="113" /></g>
+     </g>
+    </svg>
+    <button class="place" data-place="plaza" style="left:772px;top:683px" aria-label="Quảng trường trung tâm, điểm bắt đầu"><span>🌳</span><b>QUẢNG TRƯỜNG</b></button>
+    <button class="place" data-place="bookstore" style="left:344px;top:515px" aria-label="ALI Bookstore: khám phá từ vựng"><span>📚</span><b>BOOKSTORE</b><i data-stamp="bookstore" hidden>✓</i></button>
+    <button class="place" data-place="cafe" style="left:1037px;top:532px" aria-label="English Café: hội thoại với NPC"><span>☕</span><b>ENGLISH CAFÉ</b><i data-stamp="cafe" hidden>✓</i></button>
+    <button class="place" data-place="cinema" style="left:545px;top:390px" aria-label="ALI Cinema: thử thách phim song ngữ"><span>🎬</span><b>ALI CINEMA</b><i data-stamp="cinema" hidden>✓</i></button>
+    <button class="place" data-place="market" style="left:214px;top:640px" aria-label="Village Market: tìm đồ vật theo từ vựng"><span>🍎</span><b>VILLAGE MARKET</b></button>
+    <button class="place" data-place="travel" style="left:1230px;top:660px" aria-label="Travel Corner: luyện tiếng Anh du lịch"><span>🧳</span><b>TRAVEL CORNER</b></button>
+    <button class="place" data-place="community" style="left:704px;top:398px" aria-label="Community House: gặp gỡ cộng đồng ALI"><span>🏡</span><b>COMMUNITY</b></button>
+    <button class="place" data-place="academy" style="left:1135px;top:105px" aria-label="ALI Academy: khám phá CEFR, IELTS, TOEIC"><span>🎓</span><b>ALI ACADEMY</b></button>
+    <button class="place gate" data-place="gate" style="left:1320px;top:70px" aria-label="Cánh cổng thế giới: mở khóa sau ba nhiệm vụ"><span>🌍</span><b>WORLD GATE</b><i id="gate-lock">🔒</i></button>
+    <button class="place tiny-secret" data-place="cat" style="left:171px;top:826px" aria-label="Chú mèo bí mật"><span>🐈</span><b>?</b></button>
+   </div>
+   <div class="world-map-brand">✦ ALI ENGLISH VILLAGE</div>
+   <div class="world-help" id="world-help">👆 Chạm ngôi nhà để khám phá</div>
+   <div class="world-zoom">
+     <button type="button" id="zoom-out" aria-label="Thu nhỏ bản đồ">−</button>
+     <button type="button" id="zoom-in" aria-label="Phóng to bản đồ">+</button>
+   </div>
+  </div>
+  <div class="world-panel">
+   <div class="world-current"><div class="current-icon" id="current-icon">🌳</div><div><span class="current-kicker">ALI EXPLORER · LOCATION</span><h3 id="current-title">Quảng trường ALI</h3><p id="current-description">Điểm xuất phát của hành trình. Hãy chọn một công trình hoặc bắt đầu câu chuyện đầu tiên.</p></div></div>
+   <div class="quests"><div class="quests-top"><b>✨ THE FIRST ADVENTURE</b><strong id="quest-count">0/3</strong></div><div class="meter"><span id="quest-meter"></span></div><div class="quest-stamps"><button data-jump="bookstore">📚 <span id="quest-bookstore">Bookstore</span></button><button data-jump="cafe">☕ <span id="quest-cafe">Café</span></button><button data-jump="cinema">🎬 <span id="quest-cinema">Cinema</span></button></div></div>
+  </div>
+ </div>
+ <p class="village-disclaimer">Bản đồ và hoạt động chỉ là demo tương tác. Tiến trình lưu trên thiết bị, không phải kết quả thi, điểm CEFR hoặc chứng chỉ chính thức.</p>
+</section>
+<section class="features" id="features"><div class="features-heading"><span class="eyebrow">02 / MORE THAN A QUIZ</span><h2>MỘT THẾ GIỚI. <em>NHIỀU CÁCH HỌC.</em></h2></div><div class="feature-grid">
+ <article><span>📖</span><h3>Learn by doing</h3><p>Ghép câu, tìm đồ vật, khám phá từ vựng và chơi theo ngữ cảnh.</p></article>
+ <article><span>💬</span><h3>Talk to characters</h3><p>Hội thoại với NPC có nhiều lựa chọn và phản hồi khác nhau.</p></article>
+ <article><span>🎬</span><h3>Stories to remember</h3><p>Đến rạp phim ALI và đi tiếp qua thư viện phim song ngữ.</p></article>
+ <article><span>📔</span><h3>Your learning journal</h3><p>Lưu từ mới, dấu khám phá và tiếp tục hành trình khi quay lại.</p></article>
+ </div><div class="feature-cta"><div><h2>YOUR ENGLISH, <em>YOUR FUTURE.</em></h2><p>Khám phá khả năng thật của bạn với các bài test ALI hiện có.</p></div><div><a class="pill pill-primary" href="/tests/">Làm bài kiểm tra ↗</a><a class="pill pill-outline" href="/movies/">Phim song ngữ ↗</a></div></div></section>
+</main>
+<footer class="footer"><div><b>✦ ALI English Village · V8</b><p>Creative preview · Văn hóa học tập và khám phá.</p></div><div><a href="/home-demo/">Bản V7</a><a href="/">Trang chủ chính</a><a href="#world">Về bản đồ ↑</a></div></footer>
+<div class="overlay" id="village-overlay" hidden>
+ <div class="overlay-backdrop" id="overlay-backdrop"></div>
+ <section class="modal" id="village-modal" role="dialog" aria-modal="true" aria-labelledby="modal-title" tabindex="-1">
+  <header class="modal-header"><div class="modal-icon" id="modal-icon">🧭</div><div class="modal-title-copy"><small id="modal-kicker">ALI EXPLORER</small><h2 id="modal-title">Welcome to the Village</h2><p id="modal-subtitle">Your English adventure begins here.</p></div><button type="button" id="modal-close" aria-label="Đóng bảng tương tác">×</button></header>
+  <div id="modal-content" class="modal-content"></div>
+ </section>
+</div>
+</body>
+</html>
