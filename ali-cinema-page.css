@@ -814,3 +814,57 @@ main{max-width:1320px;margin:auto;padding:40px 22px 65px}.eyebrow,.kicker{color:
  #aliVideoPlayer .ali-ios-controls button,
  #aliVideoPlayer .ali-ios-controls select{font-size:11px;padding:8px;min-height:43px}
 }
+
+
+/* ALI Cinema v13 — keep seek/play immediately below iPhone video.
+   Taps land on our overlay, never on the native WebKit player. */
+#aliVideoPlayer .ali-ios-video-tap[hidden]{display:none!important}
+.ali-iphone-inline #aliVideoPlayer .screen{
+ display:flex;
+ flex-direction:column;
+ align-items:stretch;
+ justify-content:flex-start;
+ height:auto;
+ min-height:0;
+ aspect-ratio:auto;
+}
+.ali-iphone-inline #aliVideoPlayer .screen>video{
+ order:0;
+ flex:0 0 auto;
+ display:block;
+ width:100%;
+ height:auto;
+ min-height:0;
+ aspect-ratio:16/9;
+}
+.ali-iphone-inline #aliVideoPlayer .ali-ios-controls{
+ order:1;
+ width:100%;
+ margin:0;
+ position:relative;
+ z-index:3;
+ border-top:1px solid #463129;
+ border-bottom:1px solid #463129;
+}
+.ali-iphone-inline #aliVideoPlayer .ali-ios-video-tap:not([hidden]){
+ position:absolute;
+ top:0;left:0;
+ width:100%;
+ height:auto;aspect-ratio:16/9;
+ z-index:4;display:block;
+ background:transparent;border:0;
+ -webkit-tap-highlight-color:transparent;
+ touch-action:manipulation;
+}
+.ali-iphone-inline #aliVideoPlayer .ali-ios-video-tap:focus-visible{
+ outline:3px solid #ffb68c;
+ outline-offset:-4px;
+}
+@media(max-width:700px){
+ .ali-iphone-inline #aliVideoPlayer .ali-screen-captions{order:2}
+ .ali-iphone-inline #aliVideoPlayer .ali-mobile-caption-toolbar{order:3}
+}
+@media(min-width:701px){
+ .ali-iphone-inline #aliVideoPlayer .screen{width:calc(100% - 18px);margin:0 9px}
+ .ali-iphone-inline #aliVideoPlayer .ali-mobile-caption-toolbar{display:none}
+}
