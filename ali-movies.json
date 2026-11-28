@@ -1,5 +1,5 @@
 {
-  "version": 38,
+  "version": 39,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -647,6 +647,36 @@
         "url": "./media/barbie-car-chase-scene-2023/video.mp4"
       },
       "captions": "./captions/barbie-car-chase-scene-2023.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "big-hero-6-microbots-2014",
+      "title": "BIG HERO 6 - MicroBots (2014)",
+      "category": "PHIM SONG NGỮ · BIG HERO 6",
+      "description": "Hiro trình diễn những robot siêu nhỏ có thể kết hợp thành nhiều hình dạng và điều khiển bằng ý nghĩ, khiến mọi người kinh ngạc.",
+      "duration": "04:05",
+      "durationSeconds": 245.04,
+      "poster": "./media/big-hero-6-microbots-2014/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/big-hero-6-microbots-2014/video.mp4"
+      },
+      "captions": "./captions/big-hero-6-microbots-2014.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
