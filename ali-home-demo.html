@@ -47,10 +47,80 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 .tiny-flower{position:absolute;font-size:32px;z-index:5;pointer-events:none;animation:bob 5s ease-in-out infinite}.flower1{bottom:88px;left:5%}.flower2{top:90px;right:12%;animation-delay:-2s}
 .section{position:relative;padding:76px clamp(22px,5.4%,86px)}.section.soft{background:linear-gradient(180deg,#fff,#fffaf6)}.section.sky{background:linear-gradient(160deg,#f2faff,#fff9f1 85%)}.section-heading{display:flex;justify-content:space-between;align-items:end;gap:28px;margin-bottom:30px}.section-heading .body{max-width:570px}.mini{font-size:10px;text-transform:uppercase;letter-spacing:.23em;color:var(--orange-deep);font-weight:900;margin-bottom:10px}.section h2{font-family:'Nunito Sans',sans-serif;font-size:clamp(30px,3.4vw,48px);line-height:1.16;margin-bottom:10px;font-weight:600}.section-heading p,.section-lead{color:#66717b;font-size:13px;margin:0;max-width:620px}
 .text-link{display:inline-flex;align-items:center;gap:9px;color:var(--orange-deep);font-size:12px;font-weight:850;white-space:nowrap;border-bottom:1px solid rgba(230,93,27,.29);padding-bottom:5px;transition:gap .2s}.text-link:hover{gap:15px}
-.map-panel{position:relative;background:linear-gradient(120deg,#fff7ec 0%,#fffaf6 38%,#d6ecf9 100%);border:1px solid #ffe8d1;border-radius:30px;padding:40px 43px;box-shadow:var(--shadow);overflow:hidden;min-height:390px}.map-panel:after{content:"";position:absolute;inset:auto -9% -43% auto;width:60%;height:85%;background:radial-gradient(ellipse,rgba(143,206,230,.65),transparent 70%);pointer-events:none}
-.map-top{position:relative;z-index:3;display:grid;grid-template-columns:.8fr 1.4fr;gap:20px}.map-copy h2{font-size:clamp(31px,3.2vw,48px);text-transform:uppercase}.map-copy h2 em{color:var(--orange-deep);font-style:italic}.map-copy p{color:#5e6a78;font-size:12px;max-width:350px}
-.level-view{position:relative;padding-top:60px}.journey-line{position:absolute;z-index:1;left:5%;right:4%;top:36%;height:0;border-top:3px dashed #f28b45;transform:rotate(-5deg)}.levels{display:flex;justify-content:space-between;gap:8px;position:relative;z-index:2}.level{width:25%;border:1px solid #edd9c6;border-radius:18px;background:#fffffff0;padding:17px 10px;box-shadow:0 10px 20px #ab775323;min-height:110px;transition:transform .25s,border-color .25s,background .25s;color:#4d5964;text-align:center}.level:hover,.level[aria-pressed="true"]{transform:translateY(-8px);background:#fff0e4;border-color:#fa9a5b}.level-emoji{font-size:24px;display:block;margin-bottom:5px}.level strong{display:block;font-family:'Nunito Sans',sans-serif;font-size:20px}.level span:last-child{display:block;font-size:10px;font-weight:750}
-.level-caption{margin-top:19px;background:#ffffffdc;border-radius:17px;border:1px solid #fff;padding:14px 17px;display:flex;gap:14px;align-items:center;justify-content:space-between;box-shadow:0 8px 20px #c18a6920}.level-caption strong{color:#ba5327;font-size:13px}.level-caption p{font-size:11px;color:#5e6874;margin:2px 0 0}.map-stamp{position:absolute;right:-12px;top:-40px;font-size:70px;opacity:.12;transform:rotate(20deg)}
+
+/* ALI Explorer · interactive illustrated game-map world — CSS stays scoped */
+#map{padding-top:66px;padding-bottom:70px;background:linear-gradient(180deg,#fffdf9,#fff3e7 53%,#fffaf5)}
+.ali-map-intro{display:flex;align-items:end;justify-content:space-between;gap:26px;margin:0 0 24px}
+.ali-map-intro h2{font:900 clamp(33px,3.8vw,57px)/1.075 'Nunito Sans',sans-serif;letter-spacing:-.055em;max-width:850px;margin:0}
+.ali-map-intro h2 em{font-style:italic;font-weight:900;color:#E95C1D}
+.ali-map-intro p{margin:14px 0 0;color:#6b7480;font-size:12px;max-width:760px;line-height:1.85}
+.ali-map-intro .btn{flex:none}
+.ali-map-shell{background:#fff;border:1px solid #F7E2C9;border-radius:28px;box-shadow:0 23px 55px #9f715329;overflow:hidden;position:relative}
+.ali-map-world-scroll{overflow:hidden;width:100%;position:relative;touch-action:pan-y}
+.ali-map-world{position:relative;aspect-ratio:1000/610;min-width:0;overflow:hidden;background:#C5EBF1;isolation:isolate}
+.ali-map-illustration{width:100%;height:100%;display:block;object-fit:cover;pointer-events:none;user-select:none;-webkit-user-drag:none}
+.ali-map-route{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+.ali-map-route path{fill:none;stroke-linecap:round}
+#ali-world-track{stroke:#F28E4F;stroke-width:5;stroke-dasharray:3 17;stroke-opacity:.56}
+#ali-world-progress{stroke:#FF782D;stroke-width:7;filter:drop-shadow(0 2px 3px #BB6E40a0);stroke-dasharray:0 1;stroke-opacity:.95}
+.ali-world-avatar{filter:drop-shadow(0 4px 3px #3B6B504F);will-change:transform}
+.ali-world-avatar .ali-walk-body{transform-origin:0 -38px}
+.ali-world-avatar.is-walking .ali-walk-body{animation:ali-explorer-walk .32s ease-in-out infinite alternate}
+.ali-world-avatar.is-celebrating .ali-walk-body{animation:ali-explorer-arrived .47s cubic-bezier(.12,.77,.29,1.3) 1}
+.ali-world-avatar .ali-character-shadow{transition:opacity .2s}
+.ali-world-avatar.is-walking .ali-character-shadow{opacity:.55}
+@keyframes ali-explorer-walk{from{transform:translateY(0) rotate(-3deg)}to{transform:translateY(-7px) rotate(3deg)}}
+@keyframes ali-explorer-arrived{0%{transform:translateY(0) scale(1)}48%{transform:translateY(-18px) scale(1.06)}100%{transform:translateY(0) scale(1)}}
+.ali-place-pin{position:absolute;z-index:8;transform:translate(-50%,-50%);border:2px solid #FFFFFF;padding:7px 12px 7px 8px;border-radius:30px;display:flex;align-items:center;gap:7px;background:#FFFFFFF1;color:#553B2B;font:900 12px 'Nunito Sans',sans-serif;box-shadow:0 7px 16px #3b725746,0 2px 0 #EAC7A3;white-space:nowrap;transition:transform .24s,background .24s,box-shadow .24s,border-color .24s;backdrop-filter:blur(8px)}
+.ali-place-pin .pin-icon{width:28px;height:28px;border-radius:50%;display:grid;place-items:center;background:#FFF0DD;font-size:17px;box-shadow:inset 0 0 0 1px #FFCEAE}
+.ali-place-pin small{display:block;font-size:8px;font-family:'Be Vietnam Pro',sans-serif;line-height:1.6;font-weight:700;color:#775B4E}
+.ali-place-pin strong{display:block;font-size:14px;line-height:1.05;letter-spacing:-.02em}
+.ali-place-pin:hover,.ali-place-pin:focus-visible{transform:translate(-50%,-57%) scale(1.07);background:#FFF4EA}
+.ali-place-pin[aria-pressed="true"]{background:#FF6C25;color:white;box-shadow:0 0 0 6px #FF995637,0 8px 21px #DC63368A;border-color:#FFFEF8;transform:translate(-50%,-56%) scale(1.06)}
+.ali-place-pin[aria-pressed="true"] small{color:#FFF1E6}.ali-place-pin[aria-pressed="true"] .pin-icon{background:#FFF8E7}
+.ali-place-pin[aria-pressed="true"]:after{content:"";position:absolute;inset:-6px;border:2px solid #FF9B58;border-radius:40px;animation:ali-pin-ring 1.8s ease-in-out infinite;pointer-events:none}
+@keyframes ali-pin-ring{0%,100%{opacity:.35;transform:scale(1)}60%{opacity:0;transform:scale(1.15)}}
+.ali-pin-a1{left:17%;top:70%}.ali-pin-a2{left:39%;top:54%}.ali-pin-b1{left:65%;top:38%}.ali-pin-b2{left:85%;top:17%}
+.ali-map-caption{display:flex;align-items:center;gap:22px;padding:22px 28px;background:linear-gradient(110deg,#FFFFFF,#FFF6EB);border-top:1px solid #F3E3D4}
+.ali-map-caption-icon{flex:none;display:grid;place-items:center;width:66px;height:66px;border:1px solid #FFE0C3;border-radius:20px;background:#FFEDE0;font-size:35px;box-shadow:0 6px 12px #C7783C19}
+.ali-map-caption-copy{flex:1;min-width:0}
+.ali-map-caption-copy .ali-label{font-size:10px;letter-spacing:.15em;text-transform:uppercase;color:#E46A2C;font-weight:900}
+.ali-map-caption-copy h3{font:900 20px 'Nunito Sans',sans-serif;letter-spacing:-.035em;margin:4px 0 3px}
+.ali-map-caption-copy p{font-size:12px;color:#65717C;margin:0;line-height:1.75}
+.ali-map-caption-side{display:flex;align-items:center;flex-direction:column;gap:7px;min-width:142px;text-align:center}
+.ali-map-caption-side span{font-size:10px;font-weight:750;color:#A56C52}
+.ali-map-caption-side .btn{padding:12px 17px;font-size:11px}
+.ali-map-hint{margin-top:11px;font-size:10px;color:#917867;display:flex;align-items:center;justify-content:space-between;gap:10px}
+.ali-map-hint b{color:#CD632C}
+.ali-map-hint .map-live{display:inline-flex;gap:6px;align-items:center;min-width:160px;justify-content:flex-end}
+.ali-map-hint .map-live:before{content:"";width:7px;height:7px;background:#70B28F;border-radius:50%;box-shadow:0 0 0 4px #BDE8C95E}
+@media(max-width:1100px){.ali-place-pin{padding:5px 9px 5px 6px;font-size:11px}.ali-place-pin .pin-icon{width:24px;height:24px;font-size:13px}.ali-place-pin small{font-size:7px}.ali-place-pin strong{font-size:12px}.ali-map-caption{padding:17px 21px}}
+@media(max-width:820px){
+ .ali-map-intro{display:block}.ali-map-intro .btn{margin-top:17px}
+ .ali-map-world-scroll{overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;scrollbar-color:#F7AF78 #FFF5E8;touch-action:pan-x pan-y}
+ .ali-map-world{width:840px;min-width:840px}
+ .ali-map-caption{gap:13px;flex-wrap:wrap}
+ .ali-map-caption-icon{width:49px;height:49px;border-radius:14px;font-size:28px}
+ .ali-map-caption-side{flex-direction:row;justify-content:space-between;min-width:100%;padding-left:62px}
+ .ali-map-hint{display:block}.ali-map-hint .map-live{margin-top:6px;justify-content:flex-start}
+}
+@media(max-width:540px){
+ #map{padding-top:40px;padding-bottom:45px}
+ .ali-map-shell{border-radius:20px}
+ .ali-map-world{width:790px;min-width:790px}
+ .ali-map-caption{padding:14px 15px;gap:9px}
+ .ali-map-caption-copy h3{font-size:16px}
+ .ali-map-caption-copy p{font-size:11px}
+ .ali-map-caption-side{padding-left:0}
+ .ali-map-intro h2{font-size:clamp(29px,8.5vw,41px)}
+ .ali-map-intro p{font-size:11px}
+ .ali-place-pin{font-size:11px}
+}
+@media(prefers-reduced-motion:reduce){
+ .ali-world-avatar .ali-walk-body,.ali-world-avatar.is-walking .ali-walk-body,.ali-world-avatar.is-celebrating .ali-walk-body{animation:none!important}
+ .ali-place-pin,.ali-place-pin[aria-pressed="true"],.ali-place-pin:after{transition:none!important;animation:none!important}
+}
+
 .skill-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}.skill-card{padding:25px 22px;min-height:240px;border-radius:22px;border:1px solid #f5e3d7;background:#fff;box-shadow:0 10px 32px rgba(145,114,87,.08);transition:transform .3s,box-shadow .3s;position:relative;overflow:hidden}.skill-card:after{content:"";position:absolute;right:-40px;bottom:-36px;width:130px;height:130px;border-radius:50%;background:#ffe9d7;opacity:.6}.skill-card:hover{transform:translateY(-7px);box-shadow:0 20px 35px #a8775125}.skill-icon{display:flex;width:56px;height:56px;align-items:center;justify-content:center;border-radius:18px;background:linear-gradient(135deg,#fff2df,#ffe4d8);font-size:27px;margin-bottom:28px}.skill-card h3{font-size:21px;margin-bottom:7px}.skill-card p{font-size:12px;color:#6b7580;line-height:1.76}.skill-card a{font-size:11px;color:#cc5e22;font-weight:800;position:relative;z-index:3}
 
 /* ALI Cinema: same real catalog posters as /movies/, static showcase only. */
@@ -230,21 +300,38 @@ h1,h2,h3{letter-spacing:-.046em}
 </section>
 
 <section class="section soft" id="map" aria-labelledby="map-title">
- <div class="map-panel scroll-reveal">
-  <div class="map-top">
-   <div class="map-copy"><div class="mini">01 / Find your place</div><h2 id="map-title">BẠN ĐANG Ở ĐÂU TRÊN <em>BẢN ĐỒ TIẾNG ANH?</em></h2><p>Mỗi người có một điểm xuất phát. Chọn thử một cột mốc để xem hành trình có thể bắt đầu như thế nào.</p><a class="btn primary" href="/tests/">Khám phá trình độ thật ↗</a></div>
-   <div class="level-view">
-    <span class="map-stamp" aria-hidden="true">🌍</span><div class="journey-line" aria-hidden="true"></div>
-    <div class="levels" role="group" aria-label="Chọn trình độ minh họa">
-     <button class="level" type="button" data-level="A1" aria-pressed="true"><span class="level-emoji">🌱</span><strong>A1</strong><span>Khởi động</span></button>
-     <button class="level" type="button" data-level="A2" aria-pressed="false"><span class="level-emoji">🗺️</span><strong>A2</strong><span>Xây nền</span></button>
-     <button class="level" type="button" data-level="B1" aria-pressed="false"><span class="level-emoji">✈️</span><strong>B1</strong><span>Tăng tốc</span></button>
-     <button class="level" type="button" data-level="B2" aria-pressed="false"><span class="level-emoji">🏆</span><strong>B2+</strong><span>Bứt phá</span></button>
-    </div>
-    <div class="level-caption" aria-live="polite"><div><strong id="level-title">A1 · Khởi động</strong><p id="level-detail">Tự giới thiệu, hỏi đáp ngắn và xây vốn từ dùng hằng ngày.</p></div><span style="font-size:28px">🧭</span></div>
+ <div class="ali-map-intro scroll-reveal">
+   <div><div class="mini">01 / THE ALI EXPLORER WORLD</div>
+   <h2 id="map-title">BẠN ĐANG Ở ĐÂU TRÊN <em>BẢN ĐỒ TIẾNG ANH?</em></h2>
+   <p>Mỗi cấp độ là một địa điểm trong thế giới ALI. Chọn một ngôi làng, để nhân vật thám hiểm đi theo con đường đến cột mốc bạn muốn khám phá.</p></div>
+   <a class="btn primary" href="/tests/">Kiểm tra trình độ thật ↗</a>
+ </div>
+ <div class="ali-map-shell scroll-reveal">
+  <div class="ali-map-world-scroll" id="ali-map-scroll" tabindex="0" role="region" aria-label="Bản đồ các cấp độ A1, A2, B1, B2+, có thể cuộn ngang trên điện thoại">
+   <div class="ali-map-world" id="ali-world">
+    <img class="ali-map-illustration" src="/assets/ali-explorer-map.svg" alt="Bản đồ làng khởi hành A1, thư viện A2, trạm khám phá B1 và thành phố toàn cầu B2+" draggable="false" loading="lazy"/>
+    <svg class="ali-map-route" viewBox="0 0 1000 610" preserveAspectRatio="xMidYMid meet" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+     <defs><linearGradient id="ali-trail-gradient" x1="0" y1="1" x2="1" y2="0"><stop stop-color="#FF6A26"/><stop offset="1" stop-color="#FFBE58"/></linearGradient></defs>
+     <path id="ali-world-track" d="M137 509 C216 513 258 464 324 450 C352 437 365 440 390 440 C447 437 502 384 559 377 C606 374 621 340 651 340 C729 335 766 283 802 241 C822 220 835 212 848 211"/>
+     <path id="ali-world-progress" d="M137 509 C216 513 258 464 324 450 C352 437 365 440 390 440 C447 437 502 384 559 377 C606 374 621 340 651 340 C729 335 766 283 802 241 C822 220 835 212 848 211" stroke="url(#ali-trail-gradient)"/>
+     <g id="ali-world-avatar" class="ali-world-avatar" transform="translate(137 509)">
+      <ellipse class="ali-character-shadow" cx="0" cy="-4" rx="21" ry="6" fill="#456B4E" opacity=".24"/>
+      <g class="ali-walk-body"><image href="/assets/ali-explorer-character.svg" x="-51" y="-131" width="102" height="131" preserveAspectRatio="xMidYMid meet"/></g>
+     </g>
+    </svg>
+    <button type="button" data-ali-place="A1" class="ali-place-pin ali-pin-a1" aria-pressed="true" aria-label="Đến cấp độ A1, Làng khởi hành"><span class="pin-icon" aria-hidden="true">🏡</span><span><strong>A1</strong><small>Starter Village</small></span></button>
+    <button type="button" data-ali-place="A2" class="ali-place-pin ali-pin-a2" aria-pressed="false" aria-label="Đến cấp độ A2, Thị trấn xây nền"><span class="pin-icon" aria-hidden="true">📚</span><span><strong>A2</strong><small>Learning Town</small></span></button>
+    <button type="button" data-ali-place="B1" class="ali-place-pin ali-pin-b1" aria-pressed="false" aria-label="Đến cấp độ B1, Trạm tăng tốc"><span class="pin-icon" aria-hidden="true">🚉</span><span><strong>B1</strong><small>Explorer Station</small></span></button>
+    <button type="button" data-ali-place="B2" class="ali-place-pin ali-pin-b2" aria-pressed="false" aria-label="Đến cấp độ B2+, Thành phố toàn cầu"><span class="pin-icon" aria-hidden="true">🏰</span><span><strong>B2+</strong><small>Global City</small></span></button>
    </div>
   </div>
+  <div class="ali-map-caption" aria-live="polite" aria-atomic="true">
+   <div class="ali-map-caption-icon" id="ali-place-icon" aria-hidden="true">🏡</div>
+   <div class="ali-map-caption-copy"><div class="ali-label">ĐIỂM DỪNG TRÊN HÀNH TRÌNH</div><h3 id="level-title">A1 · Starter Village</h3><p id="level-detail">Làng khởi hành: học cách giới thiệu bản thân, hỏi đáp ngắn và sử dụng những từ ngữ đầu tiên trong đời sống.</p></div>
+   <div class="ali-map-caption-side"><span id="ali-place-status">ALI Explorer đã sẵn sàng!</span><a class="btn primary" href="/tests/">Khám phá trình độ ↗</a></div>
+  </div>
  </div>
+ <div class="ali-map-hint"><span>👆 <b>Chạm từng địa điểm</b> để nhân vật đi tới. Trên điện thoại, vuốt ngang để khám phá toàn bộ bản đồ.</span><span class="map-live">Bản đồ tương tác · Demo</span></div>
 </section>
 <section class="journey-steps section" id="story" aria-labelledby="journey-steps-title">
  <div class="journey-steps-intro scroll-reveal">
@@ -389,16 +476,93 @@ h1,h2,h3{letter-spacing:-.046em}
  menu.addEventListener('click',function(){var open=nav.classList.toggle('open');menu.setAttribute('aria-expanded',String(open));menu.textContent=open?'✕':'☰';menu.setAttribute('aria-label',open?'Đóng menu':'Mở menu');});
  nav.querySelectorAll('a').forEach(function(link){link.addEventListener('click',function(){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰';menu.setAttribute('aria-label','Mở menu');});});
  document.addEventListener('keydown',function(e){if(e.key==='Escape'){nav.classList.remove('open');menu.setAttribute('aria-expanded','false');menu.textContent='☰';}});
- var levels={
-  A1:['A1 · Khởi động','Tự giới thiệu, hỏi đáp ngắn và xây vốn từ dùng hằng ngày.'],
-  A2:['A2 · Xây nền','Kết nối ý tưởng và trò chuyện về công việc, cuộc sống, trải nghiệm gần gũi.'],
-  B1:['B1 · Tăng tốc','Diễn đạt quan điểm, xử lý tình huống quen thuộc và định hướng mục tiêu.'],
-  B2:['B2+ · Bứt phá','Thảo luận linh hoạt hơn, trình bày lập luận và mở rộng mục tiêu học thuật.']
+
+ // ALI interactive SVG world: actual path-following avatar, no scroll hijacking.
+ var aliWorld=document.getElementById('ali-world'),aliScroll=document.getElementById('ali-map-scroll');
+ var aliTrack=document.getElementById('ali-world-track'),aliProgress=document.getElementById('ali-world-progress');
+ var aliAvatar=document.getElementById('ali-world-avatar');
+ var aliPins=[].slice.call(document.querySelectorAll('[data-ali-place]'));
+ var aliStopDefs={
+  A1:{x:137,y:509,title:'A1 · Starter Village',icon:'🏡',desc:'Làng khởi hành: học cách giới thiệu bản thân, hỏi đáp ngắn và sử dụng những từ ngữ đầu tiên trong đời sống.'},
+  A2:{x:390,y:440,title:'A2 · Learning Town',icon:'📚',desc:'Thị trấn xây nền: tham quan thư viện, trao đổi về các chủ đề quen thuộc và mở rộng vốn từ giao tiếp.'},
+  B1:{x:651,y:340,title:'B1 · Explorer Station',icon:'🚉',desc:'Trạm tăng tốc: diễn đạt ý kiến, giải quyết những tình huống thường gặp và sẵn sàng đi xa hơn.'},
+  B2:{x:848,y:211,title:'B2+ · Global City',icon:'🏰',desc:'Thành phố toàn cầu: trình bày lập luận, giao tiếp linh hoạt và phát triển mục tiêu học thuật, nghề nghiệp.'}
  };
- document.querySelectorAll('[data-level]').forEach(function(b){b.addEventListener('click',function(){
-  document.querySelectorAll('[data-level]').forEach(function(x){x.setAttribute('aria-pressed',String(x===b));});
-  var level=levels[b.getAttribute('data-level')];document.getElementById('level-title').textContent=level[0];document.getElementById('level-detail').textContent=level[1];
- });});
+ var aliWorldMax=aliTrack.getTotalLength();
+ var aliPoints=['A1','A2','B1','B2'];
+ function aliNearest(point){
+  var best=0,dist=Infinity;
+  for(var i=0;i<=600;i++){
+   var amount=aliWorldMax*i/600,p=aliTrack.getPointAtLength(amount);
+   var d=Math.pow(p.x-point.x,2)+Math.pow(p.y-point.y,2);
+   if(d<dist){dist=d;best=amount;}
+  }
+  return best;
+ }
+ aliPoints.forEach(function(key){aliStopDefs[key].distance=aliNearest(aliStopDefs[key]);});
+ aliProgress.style.strokeDasharray=aliWorldMax+' '+aliWorldMax;
+ var aliCurrent=aliStopDefs.A1.distance,aliTarget=aliCurrent,aliFrame=null,aliChoice='A1';
+ var aliArrivalTimeout=null;
+ function aliDraw(distance,direction,walking){
+  var p=aliTrack.getPointAtLength(Math.max(0,Math.min(aliWorldMax,distance)));
+  aliAvatar.setAttribute('transform','translate('+p.x.toFixed(2)+' '+p.y.toFixed(2)+')');
+  aliAvatar.classList.toggle('is-walking',walking);
+  aliProgress.style.strokeDasharray=Math.max(0,distance).toFixed(2)+' '+aliWorldMax.toFixed(2);
+  aliProgress.style.strokeDashoffset='0';
+ }
+ function aliCenterMobile(key){
+  if(window.matchMedia('(min-width:821px)').matches)return;
+  var pin=aliPins.find(function(item){return item.dataset.aliPlace===key;});
+  if(!pin)return;
+  var x=pin.offsetLeft, desired=x-aliScroll.clientWidth*.52;
+  aliScroll.scrollTo({left:Math.max(0,desired),behavior:window.matchMedia('(prefers-reduced-motion: reduce)').matches?'auto':'smooth'});
+ }
+ function aliSelect(key){
+  if(!Object.prototype.hasOwnProperty.call(aliStopDefs,key))return;
+  var place=aliStopDefs[key];
+  aliChoice=key;aliTarget=place.distance;
+  aliPins.forEach(function(b){b.setAttribute('aria-pressed',String(b.dataset.aliPlace===key));});
+  document.getElementById('level-title').textContent=place.title;
+  document.getElementById('level-detail').textContent=place.desc;
+  document.getElementById('ali-place-icon').textContent=place.icon;
+  var status=document.getElementById('ali-place-status');
+  if(aliArrivalTimeout){clearTimeout(aliArrivalTimeout);aliArrivalTimeout=null;}
+  if(aliFrame!==null){cancelAnimationFrame(aliFrame);aliFrame=null;}
+  aliAvatar.classList.remove('is-celebrating');
+  aliCenterMobile(key);
+  if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||Math.abs(aliCurrent-aliTarget)<.3){
+   aliCurrent=aliTarget;aliDraw(aliCurrent,1,false);
+   status.textContent='Đã đến '+key.replace('B2','B2+')+'!';
+   if(!window.matchMedia('(prefers-reduced-motion: reduce)').matches){
+    aliAvatar.classList.add('is-celebrating');aliArrivalTimeout=setTimeout(function(){aliAvatar.classList.remove('is-celebrating');},480);
+   }
+   return;
+  }
+  status.textContent='Đang trên đường đến '+key.replace('B2','B2+')+'…';
+  var from=aliCurrent,to=aliTarget,dist=Math.abs(to-from);
+  var duration=Math.max(700,Math.min(2000,dist*3.4+460));
+  var start=null;
+  function step(now){
+   if(start===null)start=now;
+   var t=Math.min(1,(now-start)/duration);
+   // Ease in-out, distance continuous even when changing destination mid-walk.
+   var eased=t*t*(3-2*t);
+   aliCurrent=from+(to-from)*eased;
+   aliDraw(aliCurrent,Math.sign(to-from)||1,t<1);
+   if(t<1){aliFrame=requestAnimationFrame(step);}
+   else{
+    aliFrame=null;aliCurrent=to;aliDraw(aliCurrent,1,false);
+    status.textContent='Đã đến '+key.replace('B2','B2+')+'!';
+    aliAvatar.classList.add('is-celebrating');
+    aliArrivalTimeout=setTimeout(function(){aliAvatar.classList.remove('is-celebrating');},480);
+   }
+  }
+  aliAvatar.classList.add('is-walking');
+  aliFrame=requestAnimationFrame(step);
+ }
+ aliPins.forEach(function(pin){pin.addEventListener('click',function(){aliSelect(pin.dataset.aliPlace);});});
+ aliDraw(aliCurrent,1,false);
+
  var paths={
   student:['Sinh viên · Tự tin từ nền tảng','Kiểm tra đầu vào, củng cố giao tiếp và chọn mục tiêu TOEIC/IELTS theo nhu cầu học tập, thực tập.'],
   career:['Người đi làm · Giao tiếp để phát triển','Tập trung tình huống công sở, thuyết trình, hội họp và giao tiếp với đối tác quốc tế.'],
