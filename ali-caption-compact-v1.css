@@ -89,3 +89,16 @@ body.ali-glass-lab #aliVideoPlayer .ali-mobile-caption-toolbar :focus-visible{
  body.ali-glass-lab #aliVideoPlayer .ali-mobile-caption-toolbar {display:none!important}
  body.ali-glass-lab #aliVideoPlayer .video-panel > .ali-screen-captions{max-height:145px!important}
 }
+
+/* Dedicated speed selector. iPhone already offers the same options in its
+   standalone transport bar. */
+body.ali-glass-lab #aliVideoPlayer .ali-caption-speed-label{
+ display:inline-flex;align-items:center;gap:5px;
+ white-space:nowrap;color:#ffd6bb;font-size:11px;letter-spacing:0;
+}
+body.ali-glass-lab #aliVideoPlayer .ali-caption-speed-label select{
+ min-height:36px;border:1px solid #755240;
+ border-radius:9px;background:#42303b;color:#fff;
+ font:inherit;font-size:11px;padding:7px;
+}
+html.ali-iphone-inline body.ali-glass-lab #aliVideoPlayer .ali-caption-speed-label{display:none!important}
