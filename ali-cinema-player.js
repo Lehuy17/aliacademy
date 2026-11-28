@@ -18,6 +18,7 @@ const useIphoneControls=/iPhone|iPod/i.test(navigator.userAgent);
 const iosControls=$('aliIosControls');
 const iosPlay=$('aliIosPlay'),iosSeek=$('aliIosSeek');
 const iosMute=$('aliIosMute'),iosSpeed=$('aliIosSpeed');
+const iosTap=$('aliVideoTap');
 let iosSeeking=false;
 if(useIphoneControls){
  document.documentElement.classList.add('ali-iphone-inline');
@@ -126,10 +127,12 @@ function updateIphoneControls(){
  if(!iosControls)return;
  const available=useIphoneControls&&!!currentMovie&&currentMovie.source?.type!=='drive'&&!video.classList.contains('hidden');
  iosControls.hidden=!available;
+ if(iosTap)iosTap.hidden=!available;
  if(!available)return;
  iosPlay.disabled=!video.hasAttribute('src');
  iosPlay.textContent=video.paused?'▶ Phát':'Ⅱ Tạm dừng';
  iosPlay.setAttribute('aria-label',video.paused?'Phát video':'Tạm dừng video');
+ if(iosTap)iosTap.setAttribute('aria-label',video.paused?'Phát video':'Tạm dừng video');
  const duration=video.duration;
  const canSeek=Number.isFinite(duration)&&duration>0;
  iosSeek.disabled=!canSeek;
@@ -140,13 +143,15 @@ function updateIphoneControls(){
  iosSpeed.value=String(video.playbackRate);
 }
 if(useIphoneControls&&iosControls){
- iosPlay.addEventListener('click',()=>{
+ const toggleInlinePlayback=()=>{
   if(!video.hasAttribute('src')){status.textContent='Đang chuẩn bị video. Vui lòng thử lại.';return;}
   if(video.paused){
    video.play().catch(()=>{status.textContent='Không thể phát video. Hãy thử lại hoặc mở bằng Safari.';updateIphoneControls();});
   }else video.pause();
   updateIphoneControls();
- });
+ };
+ iosPlay.addEventListener('click',toggleInlinePlayback);
+ iosTap?.addEventListener('click',toggleInlinePlayback);
  iosSeek.addEventListener('input',()=>{
   if(!Number.isFinite(video.duration)||video.duration<=0)return;
   iosSeeking=true;
