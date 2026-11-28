@@ -1,0 +1,176 @@
+name: Prepare BIG HERO 6 MicroBots 2014 as ALI synced HTML5 bilingual video
+
+on:
+  push:
+    paths:
+      - '.github/workflows/publish-big-hero-6-microbots-ali.yml'
+      - 'scripts/prepare-big-hero-6-microbots-ali.py'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ali-big-hero-6-microbots-publish
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 90
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+
+      - name: Install transcription and offline translation tools
+        run: |
+          set -euo pipefail
+          python3 -m venv /tmp/ali-big-hero-6-microbots-env
+          /tmp/ali-big-hero-6-microbots-env/bin/pip install --no-cache-dir \
+            'gdown>=5.0,<6' 'faster-whisper>=1.1,<2' \
+            'transformers>=4.44,<5' 'sentencepiece>=0.2,<1'
+          /tmp/ali-big-hero-6-microbots-env/bin/pip install --no-cache-dir \
+            --index-url https://download.pytorch.org/whl/cpu 'torch>=2.6,<3'
+          if ! command -v ffmpeg >/dev/null 2>&1; then
+            sudo apt-get update -qq
+            sudo DEBIAN_FRONTEND=noninteractive apt-get install -y ffmpeg
+          fi
+          ffmpeg -version | head -n 1
+
+      - name: Retrieve the exact user-supplied Google Drive video
+        env:
+          DRIVE_FILE_ID: 15fb4EIEtH6L4PhwpqiZmrLAXrBWL3yPX
+        run: |
+          set -euo pipefail
+          for attempt in 1 2 3; do
+            if /tmp/ali-big-hero-6-microbots-env/bin/gdown --id "$DRIVE_FILE_ID" \
+                 --output /tmp/ali-big-hero-6-microbots-original.mp4; then break; fi
+            rm -f /tmp/ali-big-hero-6-microbots-original.mp4
+            sleep 10
+          done
+          test -s /tmp/ali-big-hero-6-microbots-original.mp4
+          python3 - <<'PY'
+          import json, subprocess, pathlib
+          p=pathlib.Path('/tmp/ali-big-hero-6-microbots-original.mp4')
+          info=json.loads(subprocess.check_output([
+            'ffprobe','-v','error','-show_entries',
+            'format=duration:stream=codec_type,width,height,avg_frame_rate',
+            '-of','json',str(p)]))
+          sec=float(info['format']['duration'])
+          assert 10 < sec < 1500, f'Unexpected original length: {sec:.3f}s'
+          assert p.stat().st_size == 168_042_809, f'Wrong Drive source size: {p.stat().st_size}'
+          streams=info['streams']
+          video=next(v for v in streams if v['codec_type']=='video')
+          assert video['width']>=854 and video['height']>=480, (
+            f'Source below ALI minimum 480p: {video["width"]}x{video["height"]}') 
+          # Never upscale the source. Retain 1080p where actually available.
+          src_w,src_h=video['width'],video['height']
+          scale=min(1.0,1920/src_w,1080/src_h)
+          out_w=max(2,int(src_w*scale)//2*2)
+          out_h=max(2,int(src_h*scale)//2*2)
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-size').write_text(f'{out_w}x{out_h}')
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-scale').write_text(f'scale={out_w}:{out_h}:force_divisible_by=2')
+          from fractions import Fraction
+          src_fps=Fraction(video['avg_frame_rate'])
+          assert src_fps>0
+          out_fps=str(min(src_fps,Fraction(30,1)))
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-fps').write_text(out_fps)
+          print(f'ALI encoding target: {out_w}x{out_h} @ {out_fps} fps (no upscaling)',flush=True)
+          video_kbps=min(5500,int((82*1048576*8)/(sec*1000)-128-35))
+          assert video_kbps >= 550, f'Clip too long for useful playback within 90 MiB ({video_kbps}kbps); use video CDN'
+          maxrate_kbps=int(min(5800,video_kbps*1.65))
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-vrate').write_text(str(video_kbps)+'k')
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-maxrate').write_text(str(maxrate_kbps)+'k')
+          pathlib.Path('/tmp/ali-big-hero-6-microbots-bufsize').write_text(str(maxrate_kbps*2)+'k')
+          print(f'Confirmed source: {sec:.3f}s, {p.stat().st_size} bytes, {video["width"]}x{video["height"]}, {video["avg_frame_rate"]}')
+          print(f'Source-compatible two-pass target video bitrate: {video_kbps} kbps; audio 128 kbps')
+          PY
+
+      - name: Produce same-origin, seekable H264/AAC movie and film poster
+        run: |
+          set -euo pipefail
+          target='media/big-hero-6-microbots-2014'
+          mkdir -p "$target"
+          # Dynamic bitrate preserves source dimensions and targets <90 MiB for GitHub Pages.
+          v_rate="$(cat /tmp/ali-big-hero-6-microbots-vrate)"
+          v_maxrate="$(cat /tmp/ali-big-hero-6-microbots-maxrate)"
+          v_bufsize="$(cat /tmp/ali-big-hero-6-microbots-bufsize)"
+          v_scale="$(cat /tmp/ali-big-hero-6-microbots-scale)"
+          v_fps="$(cat /tmp/ali-big-hero-6-microbots-fps)"
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-big-hero-6-microbots-original.mp4 \
+            -map 0:v:0 -an \
+            -vf "$v_scale" \
+            -c:v libx264 -preset slow -profile:v high -level 4.1 \
+            -pix_fmt yuv420p -r "$v_fps" -b:v "$v_rate" -maxrate "$v_maxrate" -bufsize "$v_bufsize" -g 60 \
+            -pass 1 -passlogfile /tmp/ali-big-hero-6-microbots-x264 -f null /dev/null
+          ffmpeg -hide_banner -loglevel error -stats -nostdin -y \
+            -i /tmp/ali-big-hero-6-microbots-original.mp4 \
+            -map 0:v:0 -map 0:a:0 \
+            -vf "$v_scale" \
+            -c:v libx264 -preset slow -profile:v high -level 4.1 \
+            -pix_fmt yuv420p -r "$v_fps" -b:v "$v_rate" -maxrate "$v_maxrate" -bufsize "$v_bufsize" -g 60 \
+            -pass 2 -passlogfile /tmp/ali-big-hero-6-microbots-x264 \
+            -c:a aac -b:a 128k -ar 48000 -ac 2 -movflags +faststart \
+            "$target/video.mp4"
+          test "$(stat -c%s "$target/video.mp4")" -lt $((90*1024*1024))
+          # Poster from the final encoded movie.
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -ss 20 -i "$target/video.mp4" -frames:v 1 -q:v 3 "$target/poster.jpg"
+          ffmpeg -hide_banner -loglevel error -nostdin -y \
+            -i /tmp/ali-big-hero-6-microbots-original.mp4 -vn -ac 1 -ar 16000 \
+            /tmp/ali-big-hero-6-microbots-audio.wav
+
+      # ASR uses WAV PCM decoding to avoid PyAV compatibility issues on Python 3.14.
+      # Script verifies source-compatible video quality before exporting timed bilingual subtitles.
+      - name: Create real timed English dialogue and provisional Vietnamese translation
+        run: |
+          set -euo pipefail
+          /tmp/ali-big-hero-6-microbots-env/bin/python scripts/prepare-big-hero-6-microbots-ali.py
+
+      - name: Gate publication on complete media and caption structure
+        run: |
+          set -euo pipefail
+          node scripts/validate-ali-movies.cjs
+          python3 - <<'PY'
+          import json,pathlib
+          slug='big-hero-6-microbots-2014'
+          p=pathlib.Path('captions')/(slug+'.json')
+          d=json.loads(p.read_text(encoding='utf-8'))
+          assert d['status']=='machine_transcript_bilingual_unreviewed'
+          assert len(d['cues'])>=10, 'No usable timed subtitles'
+          assert all(c['en'].strip() and c['vi'].strip() for c in d['cues'])
+          video=pathlib.Path('media')/slug/'video.mp4'
+          import subprocess
+          meta=json.loads(subprocess.check_output(['ffprobe','-v','error',
+                 '-show_entries','stream=codec_type,width,height,avg_frame_rate','-of','json',str(video)]))
+          v=next(x for x in meta['streams'] if x['codec_type']=='video')
+          expected=pathlib.Path('/tmp/ali-big-hero-6-microbots-size').read_text().strip()
+          assert f"{v['width']}x{v['height']}"==expected, f'Encoded resolution mismatch: {v}, expected {expected}'
+          from fractions import Fraction
+          expected_fps=Fraction(pathlib.Path('/tmp/ali-big-hero-6-microbots-fps').read_text().strip())
+          assert abs(float(Fraction(v['avg_frame_rate']))-float(expected_fps))<0.02, 'Encoded frame rate mismatch'
+          print('Draft transcript verified. Editorial & rights approvals remain pending.')
+          PY
+
+      - name: Publish only after validation succeeds
+        run: |
+          set -euo pipefail
+          git config user.name 'ALI Academy Website Bot'
+          git config user.email 'ali-website-bot@users.noreply.github.com'
+          git add ali-movies.json \
+            media/big-hero-6-microbots-2014/video.mp4 \
+            media/big-hero-6-microbots-2014/poster.jpg \
+            captions/big-hero-6-microbots-2014.json
+          if git diff --cached --quiet; then
+            echo 'No changes to publish'
+            exit 0
+          fi
+          git commit -m 'Publish Big Hero 6 MicroBots synchronized bilingual ALI lesson'
+          git pull --rebase origin main
+          git push origin HEAD:main
