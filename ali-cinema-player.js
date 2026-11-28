@@ -307,6 +307,9 @@ function updatePauseWatch(){
  stopPauseWatch();
  if(pauseAfterCue&&!video.paused&&!video.ended)pauseFrame=requestAnimationFrame(watchCueEnd);
 }
+const mobileSpeed=$('aliCaptionSpeed');
+mobileSpeed?.addEventListener('change',()=>{video.playbackRate=Number(mobileSpeed.value)||1;});
+video.addEventListener('ratechange',()=>{if(mobileSpeed)mobileSpeed.value=String(video.playbackRate);});
 const pauseButton=$('aliPauseAfterCue');
 pauseButton?.addEventListener('click',()=>{
  pauseAfterCue=!pauseAfterCue;
