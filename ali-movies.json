@@ -1,5 +1,5 @@
 {
-  "version": 40,
+  "version": 41,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -698,7 +698,7 @@
       "id": "tangled-rapunzel-flynn-rider-2010",
       "title": "TANGLED - Rapunzel & Flynn Rider (2010)",
       "category": "PHIM SONG NGỮ · TANGLED",
-      "description": "Rapunzel và Flynn Rider trải qua những tình huống bất ngờ khi đồng hành cùng nhau, dần khám phá một thế giới mới bên ngoài tòa tháp.",
+      "description": "Rapunzel giấu chiếc túi của Flynn Rider và buộc anh dẫn cô ra khỏi tòa tháp để tận mắt xem lễ thả đèn lồng.",
       "duration": "04:45",
       "durationSeconds": 285.118,
       "poster": "./media/tangled-rapunzel-flynn-rider-2010/poster.jpg",
