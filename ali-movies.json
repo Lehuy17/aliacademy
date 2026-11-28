@@ -1,5 +1,5 @@
 {
-  "version": 39,
+  "version": 40,
   "movies": [
     {
       "id": "spiderman-nwh-2021-doing-this-long-time",
@@ -677,6 +677,36 @@
         "url": "./media/big-hero-6-microbots-2014/video.mp4"
       },
       "captions": "./captions/big-hero-6-microbots-2014.json",
+      "subtitleStatus": "machine_transcript_bilingual_unreviewed",
+      "presentation": {
+        "hideSourceLink": true,
+        "background": "film-blur",
+        "layout": "video-left-captions-right"
+      },
+      "qa": {
+        "stage": "public_preview_pending_editorial_review",
+        "rightsConfirmed": false,
+        "englishReviewed": false,
+        "vietnameseReviewed": false,
+        "timingsReviewed": false,
+        "desktopMobileTested": false,
+        "approvedAt": "",
+        "videoTechnicalChecked": true
+      }
+    },
+    {
+      "id": "tangled-rapunzel-flynn-rider-2010",
+      "title": "TANGLED - Rapunzel & Flynn Rider (2010)",
+      "category": "PHIM SONG NGỮ · TANGLED",
+      "description": "Rapunzel và Flynn Rider trải qua những tình huống bất ngờ khi đồng hành cùng nhau, dần khám phá một thế giới mới bên ngoài tòa tháp.",
+      "duration": "04:45",
+      "durationSeconds": 285.118,
+      "poster": "./media/tangled-rapunzel-flynn-rider-2010/poster.jpg",
+      "source": {
+        "type": "url",
+        "url": "./media/tangled-rapunzel-flynn-rider-2010/video.mp4"
+      },
+      "captions": "./captions/tangled-rapunzel-flynn-rider-2010.json",
       "subtitleStatus": "machine_transcript_bilingual_unreviewed",
       "presentation": {
         "hideSourceLink": true,
