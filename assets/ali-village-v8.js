@@ -539,7 +539,7 @@ panel.addEventListener("input",e=>{
   $("academy-range-value").textContent=state.academyScale==="IELTS"?val.toFixed(1):String(val);
  }
 });
-const viewSize=()=>{camera(true);};
+const viewSize=()=>{state.userZoom=false;camera(true);};
 window.addEventListener("resize",viewSize,{passive:true});
 const pointer={down:false,x:0,y:0,x0:0,y0:0};
 root.addEventListener("pointerdown",e=>{
