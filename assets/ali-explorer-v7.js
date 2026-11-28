@@ -223,9 +223,21 @@ installV7Dom();
   completed.clear();saveProgress();updateProgress();
  });
  $('street-v7-next').hidden=true;
+ var exploreTab=$('street-tab-explore');
+ exploreTab.addEventListener('click',function(){engine.setMode('explore');});
+ exploreTab.addEventListener('keydown',function(e){
+  if(e.key==='ArrowRight'||e.key==='ArrowLeft'){
+   e.preventDefault();
+   var tabs=[].slice.call(document.querySelectorAll('[data-street-mode]'));
+   var next=tabs[(tabs.indexOf(exploreTab)+(e.key==='ArrowRight'?1:tabs.length-1))%tabs.length];
+   next.focus();engine.setMode(next.dataset.streetMode);
+  }
+ });
  window.ALIExplorerV7={
   onModeChange:function(mode){
    var activeExplore=mode==='explore';
+   exploreTab.setAttribute('aria-selected',String(activeExplore));
+   exploreTab.tabIndex=activeExplore?0:-1;
    $('street-v7-explore-panel').hidden=!activeExplore;
    $('street-v7-world-info').hidden=!activeExplore;
    document.querySelectorAll('.street-v7-hotspot').forEach(function(pin){pin.disabled=!activeExplore;});
