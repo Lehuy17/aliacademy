@@ -501,6 +501,7 @@ document.addEventListener("keydown",e=>{
   const items=by("#village-modal button:not([disabled]),#village-modal a[href],#village-modal input:not([disabled])").filter(x=>x.offsetParent!==null);
   if(!items.length)return;
   const first=items[0],last=items[items.length-1];
+  if(!modal.contains(document.activeElement)||document.activeElement===modal){e.preventDefault();(e.shiftKey?last:first).focus();return;}
   if(e.shiftKey&&document.activeElement===first){last.focus();e.preventDefault();}
   else if(!e.shiftKey&&document.activeElement===last){first.focus();e.preventDefault();}
  }
