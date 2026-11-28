@@ -146,81 +146,47 @@ h1,h2,h3{letter-spacing:-.046em}
 @keyframes heroUp{0%{opacity:0;transform:translateY(25px)}100%{opacity:1;transform:translateY(0)}}
 @keyframes heroPicture{0%{opacity:0;filter:blur(20px);scale:.91}100%{opacity:1;filter:blur(0);scale:1}}
 @keyframes headingFloat{0%{opacity:.1;transform:translateY(16px)}100%{opacity:1;transform:translateY(0)}}
-/* Three full-bleed layered travel / learning scenes. Scroll drives the scenes,
-   rather than controlling the wheel or replacing the user's native scroll. */
-.story-journey{position:relative;height:322vh;background:linear-gradient(180deg,#fff9f2,#fef7ef);isolation:isolate}
-.story-viewport{position:sticky;top:35px;height:calc(100svh - 35px);min-height:590px;max-height:900px;overflow:hidden;isolation:isolate;background:#fff4e8;border-top:1px solid #fff3e3;border-bottom:1px solid #efdfd2;transition:background .95s ease}
-.story-journey[data-scene="1"] .story-viewport{background:#e9f4fb}
-.story-journey[data-scene="2"] .story-viewport{background:#fff5ea}
-.story-viewport:before{content:"";position:absolute;width:80%;aspect-ratio:1;border-radius:50%;left:48%;top:-42%;background:radial-gradient(circle,#ffffffec,transparent 64%);filter:blur(20px);opacity:.8;pointer-events:none}
-.story-viewport:after{content:"";position:absolute;bottom:-8%;left:-7%;width:114%;height:17%;border-radius:55% 55% 0 0;background:linear-gradient(0deg,#ffffffd9,#ffffff0b);pointer-events:none;z-index:6}
-.story-super{position:absolute;z-index:10;top:36px;left:7%;font-size:10px;letter-spacing:.25em;text-transform:uppercase;font-weight:900;color:#bf6a3a}
-.story-viewport .story-chapter{position:absolute;inset:0;display:grid;grid-template-columns:47% 53%;align-items:center;gap:1%;padding:85px 6.5% 70px;opacity:0;transform:translateY(55px) scale(.973);filter:blur(14px);pointer-events:none;visibility:hidden;transition:opacity .7s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1),filter .9s ease,visibility 0s linear .9s}
-.story-chapter.is-active{opacity:1;transform:translateY(0) scale(1);filter:blur(0);pointer-events:auto;visibility:visible;z-index:2;transition:opacity .78s cubic-bezier(.22,1,.36,1),transform .9s cubic-bezier(.22,1,.36,1),filter .9s ease,visibility 0s}
-.story-copy{position:relative;z-index:5;max-width:565px}
-.story-copy .scene-count{display:inline-flex;align-items:center;gap:12px;text-transform:uppercase;letter-spacing:.17em;font:900 11px var(--font-heading);color:#c95b24;margin-bottom:25px}
-.story-copy .scene-count:before{content:"";height:2px;width:32px;background:var(--orange)}
-.story-copy h2{font:900 clamp(43px,5vw,80px)/1.06 var(--font-heading);letter-spacing:-.062em;max-width:650px;color:#243648;margin:0 0 22px}
-.story-copy h2 em{font-style:italic;color:var(--orange-deep);font-weight:900}
-.story-copy p{font-size:13px;color:#5c6a78;max-width:480px;line-height:1.95}
-.story-copy .story-cta{margin-top:27px}
-.story-visual{position:relative;width:100%;height:100%;min-height:410px;display:grid;place-items:center;transform:translate3d(0,calc(var(--scene-shift,0px) * .45),0);transition:transform .22s linear}
-.story-glow{position:absolute;border-radius:50%;width:90%;aspect-ratio:1;background:radial-gradient(circle,#cbe8f9,transparent 69%);opacity:.92;filter:blur(11px)}
-.story-image{position:absolute;right:5%;width:74%;height:72%;object-fit:cover;border:10px solid #ffffffef;border-radius:47% 47% 23% 23%;box-shadow:0 28px 64px #5e85a73d;transform:rotate(2deg);transition:transform .95s cubic-bezier(.22,1,.36,1)}
-.story-chapter.is-active .story-image{transform:rotate(-1deg) translateY(-4px)}
-.story-image.left{right:13%;border-radius:30% 30% 18% 18%;transform:rotate(-5deg)}
-.story-chapter.is-active .story-image.left{transform:rotate(-2deg)}
-.story-float{position:absolute;z-index:3;border:6px solid white;border-radius:19px;box-shadow:0 16px 30px #55778945;object-fit:cover;transition:transform .9s cubic-bezier(.22,1,.36,1)}
-.story-float.first{left:4%;top:20%;width:32%;height:36%;transform:translateY(24px) rotate(-11deg)}
-.story-float.second{right:-1%;bottom:12%;width:34%;height:34%;transform:translateY(-24px) rotate(10deg)}
-.story-chapter.is-active .story-float.first{transform:translateY(0) rotate(-11deg)}
-.story-chapter.is-active .story-float.second{transform:translateY(0) rotate(10deg)}
-.story-small-ticket{position:absolute;z-index:4;bottom:8%;left:12%;padding:13px 18px;border-radius:18px;background:#fffdf7f1;box-shadow:0 11px 23px #a5846349;color:#b85725;font:900 12px var(--font-heading);transform:rotate(-8deg)}
-.story-plane{position:absolute;top:6%;right:9%;font-size:60px;filter:drop-shadow(0 12px 15px #f3a77466);color:var(--orange);animation:flight 8s ease-in-out infinite}
-.story-line{position:absolute;left:0%;top:5%;width:85%;height:66%;border:2px dashed #efab7c;border-left:0;border-bottom:0;border-radius:50%;transform:rotate(15deg);opacity:.8}
-.story-milestones{position:absolute;bottom:42px;left:7%;right:7%;z-index:12;display:flex;align-items:center;gap:25px}
-.story-track{height:3px;background:#e3bea1;flex:1;border-radius:12px;overflow:hidden}
-.story-fill{width:0;height:100%;background:linear-gradient(90deg,#ff6c25,#ffa75d);transition:width .15s linear}
-.story-milestones small{font:900 11px var(--font-heading);letter-spacing:.13em;color:#bb683a;white-space:nowrap}
-.story-floating-note{position:absolute;z-index:10;right:7%;top:38px;font:800 10px var(--font-heading);letter-spacing:.13em;color:#af7a5d}
-.story-scroll-tail{height:1px}
-/* Cinematic references are scroll-driven on desktop, but readable stacked scenes
-   on narrow devices and for users who prefer reduced motion. */
-@media(max-width:980px){
- .story-journey{height:auto}
- .story-viewport{height:auto;position:relative;top:auto;max-height:none;min-height:0;padding:38px 0 35px}
- .story-super{position:relative;top:auto;left:auto;margin:0 23px 18px}
- .story-floating-note,.story-milestones{display:none}
- .story-viewport .story-chapter,.story-chapter.is-active{position:relative;inset:auto;opacity:1;visibility:visible;pointer-events:auto;filter:none;transform:none;transition:none;grid-template-columns:1fr;padding:24px 5% 45px;gap:18px}
- .story-chapter:not(:last-of-type){border-bottom:1px solid #e7d7c7}
- .story-visual{height:360px;min-height:0;transform:none}
- .story-copy h2{font-size:clamp(37px,7vw,61px)}
- .story-copy p{max-width:700px}
- .story-image{width:68%;height:83%;right:13%}
- .story-float.first{left:4%;top:16%;height:35%}
- .story-float.second{right:3%;bottom:6%;height:34%}
+
+/* Compact journey replaces duplicated full-screen scroll banner; no sticky blank space. */
+.journey-steps{background:linear-gradient(135deg,#fffdfa 0%,#fff1e6 55%,#eff8ff 100%);padding-top:38px;padding-bottom:65px}
+.journey-steps-intro{display:grid;grid-template-columns:.65fr 1.2fr;align-items:start;column-gap:28px;margin-bottom:26px}
+.journey-steps-intro .mini{grid-column:1;grid-row:1;align-self:center;margin:0}
+.journey-steps-intro h2{grid-column:2;grid-row:1;font-size:clamp(24px,3vw,39px);line-height:1.14;margin:0;font-family:var(--font-heading);font-weight:900}
+.journey-steps-intro h2 span{color:var(--orange-deep)}
+.journey-steps-intro p{grid-column:2;color:#6b7480;font-size:12px;max-width:560px;margin:9px 0 0}
+.journey-steps-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;position:relative;isolation:isolate}
+.journey-steps-grid:before{content:"";position:absolute;top:37%;left:5%;right:5%;border-top:2px dashed #f5b98e;z-index:-1}
+.journey-step{position:relative;min-width:0;padding:21px 25px 24px;min-height:205px;border:1px solid #f1dfd3;border-radius:23px;background:#ffffffec;box-shadow:0 14px 32px rgba(126,91,64,.09);transition:transform .32s cubic-bezier(.2,.8,.2,1),box-shadow .32s ease}
+.journey-step:hover,.journey-step:focus-within{transform:translateY(-6px);box-shadow:0 20px 38px #9b705c2d}
+.journey-step .step-index{display:block;color:#d87943;font:900 10px var(--font-heading);letter-spacing:.14em}
+.journey-step .step-icon{display:grid;place-items:center;width:49px;height:49px;margin:16px 0 12px;border-radius:15px;background:#fff1e5;font-size:26px;transition:transform .4s ease}
+.journey-step:hover .step-icon{transform:rotate(-9deg) scale(1.07)}
+.journey-step h3{font:900 19px/1.25 var(--font-heading);margin:0 0 7px;letter-spacing:-.035em}
+.journey-step p{font-size:11px;color:#6b7580;margin:0 0 12px;line-height:1.72}
+.journey-step a{color:#d05d26;font-size:11px;font-weight:850}
+.journey-step:nth-child(2){transition-delay:.08s}
+.journey-step:nth-child(3){transition-delay:.16s}
+@media(max-width:820px){
+ .journey-steps{padding-top:24px;padding-bottom:48px}
+ .journey-steps-intro{grid-template-columns:1fr;gap:9px}
+ .journey-steps-intro .mini,.journey-steps-intro h2,.journey-steps-intro p{grid-column:1;grid-row:auto}
+ .journey-steps-grid{grid-template-columns:1fr 1fr}
+ .journey-steps-grid:before{display:none}
+ .journey-step:last-child{grid-column:1 / -1}
 }
 @media(max-width:540px){
- .story-copy h2{font-size:clamp(36px,9vw,48px)}
- .story-copy .scene-count{font-size:10px;margin-bottom:17px}
- .story-copy p{font-size:12px}
- .story-visual{height:280px}
- .story-viewport .story-chapter{padding:27px 24px 30px}
- .story-small-ticket{font-size:9px;padding:10px}
- .story-plane{font-size:37px}
+ .journey-steps-grid{grid-template-columns:1fr;gap:11px}
+ .journey-step,.journey-step:last-child{grid-column:auto;min-height:0;padding:17px 18px}
+ .journey-step .step-icon{margin:12px 0 9px}
+ .journey-steps-intro h2{font-size:29px}
  .hero h1{font-size:clamp(36px,10.2vw,51px)}
 }
 @media(prefers-reduced-motion:reduce){
  .hero-line,.hero-copy>.eyebrow,.hero-sub,.hero-desc,.hero .btn-row,.hero-trust,.sky-art{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
- .story-journey{height:auto}
- .story-viewport{position:relative;top:auto;height:auto;min-height:0;max-height:none;padding:30px 0}
- .story-viewport .story-chapter,.story-chapter.is-active{position:relative;inset:auto;opacity:1;visibility:visible;pointer-events:auto;filter:none;transform:none;transition:none;grid-template-columns:1fr;border-bottom:1px solid #ebded5;min-height:0;padding:30px 6%}
- .story-visual{height:300px;min-height:0;transform:none}
- .story-milestones,.story-floating-note{display:none}
+ .journey-step,.journey-step:hover,.journey-step:focus-within{transform:none!important;transition:none!important}
  .scroll-reveal{filter:none!important}
  .btn.primary:after,.cinema-all:after,.navbtn:after{display:none}
 }
-
 @media(max-width:1120px){.navlinks{gap:12px}.navlinks a{font-size:11px}.hero{min-height:700px}.sky-art{height:490px}.stamp{width:106px;height:106px}.skill-grid{grid-template-columns:repeat(2,1fr)}.community{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:820px){.page{padding:0 10px 10px}.shell{margin-top:10px;border-radius:24px}.navbar{top:10px;left:12px;right:12px;padding:9px 11px}.navlinks{display:none;position:absolute;right:0;left:0;top:calc(100% + 9px);padding:17px;flex-direction:column;align-items:stretch;gap:7px;border-radius:18px;border:1px solid var(--border);background:#fffefa;box-shadow:0 15px 32px #6c606026}.navlinks.open{display:flex}.navlinks a{padding:12px;font-size:13px;border-radius:9px}.navlinks a:hover{background:#fff1e3}.menu-toggle{display:grid;place-items:center}.navbtn{margin-left:auto;font-size:10px;padding:12px}.hero{grid-template-columns:1fr;padding:122px 6% 85px;min-height:auto;text-align:left}.hero h1{max-width:640px}.hero-copy{max-width:none}.sky-art{height:440px;max-width:580px;width:90%;margin:auto}.hero:after{height:59px}.map-top{grid-template-columns:1fr}.level-view{padding-top:25px}.map-panel{padding:34px 25px}.journey-line{top:23%}.route-layout{grid-template-columns:1fr}.route-art{min-height:360px}.photos{grid-template-columns:repeat(2,1fr)}.partners{grid-template-columns:repeat(3,1fr)}.event-feature{grid-template-columns:1fr}.event-feature>img{max-height:320px}.cta{grid-template-columns:1fr}.cta-art{font-size:90px}.section{padding:60px 28px}.section-heading{align-items:start}.footer{flex-direction:column;align-items:flex-start}.event-gallery{grid-template-columns:1fr 1fr}}
 @media(max-width:540px){.demo-ribbon{font-size:9px;gap:8px;padding:8px}.demo-ribbon strong{font-size:8px}.brand{font-size:15px}.brand .ali-shared-logo{width:32px!important;height:32px!important}.brand small{font-size:6px}.navbtn{padding:10px;font-size:9px}.hero{padding:105px 24px 75px}.hero h1{font-size:clamp(38px,10.5vw,52px)}.hero-sub{font-size:12px}.hero-desc{font-size:12px}.sky-art{height:310px;width:100%;margin-top:19px}.card-paris{left:-2%}.card-london{right:-7%}.stamp{width:77px;height:77px;font-size:7px;right:-1%;top:0}.stamp span{font-size:19px}.section{padding:48px 20px}.section h2{font-size:clamp(29px,8vw,39px)}.section-heading{display:block}.section-heading .text-link{margin-top:15px}.map-panel{padding:26px 16px;min-height:0}.map-copy h2{font-size:33px}.levels{gap:5px}.level{width:25%;min-height:97px;border-radius:12px;padding:14px 4px}.level-emoji{font-size:18px}.level strong{font-size:17px}.level span:last-child{font-size:8px}.level-caption{align-items:start;flex-direction:column}.skill-grid,.photos,.community{grid-template-columns:1fr 1fr;gap:10px}.skill-card{padding:18px 15px;min-height:220px}.skill-card h3{font-size:18px}.skill-card p{font-size:11px}.skill-icon{margin-bottom:21px}.photo-body{padding:12px}.photo-body h3{font-size:14px}.photo-body p{font-size:10px}.partner-chip{font-size:11px;min-height:68px}.partners{gap:7px}.event-body{padding:28px 21px}.event-body h2{font-size:31px}.event-gallery{grid-template-columns:1fr}.community-card{min-height:165px}.community-card img{height:190px}.community-card span{font-size:9px}.route-art{min-height:290px}.route-label{font-size:9px}.cta{padding:29px 22px}.cta-art{display:none}.footer-links{gap:10px}.btn{padding:14px 17px;font-size:11px}}
@@ -263,59 +229,6 @@ h1,h2,h3{letter-spacing:-.046em}
   </div>
 </section>
 
-<section class="story-journey" id="story" data-scene="0" aria-label="Hành trình khám phá tiếng Anh của ALI">
- <div class="story-viewport" id="story-viewport">
-  <div class="story-super">ALI English · A journey beyond borders</div>
-  <div class="story-floating-note">SCROLL TO EXPLORE · 01—03</div>
-  <article class="story-chapter is-active" data-chapter="0">
-   <div class="story-copy">
-    <div class="scene-count">Chapter 01 · Discover</div>
-    <h2>TIẾNG ANH LÀ<br><em>CÁNH CỬA</em><br>RA THẾ GIỚI.</h2>
-    <p>Không phải ai cũng xuất phát từ cùng một điểm. Điều quan trọng là hiểu năng lực hiện tại, rồi mở ra con đường phù hợp với chính mình.</p>
-    <div class="story-cta"><a class="btn primary" href="/tests/">Khám phá trình độ ↗</a></div>
-   </div>
-   <div class="story-visual" aria-label="Minh họa chuyến đi qua thế giới">
-    <div class="story-glow"></div>
-    <div class="story-line" aria-hidden="true"></div>
-    <img class="story-image" src="https://images.unsplash.com/photo-1502602898657-3e91760cbb34?auto=format&amp;fit=crop&amp;w=920&amp;q=82" alt="Tháp Eiffel tại Paris" loading="lazy">
-    <img class="story-float first" src="https://images.unsplash.com/photo-1552832230-c0197dd311b5?auto=format&amp;fit=crop&amp;w=400&amp;q=78" alt="Đấu trường Colosseum tại Rome" loading="lazy">
-    <img class="story-float second" src="https://images.unsplash.com/photo-1513635269975-59663e0ac1ad?auto=format&amp;fit=crop&amp;w=400&amp;q=78" alt="London, Vương quốc Anh" loading="lazy">
-    <span class="story-plane" aria-hidden="true">✈</span><span class="story-small-ticket">ALI PASSPORT · DISCOVER</span>
-   </div>
-  </article>
-  <article class="story-chapter" data-chapter="1" aria-hidden="true">
-   <div class="story-copy">
-    <div class="scene-count">Chapter 02 · Find your level</div>
-    <h2>MỌI HÀNH TRÌNH<br>CẦN MỘT<br><em>ĐIỂM BẮT ĐẦU.</em></h2>
-    <p>Từ A1 đến B2, mỗi bước tiến đều đáng giá. Bản đồ trình độ giúp bạn nhận ra nơi mình đang đứng và xác định cột mốc tiếp theo.</p>
-    <div class="story-cta"><a class="btn primary" href="#map">Khám phá bản đồ ↗</a></div>
-   </div>
-   <div class="story-visual" aria-label="Minh họa hành trình từ nền tảng đến mục tiêu">
-    <div class="story-glow"></div><div class="story-line" aria-hidden="true"></div>
-    <img class="story-image left" src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&amp;fit=crop&amp;w=900&amp;q=82" alt="Cảnh quan thiên nhiên và những dãy núi mở rộng chân trời" loading="lazy">
-    <img class="story-float first" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=430&amp;q=78" alt="Nhóm sinh viên trao đổi và học tập" loading="lazy">
-    <img class="story-float second" src="https://images.unsplash.com/photo-1523580494863-6f3031224c94?auto=format&amp;fit=crop&amp;w=410&amp;q=78" alt="Không gian lớp học quốc tế" loading="lazy">
-    <span class="story-plane" aria-hidden="true">🧭</span><span class="story-small-ticket">A1 → A2 → B1 → B2</span>
-   </div>
-  </article>
-  <article class="story-chapter" data-chapter="2" aria-hidden="true">
-   <div class="story-copy">
-    <div class="scene-count">Chapter 03 · Grow through stories</div>
-    <h2>HỌC TỪ CUỘC SỐNG.<br><em>LỚN LÊN</em><br>CÙNG THẾ GIỚI.</h2>
-    <p>Khám phá tiếng Anh qua phim song ngữ, trải nghiệm thực tế, lớp học và những câu chuyện truyền cảm hứng của cộng đồng ALI.</p>
-    <div class="story-cta"><a class="btn primary" href="#cinema">Đến ALI Cinema Club ↗</a></div>
-   </div>
-   <div class="story-visual" aria-label="Minh họa học tiếng Anh trong những trải nghiệm đa dạng">
-    <div class="story-glow"></div><div class="story-line" aria-hidden="true"></div>
-    <img class="story-image" src="https://images.unsplash.com/photo-1523240795612-9a054b0db644?auto=format&amp;fit=crop&amp;w=920&amp;q=82" alt="Nhóm sinh viên học cùng nhau trong môi trường quốc tế" loading="lazy">
-    <img class="story-float first" src="https://images.unsplash.com/photo-1497366811353-6870744d04b2?auto=format&amp;fit=crop&amp;w=400&amp;q=78" alt="Không gian làm việc và hợp tác hiện đại" loading="lazy">
-    <img class="story-float second" src="/media/kung-fu-panda-po-vs-tai-lung-final-battle/poster.jpg" alt="Trích đoạn Kung Fu Panda trong thư viện ALI Cinema" loading="lazy">
-    <span class="story-plane" aria-hidden="true">✦</span><span class="story-small-ticket">YOUR ENGLISH · YOUR FUTURE</span>
-   </div>
-  </article>
-  <div class="story-milestones" aria-hidden="true"><small id="story-progress-label">01 / 03</small><div class="story-track"><div class="story-fill" id="story-fill"></div></div><small>KEEP EXPLORING ↓</small></div>
- </div>
-</section>
 <section class="section soft" id="map" aria-labelledby="map-title">
  <div class="map-panel scroll-reveal">
   <div class="map-top">
@@ -331,6 +244,36 @@ h1,h2,h3{letter-spacing:-.046em}
     <div class="level-caption" aria-live="polite"><div><strong id="level-title">A1 · Khởi động</strong><p id="level-detail">Tự giới thiệu, hỏi đáp ngắn và xây vốn từ dùng hằng ngày.</p></div><span style="font-size:28px">🧭</span></div>
    </div>
   </div>
+ </div>
+</section>
+<section class="journey-steps section" id="story" aria-labelledby="journey-steps-title">
+ <div class="journey-steps-intro scroll-reveal">
+  <div class="mini">Hành trình của riêng bạn</div>
+  <h2 id="journey-steps-title">3 BƯỚC ĐỂ <span>TIẾN XA HƠN.</span></h2>
+  <p>Không cần vội. Hãy bắt đầu từ nơi bạn đang đứng và khám phá tiếng Anh theo cách của riêng mình.</p>
+ </div>
+ <div class="journey-steps-grid" role="list">
+  <article class="journey-step scroll-reveal" role="listitem">
+   <span class="step-index">01 / DISCOVER</span>
+   <span class="step-icon" aria-hidden="true">🧭</span>
+   <h3>Hiểu năng lực</h3>
+   <p>Nhìn rõ điểm xuất phát qua bài kiểm tra phù hợp.</p>
+   <a href="/tests/">Kiểm tra trình độ ↗</a>
+  </article>
+  <article class="journey-step scroll-reveal" role="listitem">
+   <span class="step-index">02 / EXPLORE</span>
+   <span class="step-icon" aria-hidden="true">🎬</span>
+   <h3>Học từ trải nghiệm</h3>
+   <p>Luyện nghe và cảm nhận ngôn ngữ qua phim song ngữ.</p>
+   <a href="/movies/">Xem phim song ngữ ↗</a>
+  </article>
+  <article class="journey-step scroll-reveal" role="listitem">
+   <span class="step-index">03 / GROW</span>
+   <span class="step-icon" aria-hidden="true">✈️</span>
+   <h3>Chọn lộ trình</h3>
+   <p>Kết nối mục tiêu học tập với những cơ hội rộng mở.</p>
+   <a href="#path">Khám phá lộ trình ↗</a>
+  </article>
  </div>
 </section>
 <section class="section soft" id="explore" aria-labelledby="explore-title">
@@ -494,50 +437,14 @@ h1,h2,h3{letter-spacing:-.046em}
   requestAnimationFrame(syncCinemaArrows);
  }
 
- // Lightweight cinematic scroll progress, stable on native mobile scrolling.
+ // Progress bar without scroll locking or extra page height.
  var motionBar=document.querySelector('#motion-progress span');
- var story=document.getElementById('story'),chapters=[].slice.call(story.querySelectorAll('[data-chapter]'));
- var storyFill=document.getElementById('story-fill'),storyLabel=document.getElementById('story-progress-label');
- var narrowStory=window.matchMedia('(max-width:980px)');
- var motionReduced=window.matchMedia('(prefers-reduced-motion: reduce)');
- var scrollScheduled=false;
- function setStoryScene(index){
-  var current=String(index);
-  if(story.dataset.scene===current&&story.dataset.sceneInitialized==='1')return;
-  story.dataset.scene=current;story.dataset.sceneInitialized='1';
-  chapters.forEach(function(ch,i){
-   var visible=i===index;
-   ch.classList.toggle('is-active',visible);
-   if(!narrowStory.matches&&!motionReduced.matches){
-    ch.setAttribute('aria-hidden',String(!visible));ch.inert=!visible;
-   }else{ch.removeAttribute('aria-hidden');ch.inert=false;}
-  });
-  if(storyLabel)storyLabel.textContent=String(index+1).padStart(2,'0')+' / 03';
- }
- function updateMotion(){
-  scrollScheduled=false;
-  var total=Math.max(1,document.documentElement.scrollHeight-innerHeight);
-  if(motionBar)motionBar.style.width=(Math.min(1,Math.max(0,window.scrollY/total))*100).toFixed(2)+'%';
-  if(narrowStory.matches||motionReduced.matches){
-   story.dataset.scene='0';story.dataset.sceneInitialized='0';
-   chapters.forEach(function(ch){ch.classList.add('is-active');ch.removeAttribute('aria-hidden');ch.inert=false;});
-   return;
-  }
-  var rect=story.getBoundingClientRect();
-  var scrollLength=Math.max(1,rect.height-innerHeight+35);
-  var p=Math.max(0,Math.min(.999,-rect.top/scrollLength));
-  var idx=Math.min(2,Math.floor(p*3));
-  setStoryScene(idx);
-  if(storyFill)storyFill.style.width=(p*100).toFixed(2)+'%';
-  var visual=chapters[idx].querySelector('.story-visual');
-  if(visual)visual.style.setProperty('--scene-shift',((p*3-idx-.5)*-21).toFixed(1)+'px');
- }
- function scheduleMotion(){if(scrollScheduled)return;scrollScheduled=true;requestAnimationFrame(updateMotion);}
- window.addEventListener('scroll',scheduleMotion,{passive:true});
- window.addEventListener('resize',scheduleMotion,{passive:true});
- if(narrowStory.addEventListener)narrowStory.addEventListener('change',scheduleMotion);
- if(motionReduced.addEventListener)motionReduced.addEventListener('change',scheduleMotion);
- scheduleMotion();
+ var progressScheduled=false;
+ function updateProgress(){progressScheduled=false;var total=Math.max(1,document.documentElement.scrollHeight-innerHeight);if(motionBar)motionBar.style.width=(Math.min(1,Math.max(0,window.scrollY/total))*100).toFixed(2)+'%';}
+ function requestProgress(){if(progressScheduled)return;progressScheduled=true;requestAnimationFrame(updateProgress);}
+ window.addEventListener('scroll',requestProgress,{passive:true});
+ window.addEventListener('resize',requestProgress,{passive:true});
+ requestProgress();
 
  var art=document.getElementById('sky-art'),hero=document.querySelector('.hero');
  if(!prefers&&window.matchMedia('(pointer:fine)').matches){hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;art.style.setProperty('--mx',(x*12).toFixed(1)+'px');art.style.setProperty('--my',(y*10).toFixed(1)+'px');});hero.addEventListener('pointerleave',function(){art.style.setProperty('--mx','0px');art.style.setProperty('--my','0px');});}
