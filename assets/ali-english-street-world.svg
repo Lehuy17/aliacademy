@@ -261,7 +261,7 @@
   <rect x="449.2" y="602.8" width="15.8" height="19.2" rx="7" fill="#B57D59" stroke="#925F48" stroke-width="2"/>
   <circle cx="461" cy="612.8" r="2.6" fill="#FFDF9A"/>
   <path d="M497.7 563L508.5 549.8" stroke="#FFE4C2" stroke-width="3"/>
-  <rect x="425.4" y="583" width="54.5" height="22" rx="7" fill="#FFF8E6" stroke="#4D8878" stroke-width="2"/><text x="447.2" y="598" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle" fill="#985F3C">STUDY</text></g><g filter="url(#townShadow)" aria-hidden="true"><ellipse cx="740" cy="593" rx="60" ry="13" fill="#54896A" opacity=".20"/>
+  <rect x="425.4" y="583" width="54.5" height="22" rx="7" fill="#FFF8E6" stroke="#4D8878" stroke-width="2"/><text x="447.2" y="598" font-size="11" font-family="sans-serif" font-weight="900" text-anchor="middle" fill="#985F3C">CINEMA</text></g><g filter="url(#townShadow)" aria-hidden="true"><ellipse cx="740" cy="593" rx="60" ry="13" fill="#54896A" opacity=".20"/>
   <path d="M757.4 510L780.3 500.9V570.9L757.4 580Z" fill="#E1C4A2" stroke="#B77E55" stroke-width="2.3"/>
   <rect x="681.1" y="510" width="76.3" height="70" rx="2" fill="#FFF9E9" stroke="#B77E55" stroke-width="2.2"/>
   <path d="M673.5 510L721.5 485.5L765.1 510Z" fill="#E0A86C" stroke="#B77E55" stroke-width="4"/>
