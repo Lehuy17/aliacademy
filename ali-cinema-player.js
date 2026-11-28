@@ -1,5 +1,6 @@
 import {firebaseConfig} from './firebase-config.js';
 import {showMovieQuiz,clearMovieQuiz} from './ali-movie-quiz.js?v=3';
+import {buildCompactCaptionSegments} from './ali-caption-segments.js?v=1';
 const $=id=>document.getElementById(id);
 const video=$('aliHtmlVideo');
 // ALI Cinema mobile standard: inline playback before assigning any media.
@@ -31,6 +32,7 @@ const status=$('aliVideoMode');
 const clock=$('aliVideoClock');
 let cues=[],active=-1,mediaUrl=null,loadTicket=0,lang='both',fontScale=1,auth=null,currentMovie=null,libraryLoaded=false;
 let autoScroll=true, overlayEnabled=true;
+let compactSegments=[],pauseAfterCue=false,pauseFrame=0,lastPausedCue=-1;
 let firebaseMovieContext=null;
 let selectionTicket=0;
 
@@ -171,6 +173,7 @@ function updateSyncControls(){
  const label=$('aliSyncStatus');
  const toggle=$('aliAutoScroll');
  const cc=$('aliScreenCc');
+ const pauseButton=$('aliPauseAfterCue');
  const help=$('aliTranscriptHelp');
  const note=document.querySelector('.cinema-player-tip span:last-child');
  badge.classList.toggle('is-active',ready&&video.readyState>=1);
@@ -181,6 +184,7 @@ function updateSyncControls(){
  toggle.textContent=autoScroll?'☷ Tự động cuộn':'☷ Cuộn thủ công';
  cc.classList.toggle('hidden',!ready||!cues.length);
  cc.setAttribute('aria-pressed',String(overlayEnabled));
+ if(pauseButton)pauseButton.disabled=!ready||!cues.length;
  help.textContent=ready?'Nhấn vào câu để nghe lại từ thời điểm đó':'Phụ đề song ngữ Anh–Việt';
  if(note)note.textContent=ready?'Nhấn một câu trong cột phụ đề để nhảy đến đúng thời điểm trong phim.':'Theo dõi lời thoại Anh–Việt trong khi xem phim.';
  updateIphoneControls();
@@ -222,6 +226,7 @@ function applyLanguage(){
  list.querySelectorAll('.ali-vi').forEach(e=>e.classList.toggle('hidden',lang==='en'));
  list.style.setProperty('--textscale',fontScale);
  movieScreen?.style.setProperty('--caption-textscale',String(fontScale));
+ $('aliScreenCaptions')?.style.setProperty('--caption-textscale',String(fontScale));
  updateScreenCaptions();
 }
 function updateScreenCaptions(){
@@ -232,19 +237,27 @@ function updateScreenCaptions(){
  if(!ready){el.classList.add('hidden');return;}
  const cue=active>=0?cues[active]:null;
  const speaking=cue&&video.currentTime>=cue.start&&video.currentTime<=cue.end+.35;
+ const en=$('aliScreenCaptionEn'),vi=$('aliScreenCaptionVi');
  if(!speaking){
-  // Silent gap: never show a "waiting for dialogue" subtitle.
-  // Leave the video unobstructed until an actual bilingual cue is active.
-  $('aliScreenCaptionEn').textContent='';
-  $('aliScreenCaptionVi').textContent='';
-  el.classList.remove('is-idle');
-  el.classList.add('hidden');
+  en.textContent='';vi.textContent='';
+  el.classList.toggle('is-idle',compact);
+  el.classList.toggle('hidden',!compact);
   return;
  }
- $('aliScreenCaptionEn').textContent=cue.en;
- $('aliScreenCaptionVi').textContent=cue.vi;
- $('aliScreenCaptionEn').classList.toggle('hidden',lang==='vi');
- $('aliScreenCaptionVi').classList.toggle('hidden',lang==='en');
+ let shown=cue;
+ if(compact){
+  const parts=compactSegments[active]||[];
+  if(parts.length){
+   // We estimate sub-cue times inside the original timestamp boundaries.
+   const now=video.currentTime;
+   shown=parts.find(part=>now>=part.start&&now<part.end)||
+     (now>=parts[parts.length-1].end?parts[parts.length-1]:parts[0]);
+  }
+ }
+ if(en.textContent!==shown.en)en.textContent=shown.en;
+ if(vi.textContent!==shown.vi)vi.textContent=shown.vi;
+ en.classList.toggle('hidden',lang==='vi');
+ vi.classList.toggle('hidden',lang==='en');
  el.classList.remove('is-idle','hidden');
 }
 window.addEventListener('resize',updateScreenCaptions);
@@ -272,6 +285,40 @@ function sync(){
  }
  updateScreenCaptions();
 }
+// Optional A1–A2 study mode: pause at the end of an original caption cue.
+function stopPauseWatch(){if(pauseFrame){cancelAnimationFrame(pauseFrame);pauseFrame=0;}}
+function watchCueEnd(){
+ pauseFrame=0;
+ if(!pauseAfterCue||video.paused||video.ended||!syncReady())return;
+ const now=video.currentTime;
+ // Short look-ahead avoids missing the endpoint on 60/120 Hz iPhones.
+ let lo=0,hi=cues.length-1,i=-1;
+ while(lo<=hi){const mid=(lo+hi)>>1;if(cues[mid].start<=now){i=mid;lo=mid+1;}else hi=mid-1;}
+ const cue=i>=0?cues[i]:null;
+ if(cue&&i!==lastPausedCue&&now>=cue.end-.085&&now<=cue.end+.14){
+  lastPausedCue=i;
+  video.pause();
+  updateSyncControls();
+  return;
+ }
+ pauseFrame=requestAnimationFrame(watchCueEnd);
+}
+function updatePauseWatch(){
+ stopPauseWatch();
+ if(pauseAfterCue&&!video.paused&&!video.ended)pauseFrame=requestAnimationFrame(watchCueEnd);
+}
+const pauseButton=$('aliPauseAfterCue');
+pauseButton?.addEventListener('click',()=>{
+ pauseAfterCue=!pauseAfterCue;
+ pauseButton.setAttribute('aria-pressed',String(pauseAfterCue));
+ pauseButton.textContent=pauseAfterCue?'⏸ Dừng sau từng câu: Bật':'⏸ Dừng sau từng câu: Tắt';
+ lastPausedCue=-1;
+ updatePauseWatch();
+});
+video.addEventListener('seeking',()=>{lastPausedCue=-1;});
+video.addEventListener('play',updatePauseWatch);
+video.addEventListener('pause',stopPauseWatch);
+video.addEventListener('ended',stopPauseWatch);
 for(const ev of ['timeupdate','seeking','seeked','play','playing','loadedmetadata','pause','ended'])video.addEventListener(ev,()=>{
  sync();if(ev==='playing'||ev==='pause'||ev==='loadedmetadata'||ev==='ended')updateSyncControls();
 });
@@ -283,7 +330,7 @@ $('aliAutoScroll').addEventListener('click',()=>{
 $('aliScreenCc').addEventListener('click',()=>{
  overlayEnabled=!overlayEnabled;updateSyncControls();updateScreenCaptions();
 });
-function clearMedia(){stopAmbient();video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
+function clearMedia(){stopPauseWatch();lastPausedCue=-1;stopAmbient();video.pause();video.removeAttribute('src');video.load();if(mediaUrl){URL.revokeObjectURL(mediaUrl);mediaUrl=null;}}
 function fallback(){
  ++loadTicket;clearMedia();
  const driveId=currentMovie?.driveId||'';
@@ -374,6 +421,8 @@ async function openMovie(movie){
  // Ignore a stale caption fetch after a learner switches to another movie.
  if(selected!==selectionTicket)return;
  cues=loadedCues;
+ compactSegments=cues.map(buildCompactCaptionSegments);
+ lastPausedCue=-1;
  active=-1;autoScroll=true;showCues();
  // Quiz is independent from playback and must not delay loading the film.
  showMovieQuiz(movie,cues,auth?.currentUser?.uid||'guest');
@@ -542,7 +591,7 @@ $('closeMovie').addEventListener('click',()=>{
  ++selectionTicket;++loadTicket;clearMedia();clearMovieQuiz();$('aliDrivePlayer').removeAttribute('src');$('aliVideoPlayer').classList.add('hidden');
  if(ambientFilm){ambientFilm.pause();ambientFilm.removeAttribute('src');ambientFilm.load();}
  ambientHost?.classList.remove('has-ambient-film');
- currentMovie=null;cues=[];active=-1;updateScreenCaptions();updateSyncControls();
+ currentMovie=null;cues=[];compactSegments=[];active=-1;updateScreenCaptions();updateSyncControls();
 });
 $('fallbackBtn').addEventListener('click',()=>{
  if(window.confirm('Nguồn dự phòng có thể không đồng bộ phụ đề. Bạn có muốn tiếp tục?'))fallback();
