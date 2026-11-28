@@ -39,6 +39,7 @@
 .street-v7-start:hover{text-decoration:underline}
 .street-v7-mission-note{color:#99775e;font-size:10px;line-height:1.6;margin-top:9px}
 .street-v7-overlay[hidden],.street-v7-dialog[hidden],.street-v7-stamp-dot[hidden]{display:none!important}
+.street-v7-overlay [hidden],.street-v7-location-info[hidden],.street-v7-missions[hidden]{display:none!important}
 .street-v7-overlay{position:fixed;inset:0;z-index:180;display:flex;justify-content:flex-end;align-items:center;padding:4vw;overscroll-behavior:contain}
 .street-v7-backdrop{position:absolute;inset:0;background:#172b3d99;backdrop-filter:blur(4px);cursor:pointer}
 .street-v7-dialog{position:relative;z-index:2;width:min(510px,95vw);max-height:min(760px,90dvh);overflow-y:auto;overscroll-behavior:contain;background:#fffdf9;border:1px solid #ffdbc4;box-shadow:0 30px 80px #10212d70;border-radius:28px;transform:translateX(0);animation:v7SheetIn .38s cubic-bezier(.18,.8,.25,1) both;outline:0}
