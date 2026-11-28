@@ -88,6 +88,7 @@ a{color:inherit;text-decoration:none}button{font:inherit;cursor:pointer}button:f
 .street-node[aria-pressed="true"]{background:#FF702A;color:#FFF;box-shadow:0 0 0 7px #FFA55B55,0 12px 25px #CF6A3D8C;transform:translate(-50%,-112%) scale(1.08)}
 .street-node[aria-pressed="true"]:after{border-top-color:#FF702A}
 .street-node[aria-pressed="true"] .node-name{color:#FFF2E7}
+.street-node:disabled{cursor:default}
 .street-world[data-mode="score"] .street-node{pointer-events:none}
 .street-world[data-mode="score"] .street-node .node-code{display:none}
 .street-world[data-mode="score"] .street-node .node-name{font-size:11px}
@@ -658,6 +659,7 @@ h1,h2,h3{letter-spacing:-.046em}
   if(streetMode==='ielts')streetScoreData.ielts=value;else streetScoreData[streetSkill]=value;
   var ratio=(value-cfg.min)/(cfg.max-cfg.min);
   document.getElementById('street-score-value').textContent=streetFormat(value);
+  streetScore.setAttribute('aria-valuetext',streetFormat(value)+' '+cfg.unit+' · '+cfg.tag);
   streetScore.style.backgroundSize=(ratio*100)+'% 100%';
   streetInfo(streetFormat(value)+' '+cfg.unit+' · '+cfg.tag,
     'Vị trí minh họa trên English Street theo thang '+cfg.tag+'. Không dùng vị trí để quy đổi sang CEFR, IELTS hoặc TOEIC khác. Chọn bài test thật để biết năng lực hiện tại.',
@@ -683,6 +685,7 @@ h1,h2,h3{letter-spacing:-.046em}
   document.getElementById('street-range-card').hidden=mode==='cefr';
   document.getElementById('street-toeic-skills').hidden=mode!=='toeic';
   document.getElementById('street-map-hint').textContent=mode==='cefr'?'👆 Chọn một mốc CEFR để đi tới':'🎯 Kéo thanh điểm phía dưới để nhân vật di chuyển';
+  streetPins.forEach(function(pin){pin.disabled=mode!=='cefr';});
   streetHighlight();
   if(mode==='cefr'){streetSetCefr(streetSelected);}
   else streetRefreshConfig();
