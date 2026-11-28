@@ -307,6 +307,7 @@ h1,h2,h3{letter-spacing:-.046em}
 @media(max-width:540px){.demo-ribbon{font-size:9px;gap:8px;padding:8px}.demo-ribbon strong{font-size:8px}.brand{font-size:15px}.brand .ali-shared-logo{width:32px!important;height:32px!important}.brand small{font-size:6px}.navbtn{padding:10px;font-size:9px}.hero{padding:105px 24px 75px}.hero h1{font-size:clamp(38px,10.5vw,52px)}.hero-sub{font-size:12px}.hero-desc{font-size:12px}.sky-art{height:310px;width:100%;margin-top:19px}.card-paris{left:-2%}.card-london{right:-7%}.stamp{width:77px;height:77px;font-size:7px;right:-1%;top:0}.stamp span{font-size:19px}.section{padding:48px 20px}.section h2{font-size:clamp(29px,8vw,39px)}.section-heading{display:block}.section-heading .text-link{margin-top:15px}.map-panel{padding:26px 16px;min-height:0}.map-copy h2{font-size:33px}.levels{gap:5px}.level{width:25%;min-height:97px;border-radius:12px;padding:14px 4px}.level-emoji{font-size:18px}.level strong{font-size:17px}.level span:last-child{font-size:8px}.level-caption{align-items:start;flex-direction:column}.skill-grid,.photos,.community{grid-template-columns:1fr 1fr;gap:10px}.skill-card{padding:18px 15px;min-height:220px}.skill-card h3{font-size:18px}.skill-card p{font-size:11px}.skill-icon{margin-bottom:21px}.photo-body{padding:12px}.photo-body h3{font-size:14px}.photo-body p{font-size:10px}.partner-chip{font-size:11px;min-height:68px}.partners{gap:7px}.event-body{padding:28px 21px}.event-body h2{font-size:31px}.event-gallery{grid-template-columns:1fr}.community-card{min-height:165px}.community-card img{height:190px}.community-card span{font-size:9px}.route-art{min-height:290px}.route-label{font-size:9px}.cta{padding:29px 22px}.cta-art{display:none}.footer-links{gap:10px}.btn{padding:14px 17px;font-size:11px}}
 @media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important;scroll-behavior:auto!important;transition:none!important}.scroll-reveal{opacity:1;transform:none}.sky-art{transform:none!important}}
 </style>
+<link rel="stylesheet" href="/assets/ali-explorer-v7.css?v=2">
 </head>
 <body>
 <div class="demo-ribbon"><strong>DESIGN DEMO</strong><span>Bản xem thử độc lập · Không thay thế trang chủ ALI</span><a href="/">Về trang hiện tại ↗</a></div>
@@ -604,13 +605,13 @@ h1,h2,h3{letter-spacing:-.046em}
   streetWorld.style.transform='translate3d('+streetPanX.toFixed(2)+'px,'+streetPanY.toFixed(2)+'px,0) scale('+streetScale.toFixed(4)+')';
  }
  function streetDraw(distance,walking){streetPosition(distance,walking);streetCamera();}
- function streetMove(distance){
+ function streetMove(distance,onArrive){
   streetDestination=Math.max(0,Math.min(streetLength,distance));
   if(streetArrivalTimer){clearTimeout(streetArrivalTimer);streetArrivalTimer=null;}
   if(streetRAF!==null){cancelAnimationFrame(streetRAF);streetRAF=null;}
   streetCharacter.classList.remove('arrived');
   if(window.matchMedia('(prefers-reduced-motion: reduce)').matches||Math.abs(streetDestination-streetCurrent)<.25){
-   streetCurrent=streetDestination;streetDraw(streetCurrent,false);return;
+   streetCurrent=streetDestination;streetDraw(streetCurrent,false);if(typeof onArrive==="function")onArrive();return;
   }
   var origin=streetCurrent,target=streetDestination;
   var duration=Math.max(530,Math.min(2400,Math.abs(target-origin)*2.15+470));
@@ -626,6 +627,7 @@ h1,h2,h3{letter-spacing:-.046em}
     streetRAF=null;streetCurrent=target;streetDraw(target,false);
     streetCharacter.classList.add('arrived');
     streetArrivalTimer=setTimeout(function(){streetCharacter.classList.remove('arrived');},490);
+    if(typeof onArrive==='function')onArrive();
    }
   }
   streetRAF=requestAnimationFrame(frame);
@@ -676,25 +678,30 @@ h1,h2,h3{letter-spacing:-.046em}
   streetUpdateScore(true);
  }
  function streetSetMode(mode){
-  if(!['cefr','ielts','toeic'].includes(mode))return;
+  if(!['explore','cefr','ielts','toeic'].includes(mode))return;
   streetMode=mode;
-  streetWorld.dataset.mode=mode==='cefr'?'cefr':'score';
+  streetWorld.dataset.mode=mode==='explore'?'explore':(mode==='cefr'?'cefr':'score');
   streetTabs.forEach(function(tab){tab.setAttribute('aria-selected',String(tab.dataset.streetMode===mode));tab.tabIndex=tab.dataset.streetMode===mode?0:-1;});
   document.getElementById('street-score-panel').setAttribute('aria-labelledby','street-tab-'+mode);
+  document.getElementById('street-v7-explore-panel').hidden=mode!=='explore';
   document.getElementById('street-cefr-controls').hidden=mode!=='cefr';
   document.getElementById('street-range-card').hidden=mode==='cefr';
   document.getElementById('street-toeic-skills').hidden=mode!=='toeic';
-  document.getElementById('street-map-hint').textContent=mode==='cefr'?'👆 Chọn một mốc CEFR để đi tới':'🎯 Kéo thanh điểm phía dưới để nhân vật di chuyển';
+  document.getElementById('street-map-hint').textContent=mode==='explore'?'🏙️ Chọn một địa điểm để nhận mini-quest':(mode==='cefr'?'👆 Chọn mốc CEFR để đi tới':'🎯 Kéo thanh điểm phía dưới để di chuyển');
   streetPins.forEach(function(pin){pin.disabled=mode!=='cefr';});
   streetHighlight();
-  if(mode==='cefr'){streetSetCefr(streetSelected);}
+  if(mode==='explore'){
+   streetInfo('English Street · Chọn địa điểm','Ghé Bookstore, Café hoặc Cinema để luyện tiếng Anh qua thử thách ngắn.','🏙️','ALI EXPLORER · KHÁM PHÁ TỰ DO');
+   streetMove(streetStops[0].distance);
+  }else if(mode==='cefr')streetSetCefr(streetSelected);
   else streetRefreshConfig();
+  if(window.ALIExplorerV7&&typeof window.ALIExplorerV7.onModeChange==='function')window.ALIExplorerV7.onModeChange(mode);
  }
  streetPins.forEach(function(pin){pin.addEventListener('click',function(){if(streetMode==='cefr')streetSetCefr(pin.dataset.cefr);});});
  streetShortcuts.forEach(function(btn){btn.addEventListener('click',function(){streetSetCefr(btn.dataset.cefrShortcut);});});
  streetTabs.forEach(function(tab){
   tab.addEventListener('click',function(){streetSetMode(tab.dataset.streetMode);});
-  tab.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();var i=streetTabs.indexOf(tab),next=streetTabs[(i+(e.key==='ArrowRight'?1:2))%3];next.focus();streetSetMode(next.dataset.streetMode);}});
+  tab.addEventListener('keydown',function(e){if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();var t=[].slice.call(document.querySelectorAll('[data-street-mode]'));var i=t.indexOf(tab),next=t[(i+(e.key==='ArrowRight'?1:t.length-1))%t.length];next.focus();streetSetMode(next.dataset.streetMode);}});
  });
  streetSkills.forEach(function(btn){btn.addEventListener('click',function(){streetSkill=btn.dataset.toeicSkill;streetRefreshConfig();});});
  streetScore.addEventListener('input',function(){streetUpdateScore(true);});
@@ -702,6 +709,7 @@ h1,h2,h3{letter-spacing:-.046em}
  document.getElementById('street-score-plus').addEventListener('click',function(){streetScore.value=String(Math.min(Number(streetScore.max),Number(streetScore.value)+Number(streetScore.step)));streetUpdateScore(true);});
  var streetStepIdx=0;
  function streetGoStep(diff){
+  if(streetMode==='explore'){var q=['bookstore','cinema','cafe'];streetStepIdx=(streetStepIdx+diff+q.length)%q.length;var pin=document.querySelector('[data-place="'+q[streetStepIdx]+'"]');if(pin)pin.click();return;}
   if(streetMode==='cefr'){var i=streetStops.findIndex(function(s){return s.id===streetSelected;});streetSetCefr(streetStops[Math.max(0,Math.min(streetStops.length-1,i+diff))].id);}
   else{streetScore.value=String(Math.max(Number(streetScore.min),Math.min(Number(streetScore.max),Number(streetScore.value)+diff*Number(streetScore.step))));streetUpdateScore(true);}
  }
@@ -727,6 +735,7 @@ h1,h2,h3{letter-spacing:-.046em}
  streetViewport.addEventListener('pointerleave',streetEndPan);
  window.addEventListener('resize',function(){streetCamera();},{passive:true});
  streetCurrent=streetStops[0].distance;streetDestination=streetCurrent;streetDraw(streetCurrent,false);
+ window.ALIStreetDemo={getMode:function(){return streetMode;},setMode:streetSetMode,travelTo:function(x,y,callback){streetMove(streetNear(x,y),callback);}};
  streetSetCefr('Pre-A1');
 
  var paths={
@@ -780,5 +789,6 @@ h1,h2,h3{letter-spacing:-.046em}
  if(!prefers&&window.matchMedia('(pointer:fine)').matches){hero.addEventListener('pointermove',function(e){var r=hero.getBoundingClientRect();var x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;art.style.setProperty('--mx',(x*12).toFixed(1)+'px');art.style.setProperty('--my',(y*10).toFixed(1)+'px');});hero.addEventListener('pointerleave',function(){art.style.setProperty('--mx','0px');art.style.setProperty('--my','0px');});}
 })();
 </script>
+<script src="/assets/ali-explorer-v7.js?v=2"></script>
 </body>
 </html>
