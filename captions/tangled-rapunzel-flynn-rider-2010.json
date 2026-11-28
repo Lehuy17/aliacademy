@@ -5,40 +5,40 @@
   "source": "Speech recognition from the user-supplied clip with Whisper small.en; offline automatic Vietnamese translation (Helsinki-NLP/opus-mt-en-vi). Requires human review.",
   "cues": [
     {
-      "start": 0.0,
+      "start": 0,
       "end": 8.5,
       "en": "is this hair struggling struggling is pointless why you're here and I'm not",
-      "vi": "Là mái tóc đấu tranh này là vô nghĩa lý do tại sao bạn ở đây và tôi không"
+      "vi": "Vùng vẫy cũng vô ích! ... Sao anh lại ở đây? ..."
     },
     {
       "start": 33.61,
       "end": 42.11,
       "en": "afraid of you and how did you find me ah who are you and how did you find me I",
-      "vi": "Sợ ngươi và làm sao ngươi tìm được ta? Ngươi là ai? Làm sao ngươi tìm được ta?"
+      "vi": "Tôi không sợ anh! Anh tìm thấy tôi bằng cách nào? Anh là ai và sao anh tìm được tôi?"
     },
     {
       "start": 56.64,
       "end": 65.14,
       "en": "know not who you are nor how I came to find you but may I just say how you",
-      "vi": "Không biết anh là ai hay làm thế nào tôi đến để tìm anh nhưng liệu tôi có thể nói anh như thế nào?"
+      "vi": "Tôi chẳng biết cô là ai hay vì sao mình lại tìm thấy cô, nhưng phải nói rằng cô..."
     },
     {
       "start": 71.71,
       "end": 79.14,
       "en": "How you doing? The name's Flynn Rider. How's your day going?",
-      "vi": "Hôm nay thế nào?"
+      "vi": "... Khỏe không? Tôi tên Flynn Rider. Hôm nay cô thế nào?"
     },
     {
       "start": 79.14,
       "end": 82.14,
       "en": "Who else knows my location? Flynn Rider.",
-      "vi": "Còn ai khác biết vị trí của tôi?"
+      "vi": "Còn ai khác biết tôi ở đây? Flynn Rider."
     },
     {
       "start": 82.14,
       "end": 83.14,
       "en": "All right, Blondie.",
-      "vi": "Được rồi, Blondie."
+      "vi": "Được rồi, tóc vàng."
     },
     {
       "start": 83.14,
@@ -50,205 +50,205 @@
       "start": 84.14,
       "end": 86.14,
       "en": "Gesundheit. Here's the deal.",
-      "vi": "Gesundheit, đây là thỏa thuận."
+      "vi": "Chúc sức khỏe nhé! Nghe tôi nói này."
     },
     {
       "start": 86.14,
       "end": 89.14,
       "en": "I was in a situation, gallivanting through the forest.",
-      "vi": "Tôi đang ở trong một tình huống, lang thang trong rừng."
+      "vi": "Tôi đang gặp chút rắc rối, chạy băng qua khu rừng,"
     },
     {
       "start": 89.14,
       "end": 91.14,
       "en": "I came across your tower and...",
-      "vi": "Tôi đã đi ngang qua tòa tháp của anh và..."
+      "vi": "thì tình cờ bắt gặp tòa tháp của cô và..."
     },
     {
       "start": 91.14,
       "end": 94.14,
       "en": "Oh, oh no! Where is my satchel?",
-      "vi": "Ôi không, túi của tôi đâu?"
+      "vi": "Ôi, không! Cái túi của tôi đâu?"
     },
     {
       "start": 94.14,
       "end": 98.14,
       "en": "I've hidden it. Somewhere you'll never find it.",
-      "vi": "Tôi đã giấu nó ở đâu đó mà anh sẽ không bao giờ tìm thấy nó."
+      "vi": "Tôi giấu nó rồi. Ở một nơi anh không bao giờ tìm thấy."
     },
     {
       "start": 98.14,
       "end": 104.74,
       "en": "It's in that pot, isn't it?",
-      "vi": "Nó ở trong cái nồi đó, phải không?"
+      "vi": "Trong cái nồi kia, phải không?"
     },
     {
       "start": 112.23,
       "end": 114.23,
       "en": "Now it's hidden where you'll never find it.",
-      "vi": "Bây giờ nó được giấu ở nơi mà anh sẽ không bao giờ tìm thấy nó."
+      "vi": "Giờ thì nó ở nơi anh chẳng bao giờ tìm thấy được nữa."
     },
     {
       "start": 114.23,
       "end": 119.23,
       "en": "So, what do you want with my hair? To cut it?",
-      "vi": "Vậy anh muốn cắt tóc tôi để làm gì?"
+      "vi": "Vậy anh muốn gì ở mái tóc của tôi? Cắt nó ư?"
     },
     {
       "start": 119.23,
       "end": 120.23,
       "en": "What?",
-      "vi": "Cái gì?"
+      "vi": "Gì cơ?"
     },
     {
       "start": 120.23,
       "end": 121.23,
       "en": "Sell it?",
-      "vi": "Bán nó?"
+      "vi": "Hay mang bán?"
     },
     {
       "start": 121.23,
       "end": 127.23,
       "en": "No! Listen, the only thing I want to do with your hair is to get out of it. Literally.",
-      "vi": "Nghe này, điều duy nhất anh muốn làm với mái tóc của em là thoát khỏi nó."
+      "vi": "Không! Nghe này, điều duy nhất tôi muốn làm với tóc cô là thoát khỏi nó. Theo đúng nghĩa đen!"
     },
     {
       "start": 127.23,
       "end": 130.23,
       "en": "Wait. You don't want my hair?",
-      "vi": "Khoan, anh không muốn tóc của tôi à?"
+      "vi": "Khoan. Anh không muốn mái tóc của tôi sao?"
     },
     {
       "start": 130.23,
       "end": 132.23,
       "en": "Why on earth would I want your hair?",
-      "vi": "Sao tôi lại cần tóc của anh chứ?"
+      "vi": "Tôi muốn tóc cô để làm gì chứ?"
     },
     {
       "start": 132.23,
       "end": 136.23,
-      "en": "Look, I was being chased, I saw a tower, a climate, end of story.",
-      "vi": "Nghe này, tôi bị truy đuổi, tôi thấy một tòa tháp, một khí hậu, kết thúc câu chuyện."
+      "en": "Look, I was being chased, I saw a tower, I climbed it, end of story.",
+      "vi": "Nghe này, tôi bị truy đuổi, thấy một tòa tháp nên leo lên. Chỉ có thế!"
     },
     {
       "start": 136.23,
       "end": 138.23,
       "en": "You're telling the truth?",
-      "vi": "Anh đang nói sự thật à?"
+      "vi": "Anh nói thật chứ?"
     },
     {
       "start": 138.23,
       "end": 140.23,
       "en": "Yes.",
-      "vi": "Phải."
+      "vi": "Thật."
     },
     {
       "start": 140.23,
       "end": 146.83,
       "en": "But what choice do I have?",
-      "vi": "Nhưng tôi còn lựa chọn nào khác chứ?"
+      "vi": "Nhưng tôi còn lựa chọn nào khác đâu?"
     },
     {
       "start": 161.79,
       "end": 166.53,
-      "en": "Okay, Flynn Mater, I'm prepared to offer you a deal.",
-      "vi": "Được rồi, Flynn Mater, tôi đã chuẩn bị cho anh một thỏa thuận."
+      "en": "Okay, Flynn Rider, I'm prepared to offer you a deal.",
+      "vi": "Được rồi, Flynn Rider, tôi có một giao kèo dành cho anh."
     },
     {
       "start": 166.53,
       "end": 167.23,
       "en": "Deal?",
-      "vi": "Thỏa thuận chứ?"
+      "vi": "Giao kèo à?"
     },
     {
       "start": 167.23,
       "end": 168.23,
       "en": "Look this way.",
-      "vi": "Nhìn hướng này."
+      "vi": "Nhìn bên này."
     },
     {
       "start": 169.73,
       "end": 172.73,
       "en": "Do you know what these are?",
-      "vi": "Anh có biết đây là gì không?"
+      "vi": "Anh có biết những thứ này là gì không?"
     },
     {
       "start": 172.73,
       "end": 175.93,
       "en": "You mean the lantern thing they do for the princess?",
-      "vi": "Ý anh là cái lồng đèn mà họ làm cho công chúa?"
+      "vi": "Ý cô là lễ thả đèn lồng dành cho công chúa ấy à?"
     },
     {
       "start": 175.93,
       "end": 180.02,
       "en": "They weren't stars.",
-      "vi": "Họ không phải là những ngôi sao."
+      "vi": "Hóa ra chúng không phải những vì sao."
     },
     {
       "start": 181.02,
       "end": 187.16,
       "en": "Well, tomorrow evening, they will light the night sky with these lanterns.",
-      "vi": "Tối mai, họ sẽ thắp sáng bầu trời đêm bằng đèn lồng."
+      "vi": "Vào tối mai, người ta sẽ thắp sáng bầu trời đêm bằng những chiếc đèn lồng này."
     },
     {
       "start": 187.16,
       "end": 192.86,
       "en": "You will act as my guide, take me to these lanterns, and return me home safely.",
-      "vi": "Anh sẽ làm hướng dẫn viên của tôi, đưa tôi đến chỗ lồng đèn, và đưa tôi về nhà an toàn."
+      "vi": "Anh sẽ làm người dẫn đường, đưa tôi đến xem đèn lồng rồi đưa tôi trở về nhà an toàn."
     },
     {
       "start": 192.86,
       "end": 197.46,
       "en": "Then, and only then, will I return your satchel to you.",
-      "vi": "Sau đó, và chỉ sau đó, tôi sẽ trả lại túi xách cho bạn cho bạn."
+      "vi": "Đến lúc ấy, và chỉ khi ấy, tôi mới trả túi lại cho anh."
     },
     {
       "start": 197.46,
       "end": 198.82,
       "en": "That is my deal.",
-      "vi": "Đó là thỏa thuận của tôi."
+      "vi": "Đó là giao kèo của tôi."
     },
     {
       "start": 198.82,
       "end": 200.94,
       "en": "Yeah.",
-      "vi": "Ừ."
+      "vi": "Ừ..."
     },
     {
       "start": 200.94,
       "end": 202.58,
       "en": "No can do.",
-      "vi": "Không thể được."
+      "vi": "Không được đâu."
     },
     {
       "start": 202.58,
       "end": 204.94,
       "en": "Unfortunately, the kingdom and I aren't exactly",
-      "vi": "Thật không may, vương quốc và tôi không hẳn là như vậy."
+      "vi": "Tiếc là hiện giờ tôi và vương quốc"
     },
     {
       "start": 204.94,
       "end": 206.54,
       "en": "as simpatico at the moment.",
-      "vi": "lúc này là simpatico."
+      "vi": "không được hòa thuận cho lắm."
     },
     {
       "start": 206.54,
       "end": 208.5,
       "en": "So I won't be taking you anywhere.",
-      "vi": "Nên tôi sẽ không đưa cô đi đâu cả."
+      "vi": "Thế nên tôi sẽ chẳng đưa cô đi đâu cả."
     },
     {
       "start": 208.5,
       "end": 215.1,
       "en": "Who brought you here, Flynn Rider?",
-      "vi": "Ai đưa anh tới đây, Flynn Rider?"
+      "vi": "Ai đưa anh đến đây, Flynn Rider?"
     },
     {
       "start": 218.65,
       "end": 222.29,
       "en": "Call it what you will, fate, destiny.",
-      "vi": "Gọi nó là gì cũng được, số phận, số phận."
+      "vi": "Cứ gọi là duyên số hay định mệnh gì cũng được."
     },
     {
       "start": 222.29,
@@ -260,61 +260,61 @@
       "start": 223.01,
       "end": 225.45,
       "en": "So I have made the decision to trust you.",
-      "vi": "Nên tôi đã quyết định tin tưởng anh."
+      "vi": "Vậy nên tôi đã quyết định tin tưởng anh."
     },
     {
       "start": 225.45,
       "end": 226.65,
       "en": "A horrible decision, really.",
-      "vi": "Một quyết định khủng khiếp, thật đấy."
+      "vi": "Một quyết định tồi tệ thật đấy."
     },
     {
       "start": 226.65,
       "end": 229.53,
       "en": "But trust me when I tell you this.",
-      "vi": "Nhưng hãy tin tôi khi tôi nói điều này."
+      "vi": "Nhưng anh hãy tin tôi khi tôi nói điều này:"
     },
     {
       "start": 231.53,
       "end": 235.45,
       "en": "You can tear this tower apart brick by brick,",
-      "vi": "Anh có thể đập tan tòa tháp này từng viên gạch một."
+      "vi": "Anh có thể phá nát cả tòa tháp, từng viên gạch một,"
     },
     {
       "start": 235.45,
       "end": 236.79,
       "en": "but without my help,",
-      "vi": "Nhưng không có sự giúp đỡ của tôi,"
+      "vi": "nhưng nếu không có tôi giúp,"
     },
     {
       "start": 236.79,
       "end": 239.53,
       "en": "you will never find your precious satchel.",
-      "vi": "Anh sẽ không bao giờ tìm được cái túi quý giá của mình."
+      "vi": "anh sẽ chẳng bao giờ tìm được chiếc túi quý giá của mình."
     },
     {
       "start": 241.43,
       "end": 242.83,
       "en": "Let me just get this straight.",
-      "vi": "Để tôi nói thẳng nhé."
+      "vi": "Để tôi hiểu cho rõ nhé."
     },
     {
       "start": 242.83,
       "end": 244.67,
       "en": "I take you to see the lanterns,",
-      "vi": "Ta dẫn ngươi đi xem lồng đèn,"
+      "vi": "Tôi đưa cô đi xem đèn lồng,"
     },
     {
       "start": 244.67,
       "end": 246.19,
       "en": "bring you back home,",
-      "vi": "Đưa anh về nhà,"
+      "vi": "đưa cô về nhà,"
     },
     {
       "start": 246.19,
       "end": 248.13,
       "en": "and you'll give me back my satchel?",
-      "vi": "Và anh sẽ trả lại tôi cái túi?"
+      "vi": "và cô trả lại túi cho tôi?"
     },
     {
       "start": 248.13,
@@ -326,13 +326,13 @@
       "start": 251.39,
       "end": 253.19,
       "en": "And when I promise something,",
-      "vi": "Và khi tôi hứa điều gì đó,"
+      "vi": "Và một khi tôi đã hứa điều gì,"
     },
     {
       "start": 253.19,
       "end": 258.66,
       "en": "I never, ever break that promise.",
-      "vi": "Tôi không bao giờ, không bao giờ phá vỡ lời hứa đó."
+      "vi": "tôi tuyệt đối không bao giờ thất hứa."
     },
     {
       "start": 258.66,
@@ -344,37 +344,37 @@
       "start": 263.09,
       "end": 265.53,
       "en": "All right, listen, I didn't want to have to do this,",
-      "vi": "Được rồi, nghe này, tôi không muốn phải làm việc này,"
+      "vi": "Được rồi, nghe này, tôi không muốn phải dùng đến cách này,"
     },
     {
       "start": 265.53,
       "end": 267.17,
       "en": "but you leave me no choice.",
-      "vi": "Nhưng anh không cho tôi lựa chọn nào khác."
+      "vi": "nhưng cô không cho tôi lựa chọn nào khác."
     },
     {
       "start": 268.09,
       "end": 277.52,
       "en": "Here comes the smolder.",
-      "vi": "Máy hút thuốc tới rồi."
+      "vi": "Xem ánh nhìn quyến rũ của tôi đây."
     },
     {
       "start": 277.52,
       "end": 279.04,
       "en": "This is kind of an off day for me.",
-      "vi": "Hôm nay là ngày nghỉ của tôi."
+      "vi": "Hôm nay tôi không được phong độ lắm."
     },
     {
       "start": 279.04,
       "end": 280.64,
       "en": "This doesn't normally happen.",
-      "vi": "Chuyện này thường không xảy ra."
+      "vi": "Bình thường chuyện này đâu có xảy ra."
     },
     {
       "start": 281.64,
       "end": 283.92,
       "en": "Fine, I'll take you to see the lanterns.",
-      "vi": "Được rồi, tôi sẽ đưa anh đi xem đèn lồng."
+      "vi": "Thôi được, tôi sẽ dẫn cô đi xem đèn lồng."
     },
     {
       "start": 283.92,
@@ -382,5 +382,28 @@
       "en": "Really?",
       "vi": "Thật sao?"
     }
-  ]
+  ],
+  "editorialNotes": {
+    "status": "AI-assisted Vietnamese language revision; original English audio and timing not yet verified by a teacher.",
+    "needsSourceAudioCheckCueNumbers": [
+      1,
+      2,
+      3,
+      4,
+      8,
+      21,
+      24,
+      25,
+      41,
+      59,
+      60
+    ],
+    "observations": [
+      "Cues 1–3 are severely garbled or incomplete in automatic English transcription; provisional Vietnamese must not be treated as source-verified.",
+      "Long uncaptioned stretches around 00:08–00:33 and 00:42–00:56 need audio comparison; they may contain silence, effects or missed speech.",
+      "Check line timings during the dialogue about the tower, the satchel, and the lantern deal on mobile.",
+      "A few English phrases were corrected contextually; review against original audio."
+    ],
+    "rightsConfirmed": false
+  }
 }
