@@ -1,0 +1,33 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 140 165" role="img" aria-label="ALI Explorer nhân vật học viên đội mũ thám hiểm, áo khoác cam, đeo ba lô">
+<defs><linearGradient id="coat" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#FFAE51"/><stop offset=".63" stop-color="#F77C2F"/><stop offset="1" stop-color="#DF552C"/></linearGradient><filter id="charShadow" x="-50%" y="-30%" width="200%" height="180%"><feDropShadow dx="0" dy="3" stdDeviation="2" flood-color="#7F593E" flood-opacity=".38"/></filter></defs>
+<g filter="url(#charShadow)" stroke-linejoin="round" stroke-linecap="round">
+<ellipse cx="72" cy="155" rx="32" ry="6" fill="#567C68" opacity=".22" stroke="none"/>
+<path d="M53 122L47 143L59 152L71 149L75 123ZM84 123L91 145L109 150L114 140L103 114Z" fill="#68503F" stroke="#593C35" stroke-width="3"/>
+<path d="M44 143 Q51 137 63 147Q73 149 72 156L47 159Q41 156 44 143Z" fill="#F69D40" stroke="#A96537" stroke-width="3"/>
+<path d="M91 142Q100 137 113 146Q119 148 116 155L92 157Q87 154 91 142Z" fill="#F69D40" stroke="#A96537" stroke-width="3"/>
+<path d="M39 70Q15 78 19 114L25 129Q33 137 42 128L54 91Z" fill="#76503E" stroke="#543B34" stroke-width="3"/>
+<path d="M35 86Q34 103 38 128Q52 138 85 132Q105 134 118 125L111 90Q101 65 75 63Z" fill="url(#coat)" stroke="#9D593A" stroke-width="3"/>
+<path d="M66 87Q71 103 68 134" fill="none" stroke="#FFE6C7" stroke-width="5"/>
+<path d="M72 81Q63 73 58 69L49 82L68 92Z" fill="#FFE4C3"/>
+<path d="M74 81Q84 69 87 72L98 83L76 94Z" fill="#FFE4C3"/>
+<path d="M100 85Q119 96 120 113L112 125Q100 123 95 111" fill="url(#coat)" stroke="#9D593A" stroke-width="3"/>
+<circle cx="115" cy="122" r="10" fill="#FFCAA6" stroke="#A96B4C" stroke-width="2.4"/>
+<path d="M44 87Q33 98 30 119" fill="none" stroke="#FFA961" stroke-width="16"/>
+<circle cx="29" cy="127" r="10" fill="#FFCAA6" stroke="#A96B4C" stroke-width="2.4"/>
+<path d="M48 52Q41 45 46 31Q57 15 76 18Q97 13 109 36L107 57Z" fill="#644638" stroke="#48372E" stroke-width="3"/>
+<ellipse cx="76" cy="50" rx="31" ry="30" fill="#FFD6B3" stroke="#B88060" stroke-width="2.6"/>
+<path d="M43 44Q41 21 57 18Q70 12 78 23Q103 13 109 38Q94 37 88 27Q64 42 43 44Z" fill="#70473B" stroke="#513529" stroke-width="3"/>
+<ellipse cx="63" cy="51" rx="5" ry="8" fill="#4D362D"/><ellipse cx="88" cy="51" rx="5" ry="8" fill="#4D362D"/>
+<circle cx="64" cy="49" r="2" fill="#FFF"/><circle cx="89" cy="49" r="2" fill="#FFF"/>
+<ellipse cx="50" cy="60" rx="8" ry="5" fill="#F5A09C" opacity=".7"/><ellipse cx="100" cy="60" rx="8" ry="5" fill="#F5A09C" opacity=".7"/>
+<path d="M69 66Q77 73 85 66" fill="none" stroke="#B36A5B" stroke-width="3"/>
+<path d="M36 34Q32 9 54 8L96 10Q120 13 117 34L37 40Z" fill="#FCE8CA" stroke="#B77C4E" stroke-width="3"/>
+<ellipse cx="77" cy="35" rx="50" ry="12" fill="#FCE8CA" stroke="#B77C4E" stroke-width="3"/>
+<path d="M39 34Q75 20 116 32" stroke="#EF8C38" stroke-width="5" fill="none"/>
+<g transform="translate(79 17)"><circle cx="-13" cy="0" r="12" fill="#9EC5D0" stroke="#795440" stroke-width="5"/><circle cx="12" cy="0" r="12" fill="#9EC5D0" stroke="#795440" stroke-width="5"/><path d="M-1-2H0" stroke="#795440" stroke-width="5"/><path d="M-16-6L-20-9M9-7L5-10" stroke="#FFF" stroke-width="3"/></g>
+<path d="M37 32Q15 31 18 42Q25 50 34 44" fill="#F8923C" stroke="#B8713A" stroke-width="3"/>
+<rect x="42" y="81" width="21" height="46" rx="8" fill="#9B6B4A" opacity=".85" transform="rotate(-13 42 81)"/>
+<circle cx="87" cy="108" r="13" fill="#FFF7DB" stroke="#CB8A52" stroke-width="3"/><text x="87" y="115" font-size="18" font-family="sans-serif" font-weight="900" fill="#E76F2D" text-anchor="middle">A</text>
+<path d="M32 108L17 102L12 106L28 115Z" fill="#A97B57"/>
+</g>
+</svg>
